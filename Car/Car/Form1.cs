@@ -29,37 +29,6 @@ namespace Car
                 Application.DoEvents();
             }
         }
-        private void GetCarMarks()
-        {
-
-            var MarkSelect = wbTest.Document.GetElementById("search_brand_id");
-            string webtxt = String.Empty;
-
-            int Car_ID = 1;
-            using (XmlWriter writer = XmlWriter.Create("Cars.xml"))
-            {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Cars_Marks");
-
-                foreach (HtmlElement OptionMark in MarkSelect.Children)
-                {
-                    if (OptionMark.InnerText != "---Марка---")
-                    {
-                        writer.WriteStartElement("Cars");
-                        writer.WriteElementString("Car_ID", Car_ID.ToString());
-                        writer.WriteElementString("Car_Model", OptionMark.InnerText);
-                        Car_ID++;
-                        writer.WriteEndElement();
-                    }
-
-                }
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
-
-            }
-
-            System.Diagnostics.Process.Start("Cars.xml");
-        }
  
 
         public void CycleModels(XmlWriter writer)
@@ -90,24 +59,6 @@ namespace Car
                 }
             }
         }
-
-
-        private void CycleMarks()
-        {
-            var MarkSelect = wbTest.Document.GetElementById("search_brand_id");
-            mshtml.HTMLSelectElement AllMark = MarkSelect.DomElement as mshtml.HTMLSelectElement;
-            //for (int i = 0; i < AllMark.length; i++)
-            // {
-            AllMark.selectedIndex = 1;
-            MarkSelect.RaiseEvent("onChange");
-            while (wbTest.ReadyState != WebBrowserReadyState.Complete)
-                Application.DoEvents();
-            // }
-            // AllMark.selectedIndex = 0;
-
-        }
-
-
 
         private async void CycleMarksAndGetModels()
         {
@@ -149,37 +100,6 @@ namespace Car
             CarShopDataSetTableAdapters.ModelsTableAdapter ModelAdapter = new CarShopDataSetTableAdapters.ModelsTableAdapter();
             ModelAdapter.Update(DSModels);
         }
-        private void SaveCarMarksToDB()
-        {
-            CarShopDataSet.CarsDataTable DSCar = new CarShopDataSet.CarsDataTable();
-            int Car_ID = 0;
-            String Car_Mark = string.Empty;
-            DSCar.ReadXml("Cars.xml");
-            try
-            {
-
-                CarShopDataSetTableAdapters.CarsTableAdapter CarsAdapter = new CarShopDataSetTableAdapters.CarsTableAdapter();
-                for (int i = 0; i <= DSCar.Rows.Count - 1; i++)
-                {
-                    Car_ID = Convert.ToInt32(DSCar.Rows[i].ItemArray[0]);
-                    Car_Mark = DSCar.Rows[i].ItemArray[1].ToString();
-                    CarsAdapter.Insert(Car_ID, Car_Mark);
-                }
-                MessageBox.Show("Update successful");
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show("Update failed" + ex.ToString());
-            }
-
-
-
-            while (wbTest.ReadyState != WebBrowserReadyState.Complete)
-            {
-                Application.DoEvents();
-            }
-
-        }
 
 
         public Form1()
@@ -191,45 +111,6 @@ namespace Car
         {
 
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            InitSiteConnection();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            GetCarMarks();
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            SaveCarMarksToDB();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //InitSiteConnection();
-            CycleMarksAndGetModels();
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            SaveMaodelsToDB();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            CycleMarks();
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            CycleMarksAndGetModels();
         }
 
     }

@@ -61,5 +61,36 @@ namespace Car
 
            System.Diagnostics.Process.Start("Cars.xml");
        }
+       private void SaveCarMarksToDB()
+       {
+           CarShopDataSet.CarsDataTable DSCar = new CarShopDataSet.CarsDataTable();
+           int Car_ID = 0;
+           String Car_Mark = string.Empty;
+           DSCar.ReadXml("Cars.xml");
+           try
+           {
+
+               CarShopDataSetTableAdapters.CarsTableAdapter CarsAdapter = new CarShopDataSetTableAdapters.CarsTableAdapter();
+               for (int i = 0; i <= DSCar.Rows.Count - 1; i++)
+               {
+                   Car_ID = Convert.ToInt32(DSCar.Rows[i].ItemArray[0]);
+                   Car_Mark = DSCar.Rows[i].ItemArray[1].ToString();
+                   CarsAdapter.Insert(Car_ID, Car_Mark);
+               }
+               MessageBox.Show("Update successful");
+           }
+           catch (System.Exception ex)
+           {
+               MessageBox.Show("Update failed" + ex.ToString());
+           }
+
+
+
+           while (wbTest.ReadyState != WebBrowserReadyState.Complete)
+           {
+               Application.DoEvents();
+           }
+
+       }
     }
 }
