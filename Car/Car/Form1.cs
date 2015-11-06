@@ -73,7 +73,7 @@ namespace Car
                 if (OptionMark.InnerText != "---Модел---" && OptionMark.InnerText != "---Избери Модел---")
                 {
                     writer.WriteStartElement("Models");
-                    writer.WriteElementString("MODEL_ID", Model_ID.ToString());
+                    //writer.WriteElementString("MODEL_ID", Model_ID.ToString());
                     menu = OptionMark.InnerText;
                     string[] Separator = { " от ", " до " };
                     string[] ModelData = menu.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
@@ -85,7 +85,7 @@ namespace Car
                         writer.WriteElementString("Year_STOP", ModelData[2]);
 
                     writer.WriteElementString("CAR_ID", "1");
-                    Model_ID++;
+                    //Model_ID++;
                     writer.WriteEndElement();
                 }
             }
