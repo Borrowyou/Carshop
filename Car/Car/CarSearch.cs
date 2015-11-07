@@ -22,7 +22,7 @@ namespace Car
 
        private void InitSiteConnection()
        {
-
+           wbTest = new WebBrowser();
            wbTest.Url = new Uri("http://www.avto.bim.bg/tursene/pt1");
            wbTest.ScriptErrorsSuppressed = true;
            while (wbTest.ReadyState != WebBrowserReadyState.Complete)
