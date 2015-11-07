@@ -80,7 +80,7 @@ namespace Car
                 MarkSelect.RaiseEvent("onChange");
                 while(AllModels.length<2)
                     await Task.Delay(50);
-                CycleModels(writer);
+                CycleModels(writer);//
                     
              }
             writer.WriteEndElement();
