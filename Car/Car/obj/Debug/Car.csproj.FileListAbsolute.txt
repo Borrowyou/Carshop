@@ -15,3 +15,4 @@ C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.csproj.GenerateResour
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\Car.exe
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\Car.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.csprojResolveAssemblyReference.cache

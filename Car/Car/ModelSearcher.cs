@@ -14,14 +14,30 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text.RegularExpressions;
 
-
 namespace Car
 {
     class ModelSearcher
     {
         WebBrowser wbTest;
+        CarShopDataSet DSCarShop;
+        int Model_ID = 1;
+       
+        public ModelSearcher()
+       {
+           this.wbTest = new WebBrowser();
+           this.DSCarShop = new CarShopDataSet();
+       }
 
-        private void InitSiteConnection()
+       public WebBrowser PwbTest
+       {
+           get { return this.wbTest;
+               }
+           set{
+               this.wbTest = null;
+              } 
+       }
+
+        public void InitSiteConnection()
         {
             wbTest = new WebBrowser();
             wbTest.Url = new Uri("http://www.avto.bim.bg/tursene/pt1");
@@ -31,10 +47,9 @@ namespace Car
                 Application.DoEvents();
             }
         }
-        public void CycleModels(XmlWriter writer)
+        public void CycleModels(XmlWriter writer, int Car_ID)
         {
             var ModelSelect = wbTest.Document.GetElementById("model_id"); // get model select
-            int Model_ID = 0;
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             string menu = string.Empty;
             foreach (HtmlElement OptionMark in ModelSelect.Children)
@@ -49,17 +64,17 @@ namespace Car
 
                     writer.WriteElementString("MODEL_NAME", ModelData[0]);
                     if (ModelData.Length > 1)
-                        writer.WriteElementString("YEAR_MANUF", ModelData[1]);
+                        writer.WriteElementString("YEAR_MANUF",  ModelData[1].Substring(0,3));
                     if (ModelData.Length > 2)
-                        writer.WriteElementString("Year_STOP", ModelData[2]);
+                        writer.WriteElementString("Year_STOP", ModelData[2].Substring(0,3));
 
-                    writer.WriteElementString("CAR_ID", "1");
+                    writer.WriteElementString("CAR_ID", Car_ID.ToString());
                     Model_ID++;
                     writer.WriteEndElement();
                 }
             }
         }
-        private async void CycleMarksAndGetModels()
+        public async void CycleMarksAndGetModels()
         {
 
             var MarkSelect = wbTest.Document.GetElementById("search_brand_id"); // get the mark 
@@ -67,47 +82,51 @@ namespace Car
             mshtml.HTMLSelectElement AllCars = MarkSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             string menu = string.Empty;
-            carsTableAdapter1.Fill(CDSCarShop.Cars);
-            //CDSCarShop.Cars.First; 
+            string modelMenu = string.Empty;
             using (XmlWriter writer = XmlWriter.Create("Models.xml"))
             {
                 writer.WriteStartDocument();
                 writer.WriteStartElement("Cars_Models");
                 for (int i = 1; i < AllCars.length; i++)
                 {
+
                     AllCars.selectedIndex = i;
                     MarkSelect.RaiseEvent("onChange");
                     while (AllModels.length < 2)
-                        await Task.Delay(50);
-                    CycleModels(writer);//
+                    {
+                        Application.DoEvents();
+                    }
+                    HtmlElement OptCarMark = MarkSelect.Children[i];
+                    await Task.Delay(100);
+                    menu = OptCarMark.InnerHtml;
+                    modelMenu = AllModels.innerText;
+                    CycleModels(writer, i);//
 
                 }
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
             }
-
             System.Diagnostics.Process.Start("Models.xml");
+            SaveMaodelsToDB();
         } //bla
-        private void SaveMaodelsToDB()
+        public void SaveMaodelsToDB()
         {
             CarShopDataSet.ModelsDataTable DSModels = new CarShopDataSet.ModelsDataTable();
-            int Model_ID, CarID, YearStart, Rows, YearStop = 0;
+            int Rows = 0;
             String Model_Name = string.Empty;
-            DSModels.ReadXml("Models.xml");
-            Rows = DSModels.Rows.Count - 1;
-            CarShopDataSetTableAdapters.ModelsTableAdapter ModelAdapter = new CarShopDataSetTableAdapters.ModelsTableAdapter();
-            ModelAdapter.Update(DSModels);
-        }
-
-        private void SaveMaodelsToDB()
-        {
-            CarShopDataSet.ModelsDataTable DSModels = new CarShopDataSet.ModelsDataTable();
-            int Model_ID, CarID, YearStart, Rows, YearStop = 0;
-            String Model_Name = string.Empty;
-            DSModels.ReadXml("Models.xml");
-            Rows = DSModels.Rows.Count - 1;
-            CarShopDataSetTableAdapters.ModelsTableAdapter ModelAdapter = new CarShopDataSetTableAdapters.ModelsTableAdapter();
-            ModelAdapter.Update(DSModels);
+            XmlWriter XmlWRiter = XmlWriter.Create("Bla.xml");
+            DSModels.WriteXml(XmlWRiter);
+            try
+            {
+                DSModels.ReadXml("Models.xml");
+                Rows = DSModels.Rows.Count - 1;
+                CarShopDataSetTableAdapters.ModelsTableAdapter ModelAdapter = new CarShopDataSetTableAdapters.ModelsTableAdapter();
+                ModelAdapter.Update(DSModels);
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.ToString());
+            }
         }
 
 

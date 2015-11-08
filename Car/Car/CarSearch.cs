@@ -19,10 +19,26 @@ namespace Car
     class CarSearch
     {
        WebBrowser wbTest;
+       CarShopDataSet DSCarShop;
 
-       private void InitSiteConnection()
+       public CarSearch()
        {
-           wbTest = new WebBrowser();
+           this.wbTest = new WebBrowser();
+           this.DSCarShop = new CarShopDataSet();
+       }
+
+       public WebBrowser PwbTest
+       {
+           get { return this.wbTest;
+               }
+           set{
+               this.wbTest = null;
+              } 
+       }
+
+
+       public void InitSiteConnection()
+       {
            wbTest.Url = new Uri("http://www.avto.bim.bg/tursene/pt1");
            wbTest.ScriptErrorsSuppressed = true;
            while (wbTest.ReadyState != WebBrowserReadyState.Complete)
@@ -30,7 +46,7 @@ namespace Car
                Application.DoEvents();
            }
        }
-       private void GetCarMarks()
+       public void GetCarMarks()
        {
 
            var MarkSelect = wbTest.Document.GetElementById("search_brand_id");
@@ -61,31 +77,23 @@ namespace Car
 
            System.Diagnostics.Process.Start("Cars.xml");
        }
-       private void SaveCarMarksToDB()
+       public void SaveCarMarksToDB()
        {
-           CarShopDataSet.CarsDataTable DSCar = new CarShopDataSet.CarsDataTable();
+           //CarShopDataSet.CarsDataTable DSCar = new CarShopDataSet.CarsDataTable();
+           var DTableCar = new CarShopDataSet.CarsDataTable();
            int Car_ID = 0;
            String Car_Mark = string.Empty;
-           DSCar.ReadXml("Cars.xml");
+           DTableCar.ReadXml("Cars.xml");
            try
            {
-
                CarShopDataSetTableAdapters.CarsTableAdapter CarsAdapter = new CarShopDataSetTableAdapters.CarsTableAdapter();
-               for (int i = 0; i <= DSCar.Rows.Count - 1; i++)
-               {
-                   Car_ID = Convert.ToInt32(DSCar.Rows[i].ItemArray[0]);
-                   Car_Mark = DSCar.Rows[i].ItemArray[1].ToString();
-                   CarsAdapter.Insert(Car_ID, Car_Mark);
-               }
+               CarsAdapter.Update(DTableCar);
                MessageBox.Show("Update successful");
            }
            catch (System.Exception ex)
            {
                MessageBox.Show("Update failed" + ex.ToString());
            }
-
-
-
            while (wbTest.ReadyState != WebBrowserReadyState.Complete)
            {
                Application.DoEvents();
