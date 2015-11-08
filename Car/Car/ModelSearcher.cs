@@ -64,9 +64,9 @@ namespace Car
 
                     writer.WriteElementString("MODEL_NAME", ModelData[0]);
                     if (ModelData.Length > 1)
-                        writer.WriteElementString("YEAR_MANUF",  ModelData[1].Substring(0,3));
+                        writer.WriteElementString("YEAR_MANUF",  ModelData[1].Substring(0,4));
                     if (ModelData.Length > 2)
-                        writer.WriteElementString("Year_STOP", ModelData[2].Substring(0,3));
+                        writer.WriteElementString("YEAR_STOP", ModelData[2].Substring(0,4));
 
                     writer.WriteElementString("CAR_ID", Car_ID.ToString());
                     Model_ID++;
@@ -128,7 +128,6 @@ namespace Car
                 MessageBox.Show(E.ToString());
             }
         }
-
 
     }
 }
