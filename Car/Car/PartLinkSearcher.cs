@@ -49,17 +49,41 @@ namespace Car
                 Application.DoEvents();
             }
         }
-        public void CycleModels(int Car_ID)
+        public void LoadSite(WebBrowser aWebBrowser, string sUrl)
+        {
+            aWebBrowser.Url = new Uri(sUrl);
+            aWebBrowser.ScriptErrorsSuppressed = true;
+            while (aWebBrowser.ReadyState != WebBrowserReadyState.Complete)
+            {
+                Application.DoEvents();
+            }
+        }
+        public async void CycleModels(int Car_ID)
         {
             var ModelSelect = wbTest.Document.GetElementById("model_id"); // get model select
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
-            var btnFind = wbTest.Document.All.GetElementsByName("btnSearch");
+            var btnFind = wbTest.Document.All.GetElementsByName("btnSearch")[0];
             string menu = string.Empty;
+            String sLink = String.Empty;
             foreach (HtmlElement OptionMark in ModelSelect.Children)
             {
                 if (OptionMark.InnerText != "---Модел---" && OptionMark.InnerText != "---Избери Модел---")
                 {
-                    //s
+                    while (wbTest.ReadyState != WebBrowserReadyState.Complete)
+                    {
+                        Application.DoEvents();
+                    }
+                    sLink = wbTest.Url.ToString();
+
+                    btnFind.InvokeMember("Submit");
+                    btnFind.InvokeMember("submit");
+                    btnFind.InvokeMember("Click");
+                    while (wbTest.ReadyState != WebBrowserReadyState.Complete)
+                    {
+                        Application.DoEvents();
+                    }
+                    await Task.Delay(100);
+
                 }
             }
         }

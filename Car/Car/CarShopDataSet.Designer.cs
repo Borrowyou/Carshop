@@ -34,11 +34,11 @@ namespace Car {
         
         private MODELADDRESSESDataTable tableMODELADDRESSES;
         
-        private global::System.Data.DataRelation relationFK_CARS;
+        private global::System.Data.DataRelation relationFK_Models;
         
         private global::System.Data.DataRelation relationFK_Car_Partss;
         
-        private global::System.Data.DataRelation relationFK_Models;
+        private global::System.Data.DataRelation relationFK_CARS;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -296,9 +296,9 @@ namespace Car {
                     this.tableMODELADDRESSES.InitVars();
                 }
             }
-            this.relationFK_CARS = this.Relations["FK_CARS"];
-            this.relationFK_Car_Partss = this.Relations["FK_Car_Partss"];
             this.relationFK_Models = this.Relations["FK_Models"];
+            this.relationFK_Car_Partss = this.Relations["FK_Car_Partss"];
+            this.relationFK_CARS = this.Relations["FK_CARS"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -319,18 +319,18 @@ namespace Car {
             base.Tables.Add(this.tableParts);
             this.tableMODELADDRESSES = new MODELADDRESSESDataTable();
             base.Tables.Add(this.tableMODELADDRESSES);
-            this.relationFK_CARS = new global::System.Data.DataRelation("FK_CARS", new global::System.Data.DataColumn[] {
-                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableModels.CAR_IDColumn}, false);
-            this.Relations.Add(this.relationFK_CARS);
-            this.relationFK_Car_Partss = new global::System.Data.DataRelation("FK_Car_Partss", new global::System.Data.DataColumn[] {
-                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableParts.Car_IDColumn}, false);
-            this.Relations.Add(this.relationFK_Car_Partss);
             this.relationFK_Models = new global::System.Data.DataRelation("FK_Models", new global::System.Data.DataColumn[] {
                         this.tableModels.MODEL_IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableParts.Model_IDColumn}, false);
             this.Relations.Add(this.relationFK_Models);
+            this.relationFK_Car_Partss = new global::System.Data.DataRelation("FK_Car_Partss", new global::System.Data.DataColumn[] {
+                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableParts.Car_IDColumn}, false);
+            this.Relations.Add(this.relationFK_Car_Partss);
+            this.relationFK_CARS = new global::System.Data.DataRelation("FK_CARS", new global::System.Data.DataColumn[] {
+                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableModels.CAR_IDColumn}, false);
+            this.Relations.Add(this.relationFK_CARS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1010,6 +1010,8 @@ namespace Car {
             
             private global::System.Data.DataColumn columnCAR_ID;
             
+            private global::System.Data.DataColumn columnURL;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ModelsDataTable() {
@@ -1085,6 +1087,14 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn URLColumn {
+                get {
+                    return this.columnURL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1120,14 +1130,15 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelsRow AddModelsRow(int MODEL_ID, string MODEL_NAME, int YEAR_MANUF, int YEAR_STOP, CarsRow parentCarsRowByFK_CARS) {
+            public ModelsRow AddModelsRow(int MODEL_ID, string MODEL_NAME, int YEAR_MANUF, int YEAR_STOP, CarsRow parentCarsRowByFK_CARS, string URL) {
                 ModelsRow rowModelsRow = ((ModelsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MODEL_ID,
                         MODEL_NAME,
                         YEAR_MANUF,
                         YEAR_STOP,
-                        null};
+                        null,
+                        URL};
                 if ((parentCarsRowByFK_CARS != null)) {
                     columnValuesArray[4] = parentCarsRowByFK_CARS[0];
                 }
@@ -1165,6 +1176,7 @@ namespace Car {
                 this.columnYEAR_MANUF = base.Columns["YEAR_MANUF"];
                 this.columnYEAR_STOP = base.Columns["YEAR_STOP"];
                 this.columnCAR_ID = base.Columns["CAR_ID"];
+                this.columnURL = base.Columns["URL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1180,11 +1192,14 @@ namespace Car {
                 base.Columns.Add(this.columnYEAR_STOP);
                 this.columnCAR_ID = new global::System.Data.DataColumn("CAR_ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCAR_ID);
+                this.columnURL = new global::System.Data.DataColumn("URL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnURL);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnMODEL_ID}, true));
                 this.columnMODEL_ID.AllowDBNull = false;
                 this.columnMODEL_ID.Unique = true;
                 this.columnMODEL_NAME.MaxLength = 255;
+                this.columnURL.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1993,23 +2008,23 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelsRow[] GetModelsRows() {
-                if ((this.Table.ChildRelations["FK_CARS"] == null)) {
-                    return new ModelsRow[0];
-                }
-                else {
-                    return ((ModelsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CARS"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PartsRow[] GetPartsRows() {
                 if ((this.Table.ChildRelations["FK_Car_Partss"] == null)) {
                     return new PartsRow[0];
                 }
                 else {
                     return ((PartsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Car_Partss"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ModelsRow[] GetModelsRows() {
+                if ((this.Table.ChildRelations["FK_CARS"] == null)) {
+                    return new ModelsRow[0];
+                }
+                else {
+                    return ((ModelsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CARS"])));
                 }
             }
         }
@@ -2187,6 +2202,22 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string URL {
+                get {
+                    try {
+                        return ((string)(this[this.tableModels.URLColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'URL\' in table \'Models\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableModels.URLColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CarsRow CarsRow {
                 get {
                     return ((CarsRow)(this.GetParentRow(this.Table.ParentRelations["FK_CARS"])));
@@ -2242,6 +2273,18 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCAR_IDNull() {
                 this[this.tableModels.CAR_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsURLNull() {
+                return this.IsNull(this.tableModels.URLColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetURLNull() {
+                this[this.tableModels.URLColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2379,23 +2422,23 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CarsRow CarsRow {
-                get {
-                    return ((CarsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Car_Partss"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Car_Partss"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ModelsRow ModelsRow {
                 get {
                     return ((ModelsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Models"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Models"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CarsRow CarsRow {
+                get {
+                    return ((CarsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Car_Partss"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Car_Partss"]);
                 }
             }
             
@@ -3595,10 +3638,11 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
             tableMapping.ColumnMappings.Add("YEAR_MANUF", "YEAR_MANUF");
             tableMapping.ColumnMappings.Add("YEAR_STOP", "YEAR_STOP");
             tableMapping.ColumnMappings.Add("CAR_ID", "CAR_ID");
+            tableMapping.ColumnMappings.Add("URL", "URL");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Models] WHERE (([MODEL_ID] = @Original_MODEL_ID) AND ((@IsNull_MODEL_NAME = 1 AND [MODEL_NAME] IS NULL) OR ([MODEL_NAME] = @Original_MODEL_NAME)) AND ((@IsNull_YEAR_MANUF = 1 AND [YEAR_MANUF] IS NULL) OR ([YEAR_MANUF] = @Original_YEAR_MANUF)) AND ((@IsNull_YEAR_STOP = 1 AND [YEAR_STOP] IS NULL) OR ([YEAR_STOP] = @Original_YEAR_STOP)) AND ((@IsNull_CAR_ID = 1 AND [CAR_ID] IS NULL) OR ([CAR_ID] = @Original_CAR_ID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Models] WHERE (([MODEL_ID] = @Original_MODEL_ID) AND ((@IsNull_MODEL_NAME = 1 AND [MODEL_NAME] IS NULL) OR ([MODEL_NAME] = @Original_MODEL_NAME)) AND ((@IsNull_YEAR_MANUF = 1 AND [YEAR_MANUF] IS NULL) OR ([YEAR_MANUF] = @Original_YEAR_MANUF)) AND ((@IsNull_YEAR_STOP = 1 AND [YEAR_STOP] IS NULL) OR ([YEAR_STOP] = @Original_YEAR_STOP)) AND ((@IsNull_CAR_ID = 1 AND [CAR_ID] IS NULL) OR ([CAR_ID] = @Original_CAR_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MODEL_NAME", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -3609,26 +3653,30 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_YEAR_STOP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_URL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Models] ([MODEL_ID], [MODEL_NAME], [YEAR_MANUF], [YEAR_STOP], [CAR_ID]) VALUES (@MODEL_ID, @MODEL_NAME, @YEAR_MANUF, @YEAR_STOP, @CAR_ID);
-SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MODEL_ID = @MODEL_ID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Models] ([MODEL_ID], [MODEL_NAME], [YEAR_MANUF], [YEAR_STOP], [CAR_ID], [URL]) VALUES (@MODEL_ID, @MODEL_NAME, @YEAR_MANUF, @YEAR_STOP, @CAR_ID, @URL);
+SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHERE (MODEL_ID = @MODEL_ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_NAME", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEAR_MANUF", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_MANUF", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEAR_STOP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Models] SET [MODEL_ID] = @MODEL_ID, [MODEL_NAME] = @MODEL_NAME, [YEAR_MANUF] = @YEAR_MANUF, [YEAR_STOP] = @YEAR_STOP, [CAR_ID] = @CAR_ID WHERE (([MODEL_ID] = @Original_MODEL_ID) AND ((@IsNull_MODEL_NAME = 1 AND [MODEL_NAME] IS NULL) OR ([MODEL_NAME] = @Original_MODEL_NAME)) AND ((@IsNull_YEAR_MANUF = 1 AND [YEAR_MANUF] IS NULL) OR ([YEAR_MANUF] = @Original_YEAR_MANUF)) AND ((@IsNull_YEAR_STOP = 1 AND [YEAR_STOP] IS NULL) OR ([YEAR_STOP] = @Original_YEAR_STOP)) AND ((@IsNull_CAR_ID = 1 AND [CAR_ID] IS NULL) OR ([CAR_ID] = @Original_CAR_ID)));
-SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MODEL_ID = @MODEL_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Models] SET [MODEL_ID] = @MODEL_ID, [MODEL_NAME] = @MODEL_NAME, [YEAR_MANUF] = @YEAR_MANUF, [YEAR_STOP] = @YEAR_STOP, [CAR_ID] = @CAR_ID, [URL] = @URL WHERE (([MODEL_ID] = @Original_MODEL_ID) AND ((@IsNull_MODEL_NAME = 1 AND [MODEL_NAME] IS NULL) OR ([MODEL_NAME] = @Original_MODEL_NAME)) AND ((@IsNull_YEAR_MANUF = 1 AND [YEAR_MANUF] IS NULL) OR ([YEAR_MANUF] = @Original_YEAR_MANUF)) AND ((@IsNull_YEAR_STOP = 1 AND [YEAR_STOP] IS NULL) OR ([YEAR_STOP] = @Original_YEAR_STOP)) AND ((@IsNull_CAR_ID = 1 AND [CAR_ID] IS NULL) OR ([CAR_ID] = @Original_CAR_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)));
+SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHERE (MODEL_ID = @MODEL_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_NAME", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEAR_MANUF", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_MANUF", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEAR_STOP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MODEL_NAME", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MODEL_NAME", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -3638,6 +3686,8 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_YEAR_STOP", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_URL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3650,11 +3700,23 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM dbo.Models";
+            this._commandCollection[0].CommandText = "SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM dbo.Models";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT CAR_ID, MODEL_ID, MODEL_NAME, URL, YEAR_MANUF, YEAR_STOP FROM Models WHERE" +
+                " (CAR_ID = @CarID) OR (@CarID = - 1)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "UPDATE MODELS\r\nSET URL = @Link\r\nWHERE MODEL_ID = @MOD_ID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Link", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MOD_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3676,6 +3738,42 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual CarShopDataSet.ModelsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            CarShopDataSet.ModelsDataTable dataTable = new CarShopDataSet.ModelsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int LoadModelsByCarID(CarShopDataSet.ModelsDataTable dataTable, global::System.Nullable<int> CarID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CarID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CarID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual CarShopDataSet.ModelsDataTable GetDataByCarID(global::System.Nullable<int> CarID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((CarID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CarID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             CarShopDataSet.ModelsDataTable dataTable = new CarShopDataSet.ModelsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -3714,7 +3812,7 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID) {
+        public virtual int Delete(int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID, string Original_URL) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_MODEL_ID));
             if ((Original_MODEL_NAME == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
@@ -3748,6 +3846,14 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
                 this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((Original_URL == null)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_URL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3768,7 +3874,7 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int MODEL_ID, string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID) {
+        public virtual int Insert(int MODEL_ID, string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, string URL) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(MODEL_ID));
             if ((MODEL_NAME == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -3794,6 +3900,12 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
+            if ((URL == null)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(URL));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3814,7 +3926,7 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int MODEL_ID, string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID) {
+        public virtual int Update(int MODEL_ID, string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, string URL, int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID, string Original_URL) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(MODEL_ID));
             if ((MODEL_NAME == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -3840,38 +3952,52 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_MODEL_ID));
-            if ((Original_MODEL_NAME == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((URL == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_MODEL_NAME));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(URL));
+            }
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_MODEL_ID));
+            if ((Original_MODEL_NAME == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_MODEL_NAME));
             }
             if ((Original_YEAR_MANUF.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_YEAR_MANUF.Value));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_YEAR_MANUF.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_YEAR_STOP.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_YEAR_STOP.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_YEAR_STOP.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_CAR_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_CAR_ID.Value));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_CAR_ID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((Original_URL == null)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_URL));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -3893,8 +4019,38 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID FROM Models WHERE (MO
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID) {
-            return this.Update(Original_MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, Original_MODEL_ID, Original_MODEL_NAME, Original_YEAR_MANUF, Original_YEAR_STOP, Original_CAR_ID);
+        public virtual int Update(string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, string URL, int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID, string Original_URL) {
+            return this.Update(Original_MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL, Original_MODEL_ID, Original_MODEL_NAME, Original_YEAR_MANUF, Original_YEAR_STOP, Original_CAR_ID, Original_URL);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateLink(string Link, int MOD_ID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            if ((Link == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(Link));
+            }
+            command.Parameters[1].Value = ((int)(MOD_ID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
@@ -4846,15 +5002,6 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._partsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Parts.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -4870,6 +5017,15 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._mODELADDRESSESTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._generatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._generatorsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -4899,14 +5055,6 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._partsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Parts.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -4923,6 +5071,14 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._generatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._generatorsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -4933,6 +5089,14 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(CarShopDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._generatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._generatorsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._mODELADDRESSESTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.MODELADDRESSES.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -4946,14 +5110,6 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._partsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

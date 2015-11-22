@@ -8,12 +8,12 @@
   <Shapes>
     <Shape ID="DesignTable:Cars" ZOrder="8" X="70" Y="70" Height="134" Width="219" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Generators" ZOrder="7" X="616" Y="70" Height="134" Width="208" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:Models" ZOrder="6" X="359" Y="70" Height="172" Width="187" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
-    <Shape ID="DesignTable:Parts" ZOrder="5" X="359" Y="312" Height="210" Width="174" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
-    <Shape ID="DesignTable:MODELADDRESSES" ZOrder="1" X="615" Y="221" Height="134" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:Models" ZOrder="1" X="359" Y="70" Height="191" Width="290" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:Parts" ZOrder="6" X="359" Y="312" Height="210" Width="174" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
+    <Shape ID="DesignTable:MODELADDRESSES" ZOrder="2" X="615" Y="221" Height="134" Width="256" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_CARS" ZOrder="4" LineWidth="11">
+    <Connector ID="DesignRelation:FK_CARS" ZOrder="5" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>289</X>
@@ -25,7 +25,7 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Car_Partss" ZOrder="3" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Car_Partss" ZOrder="4" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>272</X>
@@ -41,11 +41,11 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_Models" ZOrder="2" LineWidth="11">
+    <Connector ID="DesignRelation:FK_Models" ZOrder="3" LineWidth="11">
       <RoutePoints>
         <Point>
           <X>446</X>
-          <Y>242</Y>
+          <Y>261</Y>
         </Point>
         <Point>
           <X>446</X>
