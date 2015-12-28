@@ -34,15 +34,17 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.carsTableAdapter1 = new Car.CarShopDataSetTableAdapters.CarsTableAdapter();
-            this.partsTableAdapter1 = new Car.CarShopDataSetTableAdapters.PartsTableAdapter();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.carsTableAdapter1 = new Car.CarShopDataSetTableAdapters.CarsTableAdapter();
+            this.partsTableAdapter1 = new Car.CarShopDataSetTableAdapters.PartsTableAdapter();
             this.modelsTableAdapter1 = new Car.CarShopDataSetTableAdapters.ModelsTableAdapter();
             this.CDSCarShop = new Car.CarShopDataSet();
             this.carShopDataSet1 = new Car.CarShopDataSet();
-            this.button9 = new System.Windows.Forms.Button();
+            this.queriesTableAdapter1 = new Car.CarShopDataSetTableAdapters.QueriesTableAdapter();
+            this.partS_LINKTableAdapter1 = new Car.CarShopDataSetTableAdapters.PARTS_LINKTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.CDSCarShop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carShopDataSet1)).BeginInit();
             this.SuspendLayout();
@@ -106,14 +108,6 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // carsTableAdapter1
-            // 
-            this.carsTableAdapter1.ClearBeforeFill = true;
-            // 
-            // partsTableAdapter1
-            // 
-            this.partsTableAdapter1.ClearBeforeFill = true;
-            // 
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(518, 9);
@@ -143,6 +137,24 @@
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(35, 41);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 9;
+            this.button9.Text = "button9";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // carsTableAdapter1
+            // 
+            this.carsTableAdapter1.ClearBeforeFill = true;
+            // 
+            // partsTableAdapter1
+            // 
+            this.partsTableAdapter1.ClearBeforeFill = true;
+            // 
             // modelsTableAdapter1
             // 
             this.modelsTableAdapter1.ClearBeforeFill = true;
@@ -157,15 +169,9 @@
             this.carShopDataSet1.DataSetName = "CarShopDataSet";
             this.carShopDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // button9
+            // partS_LINKTableAdapter1
             // 
-            this.button9.Location = new System.Drawing.Point(35, 41);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 9;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.partS_LINKTableAdapter1.ClearBeforeFill = true;
             // 
             // Form1
             // 
@@ -208,6 +214,8 @@
         private CarShopDataSet CDSCarShop;
         private CarShopDataSet carShopDataSet1;
         private System.Windows.Forms.Button button9;
+        private CarShopDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
+        private CarShopDataSetTableAdapters.PARTS_LINKTableAdapter partS_LINKTableAdapter1;
     }
 }
 

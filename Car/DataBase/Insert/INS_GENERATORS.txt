@@ -1,0 +1,1 @@
+INSERT INTO Generators VALUES(4, 'PART_LINKS', 1)

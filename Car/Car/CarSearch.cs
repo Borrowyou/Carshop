@@ -81,7 +81,6 @@ namespace Car
        {
            //CarShopDataSet.CarsDataTable DSCar = new CarShopDataSet.CarsDataTable();
            var DTableCar = new CarShopDataSet.CarsDataTable();
-           int Car_ID = 0;
            String Car_Mark = string.Empty;
            DTableCar.ReadXml("Cars.xml");
            try

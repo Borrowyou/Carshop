@@ -16,7 +16,7 @@ C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\Car.exe
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\Car.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.MainForm.resources
-C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.csprojResolveAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\HtmlAgilityPack.dll
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\Car\bin\Debug\HtmlAgilityPack.xml
+C:\Users\PC\Documents\GitHub\Carshop\Car\Car\obj\Debug\Car.csprojResolveAssemblyReference.cache

@@ -15,7 +15,6 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using HtmlAgilityPack;
-
 namespace Car
 {
     public partial class Form1 : Form
@@ -25,10 +24,11 @@ namespace Car
         PartLinkSearcher PartSearch;
         HttpWebRequest htpReq;
         int CurrentCar, CurrentModel;
-        public delegate void SetBrowserElements();    
+        public delegate void SetBrowserElements();
 
         public Form1()
         {
+            
             InitializeComponent();
         }
 
@@ -53,7 +53,7 @@ namespace Car
 
         private void button7_Click(object sender, EventArgs e)
         {
-            
+
             ModelSrch.InitSiteConnection();
             ModelSrch.CycleMarksAndGetModels();
         }
@@ -72,7 +72,7 @@ namespace Car
 
         public void InitSiteConnection()
         {
-            
+
             webTest.Url = new Uri("http://www.avto.bim.bg/tursene/pt1");
             webTest.ScriptErrorsSuppressed = true;
             while (webTest.ReadyState != WebBrowserReadyState.Complete)
@@ -116,13 +116,13 @@ namespace Car
             };
             string menu = string.Empty;
             String sLink = String.Empty;
-            
+
             string oldLink = webTest.Url.ToString();
             int NumberOfModels = AllModels.length;
             AllModels.selectedIndex = CurrentModel;
 
             int Index = 1;
-            for(Index = 1; Index < NumberOfModels; Index++)
+            for (Index = 1; Index < NumberOfModels; Index++)
             {
                 AllModels.selectedIndex = Index;
                 string[] ModelData = ModelNameExtract(ModelSelect, Index);
@@ -139,17 +139,18 @@ namespace Car
                 string currentLink = webTest.Url.ToString();
                 LoadSite(testWb, currentLink);
                 LoadSite(webTest, oldLink);
+
                 sLink = testWb.Url.ToString();
                 SetElements();
                 SearchPartPage(testWb);
-                /*string YearManuf = string.Empty;
+                
+                string YearManuf = string.Empty;
                 if (ModelData.Length > 1) 
                    YearManuf = ModelData[1].Substring(0, 4);
                 else 
                     YearManuf = null;
                 int Model_ID = ModelIDByCarAndModel(MarkSelect.Children[CurrentCar].InnerText, ModelData[0], YearManuf);
-                modelsTableAdapter1.UpdateLink(sLink, Model_ID);
-                SetElements();*/
+                SetElements();
 
                 CurrentModel++;
                 AllCars.selectedIndex = CurrentCar;
@@ -166,21 +167,41 @@ namespace Car
 
         public void SearchPartPage(WebBrowser wbCurrentPage)
         {
-            //wbCurrentPage.Document
+            DateTime Now = DateTime.Now;
+            List<string> NextLink = new List<string>();
+            List<string> FoundLinks = new List<string>();
             var TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
             WebClient webClient = new WebClient();
             string pageCont = webClient.DownloadString(wbCurrentPage.Url.ToString());
             HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
             CurrentDoc.LoadHtml(pageCont);
-            foreach(HtmlElement row in TableElem.Children)
-                FindLinks(row.InnerHtml);
+           
+            foreach (HtmlElement row in TableElem.Children)
+            {
+                FoundLinks = FindLinks(row.InnerHtml);
+                if (FoundLinks.Count != 0)
+                {
+                    foreach (var Link in FoundLinks)
+                    {
+                        partS_LINKTableAdapter1.Insert(GEN_ID("PART_LINKS"), GEN_ID("PART_ID"), Constants.AutoBimLink + Link, DateTime.Now);
+                    }
+                }
+                var NextPage = wbCurrentPage.Document.GetElementById("pagination");
+                var hrefs = NextPage.GetElementsByTagName("a");
+                foreach (HtmlElement Links in hrefs)
+                {
+                    if (Links.InnerText.Contains("следваща"))
+                       NextLink = FindLinks(Links.OuterHtml);
+                }
+
+            }  
         }
 
-        public void FindLinks(string TableTxt)
+        public List<string> FindLinks(string TableTxt)
         {
             MatchCollection m1 = Regex.Matches(TableTxt, @"(<A.*?>.*?</A>)",
                                  RegexOptions.Singleline);
-            List<string> StringLIst = new List<string>();
+            List<string> LinkList = new List<string>();
             foreach (Match m in m1)
             {
                 string value = m.Groups[1].Value;
@@ -188,21 +209,25 @@ namespace Car
                                         RegexOptions.Singleline);
                 if (m2.Success)
                 {
-                    StringLIst.Add(m2.Groups[1].Value);
+                   if (LinkList.Contains(m2.Groups[1].Value) != true)
+                      LinkList.Add(m2.Groups[1].Value);
                 }
             }
 
+            return LinkList;
+
         }
+
         public int ModelIDByCarAndModel(String CarName, String ModelName, String YearStart)
         {
             String Car_ID = string.Empty;
             String YearParam = String.Empty;
-            YearParam = YearStart != null ?  "= '" + YearStart + "'" : "IS NULL"; 
+            YearParam = YearStart != null ? "= '" + YearStart + "'" : "IS NULL";
             carShopDataSet1.Cars.Select("car_model = '" + CarName + "'");
             DataRow[] drCarID = carShopDataSet1.Cars.Select("car_model = '" + CarName + "'");
             Car_ID = drCarID[0]["CAR_ID"].ToString();
 
-            String SearchModelQry = "CAR_ID = '" + Car_ID + "' AND MODEL_NAME = '" + ModelName + "' AND YEAR_MANUF " + YearParam; 
+            String SearchModelQry = "CAR_ID = '" + Car_ID + "' AND MODEL_NAME = '" + ModelName + "' AND YEAR_MANUF " + YearParam;
             DataRow[] ModelID = carShopDataSet1.Models.Select(SearchModelQry);
             return int.Parse(ModelID[0]["MODEL_ID"].ToString());
         }
@@ -254,19 +279,45 @@ namespace Car
                 //modelMenu = AllModels.innerText;
                 CycleModels(index);//
             }
-                
-         }
+
+        }
 
         private void button9_Click(object sender, EventArgs e)
         {
+            int Result = GEN_ID("PART_LINKS");
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
 
         }
-    } //bla
 
+        private int GEN_ID(String sGenerator)
+        {
+            using (SqlConnection conn = new SqlConnection(carsTableAdapter1.Connection.ConnectionString.ToString()))
+            using (SqlCommand cmd = new SqlCommand("dbo.SP_GEN_ID", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // set up the parameters
+                cmd.Parameters.Add("@GENERATOR_NAME", SqlDbType.VarChar, 32);
+                cmd.Parameters.Add("@GENERATOR_STEP", SqlDbType.Int);
+                cmd.Parameters.Add("@NEW_VALUE", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                // set parameter values
+                cmd.Parameters["@GENERATOR_NAME"].Value = sGenerator;
+                cmd.Parameters["@GENERATOR_STEP"].Value = 1;
+                // open connection and execute stored procedure
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+                // read output value from @NewId
+                int GenValue = Convert.ToInt32(cmd.Parameters["@NEW_VALUE"].Value);
+                conn.Close();
+                return GenValue;
+            }
+
+        } //bla
     }
-
+}
 

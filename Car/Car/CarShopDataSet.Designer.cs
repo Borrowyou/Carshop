@@ -26,19 +26,23 @@ namespace Car {
         
         private CarsDataTable tableCars;
         
-        private GeneratorsDataTable tableGenerators;
+        private GENERATORSDataTable tableGENERATORS;
+        
+        private MODELADDRESSESDataTable tableMODELADDRESSES;
         
         private ModelsDataTable tableModels;
         
         private PartsDataTable tableParts;
         
-        private MODELADDRESSESDataTable tableMODELADDRESSES;
+        private PARTS_LINKDataTable tablePARTS_LINK;
         
-        private global::System.Data.DataRelation relationFK_Models;
+        private global::System.Data.DataRelation relationFK_CARS;
         
         private global::System.Data.DataRelation relationFK_Car_Partss;
         
-        private global::System.Data.DataRelation relationFK_CARS;
+        private global::System.Data.DataRelation relationFK_Models;
+        
+        private global::System.Data.DataRelation relationFK_PART_LINK_PART;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -71,8 +75,11 @@ namespace Car {
                 if ((ds.Tables["Cars"] != null)) {
                     base.Tables.Add(new CarsDataTable(ds.Tables["Cars"]));
                 }
-                if ((ds.Tables["Generators"] != null)) {
-                    base.Tables.Add(new GeneratorsDataTable(ds.Tables["Generators"]));
+                if ((ds.Tables["GENERATORS"] != null)) {
+                    base.Tables.Add(new GENERATORSDataTable(ds.Tables["GENERATORS"]));
+                }
+                if ((ds.Tables["MODELADDRESSES"] != null)) {
+                    base.Tables.Add(new MODELADDRESSESDataTable(ds.Tables["MODELADDRESSES"]));
                 }
                 if ((ds.Tables["Models"] != null)) {
                     base.Tables.Add(new ModelsDataTable(ds.Tables["Models"]));
@@ -80,8 +87,8 @@ namespace Car {
                 if ((ds.Tables["Parts"] != null)) {
                     base.Tables.Add(new PartsDataTable(ds.Tables["Parts"]));
                 }
-                if ((ds.Tables["MODELADDRESSES"] != null)) {
-                    base.Tables.Add(new MODELADDRESSESDataTable(ds.Tables["MODELADDRESSES"]));
+                if ((ds.Tables["PARTS_LINK"] != null)) {
+                    base.Tables.Add(new PARTS_LINKDataTable(ds.Tables["PARTS_LINK"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -115,9 +122,19 @@ namespace Car {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public GeneratorsDataTable Generators {
+        public GENERATORSDataTable GENERATORS {
             get {
-                return this.tableGenerators;
+                return this.tableGENERATORS;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MODELADDRESSESDataTable MODELADDRESSES {
+            get {
+                return this.tableMODELADDRESSES;
             }
         }
         
@@ -145,9 +162,9 @@ namespace Car {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public MODELADDRESSESDataTable MODELADDRESSES {
+        public PARTS_LINKDataTable PARTS_LINK {
             get {
-                return this.tableMODELADDRESSES;
+                return this.tablePARTS_LINK;
             }
         }
         
@@ -221,8 +238,11 @@ namespace Car {
                 if ((ds.Tables["Cars"] != null)) {
                     base.Tables.Add(new CarsDataTable(ds.Tables["Cars"]));
                 }
-                if ((ds.Tables["Generators"] != null)) {
-                    base.Tables.Add(new GeneratorsDataTable(ds.Tables["Generators"]));
+                if ((ds.Tables["GENERATORS"] != null)) {
+                    base.Tables.Add(new GENERATORSDataTable(ds.Tables["GENERATORS"]));
+                }
+                if ((ds.Tables["MODELADDRESSES"] != null)) {
+                    base.Tables.Add(new MODELADDRESSESDataTable(ds.Tables["MODELADDRESSES"]));
                 }
                 if ((ds.Tables["Models"] != null)) {
                     base.Tables.Add(new ModelsDataTable(ds.Tables["Models"]));
@@ -230,8 +250,8 @@ namespace Car {
                 if ((ds.Tables["Parts"] != null)) {
                     base.Tables.Add(new PartsDataTable(ds.Tables["Parts"]));
                 }
-                if ((ds.Tables["MODELADDRESSES"] != null)) {
-                    base.Tables.Add(new MODELADDRESSESDataTable(ds.Tables["MODELADDRESSES"]));
+                if ((ds.Tables["PARTS_LINK"] != null)) {
+                    base.Tables.Add(new PARTS_LINKDataTable(ds.Tables["PARTS_LINK"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -272,10 +292,16 @@ namespace Car {
                     this.tableCars.InitVars();
                 }
             }
-            this.tableGenerators = ((GeneratorsDataTable)(base.Tables["Generators"]));
+            this.tableGENERATORS = ((GENERATORSDataTable)(base.Tables["GENERATORS"]));
             if ((initTable == true)) {
-                if ((this.tableGenerators != null)) {
-                    this.tableGenerators.InitVars();
+                if ((this.tableGENERATORS != null)) {
+                    this.tableGENERATORS.InitVars();
+                }
+            }
+            this.tableMODELADDRESSES = ((MODELADDRESSESDataTable)(base.Tables["MODELADDRESSES"]));
+            if ((initTable == true)) {
+                if ((this.tableMODELADDRESSES != null)) {
+                    this.tableMODELADDRESSES.InitVars();
                 }
             }
             this.tableModels = ((ModelsDataTable)(base.Tables["Models"]));
@@ -290,15 +316,16 @@ namespace Car {
                     this.tableParts.InitVars();
                 }
             }
-            this.tableMODELADDRESSES = ((MODELADDRESSESDataTable)(base.Tables["MODELADDRESSES"]));
+            this.tablePARTS_LINK = ((PARTS_LINKDataTable)(base.Tables["PARTS_LINK"]));
             if ((initTable == true)) {
-                if ((this.tableMODELADDRESSES != null)) {
-                    this.tableMODELADDRESSES.InitVars();
+                if ((this.tablePARTS_LINK != null)) {
+                    this.tablePARTS_LINK.InitVars();
                 }
             }
-            this.relationFK_Models = this.Relations["FK_Models"];
-            this.relationFK_Car_Partss = this.Relations["FK_Car_Partss"];
             this.relationFK_CARS = this.Relations["FK_CARS"];
+            this.relationFK_Car_Partss = this.Relations["FK_Car_Partss"];
+            this.relationFK_Models = this.Relations["FK_Models"];
+            this.relationFK_PART_LINK_PART = this.Relations["FK_PART_LINK_PART"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -311,26 +338,32 @@ namespace Car {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableCars = new CarsDataTable();
             base.Tables.Add(this.tableCars);
-            this.tableGenerators = new GeneratorsDataTable();
-            base.Tables.Add(this.tableGenerators);
+            this.tableGENERATORS = new GENERATORSDataTable();
+            base.Tables.Add(this.tableGENERATORS);
+            this.tableMODELADDRESSES = new MODELADDRESSESDataTable();
+            base.Tables.Add(this.tableMODELADDRESSES);
             this.tableModels = new ModelsDataTable();
             base.Tables.Add(this.tableModels);
             this.tableParts = new PartsDataTable();
             base.Tables.Add(this.tableParts);
-            this.tableMODELADDRESSES = new MODELADDRESSESDataTable();
-            base.Tables.Add(this.tableMODELADDRESSES);
-            this.relationFK_Models = new global::System.Data.DataRelation("FK_Models", new global::System.Data.DataColumn[] {
-                        this.tableModels.MODEL_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableParts.Model_IDColumn}, false);
-            this.Relations.Add(this.relationFK_Models);
-            this.relationFK_Car_Partss = new global::System.Data.DataRelation("FK_Car_Partss", new global::System.Data.DataColumn[] {
-                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableParts.Car_IDColumn}, false);
-            this.Relations.Add(this.relationFK_Car_Partss);
+            this.tablePARTS_LINK = new PARTS_LINKDataTable();
+            base.Tables.Add(this.tablePARTS_LINK);
             this.relationFK_CARS = new global::System.Data.DataRelation("FK_CARS", new global::System.Data.DataColumn[] {
                         this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableModels.CAR_IDColumn}, false);
             this.Relations.Add(this.relationFK_CARS);
+            this.relationFK_Car_Partss = new global::System.Data.DataRelation("FK_Car_Partss", new global::System.Data.DataColumn[] {
+                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableParts.Car_IDColumn}, false);
+            this.Relations.Add(this.relationFK_Car_Partss);
+            this.relationFK_Models = new global::System.Data.DataRelation("FK_Models", new global::System.Data.DataColumn[] {
+                        this.tableModels.MODEL_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableParts.Model_IDColumn}, false);
+            this.Relations.Add(this.relationFK_Models);
+            this.relationFK_PART_LINK_PART = new global::System.Data.DataRelation("FK_PART_LINK_PART", new global::System.Data.DataColumn[] {
+                        this.tableParts.Part_IDColumn}, new global::System.Data.DataColumn[] {
+                        this.tablePARTS_LINK.PART_IDColumn}, false);
+            this.Relations.Add(this.relationFK_PART_LINK_PART);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -341,7 +374,13 @@ namespace Car {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeGenerators() {
+        private bool ShouldSerializeGENERATORS() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeMODELADDRESSES() {
             return false;
         }
         
@@ -359,7 +398,7 @@ namespace Car {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeMODELADDRESSES() {
+        private bool ShouldSerializePARTS_LINK() {
             return false;
         }
         
@@ -422,7 +461,10 @@ namespace Car {
         public delegate void CarsRowChangeEventHandler(object sender, CarsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void GeneratorsRowChangeEventHandler(object sender, GeneratorsRowChangeEvent e);
+        public delegate void GENERATORSRowChangeEventHandler(object sender, GENERATORSRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void MODELADDRESSESRowChangeEventHandler(object sender, MODELADDRESSESRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void ModelsRowChangeEventHandler(object sender, ModelsRowChangeEvent e);
@@ -431,7 +473,7 @@ namespace Car {
         public delegate void PartsRowChangeEventHandler(object sender, PartsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void MODELADDRESSESRowChangeEventHandler(object sender, MODELADDRESSESRowChangeEvent e);
+        public delegate void PARTS_LINKRowChangeEventHandler(object sender, PARTS_LINKRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -711,18 +753,16 @@ namespace Car {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class GeneratorsDataTable : global::System.Data.TypedTableBase<GeneratorsRow> {
+        public partial class GENERATORSDataTable : global::System.Data.TypedTableBase<GENERATORSRow> {
             
-            private global::System.Data.DataColumn columnGEN_ID;
+            private global::System.Data.DataColumn columnGENERATOR_NAME;
             
-            private global::System.Data.DataColumn columnTable_Name;
-            
-            private global::System.Data.DataColumn columnLast_ID;
+            private global::System.Data.DataColumn columnGENERATOR_VALUE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsDataTable() {
-                this.TableName = "Generators";
+            public GENERATORSDataTable() {
+                this.TableName = "GENERATORS";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -730,7 +770,7 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GeneratorsDataTable(global::System.Data.DataTable table) {
+            internal GENERATORSDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -747,32 +787,24 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected GeneratorsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected GENERATORSDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn GEN_IDColumn {
+            public global::System.Data.DataColumn GENERATOR_NAMEColumn {
                 get {
-                    return this.columnGEN_ID;
+                    return this.columnGENERATOR_NAME;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Table_NameColumn {
+            public global::System.Data.DataColumn GENERATOR_VALUEColumn {
                 get {
-                    return this.columnTable_Name;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Last_IDColumn {
-                get {
-                    return this.columnLast_ID;
+                    return this.columnGENERATOR_VALUE;
                 }
             }
             
@@ -787,54 +819,46 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRow this[int index] {
+            public GENERATORSRow this[int index] {
                 get {
-                    return ((GeneratorsRow)(this.Rows[index]));
+                    return ((GENERATORSRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GeneratorsRowChangeEventHandler GeneratorsRowChanging;
+            public event GENERATORSRowChangeEventHandler GENERATORSRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GeneratorsRowChangeEventHandler GeneratorsRowChanged;
+            public event GENERATORSRowChangeEventHandler GENERATORSRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GeneratorsRowChangeEventHandler GeneratorsRowDeleting;
+            public event GENERATORSRowChangeEventHandler GENERATORSRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event GeneratorsRowChangeEventHandler GeneratorsRowDeleted;
+            public event GENERATORSRowChangeEventHandler GENERATORSRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddGeneratorsRow(GeneratorsRow row) {
+            public void AddGENERATORSRow(GENERATORSRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRow AddGeneratorsRow(int GEN_ID, string Table_Name, int Last_ID) {
-                GeneratorsRow rowGeneratorsRow = ((GeneratorsRow)(this.NewRow()));
+            public GENERATORSRow AddGENERATORSRow(string GENERATOR_NAME, int GENERATOR_VALUE) {
+                GENERATORSRow rowGENERATORSRow = ((GENERATORSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        GEN_ID,
-                        Table_Name,
-                        Last_ID};
-                rowGeneratorsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowGeneratorsRow);
-                return rowGeneratorsRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRow FindByGEN_ID(int GEN_ID) {
-                return ((GeneratorsRow)(this.Rows.Find(new object[] {
-                            GEN_ID})));
+                        GENERATOR_NAME,
+                        GENERATOR_VALUE};
+                rowGENERATORSRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGENERATORSRow);
+                return rowGENERATORSRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                GeneratorsDataTable cln = ((GeneratorsDataTable)(base.Clone()));
+                GENERATORSDataTable cln = ((GENERATORSDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -842,57 +866,50 @@ namespace Car {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new GeneratorsDataTable();
+                return new GENERATORSDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnGEN_ID = base.Columns["GEN_ID"];
-                this.columnTable_Name = base.Columns["Table_Name"];
-                this.columnLast_ID = base.Columns["Last_ID"];
+                this.columnGENERATOR_NAME = base.Columns["GENERATOR_NAME"];
+                this.columnGENERATOR_VALUE = base.Columns["GENERATOR_VALUE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnGEN_ID = new global::System.Data.DataColumn("GEN_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnGEN_ID);
-                this.columnTable_Name = new global::System.Data.DataColumn("Table_Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTable_Name);
-                this.columnLast_ID = new global::System.Data.DataColumn("Last_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLast_ID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnGEN_ID}, true));
-                this.columnGEN_ID.AllowDBNull = false;
-                this.columnGEN_ID.Unique = true;
-                this.columnTable_Name.MaxLength = 255;
+                this.columnGENERATOR_NAME = new global::System.Data.DataColumn("GENERATOR_NAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGENERATOR_NAME);
+                this.columnGENERATOR_VALUE = new global::System.Data.DataColumn("GENERATOR_VALUE", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGENERATOR_VALUE);
+                this.columnGENERATOR_NAME.MaxLength = 32;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRow NewGeneratorsRow() {
-                return ((GeneratorsRow)(this.NewRow()));
+            public GENERATORSRow NewGENERATORSRow() {
+                return ((GENERATORSRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new GeneratorsRow(builder);
+                return new GENERATORSRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(GeneratorsRow);
+                return typeof(GENERATORSRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.GeneratorsRowChanged != null)) {
-                    this.GeneratorsRowChanged(this, new GeneratorsRowChangeEvent(((GeneratorsRow)(e.Row)), e.Action));
+                if ((this.GENERATORSRowChanged != null)) {
+                    this.GENERATORSRowChanged(this, new GENERATORSRowChangeEvent(((GENERATORSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -900,8 +917,8 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.GeneratorsRowChanging != null)) {
-                    this.GeneratorsRowChanging(this, new GeneratorsRowChangeEvent(((GeneratorsRow)(e.Row)), e.Action));
+                if ((this.GENERATORSRowChanging != null)) {
+                    this.GENERATORSRowChanging(this, new GENERATORSRowChangeEvent(((GENERATORSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -909,8 +926,8 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.GeneratorsRowDeleted != null)) {
-                    this.GeneratorsRowDeleted(this, new GeneratorsRowChangeEvent(((GeneratorsRow)(e.Row)), e.Action));
+                if ((this.GENERATORSRowDeleted != null)) {
+                    this.GENERATORSRowDeleted(this, new GENERATORSRowChangeEvent(((GENERATORSRow)(e.Row)), e.Action));
                 }
             }
             
@@ -918,14 +935,14 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.GeneratorsRowDeleting != null)) {
-                    this.GeneratorsRowDeleting(this, new GeneratorsRowChangeEvent(((GeneratorsRow)(e.Row)), e.Action));
+                if ((this.GENERATORSRowDeleting != null)) {
+                    this.GENERATORSRowDeleting(this, new GENERATORSRowChangeEvent(((GENERATORSRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveGeneratorsRow(GeneratorsRow row) {
+            public void RemoveGENERATORSRow(GENERATORSRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -952,7 +969,283 @@ namespace Car {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "GeneratorsDataTable";
+                attribute2.FixedValue = "GENERATORSDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MODELADDRESSESDataTable : global::System.Data.TypedTableBase<MODELADDRESSESRow> {
+            
+            private global::System.Data.DataColumn columnMODEL_ADDRESS;
+            
+            private global::System.Data.DataColumn columnCAR_ID;
+            
+            private global::System.Data.DataColumn columnMODEL_ID;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESDataTable() {
+                this.TableName = "MODELADDRESSES";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal MODELADDRESSESDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected MODELADDRESSESDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MODEL_ADDRESSColumn {
+                get {
+                    return this.columnMODEL_ADDRESS;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CAR_IDColumn {
+                get {
+                    return this.columnCAR_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MODEL_IDColumn {
+                get {
+                    return this.columnMODEL_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESRow this[int index] {
+                get {
+                    return ((MODELADDRESSESRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddMODELADDRESSESRow(MODELADDRESSESRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESRow AddMODELADDRESSESRow(string MODEL_ADDRESS, int CAR_ID, int MODEL_ID) {
+                MODELADDRESSESRow rowMODELADDRESSESRow = ((MODELADDRESSESRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        MODEL_ADDRESS,
+                        CAR_ID,
+                        MODEL_ID};
+                rowMODELADDRESSESRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMODELADDRESSESRow);
+                return rowMODELADDRESSESRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MODELADDRESSESDataTable cln = ((MODELADDRESSESDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MODELADDRESSESDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnMODEL_ADDRESS = base.Columns["MODEL_ADDRESS"];
+                this.columnCAR_ID = base.Columns["CAR_ID"];
+                this.columnMODEL_ID = base.Columns["MODEL_ID"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnMODEL_ADDRESS = new global::System.Data.DataColumn("MODEL_ADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMODEL_ADDRESS);
+                this.columnCAR_ID = new global::System.Data.DataColumn("CAR_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCAR_ID);
+                this.columnMODEL_ID = new global::System.Data.DataColumn("MODEL_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMODEL_ID);
+                this.columnMODEL_ADDRESS.MaxLength = 255;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESRow NewMODELADDRESSESRow() {
+                return ((MODELADDRESSESRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MODELADDRESSESRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MODELADDRESSESRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MODELADDRESSESRowChanged != null)) {
+                    this.MODELADDRESSESRowChanged(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MODELADDRESSESRowChanging != null)) {
+                    this.MODELADDRESSESRowChanging(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MODELADDRESSESRowDeleted != null)) {
+                    this.MODELADDRESSESRowDeleted(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MODELADDRESSESRowDeleting != null)) {
+                    this.MODELADDRESSESRowDeleting(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveMODELADDRESSESRow(MODELADDRESSESRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CarShopDataSet ds = new CarShopDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MODELADDRESSESDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1682,18 +1975,20 @@ namespace Car {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class MODELADDRESSESDataTable : global::System.Data.TypedTableBase<MODELADDRESSESRow> {
+        public partial class PARTS_LINKDataTable : global::System.Data.TypedTableBase<PARTS_LINKRow> {
             
-            private global::System.Data.DataColumn columnMODEL_ADDRESS;
+            private global::System.Data.DataColumn columnLINK_ID;
             
-            private global::System.Data.DataColumn columnCAR_ID;
+            private global::System.Data.DataColumn columnPART_ID;
             
-            private global::System.Data.DataColumn columnMODEL_ID;
+            private global::System.Data.DataColumn columnURL;
+            
+            private global::System.Data.DataColumn columnLAST_UPDATE;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESDataTable() {
-                this.TableName = "MODELADDRESSES";
+            public PARTS_LINKDataTable() {
+                this.TableName = "PARTS_LINK";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1701,7 +1996,7 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal MODELADDRESSESDataTable(global::System.Data.DataTable table) {
+            internal PARTS_LINKDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1718,32 +2013,40 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected MODELADDRESSESDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected PARTS_LINKDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MODEL_ADDRESSColumn {
+            public global::System.Data.DataColumn LINK_IDColumn {
                 get {
-                    return this.columnMODEL_ADDRESS;
+                    return this.columnLINK_ID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CAR_IDColumn {
+            public global::System.Data.DataColumn PART_IDColumn {
                 get {
-                    return this.columnCAR_ID;
+                    return this.columnPART_ID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn MODEL_IDColumn {
+            public global::System.Data.DataColumn URLColumn {
                 get {
-                    return this.columnMODEL_ID;
+                    return this.columnURL;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn LAST_UPDATEColumn {
+                get {
+                    return this.columnLAST_UPDATE;
                 }
             }
             
@@ -1758,47 +2061,58 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESRow this[int index] {
+            public PARTS_LINKRow this[int index] {
                 get {
-                    return ((MODELADDRESSESRow)(this.Rows[index]));
+                    return ((PARTS_LINKRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowChanging;
+            public event PARTS_LINKRowChangeEventHandler PARTS_LINKRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowChanged;
+            public event PARTS_LINKRowChangeEventHandler PARTS_LINKRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowDeleting;
+            public event PARTS_LINKRowChangeEventHandler PARTS_LINKRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event MODELADDRESSESRowChangeEventHandler MODELADDRESSESRowDeleted;
+            public event PARTS_LINKRowChangeEventHandler PARTS_LINKRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddMODELADDRESSESRow(MODELADDRESSESRow row) {
+            public void AddPARTS_LINKRow(PARTS_LINKRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESRow AddMODELADDRESSESRow(string MODEL_ADDRESS, int CAR_ID, int MODEL_ID) {
-                MODELADDRESSESRow rowMODELADDRESSESRow = ((MODELADDRESSESRow)(this.NewRow()));
+            public PARTS_LINKRow AddPARTS_LINKRow(int LINK_ID, PartsRow parentPartsRowByFK_PART_LINK_PART, string URL, System.DateTime LAST_UPDATE) {
+                PARTS_LINKRow rowPARTS_LINKRow = ((PARTS_LINKRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        MODEL_ADDRESS,
-                        CAR_ID,
-                        MODEL_ID};
-                rowMODELADDRESSESRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowMODELADDRESSESRow);
-                return rowMODELADDRESSESRow;
+                        LINK_ID,
+                        null,
+                        URL,
+                        LAST_UPDATE};
+                if ((parentPartsRowByFK_PART_LINK_PART != null)) {
+                    columnValuesArray[1] = parentPartsRowByFK_PART_LINK_PART[0];
+                }
+                rowPARTS_LINKRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPARTS_LINKRow);
+                return rowPARTS_LINKRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PARTS_LINKRow FindByLINK_ID(int LINK_ID) {
+                return ((PARTS_LINKRow)(this.Rows.Find(new object[] {
+                            LINK_ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                MODELADDRESSESDataTable cln = ((MODELADDRESSESDataTable)(base.Clone()));
+                PARTS_LINKDataTable cln = ((PARTS_LINKDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1806,53 +2120,60 @@ namespace Car {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new MODELADDRESSESDataTable();
+                return new PARTS_LINKDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnMODEL_ADDRESS = base.Columns["MODEL_ADDRESS"];
-                this.columnCAR_ID = base.Columns["CAR_ID"];
-                this.columnMODEL_ID = base.Columns["MODEL_ID"];
+                this.columnLINK_ID = base.Columns["LINK_ID"];
+                this.columnPART_ID = base.Columns["PART_ID"];
+                this.columnURL = base.Columns["URL"];
+                this.columnLAST_UPDATE = base.Columns["LAST_UPDATE"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnMODEL_ADDRESS = new global::System.Data.DataColumn("MODEL_ADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMODEL_ADDRESS);
-                this.columnCAR_ID = new global::System.Data.DataColumn("CAR_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCAR_ID);
-                this.columnMODEL_ID = new global::System.Data.DataColumn("MODEL_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMODEL_ID);
-                this.columnMODEL_ADDRESS.MaxLength = 255;
+                this.columnLINK_ID = new global::System.Data.DataColumn("LINK_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLINK_ID);
+                this.columnPART_ID = new global::System.Data.DataColumn("PART_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPART_ID);
+                this.columnURL = new global::System.Data.DataColumn("URL", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnURL);
+                this.columnLAST_UPDATE = new global::System.Data.DataColumn("LAST_UPDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLAST_UPDATE);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnLINK_ID}, true));
+                this.columnLINK_ID.AllowDBNull = false;
+                this.columnLINK_ID.Unique = true;
+                this.columnURL.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESRow NewMODELADDRESSESRow() {
-                return ((MODELADDRESSESRow)(this.NewRow()));
+            public PARTS_LINKRow NewPARTS_LINKRow() {
+                return ((PARTS_LINKRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new MODELADDRESSESRow(builder);
+                return new PARTS_LINKRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(MODELADDRESSESRow);
+                return typeof(PARTS_LINKRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.MODELADDRESSESRowChanged != null)) {
-                    this.MODELADDRESSESRowChanged(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                if ((this.PARTS_LINKRowChanged != null)) {
+                    this.PARTS_LINKRowChanged(this, new PARTS_LINKRowChangeEvent(((PARTS_LINKRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1860,8 +2181,8 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.MODELADDRESSESRowChanging != null)) {
-                    this.MODELADDRESSESRowChanging(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                if ((this.PARTS_LINKRowChanging != null)) {
+                    this.PARTS_LINKRowChanging(this, new PARTS_LINKRowChangeEvent(((PARTS_LINKRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1869,8 +2190,8 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.MODELADDRESSESRowDeleted != null)) {
-                    this.MODELADDRESSESRowDeleted(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                if ((this.PARTS_LINKRowDeleted != null)) {
+                    this.PARTS_LINKRowDeleted(this, new PARTS_LINKRowChangeEvent(((PARTS_LINKRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1878,14 +2199,14 @@ namespace Car {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.MODELADDRESSESRowDeleting != null)) {
-                    this.MODELADDRESSESRowDeleting(this, new MODELADDRESSESRowChangeEvent(((MODELADDRESSESRow)(e.Row)), e.Action));
+                if ((this.PARTS_LINKRowDeleting != null)) {
+                    this.PARTS_LINKRowDeleting(this, new PARTS_LINKRowChangeEvent(((PARTS_LINKRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveMODELADDRESSESRow(MODELADDRESSESRow row) {
+            public void RemovePARTS_LINKRow(PARTS_LINKRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1912,7 +2233,7 @@ namespace Car {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "MODELADDRESSESDataTable";
+                attribute2.FixedValue = "PARTS_LINKDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2008,17 +2329,6 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PartsRow[] GetPartsRows() {
-                if ((this.Table.ChildRelations["FK_Car_Partss"] == null)) {
-                    return new PartsRow[0];
-                }
-                else {
-                    return ((PartsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Car_Partss"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ModelsRow[] GetModelsRows() {
                 if ((this.Table.ChildRelations["FK_CARS"] == null)) {
                     return new ModelsRow[0];
@@ -2027,87 +2337,186 @@ namespace Car {
                     return ((ModelsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CARS"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PartsRow[] GetPartsRows() {
+                if ((this.Table.ChildRelations["FK_Car_Partss"] == null)) {
+                    return new PartsRow[0];
+                }
+                else {
+                    return ((PartsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Car_Partss"])));
+                }
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class GeneratorsRow : global::System.Data.DataRow {
+        public partial class GENERATORSRow : global::System.Data.DataRow {
             
-            private GeneratorsDataTable tableGenerators;
+            private GENERATORSDataTable tableGENERATORS;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal GeneratorsRow(global::System.Data.DataRowBuilder rb) : 
+            internal GENERATORSRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableGenerators = ((GeneratorsDataTable)(this.Table));
+                this.tableGENERATORS = ((GENERATORSDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int GEN_ID {
-                get {
-                    return ((int)(this[this.tableGenerators.GEN_IDColumn]));
-                }
-                set {
-                    this[this.tableGenerators.GEN_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Table_Name {
+            public string GENERATOR_NAME {
                 get {
                     try {
-                        return ((string)(this[this.tableGenerators.Table_NameColumn]));
+                        return ((string)(this[this.tableGENERATORS.GENERATOR_NAMEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Table_Name\' in table \'Generators\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GENERATOR_NAME\' in table \'GENERATORS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGenerators.Table_NameColumn] = value;
+                    this[this.tableGENERATORS.GENERATOR_NAMEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Last_ID {
+            public int GENERATOR_VALUE {
                 get {
                     try {
-                        return ((int)(this[this.tableGenerators.Last_IDColumn]));
+                        return ((int)(this[this.tableGENERATORS.GENERATOR_VALUEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Last_ID\' in table \'Generators\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GENERATOR_VALUE\' in table \'GENERATORS\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableGenerators.Last_IDColumn] = value;
+                    this[this.tableGENERATORS.GENERATOR_VALUEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTable_NameNull() {
-                return this.IsNull(this.tableGenerators.Table_NameColumn);
+            public bool IsGENERATOR_NAMENull() {
+                return this.IsNull(this.tableGENERATORS.GENERATOR_NAMEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTable_NameNull() {
-                this[this.tableGenerators.Table_NameColumn] = global::System.Convert.DBNull;
+            public void SetGENERATOR_NAMENull() {
+                this[this.tableGENERATORS.GENERATOR_NAMEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsLast_IDNull() {
-                return this.IsNull(this.tableGenerators.Last_IDColumn);
+            public bool IsGENERATOR_VALUENull() {
+                return this.IsNull(this.tableGENERATORS.GENERATOR_VALUEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetLast_IDNull() {
-                this[this.tableGenerators.Last_IDColumn] = global::System.Convert.DBNull;
+            public void SetGENERATOR_VALUENull() {
+                this[this.tableGENERATORS.GENERATOR_VALUEColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MODELADDRESSESRow : global::System.Data.DataRow {
+            
+            private MODELADDRESSESDataTable tableMODELADDRESSES;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal MODELADDRESSESRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMODELADDRESSES = ((MODELADDRESSESDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string MODEL_ADDRESS {
+                get {
+                    try {
+                        return ((string)(this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODEL_ADDRESS\' in table \'MODELADDRESSES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CAR_ID {
+                get {
+                    try {
+                        return ((int)(this[this.tableMODELADDRESSES.CAR_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CAR_ID\' in table \'MODELADDRESSES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMODELADDRESSES.CAR_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int MODEL_ID {
+                get {
+                    try {
+                        return ((int)(this[this.tableMODELADDRESSES.MODEL_IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MODEL_ID\' in table \'MODELADDRESSES\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableMODELADDRESSES.MODEL_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMODEL_ADDRESSNull() {
+                return this.IsNull(this.tableMODELADDRESSES.MODEL_ADDRESSColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMODEL_ADDRESSNull() {
+                this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCAR_IDNull() {
+                return this.IsNull(this.tableMODELADDRESSES.CAR_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCAR_IDNull() {
+                this[this.tableMODELADDRESSES.CAR_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMODEL_IDNull() {
+                return this.IsNull(this.tableMODELADDRESSES.MODEL_IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMODEL_IDNull() {
+                this[this.tableMODELADDRESSES.MODEL_IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2422,23 +2831,23 @@ namespace Car {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelsRow ModelsRow {
-                get {
-                    return ((ModelsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Models"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Models"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CarsRow CarsRow {
                 get {
                     return ((CarsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Car_Partss"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Car_Partss"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ModelsRow ModelsRow {
+                get {
+                    return ((ModelsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Models"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Models"]);
                 }
             }
             
@@ -2513,104 +2922,137 @@ namespace Car {
             public void SetModel_IDNull() {
                 this[this.tableParts.Model_IDColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public PARTS_LINKRow[] GetPARTS_LINKRows() {
+                if ((this.Table.ChildRelations["FK_PART_LINK_PART"] == null)) {
+                    return new PARTS_LINKRow[0];
+                }
+                else {
+                    return ((PARTS_LINKRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PART_LINK_PART"])));
+                }
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class MODELADDRESSESRow : global::System.Data.DataRow {
+        public partial class PARTS_LINKRow : global::System.Data.DataRow {
             
-            private MODELADDRESSESDataTable tableMODELADDRESSES;
+            private PARTS_LINKDataTable tablePARTS_LINK;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal MODELADDRESSESRow(global::System.Data.DataRowBuilder rb) : 
+            internal PARTS_LINKRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableMODELADDRESSES = ((MODELADDRESSESDataTable)(this.Table));
+                this.tablePARTS_LINK = ((PARTS_LINKDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string MODEL_ADDRESS {
+            public int LINK_ID {
+                get {
+                    return ((int)(this[this.tablePARTS_LINK.LINK_IDColumn]));
+                }
+                set {
+                    this[this.tablePARTS_LINK.LINK_IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int PART_ID {
                 get {
                     try {
-                        return ((string)(this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn]));
+                        return ((int)(this[this.tablePARTS_LINK.PART_IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODEL_ADDRESS\' in table \'MODELADDRESSES\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PART_ID\' in table \'PARTS_LINK\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn] = value;
+                    this[this.tablePARTS_LINK.PART_IDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CAR_ID {
+            public string URL {
                 get {
                     try {
-                        return ((int)(this[this.tableMODELADDRESSES.CAR_IDColumn]));
+                        return ((string)(this[this.tablePARTS_LINK.URLColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CAR_ID\' in table \'MODELADDRESSES\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'URL\' in table \'PARTS_LINK\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMODELADDRESSES.CAR_IDColumn] = value;
+                    this[this.tablePARTS_LINK.URLColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int MODEL_ID {
+            public System.DateTime LAST_UPDATE {
                 get {
                     try {
-                        return ((int)(this[this.tableMODELADDRESSES.MODEL_IDColumn]));
+                        return ((global::System.DateTime)(this[this.tablePARTS_LINK.LAST_UPDATEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MODEL_ID\' in table \'MODELADDRESSES\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LAST_UPDATE\' in table \'PARTS_LINK\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableMODELADDRESSES.MODEL_IDColumn] = value;
+                    this[this.tablePARTS_LINK.LAST_UPDATEColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMODEL_ADDRESSNull() {
-                return this.IsNull(this.tableMODELADDRESSES.MODEL_ADDRESSColumn);
+            public PartsRow PartsRow {
+                get {
+                    return ((PartsRow)(this.GetParentRow(this.Table.ParentRelations["FK_PART_LINK_PART"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_PART_LINK_PART"]);
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMODEL_ADDRESSNull() {
-                this[this.tableMODELADDRESSES.MODEL_ADDRESSColumn] = global::System.Convert.DBNull;
+            public bool IsPART_IDNull() {
+                return this.IsNull(this.tablePARTS_LINK.PART_IDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCAR_IDNull() {
-                return this.IsNull(this.tableMODELADDRESSES.CAR_IDColumn);
+            public void SetPART_IDNull() {
+                this[this.tablePARTS_LINK.PART_IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCAR_IDNull() {
-                this[this.tableMODELADDRESSES.CAR_IDColumn] = global::System.Convert.DBNull;
+            public bool IsURLNull() {
+                return this.IsNull(this.tablePARTS_LINK.URLColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsMODEL_IDNull() {
-                return this.IsNull(this.tableMODELADDRESSES.MODEL_IDColumn);
+            public void SetURLNull() {
+                this[this.tablePARTS_LINK.URLColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetMODEL_IDNull() {
-                this[this.tableMODELADDRESSES.MODEL_IDColumn] = global::System.Convert.DBNull;
+            public bool IsLAST_UPDATENull() {
+                return this.IsNull(this.tablePARTS_LINK.LAST_UPDATEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetLAST_UPDATENull() {
+                this[this.tablePARTS_LINK.LAST_UPDATEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2652,22 +3094,56 @@ namespace Car {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class GeneratorsRowChangeEvent : global::System.EventArgs {
+        public class GENERATORSRowChangeEvent : global::System.EventArgs {
             
-            private GeneratorsRow eventRow;
+            private GENERATORSRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRowChangeEvent(GeneratorsRow row, global::System.Data.DataRowAction action) {
+            public GENERATORSRowChangeEvent(GENERATORSRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GeneratorsRow Row {
+            public GENERATORSRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class MODELADDRESSESRowChangeEvent : global::System.EventArgs {
+            
+            private MODELADDRESSESRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESRowChangeEvent(MODELADDRESSESRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public MODELADDRESSESRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2754,22 +3230,22 @@ namespace Car {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class MODELADDRESSESRowChangeEvent : global::System.EventArgs {
+        public class PARTS_LINKRowChangeEvent : global::System.EventArgs {
             
-            private MODELADDRESSESRow eventRow;
+            private PARTS_LINKRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESRowChangeEvent(MODELADDRESSESRow row, global::System.Data.DataRowAction action) {
+            public PARTS_LINKRowChangeEvent(PARTS_LINKRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public MODELADDRESSESRow Row {
+            public PARTS_LINKRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2949,17 +3425,11 @@ SELECT Car_ID, Car_Model FROM Cars WHERE (Car_ID = @Car_ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Car_ID, Car_Model FROM dbo.Cars";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO [dbo].[Cars] ([Car_ID], [Car_Model]) VALUES (@Car_ID, @Car_Model);";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Car_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Car_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Car_Model", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Car_Model", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3117,36 +3587,6 @@ SELECT Car_ID, Car_Model FROM Cars WHERE (Car_ID = @Car_ID)";
         public virtual int Update(string Car_Model, int Original_Car_ID, string Original_Car_Model) {
             return this.Update(Original_Car_ID, Car_Model, Original_Car_ID, Original_Car_Model);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(int Car_ID, string Car_Model) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(Car_ID));
-            if ((Car_Model == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[1].Value = ((string)(Car_Model));
-            }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
     }
     
     /// <summary>
@@ -3158,7 +3598,7 @@ SELECT Car_ID, Car_Model FROM Cars WHERE (Car_ID = @Car_ID)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class GeneratorsTableAdapter : global::System.ComponentModel.Component {
+    public partial class GENERATORSTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -3172,7 +3612,7 @@ SELECT Car_ID, Car_Model FROM Cars WHERE (Car_ID = @Car_ID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public GeneratorsTableAdapter() {
+        public GENERATORSTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -3269,45 +3709,17 @@ SELECT Car_ID, Car_Model FROM Cars WHERE (Car_ID = @Car_ID)";
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Generators";
-            tableMapping.ColumnMappings.Add("GEN_ID", "GEN_ID");
-            tableMapping.ColumnMappings.Add("Table_Name", "Table_Name");
-            tableMapping.ColumnMappings.Add("Last_ID", "Last_ID");
+            tableMapping.DataSetTable = "GENERATORS";
+            tableMapping.ColumnMappings.Add("GENERATOR_NAME", "GENERATOR_NAME");
+            tableMapping.ColumnMappings.Add("GENERATOR_VALUE", "GENERATOR_VALUE");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Generators] WHERE (([GEN_ID] = @Original_GEN_ID) AND ((@IsNull" +
-                "_Table_Name = 1 AND [Table_Name] IS NULL) OR ([Table_Name] = @Original_Table_Nam" +
-                "e)) AND ((@IsNull_Last_ID = 1 AND [Last_ID] IS NULL) OR ([Last_ID] = @Original_L" +
-                "ast_ID)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GEN_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GEN_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Table_Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Table_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Generators] ([GEN_ID], [Table_Name], [Last_ID]) VALUES (@GEN_I" +
-                "D, @Table_Name, @Last_ID);\r\nSELECT GEN_ID, Table_Name, Last_ID FROM Generators W" +
-                "HERE (GEN_ID = @GEN_ID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[GENERATORS] ([GENERATOR_NAME], [GENERATOR_VALUE]) VALUES (@GEN" +
+                "ERATOR_NAME, @GENERATOR_VALUE)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GEN_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GEN_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Table_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Generators] SET [GEN_ID] = @GEN_ID, [Table_Name] = @Table_Name, [Last_ID] = @Last_ID WHERE (([GEN_ID] = @Original_GEN_ID) AND ((@IsNull_Table_Name = 1 AND [Table_Name] IS NULL) OR ([Table_Name] = @Original_Table_Name)) AND ((@IsNull_Last_ID = 1 AND [Last_ID] IS NULL) OR ([Last_ID] = @Original_Last_ID)));
-SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GEN_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GEN_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Table_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GEN_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GEN_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Table_Name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Table_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Table_Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Last_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Last_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GENERATOR_NAME", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GENERATOR_NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GENERATOR_VALUE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GENERATOR_VALUE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3323,7 +3735,7 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GEN_ID, Table_Name, Last_ID FROM dbo.Generators";
+            this._commandCollection[0].CommandText = "SELECT GENERATOR_NAME, GENERATOR_VALUE FROM dbo.GENERATORS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3331,7 +3743,7 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CarShopDataSet.GeneratorsDataTable dataTable) {
+        public virtual int Fill(CarShopDataSet.GENERATORSDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -3344,9 +3756,9 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CarShopDataSet.GeneratorsDataTable GetData() {
+        public virtual CarShopDataSet.GENERATORSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CarShopDataSet.GeneratorsDataTable dataTable = new CarShopDataSet.GeneratorsDataTable();
+            CarShopDataSet.GENERATORSDataTable dataTable = new CarShopDataSet.GENERATORSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -3354,7 +3766,7 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CarShopDataSet.GeneratorsDataTable dataTable) {
+        public virtual int Update(CarShopDataSet.GENERATORSDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -3362,7 +3774,7 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(CarShopDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Generators");
+            return this.Adapter.Update(dataSet, "GENERATORS");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3383,55 +3795,261 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_GEN_ID, string Original_Table_Name, global::System.Nullable<int> Original_Last_ID) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_GEN_ID));
-            if ((Original_Table_Name == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string GENERATOR_NAME, global::System.Nullable<int> GENERATOR_VALUE) {
+            if ((GENERATOR_NAME == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Table_Name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(GENERATOR_NAME));
             }
-            if ((Original_Last_ID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Last_ID.Value));
+            if ((GENERATOR_VALUE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(GENERATOR_VALUE.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
+                this.Adapter.InsertCommand.Connection.Open();
             }
             try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
                 return returnValue;
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MODELADDRESSESTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public MODELADDRESSESTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
                 }
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MODELADDRESSES";
+            tableMapping.ColumnMappings.Add("MODEL_ADDRESS", "MODEL_ADDRESS");
+            tableMapping.ColumnMappings.Add("CAR_ID", "CAR_ID");
+            tableMapping.ColumnMappings.Add("MODEL_ID", "MODEL_ID");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[MODELADDRESSES] ([MODEL_ADDRESS], [CAR_ID], [MODEL_ID]) VALUES" +
+                " (@MODEL_ADDRESS, @CAR_ID, @MODEL_ID)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ADDRESS", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ADDRESS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Car.Properties.Settings.Default.CarShopConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT MODEL_ADDRESS, CAR_ID, MODEL_ID FROM dbo.MODELADDRESSES";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(CarShopDataSet.MODELADDRESSESDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CarShopDataSet.MODELADDRESSESDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            CarShopDataSet.MODELADDRESSESDataTable dataTable = new CarShopDataSet.MODELADDRESSESDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(CarShopDataSet.MODELADDRESSESDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(CarShopDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "MODELADDRESSES");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int GEN_ID, string Table_Name, global::System.Nullable<int> Last_ID) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(GEN_ID));
-            if ((Table_Name == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+        public virtual int Insert(string MODEL_ADDRESS, global::System.Nullable<int> CAR_ID, global::System.Nullable<int> MODEL_ID) {
+            if ((MODEL_ADDRESS == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Table_Name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(MODEL_ADDRESS));
             }
-            if ((Last_ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Last_ID.Value));
+            if ((CAR_ID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(CAR_ID.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((MODEL_ID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(MODEL_ID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -3450,65 +4068,6 @@ SELECT GEN_ID, Table_Name, Last_ID FROM Generators WHERE (GEN_ID = @GEN_ID)";
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int GEN_ID, string Table_Name, global::System.Nullable<int> Last_ID, int Original_GEN_ID, string Original_Table_Name, global::System.Nullable<int> Original_Last_ID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(GEN_ID));
-            if ((Table_Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Table_Name));
-            }
-            if ((Last_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Last_ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_GEN_ID));
-            if ((Original_Table_Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Table_Name));
-            }
-            if ((Original_Last_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Last_ID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Table_Name, global::System.Nullable<int> Last_ID, int Original_GEN_ID, string Original_Table_Name, global::System.Nullable<int> Original_Last_ID) {
-            return this.Update(Original_GEN_ID, Table_Name, Last_ID, Original_GEN_ID, Original_Table_Name, Original_Last_ID);
         }
     }
     
@@ -3700,23 +4259,11 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM dbo.Models";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT CAR_ID, MODEL_ID, MODEL_NAME, URL, YEAR_MANUF, YEAR_STOP FROM Models WHERE" +
-                " (CAR_ID = @CarID) OR (@CarID = - 1)";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CarID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "UPDATE MODELS\r\nSET URL = @Link\r\nWHERE MODEL_ID = @MOD_ID";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Link", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MOD_ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3738,42 +4285,6 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual CarShopDataSet.ModelsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CarShopDataSet.ModelsDataTable dataTable = new CarShopDataSet.ModelsDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int LoadModelsByCarID(CarShopDataSet.ModelsDataTable dataTable, global::System.Nullable<int> CarID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((CarID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CarID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual CarShopDataSet.ModelsDataTable GetDataByCarID(global::System.Nullable<int> CarID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((CarID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CarID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
             CarShopDataSet.ModelsDataTable dataTable = new CarShopDataSet.ModelsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -4021,36 +4532,6 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string MODEL_NAME, global::System.Nullable<int> YEAR_MANUF, global::System.Nullable<int> YEAR_STOP, global::System.Nullable<int> CAR_ID, string URL, int Original_MODEL_ID, string Original_MODEL_NAME, global::System.Nullable<int> Original_YEAR_MANUF, global::System.Nullable<int> Original_YEAR_STOP, global::System.Nullable<int> Original_CAR_ID, string Original_URL) {
             return this.Update(Original_MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL, Original_MODEL_ID, Original_MODEL_NAME, Original_YEAR_MANUF, Original_YEAR_STOP, Original_CAR_ID, Original_URL);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateLink(string Link, int MOD_ID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((Link == null)) {
-                command.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[0].Value = ((string)(Link));
-            }
-            command.Parameters[1].Value = ((int)(MOD_ID));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
         }
     }
     
@@ -4563,7 +5044,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class MODELADDRESSESTableAdapter : global::System.ComponentModel.Component {
+    public partial class PARTS_LINKTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -4577,7 +5058,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public MODELADDRESSESTableAdapter() {
+        public PARTS_LINKTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -4674,19 +5155,49 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "MODELADDRESSES";
-            tableMapping.ColumnMappings.Add("MODEL_ADDRESS", "MODEL_ADDRESS");
-            tableMapping.ColumnMappings.Add("CAR_ID", "CAR_ID");
-            tableMapping.ColumnMappings.Add("MODEL_ID", "MODEL_ID");
+            tableMapping.DataSetTable = "PARTS_LINK";
+            tableMapping.ColumnMappings.Add("LINK_ID", "LINK_ID");
+            tableMapping.ColumnMappings.Add("PART_ID", "PART_ID");
+            tableMapping.ColumnMappings.Add("URL", "URL");
+            tableMapping.ColumnMappings.Add("LAST_UPDATE", "LAST_UPDATE");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[PARTS_LINK] WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_URL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LAST_UPDATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[MODELADDRESSES] ([MODEL_ADDRESS], [CAR_ID], [MODEL_ID]) VALUES" +
-                " (@MODEL_ADDRESS, @CAR_ID, @MODEL_ID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PARTS_LINK] ([LINK_ID], [PART_ID], [URL], [LAST_UPDATE]) VALUE" +
+                "S (@LINK_ID, @PART_ID, @URL, @LAST_UPDATE);\r\nSELECT LINK_ID, PART_ID, URL, LAST_" +
+                "UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ADDRESS", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ADDRESS", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CAR_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PARTS_LINK] SET [LINK_ID] = @LINK_ID, [PART_ID] = @PART_ID, [URL] = @URL, [LAST_UPDATE] = @LAST_UPDATE WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)));
+SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_URL", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LAST_UPDATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4702,7 +5213,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT MODEL_ADDRESS, CAR_ID, MODEL_ID FROM dbo.MODELADDRESSES";
+            this._commandCollection[0].CommandText = "SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM dbo.PARTS_LINK";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -4710,7 +5221,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CarShopDataSet.MODELADDRESSESDataTable dataTable) {
+        public virtual int Fill(CarShopDataSet.PARTS_LINKDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -4723,9 +5234,9 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CarShopDataSet.MODELADDRESSESDataTable GetData() {
+        public virtual CarShopDataSet.PARTS_LINKDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CarShopDataSet.MODELADDRESSESDataTable dataTable = new CarShopDataSet.MODELADDRESSESDataTable();
+            CarShopDataSet.PARTS_LINKDataTable dataTable = new CarShopDataSet.PARTS_LINKDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -4733,7 +5244,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CarShopDataSet.MODELADDRESSESDataTable dataTable) {
+        public virtual int Update(CarShopDataSet.PARTS_LINKDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -4741,7 +5252,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(CarShopDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "MODELADDRESSES");
+            return this.Adapter.Update(dataSet, "PARTS_LINK");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4762,25 +5273,72 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string MODEL_ADDRESS, global::System.Nullable<int> CAR_ID, global::System.Nullable<int> MODEL_ID) {
-            if ((MODEL_ADDRESS == null)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_LINK_ID));
+            if ((Original_PART_ID.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_PART_ID.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(MODEL_ADDRESS));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CAR_ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(CAR_ID.Value));
+            if ((Original_URL == null)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_URL));
+            }
+            if ((Original_LAST_UPDATE.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_LAST_UPDATE.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(LINK_ID));
+            if ((PART_ID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(PART_ID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((MODEL_ID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(MODEL_ID.Value));
+            if ((URL == null)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(URL));
+            }
+            if ((LAST_UPDATE.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(LAST_UPDATE.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4796,6 +5354,165 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(LINK_ID));
+            if ((PART_ID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(PART_ID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((URL == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(URL));
+            }
+            if ((LAST_UPDATE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(LAST_UPDATE.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_LINK_ID));
+            if ((Original_PART_ID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_PART_ID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_URL == null)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_URL));
+            }
+            if ((Original_LAST_UPDATE.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_LAST_UPDATE.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
+            return this.Update(Original_LINK_ID, PART_ID, URL, LAST_UPDATE, Original_LINK_ID, Original_PART_ID, Original_URL, Original_LAST_UPDATE);
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class QueriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::Car.Properties.Settings.Default.CarShopConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "dbo.SP_GEN_ID";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GENERATOR_NAME", global::System.Data.SqlDbType.VarChar, 32, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GENERATOR_STEP", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NEW_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int SP_GEN_ID(string GENERATOR_NAME, global::System.Nullable<int> GENERATOR_STEP, ref global::System.Nullable<int> NEW_VALUE) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[0]));
+            if ((GENERATOR_NAME == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(GENERATOR_NAME));
+            }
+            if ((GENERATOR_STEP.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(GENERATOR_STEP.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((NEW_VALUE.HasValue == true)) {
+                command.Parameters[3].Value = ((int)(NEW_VALUE.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((command.Parameters[3].Value == null) 
+                        || (command.Parameters[3].Value.GetType() == typeof(global::System.DBNull)))) {
+                NEW_VALUE = new global::System.Nullable<int>();
+            }
+            else {
+                NEW_VALUE = new global::System.Nullable<int>(((int)(command.Parameters[3].Value)));
+            }
+            return returnValue;
         }
     }
     
@@ -4813,13 +5530,15 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         
         private CarsTableAdapter _carsTableAdapter;
         
-        private GeneratorsTableAdapter _generatorsTableAdapter;
+        private GENERATORSTableAdapter _gENERATORSTableAdapter;
+        
+        private MODELADDRESSESTableAdapter _mODELADDRESSESTableAdapter;
         
         private ModelsTableAdapter _modelsTableAdapter;
         
         private PartsTableAdapter _partsTableAdapter;
         
-        private MODELADDRESSESTableAdapter _mODELADDRESSESTableAdapter;
+        private PARTS_LINKTableAdapter _pARTS_LINKTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4855,12 +5574,26 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public GeneratorsTableAdapter GeneratorsTableAdapter {
+        public GENERATORSTableAdapter GENERATORSTableAdapter {
             get {
-                return this._generatorsTableAdapter;
+                return this._gENERATORSTableAdapter;
             }
             set {
-                this._generatorsTableAdapter = value;
+                this._gENERATORSTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public MODELADDRESSESTableAdapter MODELADDRESSESTableAdapter {
+            get {
+                return this._mODELADDRESSESTableAdapter;
+            }
+            set {
+                this._mODELADDRESSESTableAdapter = value;
             }
         }
         
@@ -4897,12 +5630,12 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public MODELADDRESSESTableAdapter MODELADDRESSESTableAdapter {
+        public PARTS_LINKTableAdapter PARTS_LINKTableAdapter {
             get {
-                return this._mODELADDRESSESTableAdapter;
+                return this._pARTS_LINKTableAdapter;
             }
             set {
-                this._mODELADDRESSESTableAdapter = value;
+                this._pARTS_LINKTableAdapter = value;
             }
         }
         
@@ -4929,9 +5662,13 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                             && (this._carsTableAdapter.Connection != null))) {
                     return this._carsTableAdapter.Connection;
                 }
-                if (((this._generatorsTableAdapter != null) 
-                            && (this._generatorsTableAdapter.Connection != null))) {
-                    return this._generatorsTableAdapter.Connection;
+                if (((this._gENERATORSTableAdapter != null) 
+                            && (this._gENERATORSTableAdapter.Connection != null))) {
+                    return this._gENERATORSTableAdapter.Connection;
+                }
+                if (((this._mODELADDRESSESTableAdapter != null) 
+                            && (this._mODELADDRESSESTableAdapter.Connection != null))) {
+                    return this._mODELADDRESSESTableAdapter.Connection;
                 }
                 if (((this._modelsTableAdapter != null) 
                             && (this._modelsTableAdapter.Connection != null))) {
@@ -4941,9 +5678,9 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                             && (this._partsTableAdapter.Connection != null))) {
                     return this._partsTableAdapter.Connection;
                 }
-                if (((this._mODELADDRESSESTableAdapter != null) 
-                            && (this._mODELADDRESSESTableAdapter.Connection != null))) {
-                    return this._mODELADDRESSESTableAdapter.Connection;
+                if (((this._pARTS_LINKTableAdapter != null) 
+                            && (this._pARTS_LINKTableAdapter.Connection != null))) {
+                    return this._pARTS_LINKTableAdapter.Connection;
                 }
                 return null;
             }
@@ -4961,7 +5698,10 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 if ((this._carsTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._generatorsTableAdapter != null)) {
+                if ((this._gENERATORSTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._mODELADDRESSESTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._modelsTableAdapter != null)) {
@@ -4970,7 +5710,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 if ((this._partsTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._mODELADDRESSESTableAdapter != null)) {
+                if ((this._pARTS_LINKTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -5011,6 +5751,15 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._gENERATORSTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.GENERATORS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._gENERATORSTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._mODELADDRESSESTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.MODELADDRESSES.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -5020,12 +5769,12 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._pARTS_LINKTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.PARTS_LINK.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(updatedRows));
+                    result = (result + this._pARTS_LINKTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5063,6 +5812,14 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._gENERATORSTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.GENERATORS.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._gENERATORSTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._mODELADDRESSESTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.MODELADDRESSES.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -5071,11 +5828,11 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._pARTS_LINKTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.PARTS_LINK.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(addedRows));
+                    result = (result + this._pARTS_LINKTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -5089,11 +5846,11 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(CarShopDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._generatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Generators.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._pARTS_LINKTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.PARTS_LINK.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._generatorsTableAdapter.Update(deletedRows));
+                    result = (result + this._pARTS_LINKTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5102,6 +5859,14 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._mODELADDRESSESTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._gENERATORSTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.GENERATORS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._gENERATORSTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5173,8 +5938,13 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._generatorsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._generatorsTableAdapter.Connection) == false))) {
+            if (((this._gENERATORSTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._gENERATORSTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._mODELADDRESSESTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._mODELADDRESSESTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -5188,8 +5958,8 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._mODELADDRESSESTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._mODELADDRESSESTableAdapter.Connection) == false))) {
+            if (((this._pARTS_LINKTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._pARTS_LINKTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -5234,13 +6004,22 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                         adaptersWithAcceptChangesDuringUpdate.Add(this._carsTableAdapter.Adapter);
                     }
                 }
-                if ((this._generatorsTableAdapter != null)) {
-                    revertConnections.Add(this._generatorsTableAdapter, this._generatorsTableAdapter.Connection);
-                    this._generatorsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._generatorsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._generatorsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._generatorsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._generatorsTableAdapter.Adapter);
+                if ((this._gENERATORSTableAdapter != null)) {
+                    revertConnections.Add(this._gENERATORSTableAdapter, this._gENERATORSTableAdapter.Connection);
+                    this._gENERATORSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._gENERATORSTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._gENERATORSTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._gENERATORSTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._gENERATORSTableAdapter.Adapter);
+                    }
+                }
+                if ((this._mODELADDRESSESTableAdapter != null)) {
+                    revertConnections.Add(this._mODELADDRESSESTableAdapter, this._mODELADDRESSESTableAdapter.Connection);
+                    this._mODELADDRESSESTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._mODELADDRESSESTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._mODELADDRESSESTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._mODELADDRESSESTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._mODELADDRESSESTableAdapter.Adapter);
                     }
                 }
                 if ((this._modelsTableAdapter != null)) {
@@ -5261,13 +6040,13 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                         adaptersWithAcceptChangesDuringUpdate.Add(this._partsTableAdapter.Adapter);
                     }
                 }
-                if ((this._mODELADDRESSESTableAdapter != null)) {
-                    revertConnections.Add(this._mODELADDRESSESTableAdapter, this._mODELADDRESSESTableAdapter.Connection);
-                    this._mODELADDRESSESTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._mODELADDRESSESTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._mODELADDRESSESTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._mODELADDRESSESTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._mODELADDRESSESTableAdapter.Adapter);
+                if ((this._pARTS_LINKTableAdapter != null)) {
+                    revertConnections.Add(this._pARTS_LINKTableAdapter, this._pARTS_LINKTableAdapter.Connection);
+                    this._pARTS_LINKTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._pARTS_LINKTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._pARTS_LINKTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._pARTS_LINKTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._pARTS_LINKTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -5332,9 +6111,13 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     this._carsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._carsTableAdapter]));
                     this._carsTableAdapter.Transaction = null;
                 }
-                if ((this._generatorsTableAdapter != null)) {
-                    this._generatorsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._generatorsTableAdapter]));
-                    this._generatorsTableAdapter.Transaction = null;
+                if ((this._gENERATORSTableAdapter != null)) {
+                    this._gENERATORSTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._gENERATORSTableAdapter]));
+                    this._gENERATORSTableAdapter.Transaction = null;
+                }
+                if ((this._mODELADDRESSESTableAdapter != null)) {
+                    this._mODELADDRESSESTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._mODELADDRESSESTableAdapter]));
+                    this._mODELADDRESSESTableAdapter.Transaction = null;
                 }
                 if ((this._modelsTableAdapter != null)) {
                     this._modelsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._modelsTableAdapter]));
@@ -5344,9 +6127,9 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
                     this._partsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._partsTableAdapter]));
                     this._partsTableAdapter.Transaction = null;
                 }
-                if ((this._mODELADDRESSESTableAdapter != null)) {
-                    this._mODELADDRESSESTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._mODELADDRESSESTableAdapter]));
-                    this._mODELADDRESSESTableAdapter.Transaction = null;
+                if ((this._pARTS_LINKTableAdapter != null)) {
+                    this._pARTS_LINKTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._pARTS_LINKTableAdapter]));
+                    this._pARTS_LINKTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
