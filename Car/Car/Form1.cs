@@ -284,7 +284,8 @@ namespace Car
 
         private void button9_Click(object sender, EventArgs e)
         {
-            int Result = GEN_ID("PART_LINKS");
+            CategorySearcher CategoryWriter = new CategorySearcher();
+            CategoryWriter.GetAllCategories();
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -19,12 +19,10 @@ namespace Car
     class CarSearch
     {
        WebBrowser wbTest;
-       CarShopDataSet DSCarShop;
 
        public CarSearch()
        {
            this.wbTest = new WebBrowser();
-           this.DSCarShop = new CarShopDataSet();
        }
 
        public WebBrowser PwbTest
