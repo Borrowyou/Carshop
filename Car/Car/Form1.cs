@@ -15,6 +15,7 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using HtmlAgilityPack;
+using mshtml;
 namespace Car
 {
     public partial class Form1 : Form
@@ -104,6 +105,10 @@ namespace Car
             var AllCars = MarkSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             var ModelSelect = webTest.Document.GetElementById("model_id"); // get model select
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
+            var MainCategory = webTest.Document.GetElementById(Constants.MainCatID);
+            var SubCategoryID = webTest.Document.GetElementById(Constants.SubCategID);
+            HTMLSelectElement AllMainCategories = MainCategory.DomElement as HTMLSelectElement;
+            HTMLSelectElement AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
             var btnFind = webTest.Document.All.GetElementsByName("btnSearch")[0];
             SetBrowserElements SetElements = delegate()
             {
@@ -113,6 +118,10 @@ namespace Car
                 ModelSelect = webTest.Document.GetElementById("model_id"); // get model select
                 AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement;
                 btnFind = webTest.Document.All.GetElementsByName("btnSearch")[0];
+                MainCategory = webTest.Document.GetElementById(Constants.MainCatID);
+                SubCategoryID = webTest.Document.GetElementById(Constants.SubCategID);
+                AllMainCategories = MainCategory.DomElement as HTMLSelectElement;
+                AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
             };
             string menu = string.Empty;
             String sLink = String.Empty;
@@ -125,42 +134,57 @@ namespace Car
             for (Index = 1; Index < NumberOfModels; Index++)
             {
                 AllModels.selectedIndex = Index;
-                string[] ModelData = ModelNameExtract(ModelSelect, Index);
-                btnFind.InvokeMember("Click");
-                while (oldLink == webTest.Url.ToString())
+                for (int i = 0; i < AllMainCategories.length; i++)
                 {
-                    Application.DoEvents();
+                    string SubCategory = AllSubCategories.innerText;
+                    AllMainCategories.selectedIndex = i + 1;
+                    MainCategory.RaiseEvent("onChange");
+                    while (SubCategory == AllSubCategories.innerText)
+                    {
+                        string CurrCat = AllMainCategories.innerText;
+                        Application.DoEvents();
+                    }
+                    for (int k = 0; k < AllSubCategories.length; k++)
+                    {
+                        AllSubCategories.selectedIndex = k;
+                        string[] ModelData = ModelNameExtract(ModelSelect, Index);
+                        btnFind.InvokeMember("Click");
+                        while (oldLink == webTest.Url.ToString())
+                        {
+                            Application.DoEvents();
+                        }
+
+                        WaitBrowser(webTest);
+                        SetElements();
+                        string modeltxt = AllModels.innerHTML;
+
+                        string currentLink = webTest.Url.ToString();
+                        LoadSite(testWb, currentLink);
+                        LoadSite(webTest, oldLink);
+
+                        sLink = testWb.Url.ToString();
+                        SetElements();
+                        SearchPartPage(testWb);
+
+                        string YearManuf = string.Empty;
+                        if (ModelData.Length > 1)
+                            YearManuf = ModelData[1].Substring(0, 4);
+                        else
+                            YearManuf = null;
+                        int Model_ID = ModelIDByCarAndModel(MarkSelect.Children[CurrentCar].InnerText, ModelData[0], YearManuf);
+                        SetElements();
+
+                        CurrentModel++;
+                        AllCars.selectedIndex = CurrentCar;
+                        MarkSelect.RaiseEvent("onChange");
+                        while (AllModels.length < 2)
+                        {
+                            Application.DoEvents();
+                        }
+                        AllModels.selectedIndex = Index;
+                        SetElements();
+                    }
                 }
-
-                WaitBrowser(webTest);
-                SetElements();
-                string modeltxt = AllModels.innerHTML;
-
-                string currentLink = webTest.Url.ToString();
-                LoadSite(testWb, currentLink);
-                LoadSite(webTest, oldLink);
-
-                sLink = testWb.Url.ToString();
-                SetElements();
-                SearchPartPage(testWb);
-                
-                string YearManuf = string.Empty;
-                if (ModelData.Length > 1) 
-                   YearManuf = ModelData[1].Substring(0, 4);
-                else 
-                    YearManuf = null;
-                int Model_ID = ModelIDByCarAndModel(MarkSelect.Children[CurrentCar].InnerText, ModelData[0], YearManuf);
-                SetElements();
-
-                CurrentModel++;
-                AllCars.selectedIndex = CurrentCar;
-                MarkSelect.RaiseEvent("onChange");
-                while (AllModels.length < 2)
-                {
-                    Application.DoEvents();
-                }
-                AllModels.selectedIndex = Index;
-                SetElements();
             }
 
         }
