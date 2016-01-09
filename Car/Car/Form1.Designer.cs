@@ -45,6 +45,7 @@
             this.carShopDataSet1 = new Car.CarShopDataSet();
             this.queriesTableAdapter1 = new Car.CarShopDataSetTableAdapters.QueriesTableAdapter();
             this.partS_LINKTableAdapter1 = new Car.CarShopDataSetTableAdapters.PARTS_LINKTableAdapter();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.CDSCarShop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.carShopDataSet1)).BeginInit();
             this.SuspendLayout();
@@ -173,11 +174,21 @@
             // 
             this.partS_LINKTableAdapter1.ClearBeforeFill = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(222, 41);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "label1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 404);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -194,6 +205,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.CDSCarShop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.carShopDataSet1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -216,6 +228,7 @@
         private System.Windows.Forms.Button button9;
         private CarShopDataSetTableAdapters.QueriesTableAdapter queriesTableAdapter1;
         private CarShopDataSetTableAdapters.PARTS_LINKTableAdapter partS_LINKTableAdapter1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -48,21 +48,31 @@ namespace Car
             HTMLSelectElement AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
             for(int i = 0; i < AllMainCategories.length; i++)
             {
-                AllMainCategories.selectedIndex = i + 1;
-                string test = MainCategory.InnerText;
-                /* if (OptionRow.InnerText != Constants.MainCatBeginStr)
-                 {   int P_CategoryID = DSCarShop.GEN_ID("P_CATEGORY");
-                     DSCarShop.ProvCategoryAdapter.Insert(P_CategoryID, OptionRow.InnerText, Constants.AutoBim, null);
-                     GetSubCategory(P_CategoryID, OptionRow.InnerText);
-                 }*/
+                string SubCategory = AllSubCategories.innerText;
+                AllMainCategories.selectedIndex = i;
+                MainCategory.RaiseEvent("onChange");
+                while (SubCategory == AllSubCategories.innerText)
+                {
+                    string CurrCat = AllMainCategories.innerText;
+                    Application.DoEvents();
+                }
+
+                string test = MainCategory.Children[i].InnerText;
+                if (MainCategory.Children[i].InnerText != Constants.MainCatBeginStr)
+                 {   
+                 int P_CategoryID = DSCarShop.GEN_ID("P_CATEGORY");
+                 DSCarShop.ProvCategoryAdapter.Insert(P_CategoryID, MainCategory.Children[i].InnerText, Constants.AutoBim, null);
+                 GetSubCategory(P_CategoryID, MainCategory.Children[i].InnerText);
+                 }
             }     
         }
         private void GetSubCategory(int CategoryID, string CategoryName)
         {
             var SubCategoryID = wbTest.Document.GetElementById(Constants.SubCategID);
             foreach (HtmlElement SubOptionRow in SubCategoryID.Children)
-               if ((SubOptionRow.InnerText != Constants.SubCatBeginStr) && (SubOptionRow.InnerText != CategoryName))
-                    DSCarShop.SubCategoryAdapter.Insert(DSCarShop.GEN_ID("S_CATEGORY"), CategoryID, SubOptionRow.InnerText);
+                foreach(HtmlElement SubCategory in SubOptionRow.Children)
+                    if ((SubCategory.InnerText != Constants.SubCatBeginStr) && (SubCategory.InnerText != CategoryName))
+                        DSCarShop.SubCategoryAdapter.Insert(DSCarShop.GEN_ID("S_CATEGORY"), CategoryID, SubCategory.InnerText);
         }
 
      

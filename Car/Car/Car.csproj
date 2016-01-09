@@ -79,6 +79,7 @@
       <DependentUpon>CarShopDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="CategorySearcher.cs" />
+    <Compile Include="CommonFuncs.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

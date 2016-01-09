@@ -15,11 +15,13 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
 using HtmlAgilityPack;
+using mshtml;
 namespace Car
 {
     public partial class Form1 : Form
     {
         CarSearch CarSearcher;
+        CarShopDataSet DSetCars;
         ModelSearcher ModelSrch;
         PartLinkSearcher PartSearch;
         HttpWebRequest htpReq;
@@ -37,18 +39,15 @@ namespace Car
             ModelSrch = new ModelSearcher();
             InitSiteConnection();
             HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
+            DSetCars = new CarShopDataSet();
+            DSetCars.InitAdapters();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CarSearcher = new CarSearch();
-            this.webTest = CarSearcher.PwbTest;
-            CarSearcher.InitSiteConnection();
-            this.webTest = CarSearcher.PwbTest;
-            webTest.Refresh();
-            CarSearcher.GetCarMarks();
-            CarSearcher.SaveCarMarksToDB();
+            CategorySearcher catsearcher = new CategorySearcher();
+            catsearcher.GetAllCategories();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -104,6 +103,10 @@ namespace Car
             var AllCars = MarkSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             var ModelSelect = webTest.Document.GetElementById("model_id"); // get model select
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
+            var MainCategory = webTest.Document.GetElementById(Constants.MainCatID);
+            var SubCategoryID = webTest.Document.GetElementById(Constants.SubCategID);
+            HTMLSelectElement AllMainCategories = MainCategory.DomElement as HTMLSelectElement;
+            HTMLSelectElement AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
             var btnFind = webTest.Document.All.GetElementsByName("btnSearch")[0];
             SetBrowserElements SetElements = delegate()
             {
@@ -113,6 +116,10 @@ namespace Car
                 ModelSelect = webTest.Document.GetElementById("model_id"); // get model select
                 AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement;
                 btnFind = webTest.Document.All.GetElementsByName("btnSearch")[0];
+                MainCategory = webTest.Document.GetElementById(Constants.MainCatID);
+                SubCategoryID = webTest.Document.GetElementById(Constants.SubCategID);
+                AllMainCategories = MainCategory.DomElement as HTMLSelectElement;
+                AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
             };
             string menu = string.Empty;
             String sLink = String.Empty;
@@ -120,7 +127,7 @@ namespace Car
             string oldLink = webTest.Url.ToString();
             int NumberOfModels = AllModels.length;
             AllModels.selectedIndex = CurrentModel;
-
+            int CurrentSelCarID = AllCars.selectedIndex;
             int Index = 1;
             for (Index = 1; Index < NumberOfModels; Index++)
             {
@@ -137,64 +144,80 @@ namespace Car
                 string modeltxt = AllModels.innerHTML;
 
                 string currentLink = webTest.Url.ToString();
-                LoadSite(testWb, currentLink);
-                LoadSite(webTest, oldLink);
 
-                sLink = testWb.Url.ToString();
+                //LoadSite(testWb, currentLink);
+
+
+                //sLink = testWb.Url.ToString();
                 SetElements();
-                SearchPartPage(testWb);
-                
+                SearchPartPage(webTest);
+                LoadSite(webTest, oldLink);
+                SetElements();
                 string YearManuf = string.Empty;
-                if (ModelData.Length > 1) 
-                   YearManuf = ModelData[1].Substring(0, 4);
-                else 
+                if (ModelData.Length > 1)
+                    YearManuf = ModelData[1].Substring(0, 4);
+                else
                     YearManuf = null;
                 int Model_ID = ModelIDByCarAndModel(MarkSelect.Children[CurrentCar].InnerText, ModelData[0], YearManuf);
                 SetElements();
-
-                CurrentModel++;
-                AllCars.selectedIndex = CurrentCar;
+                string ModelHtml = ModelSelect.InnerText;
+                AllCars.selectedIndex = CurrentSelCarID;
                 MarkSelect.RaiseEvent("onChange");
-                while (AllModels.length < 2)
+                while (AllModels.length < 2 && ModelHtml == ModelSelect.InnerText)
                 {
                     Application.DoEvents();
                 }
                 AllModels.selectedIndex = Index;
                 SetElements();
             }
-
         }
 
         public void SearchPartPage(WebBrowser wbCurrentPage)
         {
+            label1.Text = wbCurrentPage.Url.ToString();
             DateTime Now = DateTime.Now;
             List<string> NextLink = new List<string>();
             List<string> FoundLinks = new List<string>();
             var TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
+            var NextPage = wbCurrentPage.Document.GetElementById("pagination");
+            string LastPageNavLink = string.Empty;
+            for (int ind = 0; ind < NextPage.Children.Count; ind++)
+            {
+                HtmlElement elem = NextPage.Children[ind];
+                if (elem.OuterHtml.Contains("Отвори последна страница"))
+                    LastPageNavLink = FindLinks(elem.OuterHtml)[0].ToString();
+            }
+
             WebClient webClient = new WebClient();
             string pageCont = webClient.DownloadString(wbCurrentPage.Url.ToString());
             HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
             CurrentDoc.LoadHtml(pageCont);
-           
-            foreach (HtmlElement row in TableElem.Children)
+            if (TableElem != null)
             {
-                FoundLinks = FindLinks(row.InnerHtml);
-                if (FoundLinks.Count != 0)
+                foreach (HtmlElement row in TableElem.Children)
                 {
-                    foreach (var Link in FoundLinks)
+                    FoundLinks = FindLinks(row.InnerHtml);
+                    if (FoundLinks.Count != 0)
                     {
-                        partS_LINKTableAdapter1.Insert(GEN_ID("PART_LINKS"), GEN_ID("PART_ID"), Constants.AutoBimLink + Link, DateTime.Now);
+                        foreach (var Link in FoundLinks)
+                        {
+                            partS_LINKTableAdapter1.Insert(GEN_ID("PART_LINKS"), GEN_ID("PART_ID"), Constants.AutoBimLink + Link, DateTime.Now);
+                        }
                     }
+
                 }
-                var NextPage = wbCurrentPage.Document.GetElementById("pagination");
                 var hrefs = NextPage.GetElementsByTagName("a");
                 foreach (HtmlElement Links in hrefs)
-                {
-                    if (Links.InnerText.Contains("следваща"))
-                       NextLink = FindLinks(Links.OuterHtml);
-                }
-
-            }  
+                    if (Links.InnerText.Contains("следваща") && !wbCurrentPage.Url.ToString().Contains(LastPageNavLink))
+                    {
+                        string oldLink = wbCurrentPage.Url.ToString();
+                        NextLink = FindLinks(Links.OuterHtml);
+                        string NextUrl = NextLink[0];
+                        LoadSite(wbCurrentPage, Constants.AutoBimLink + NextUrl);
+                        //CommonFuncs.WaitBrowser(wbCurrentPage, oldLink);
+                        SearchPartPage(wbCurrentPage);
+                    }
+            }
         }
 
         public List<string> FindLinks(string TableTxt)
@@ -246,7 +269,7 @@ namespace Car
         {
 
         }
-        public async void CycleMarksAndGetModels()
+        public void CycleMarksAndGetModels()
         {
             carsTableAdapter1.Fill(carShopDataSet1.Cars);
             modelsTableAdapter1.Fill(carShopDataSet1.Models);
@@ -266,15 +289,14 @@ namespace Car
                 AllCars = MarkSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
                 AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
                 CurrentCar = index;
-
+                string ModelHtml = ModelSelect.InnerText;
                 AllCars.selectedIndex = index;
                 MarkSelect.RaiseEvent("onChange");
-                while (AllModels.length < 2)
+                while (AllModels.length < 2 && ModelHtml == ModelSelect.InnerText)
                 {
                     Application.DoEvents();
                 }
                 HtmlElement OptCarMark = MarkSelect.Children[index];
-                await Task.Delay(100);
                 menu = OptCarMark.InnerHtml;
                 //modelMenu = AllModels.innerText;
                 CycleModels(index);//
@@ -284,8 +306,15 @@ namespace Car
 
         private void button9_Click(object sender, EventArgs e)
         {
-            CategorySearcher CategoryWriter = new CategorySearcher();
-            CategoryWriter.GetAllCategories();
+            var MainCategory = webTest.Document.GetElementById(Constants.MainCatID);
+            var SubCategoryID = webTest.Document.GetElementById(Constants.SubCategID);
+            var AllMainCategories = MainCategory.DomElement as HTMLSelectElement;
+            var  AllSubCategories = SubCategoryID.DomElement as HTMLSelectElement;
+            //var SubCat = SubCategoryID.Children[AllSubCategories.selectedIndex].InnerText;
+            AllSubCategories.selectedIndex = AllSubCategories.selectedIndex + 1;
+            HtmlElement SubCat = SubCategoryID.Children[AllSubCategories.selectedIndex];
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)

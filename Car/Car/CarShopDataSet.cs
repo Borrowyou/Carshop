@@ -45,6 +45,12 @@ namespace Car {
                 return GenValue;
             }
 
-        } //bla
+        }
+
+        public int? GetSubCategoryBySName(string sCategName)
+        {
+            return SubCategoryAdapter.GetSubCategoryIDByName(sCategName);
+        }
+
     }
 }
