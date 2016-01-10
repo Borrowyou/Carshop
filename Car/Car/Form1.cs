@@ -128,8 +128,8 @@ namespace Car
             int NumberOfModels = AllModels.length;
             AllModels.selectedIndex = CurrentModel;
             int CurrentSelCarID = AllCars.selectedIndex;
-            int Index = 1;
-            for (Index = 1; Index < NumberOfModels; Index++)
+            int Index = 11;
+            for (Index = 11; Index < NumberOfModels; Index++)
             {
                 AllModels.selectedIndex = Index;
                 string[] ModelData = ModelNameExtract(ModelSelect, Index);
@@ -144,10 +144,8 @@ namespace Car
                 string modeltxt = AllModels.innerHTML;
 
                 string currentLink = webTest.Url.ToString();
-
-                //LoadSite(testWb, currentLink);
-
-
+                //testWb = new WebBrowser();
+               // LoadSite(testWb, currentLink);
                 //sLink = testWb.Url.ToString();
                 SetElements();
                 SearchPartPage(webTest);
@@ -178,6 +176,8 @@ namespace Car
             DateTime Now = DateTime.Now;
             List<string> NextLink = new List<string>();
             List<string> FoundLinks = new List<string>();
+            List<string> FetchedLinks = new List<string>();
+            string oldLink = string.Empty;
             var TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
             var NextPage = wbCurrentPage.Document.GetElementById("pagination");
             string LastPageNavLink = string.Empty;
@@ -192,8 +192,12 @@ namespace Car
             string pageCont = webClient.DownloadString(wbCurrentPage.Url.ToString());
             HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
             CurrentDoc.LoadHtml(pageCont);
-            if (TableElem != null)
+            bool KeepCrawl = true;
+            while (TableElem != null && !FetchedLinks.Contains(wbCurrentPage.Url.ToString()) && KeepCrawl)
             {
+                TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
+                NextPage = wbCurrentPage.Document.GetElementById("pagination");
+                label1.Text = wbCurrentPage.Url.ToString();
                 foreach (HtmlElement row in TableElem.Children)
                 {
                     FoundLinks = FindLinks(row.InnerHtml);
@@ -207,16 +211,18 @@ namespace Car
 
                 }
                 var hrefs = NextPage.GetElementsByTagName("a");
+                string NextUrl = string.Empty;
                 foreach (HtmlElement Links in hrefs)
-                    if (Links.InnerText.Contains("следваща") && !wbCurrentPage.Url.ToString().Contains(LastPageNavLink))
+                    if (Links.InnerText.Contains("следваща"))
                     {
-                        string oldLink = wbCurrentPage.Url.ToString();
                         NextLink = FindLinks(Links.OuterHtml);
-                        string NextUrl = NextLink[0];
-                        LoadSite(wbCurrentPage, Constants.AutoBimLink + NextUrl);
-                        //CommonFuncs.WaitBrowser(wbCurrentPage, oldLink);
-                        SearchPartPage(wbCurrentPage);
+                        if (NextLink.Count > 0)
+                            NextUrl = NextLink[0];
                     }
+                KeepCrawl = NextLink.Count > 0;
+                oldLink = wbCurrentPage.Url.ToString();
+                LoadSite(wbCurrentPage, Constants.AutoBimLink + NextUrl);
+                FetchedLinks.Add(oldLink);
             }
         }
 
@@ -236,9 +242,7 @@ namespace Car
                       LinkList.Add(m2.Groups[1].Value);
                 }
             }
-
             return LinkList;
-
         }
 
         public int ModelIDByCarAndModel(String CarName, String ModelName, String YearStart)
@@ -258,8 +262,13 @@ namespace Car
         public string[] ModelNameExtract(HtmlElement heModelElem, int IndexElement)
         {
             string ModelName = heModelElem.Children[IndexElement].InnerText;
+            string YearManuf = string.Empty;
             string[] Separator = { " от ", " до " };
             string[] ModelData = ModelName.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
+            if (ModelData.Length > 1)
+                YearManuf = ModelData[1].Substring(0, 4);
+            else
+                YearManuf = null;
             return ModelData;
         }
 
