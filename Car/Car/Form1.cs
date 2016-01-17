@@ -269,6 +269,7 @@ namespace Car
                 YearManuf = ModelData[1].Substring(0, 4);
             else
                 YearManuf = null;
+
             return ModelData;
         }
 

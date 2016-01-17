@@ -371,6 +371,14 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
               <Mapping SourceColumn="LAST_UPDATE" DataSetColumn="LAST_UPDATE" />
             </Mappings>
             <Sources>
+              <DbSource ConnectionRef="CarShopConnectionString (Settings)" DbObjectName="CarShop.dbo.PARTS_LINK" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillLinks" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillLinks" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillLinks">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM dbo.PARTS_LINK</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
               <DbSource ConnectionRef="CarShopConnectionString (Settings)" DbObjectName="CarShop.dbo.PARTS_LINK" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillPartLinks" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillPartLinks" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillPartLinks">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -530,7 +538,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
   <xs:element name="CarShopDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CarShopDataSet" msprop:Generator_UserDSName="CarShopDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Cars" msprop:Generator_TableClassName="CarsDataTable" msprop:Generator_TableVarName="tableCars" msprop:Generator_RowChangedName="CarsRowChanged" msprop:Generator_TablePropName="Cars" msprop:Generator_RowDeletingName="CarsRowDeleting" msprop:Generator_RowChangingName="CarsRowChanging" msprop:Generator_RowEvHandlerName="CarsRowChangeEventHandler" msprop:Generator_RowDeletedName="CarsRowDeleted" msprop:Generator_RowClassName="CarsRow" msprop:Generator_UserTableName="Cars" msprop:Generator_RowEvArgName="CarsRowChangeEvent">
+        <xs:element name="Cars" msprop:Generator_TableClassName="CarsDataTable" msprop:Generator_TableVarName="tableCars" msprop:Generator_TablePropName="Cars" msprop:Generator_RowDeletingName="CarsRowDeleting" msprop:Generator_RowChangingName="CarsRowChanging" msprop:Generator_RowEvHandlerName="CarsRowChangeEventHandler" msprop:Generator_RowDeletedName="CarsRowDeleted" msprop:Generator_UserTableName="Cars" msprop:Generator_RowChangedName="CarsRowChanged" msprop:Generator_RowEvArgName="CarsRowChangeEvent" msprop:Generator_RowClassName="CarsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Car_ID" msprop:Generator_ColumnVarNameInTable="columnCar_ID" msprop:Generator_ColumnPropNameInRow="Car_ID" msprop:Generator_ColumnPropNameInTable="Car_IDColumn" msprop:Generator_UserColumnName="Car_ID" type="xs:int" />
@@ -544,7 +552,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="GENERATORS" msprop:Generator_TableClassName="GENERATORSDataTable" msprop:Generator_TableVarName="tableGENERATORS" msprop:Generator_RowChangedName="GENERATORSRowChanged" msprop:Generator_TablePropName="GENERATORS" msprop:Generator_RowDeletingName="GENERATORSRowDeleting" msprop:Generator_RowChangingName="GENERATORSRowChanging" msprop:Generator_RowEvHandlerName="GENERATORSRowChangeEventHandler" msprop:Generator_RowDeletedName="GENERATORSRowDeleted" msprop:Generator_RowClassName="GENERATORSRow" msprop:Generator_UserTableName="GENERATORS" msprop:Generator_RowEvArgName="GENERATORSRowChangeEvent">
+        <xs:element name="GENERATORS" msprop:Generator_TableClassName="GENERATORSDataTable" msprop:Generator_TableVarName="tableGENERATORS" msprop:Generator_TablePropName="GENERATORS" msprop:Generator_RowDeletingName="GENERATORSRowDeleting" msprop:Generator_RowChangingName="GENERATORSRowChanging" msprop:Generator_RowEvHandlerName="GENERATORSRowChangeEventHandler" msprop:Generator_RowDeletedName="GENERATORSRowDeleted" msprop:Generator_UserTableName="GENERATORS" msprop:Generator_RowChangedName="GENERATORSRowChanged" msprop:Generator_RowEvArgName="GENERATORSRowChangeEvent" msprop:Generator_RowClassName="GENERATORSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="GENERATOR_NAME" msprop:Generator_ColumnVarNameInTable="columnGENERATOR_NAME" msprop:Generator_ColumnPropNameInRow="GENERATOR_NAME" msprop:Generator_ColumnPropNameInTable="GENERATOR_NAMEColumn" msprop:Generator_UserColumnName="GENERATOR_NAME" minOccurs="0">
@@ -558,7 +566,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="MODELADDRESSES" msprop:Generator_TableClassName="MODELADDRESSESDataTable" msprop:Generator_TableVarName="tableMODELADDRESSES" msprop:Generator_RowChangedName="MODELADDRESSESRowChanged" msprop:Generator_TablePropName="MODELADDRESSES" msprop:Generator_RowDeletingName="MODELADDRESSESRowDeleting" msprop:Generator_RowChangingName="MODELADDRESSESRowChanging" msprop:Generator_RowEvHandlerName="MODELADDRESSESRowChangeEventHandler" msprop:Generator_RowDeletedName="MODELADDRESSESRowDeleted" msprop:Generator_RowClassName="MODELADDRESSESRow" msprop:Generator_UserTableName="MODELADDRESSES" msprop:Generator_RowEvArgName="MODELADDRESSESRowChangeEvent">
+        <xs:element name="MODELADDRESSES" msprop:Generator_TableClassName="MODELADDRESSESDataTable" msprop:Generator_TableVarName="tableMODELADDRESSES" msprop:Generator_TablePropName="MODELADDRESSES" msprop:Generator_RowDeletingName="MODELADDRESSESRowDeleting" msprop:Generator_RowChangingName="MODELADDRESSESRowChanging" msprop:Generator_RowEvHandlerName="MODELADDRESSESRowChangeEventHandler" msprop:Generator_RowDeletedName="MODELADDRESSESRowDeleted" msprop:Generator_UserTableName="MODELADDRESSES" msprop:Generator_RowChangedName="MODELADDRESSESRowChanged" msprop:Generator_RowEvArgName="MODELADDRESSESRowChangeEvent" msprop:Generator_RowClassName="MODELADDRESSESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MODEL_ADDRESS" msprop:Generator_ColumnVarNameInTable="columnMODEL_ADDRESS" msprop:Generator_ColumnPropNameInRow="MODEL_ADDRESS" msprop:Generator_ColumnPropNameInTable="MODEL_ADDRESSColumn" msprop:Generator_UserColumnName="MODEL_ADDRESS" minOccurs="0">
@@ -573,7 +581,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Models" msprop:Generator_TableClassName="ModelsDataTable" msprop:Generator_TableVarName="tableModels" msprop:Generator_RowChangedName="ModelsRowChanged" msprop:Generator_TablePropName="Models" msprop:Generator_RowDeletingName="ModelsRowDeleting" msprop:Generator_RowChangingName="ModelsRowChanging" msprop:Generator_RowEvHandlerName="ModelsRowChangeEventHandler" msprop:Generator_RowDeletedName="ModelsRowDeleted" msprop:Generator_RowClassName="ModelsRow" msprop:Generator_UserTableName="Models" msprop:Generator_RowEvArgName="ModelsRowChangeEvent">
+        <xs:element name="Models" msprop:Generator_TableClassName="ModelsDataTable" msprop:Generator_TableVarName="tableModels" msprop:Generator_TablePropName="Models" msprop:Generator_RowDeletingName="ModelsRowDeleting" msprop:Generator_RowChangingName="ModelsRowChanging" msprop:Generator_RowEvHandlerName="ModelsRowChangeEventHandler" msprop:Generator_RowDeletedName="ModelsRowDeleted" msprop:Generator_UserTableName="Models" msprop:Generator_RowChangedName="ModelsRowChanged" msprop:Generator_RowEvArgName="ModelsRowChangeEvent" msprop:Generator_RowClassName="ModelsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="MODEL_ID" msprop:Generator_ColumnVarNameInTable="columnMODEL_ID" msprop:Generator_ColumnPropNameInRow="MODEL_ID" msprop:Generator_ColumnPropNameInTable="MODEL_IDColumn" msprop:Generator_UserColumnName="MODEL_ID" type="xs:int" />
@@ -597,7 +605,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Parts" msprop:Generator_TableClassName="PartsDataTable" msprop:Generator_TableVarName="tableParts" msprop:Generator_RowChangedName="PartsRowChanged" msprop:Generator_TablePropName="Parts" msprop:Generator_RowDeletingName="PartsRowDeleting" msprop:Generator_RowChangingName="PartsRowChanging" msprop:Generator_RowEvHandlerName="PartsRowChangeEventHandler" msprop:Generator_RowDeletedName="PartsRowDeleted" msprop:Generator_RowClassName="PartsRow" msprop:Generator_UserTableName="Parts" msprop:Generator_RowEvArgName="PartsRowChangeEvent">
+        <xs:element name="Parts" msprop:Generator_TableClassName="PartsDataTable" msprop:Generator_TableVarName="tableParts" msprop:Generator_TablePropName="Parts" msprop:Generator_RowDeletingName="PartsRowDeleting" msprop:Generator_RowChangingName="PartsRowChanging" msprop:Generator_RowEvHandlerName="PartsRowChangeEventHandler" msprop:Generator_RowDeletedName="PartsRowDeleted" msprop:Generator_UserTableName="Parts" msprop:Generator_RowChangedName="PartsRowChanged" msprop:Generator_RowEvArgName="PartsRowChangeEvent" msprop:Generator_RowClassName="PartsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Part_ID" msprop:Generator_ColumnVarNameInTable="columnPart_ID" msprop:Generator_ColumnPropNameInRow="Part_ID" msprop:Generator_ColumnPropNameInTable="Part_IDColumn" msprop:Generator_UserColumnName="Part_ID" type="xs:int" />
@@ -629,7 +637,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PARTS_LINK" msprop:Generator_TableClassName="PARTS_LINKDataTable" msprop:Generator_TableVarName="tablePARTS_LINK" msprop:Generator_RowChangedName="PARTS_LINKRowChanged" msprop:Generator_TablePropName="PARTS_LINK" msprop:Generator_RowDeletingName="PARTS_LINKRowDeleting" msprop:Generator_RowChangingName="PARTS_LINKRowChanging" msprop:Generator_RowEvHandlerName="PARTS_LINKRowChangeEventHandler" msprop:Generator_RowDeletedName="PARTS_LINKRowDeleted" msprop:Generator_RowClassName="PARTS_LINKRow" msprop:Generator_UserTableName="PARTS_LINK" msprop:Generator_RowEvArgName="PARTS_LINKRowChangeEvent">
+        <xs:element name="PARTS_LINK" msprop:Generator_TableClassName="PARTS_LINKDataTable" msprop:Generator_TableVarName="tablePARTS_LINK" msprop:Generator_TablePropName="PARTS_LINK" msprop:Generator_RowDeletingName="PARTS_LINKRowDeleting" msprop:Generator_RowChangingName="PARTS_LINKRowChanging" msprop:Generator_RowEvHandlerName="PARTS_LINKRowChangeEventHandler" msprop:Generator_RowDeletedName="PARTS_LINKRowDeleted" msprop:Generator_UserTableName="PARTS_LINK" msprop:Generator_RowChangedName="PARTS_LINKRowChanged" msprop:Generator_RowEvArgName="PARTS_LINKRowChangeEvent" msprop:Generator_RowClassName="PARTS_LINKRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="LINK_ID" msprop:Generator_ColumnVarNameInTable="columnLINK_ID" msprop:Generator_ColumnPropNameInRow="LINK_ID" msprop:Generator_ColumnPropNameInTable="LINK_IDColumn" msprop:Generator_UserColumnName="LINK_ID" type="xs:int" />
@@ -645,7 +653,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PROVIDER_CATEGORIES" msprop:Generator_TableClassName="PROVIDER_CATEGORIESDataTable" msprop:Generator_TableVarName="tablePROVIDER_CATEGORIES" msprop:Generator_RowChangedName="PROVIDER_CATEGORIESRowChanged" msprop:Generator_TablePropName="PROVIDER_CATEGORIES" msprop:Generator_RowDeletingName="PROVIDER_CATEGORIESRowDeleting" msprop:Generator_RowChangingName="PROVIDER_CATEGORIESRowChanging" msprop:Generator_RowEvHandlerName="PROVIDER_CATEGORIESRowChangeEventHandler" msprop:Generator_RowDeletedName="PROVIDER_CATEGORIESRowDeleted" msprop:Generator_RowClassName="PROVIDER_CATEGORIESRow" msprop:Generator_UserTableName="PROVIDER_CATEGORIES" msprop:Generator_RowEvArgName="PROVIDER_CATEGORIESRowChangeEvent">
+        <xs:element name="PROVIDER_CATEGORIES" msprop:Generator_TableClassName="PROVIDER_CATEGORIESDataTable" msprop:Generator_TableVarName="tablePROVIDER_CATEGORIES" msprop:Generator_TablePropName="PROVIDER_CATEGORIES" msprop:Generator_RowDeletingName="PROVIDER_CATEGORIESRowDeleting" msprop:Generator_RowChangingName="PROVIDER_CATEGORIESRowChanging" msprop:Generator_RowEvHandlerName="PROVIDER_CATEGORIESRowChangeEventHandler" msprop:Generator_RowDeletedName="PROVIDER_CATEGORIESRowDeleted" msprop:Generator_UserTableName="PROVIDER_CATEGORIES" msprop:Generator_RowChangedName="PROVIDER_CATEGORIESRowChanged" msprop:Generator_RowEvArgName="PROVIDER_CATEGORIESRowChangeEvent" msprop:Generator_RowClassName="PROVIDER_CATEGORIESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="P_CATEGORY_ID" msprop:Generator_ColumnVarNameInTable="columnP_CATEGORY_ID" msprop:Generator_ColumnPropNameInRow="P_CATEGORY_ID" msprop:Generator_ColumnPropNameInTable="P_CATEGORY_IDColumn" msprop:Generator_UserColumnName="P_CATEGORY_ID" type="xs:int" />
@@ -667,7 +675,7 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SUB_CATEGORIES" msprop:Generator_TableClassName="SUB_CATEGORIESDataTable" msprop:Generator_TableVarName="tableSUB_CATEGORIES" msprop:Generator_RowChangedName="SUB_CATEGORIESRowChanged" msprop:Generator_TablePropName="SUB_CATEGORIES" msprop:Generator_RowDeletingName="SUB_CATEGORIESRowDeleting" msprop:Generator_RowChangingName="SUB_CATEGORIESRowChanging" msprop:Generator_RowEvHandlerName="SUB_CATEGORIESRowChangeEventHandler" msprop:Generator_RowDeletedName="SUB_CATEGORIESRowDeleted" msprop:Generator_RowClassName="SUB_CATEGORIESRow" msprop:Generator_UserTableName="SUB_CATEGORIES" msprop:Generator_RowEvArgName="SUB_CATEGORIESRowChangeEvent">
+        <xs:element name="SUB_CATEGORIES" msprop:Generator_TableClassName="SUB_CATEGORIESDataTable" msprop:Generator_TableVarName="tableSUB_CATEGORIES" msprop:Generator_TablePropName="SUB_CATEGORIES" msprop:Generator_RowDeletingName="SUB_CATEGORIESRowDeleting" msprop:Generator_RowChangingName="SUB_CATEGORIESRowChanging" msprop:Generator_RowEvHandlerName="SUB_CATEGORIESRowChangeEventHandler" msprop:Generator_RowDeletedName="SUB_CATEGORIESRowDeleted" msprop:Generator_UserTableName="SUB_CATEGORIES" msprop:Generator_RowChangedName="SUB_CATEGORIESRowChanged" msprop:Generator_RowEvArgName="SUB_CATEGORIESRowChangeEvent" msprop:Generator_RowClassName="SUB_CATEGORIESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUB_CATEGORY_ID" msprop:Generator_ColumnVarNameInTable="columnSUB_CATEGORY_ID" msprop:Generator_ColumnPropNameInRow="SUB_CATEGORY_ID" msprop:Generator_ColumnPropNameInTable="SUB_CATEGORY_IDColumn" msprop:Generator_UserColumnName="SUB_CATEGORY_ID" type="xs:int" />
@@ -711,9 +719,9 @@ WHERE S_CATEGORY_NAME = @SCategoryName</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_CARS" msdata:parent="Cars" msdata:child="Models" msdata:parentkey="Car_ID" msdata:childkey="CAR_ID" msprop:Generator_UserChildTable="Models" msprop:Generator_ChildPropName="GetModelsRows" msprop:Generator_UserRelationName="FK_CARS" msprop:Generator_RelationVarName="relationFK_CARS" msprop:Generator_UserParentTable="Cars" msprop:Generator_ParentPropName="CarsRow" />
-      <msdata:Relationship name="FK_Car_Partss" msdata:parent="Cars" msdata:child="Parts" msdata:parentkey="Car_ID" msdata:childkey="Car_ID" msprop:Generator_UserChildTable="Parts" msprop:Generator_ChildPropName="GetPartsRows" msprop:Generator_UserRelationName="FK_Car_Partss" msprop:Generator_RelationVarName="relationFK_Car_Partss" msprop:Generator_UserParentTable="Cars" msprop:Generator_ParentPropName="CarsRow" />
-      <msdata:Relationship name="FK_Models" msdata:parent="Models" msdata:child="Parts" msdata:parentkey="MODEL_ID" msdata:childkey="Model_ID" msprop:Generator_UserChildTable="Parts" msprop:Generator_ChildPropName="GetPartsRows" msprop:Generator_UserRelationName="FK_Models" msprop:Generator_RelationVarName="relationFK_Models" msprop:Generator_UserParentTable="Models" msprop:Generator_ParentPropName="ModelsRow" />
+      <msdata:Relationship name="FK_CARS" msdata:parent="Cars" msdata:child="Models" msdata:parentkey="Car_ID" msdata:childkey="CAR_ID" msprop:Generator_UserChildTable="Models" msprop:Generator_ChildPropName="GetModelsRows" msprop:Generator_UserRelationName="FK_CARS" msprop:Generator_ParentPropName="CarsRow" msprop:Generator_RelationVarName="relationFK_CARS" msprop:Generator_UserParentTable="Cars" />
+      <msdata:Relationship name="FK_Car_Partss" msdata:parent="Cars" msdata:child="Parts" msdata:parentkey="Car_ID" msdata:childkey="Car_ID" msprop:Generator_UserChildTable="Parts" msprop:Generator_ChildPropName="GetPartsRows" msprop:Generator_UserRelationName="FK_Car_Partss" msprop:Generator_ParentPropName="CarsRow" msprop:Generator_RelationVarName="relationFK_Car_Partss" msprop:Generator_UserParentTable="Cars" />
+      <msdata:Relationship name="FK_Models" msdata:parent="Models" msdata:child="Parts" msdata:parentkey="MODEL_ID" msdata:childkey="Model_ID" msprop:Generator_UserChildTable="Parts" msprop:Generator_ChildPropName="GetPartsRows" msprop:Generator_UserRelationName="FK_Models" msprop:Generator_ParentPropName="ModelsRow" msprop:Generator_RelationVarName="relationFK_Models" msprop:Generator_UserParentTable="Models" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

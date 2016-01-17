@@ -51,10 +51,7 @@ namespace Car
             int i;
             return int.TryParse(val, out i) ? (int?)i : null;
         }
-        public static HtmlElement FindElementByClassName(string ClassName, HtmlElement MainElement)
-        {
         
-        }
 
     }
 }

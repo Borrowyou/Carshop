@@ -12,6 +12,7 @@ namespace PartCrawler {
         public PROVIDER_CATEGORIESTableAdapter ProvCategoryAdapter { get; set; }
         public SUB_CATEGORIESTableAdapter SubCategoryAdapter { get; set; }
         public PARTS_LINKTableAdapter PartLinkTblAdapter { get; set; }
+        public PartsTableAdapter PartsTblAdapter { get; set; }
         public void InitAdapters()
         {
             CarsTblAdapter = new CarsTableAdapter();
@@ -19,6 +20,7 @@ namespace PartCrawler {
             ProvCategoryAdapter = new PROVIDER_CATEGORIESTableAdapter();
             SubCategoryAdapter = new SUB_CATEGORIESTableAdapter();
             PartLinkTblAdapter = new PARTS_LINKTableAdapter();
+            PartsTblAdapter = new PartsTableAdapter();
         }
         public ModelsTableAdapter ModelsTblAdapter { get; set; }
 
@@ -49,11 +51,6 @@ namespace PartCrawler {
 
         }
 
-        public void LoadPartLinks()
-        {
-            PartLinkTblAdapter.FillPartLinks(PARTS_LINK);
-            
-        }
         public int GetCarIDByName(string sCarName)
         {
             return CarsTblAdapter.GetCarIDByName(sCarName).GetValueOrDefault(-1);
@@ -70,7 +67,10 @@ namespace PartCrawler {
                                                    ,CommonFuncs.StringToNInt(ModelData[2])).GetValueOrDefault(-1);
         }
 
-
+        public void LoadPartsLink()
+        {
+            PartLinkTblAdapter.FillLinks(PARTS_LINK);
+        }
 
     }
 }
