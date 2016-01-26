@@ -2063,6 +2063,8 @@ namespace PartCrawler {
             
             private global::System.Data.DataColumn columnLAST_UPDATE;
             
+            private global::System.Data.DataColumn columnTHREAD;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PARTS_LINKDataTable() {
@@ -2130,6 +2132,14 @@ namespace PartCrawler {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn THREADColumn {
+                get {
+                    return this.columnTHREAD;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2165,13 +2175,14 @@ namespace PartCrawler {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PARTS_LINKRow AddPARTS_LINKRow(int LINK_ID, int PART_ID, string URL, System.DateTime LAST_UPDATE) {
+            public PARTS_LINKRow AddPARTS_LINKRow(int LINK_ID, int PART_ID, string URL, System.DateTime LAST_UPDATE, int THREAD) {
                 PARTS_LINKRow rowPARTS_LINKRow = ((PARTS_LINKRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         LINK_ID,
                         PART_ID,
                         URL,
-                        LAST_UPDATE};
+                        LAST_UPDATE,
+                        THREAD};
                 rowPARTS_LINKRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPARTS_LINKRow);
                 return rowPARTS_LINKRow;
@@ -2205,6 +2216,7 @@ namespace PartCrawler {
                 this.columnPART_ID = base.Columns["PART_ID"];
                 this.columnURL = base.Columns["URL"];
                 this.columnLAST_UPDATE = base.Columns["LAST_UPDATE"];
+                this.columnTHREAD = base.Columns["THREAD"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2218,6 +2230,8 @@ namespace PartCrawler {
                 base.Columns.Add(this.columnURL);
                 this.columnLAST_UPDATE = new global::System.Data.DataColumn("LAST_UPDATE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLAST_UPDATE);
+                this.columnTHREAD = new global::System.Data.DataColumn("THREAD", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTHREAD);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnLINK_ID}, true));
                 this.columnLINK_ID.AllowDBNull = false;
@@ -3678,6 +3692,22 @@ namespace PartCrawler {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int THREAD {
+                get {
+                    try {
+                        return ((int)(this[this.tablePARTS_LINK.THREADColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'THREAD\' in table \'PARTS_LINK\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePARTS_LINK.THREADColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsPART_IDNull() {
                 return this.IsNull(this.tablePARTS_LINK.PART_IDColumn);
             }
@@ -3710,6 +3740,18 @@ namespace PartCrawler {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLAST_UPDATENull() {
                 this[this.tablePARTS_LINK.LAST_UPDATEColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTHREADNull() {
+                return this.IsNull(this.tablePARTS_LINK.THREADColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTHREADNull() {
+                this[this.tablePARTS_LINK.THREADColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6134,10 +6176,11 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             tableMapping.ColumnMappings.Add("PART_ID", "PART_ID");
             tableMapping.ColumnMappings.Add("URL", "URL");
             tableMapping.ColumnMappings.Add("LAST_UPDATE", "LAST_UPDATE");
+            tableMapping.ColumnMappings.Add("THREAD", "THREAD");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[PARTS_LINK] WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [PARTS_LINK] WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)) AND ((@IsNull_THREAD = 1 AND [THREAD] IS NULL) OR ([THREAD] = @Original_THREAD)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -6146,25 +6189,29 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LAST_UPDATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[PARTS_LINK] ([LINK_ID], [PART_ID], [URL], [LAST_UPDATE]) VALUE" +
-                "S (@LINK_ID, @PART_ID, @URL, @LAST_UPDATE);\r\nSELECT LINK_ID, PART_ID, URL, LAST_" +
-                "UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [PARTS_LINK] ([LINK_ID], [PART_ID], [URL], [LAST_UPDATE], [THREAD]) V" +
+                "ALUES (@LINK_ID, @PART_ID, @URL, @LAST_UPDATE, @THREAD);\r\nSELECT LINK_ID, PART_I" +
+                "D, URL, LAST_UPDATE, THREAD FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[PARTS_LINK] SET [LINK_ID] = @LINK_ID, [PART_ID] = @PART_ID, [URL] = @URL, [LAST_UPDATE] = @LAST_UPDATE WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)));
-SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [PARTS_LINK] SET [LINK_ID] = @LINK_ID, [PART_ID] = @PART_ID, [URL] = @URL, [LAST_UPDATE] = @LAST_UPDATE, [THREAD] = @THREAD WHERE (([LINK_ID] = @Original_LINK_ID) AND ((@IsNull_PART_ID = 1 AND [PART_ID] IS NULL) OR ([PART_ID] = @Original_PART_ID)) AND ((@IsNull_URL = 1 AND [URL] IS NULL) OR ([URL] = @Original_URL)) AND ((@IsNull_LAST_UPDATE = 1 AND [LAST_UPDATE] IS NULL) OR ([LAST_UPDATE] = @Original_LAST_UPDATE)) AND ((@IsNull_THREAD = 1 AND [THREAD] IS NULL) OR ([THREAD] = @Original_THREAD)));
+SELECT LINK_ID, PART_ID, URL, LAST_UPDATE, THREAD FROM PARTS_LINK WHERE (LINK_ID = @LINK_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LINK_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LINK_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_PART_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PART_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6172,6 +6219,8 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_URL", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "URL", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_LAST_UPDATE", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_LAST_UPDATE", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "LAST_UPDATE", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_THREAD", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "THREAD", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6187,15 +6236,15 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM dbo.PARTS_LINK";
+            this._commandCollection[0].CommandText = "SELECT LINK_ID, PART_ID, URL, LAST_UPDATE, THREAD FROM PARTS_LINK";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM dbo.PARTS_LINK";
+            this._commandCollection[1].CommandText = "SELECT LAST_UPDATE, LINK_ID, PART_ID, THREAD, URL FROM PARTS_LINK";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT PART_ID, URL\r\nFROM dbo.PARTS_LINK";
+            this._commandCollection[2].CommandText = "SELECT LAST_UPDATE, LINK_ID, PART_ID, THREAD, URL FROM PARTS_LINK";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6304,7 +6353,7 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
+        public virtual int Delete(int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE, global::System.Nullable<int> Original_THREAD) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_LINK_ID));
             if ((Original_PART_ID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -6330,6 +6379,14 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
+            if ((Original_THREAD.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_THREAD.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6350,7 +6407,7 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE) {
+        public virtual int Insert(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, global::System.Nullable<int> THREAD) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(LINK_ID));
             if ((PART_ID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((int)(PART_ID.Value));
@@ -6369,6 +6426,12 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((THREAD.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(THREAD.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6390,7 +6453,7 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
+        public virtual int Update(int LINK_ID, global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, global::System.Nullable<int> THREAD, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE, global::System.Nullable<int> Original_THREAD) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(LINK_ID));
             if ((PART_ID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(PART_ID.Value));
@@ -6410,30 +6473,44 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_LINK_ID));
-            if ((Original_PART_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_PART_ID.Value));
+            if ((THREAD.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(THREAD.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_LINK_ID));
+            if ((Original_PART_ID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_PART_ID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             if ((Original_URL == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_URL));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_URL));
             }
             if ((Original_LAST_UPDATE.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(Original_LAST_UPDATE.Value));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_LAST_UPDATE.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Original_THREAD.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_THREAD.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6455,8 +6532,8 @@ SELECT LINK_ID, PART_ID, URL, LAST_UPDATE FROM PARTS_LINK WHERE (LINK_ID = @LINK
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE) {
-            return this.Update(Original_LINK_ID, PART_ID, URL, LAST_UPDATE, Original_LINK_ID, Original_PART_ID, Original_URL, Original_LAST_UPDATE);
+        public virtual int Update(global::System.Nullable<int> PART_ID, string URL, global::System.Nullable<global::System.DateTime> LAST_UPDATE, global::System.Nullable<int> THREAD, int Original_LINK_ID, global::System.Nullable<int> Original_PART_ID, string Original_URL, global::System.Nullable<global::System.DateTime> Original_LAST_UPDATE, global::System.Nullable<int> Original_THREAD) {
+            return this.Update(Original_LINK_ID, PART_ID, URL, LAST_UPDATE, THREAD, Original_LINK_ID, Original_PART_ID, Original_URL, Original_LAST_UPDATE, Original_THREAD);
         }
     }
     

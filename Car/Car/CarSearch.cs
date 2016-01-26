@@ -72,8 +72,9 @@ namespace Car
                writer.WriteEndDocument();
 
            }
-
+           SaveCarMarksToDB();
            System.Diagnostics.Process.Start("Cars.xml");
+
        }
        public void SaveCarMarksToDB()
        {

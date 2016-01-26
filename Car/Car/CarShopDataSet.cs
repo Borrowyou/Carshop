@@ -11,11 +11,13 @@ namespace Car {
        // PROVIDER_CATEGORIESTableAdapter ProvCategoryAdapter;
         
         public CarsTableAdapter CarsTblAdapter  { get; set; }
+        public ModelsTableAdapter ModelsTblAdapter { get; set; }
         public PROVIDER_CATEGORIESTableAdapter ProvCategoryAdapter { get; set; }
         public SUB_CATEGORIESTableAdapter SubCategoryAdapter { get; set; }
         public void InitAdapters()
         {
             CarsTblAdapter = new CarsTableAdapter();
+            ModelsTblAdapter = new ModelsTableAdapter();
             ProvCategoryAdapter = new PROVIDER_CATEGORIESTableAdapter();
             SubCategoryAdapter = new SUB_CATEGORIESTableAdapter();
         }
@@ -50,6 +52,12 @@ namespace Car {
         public int? GetSubCategoryBySName(string sCategName)
         {
             return SubCategoryAdapter.GetSubCategoryIDByName(sCategName);
+        }
+
+        public int GetModelIDByModelInfo(int CarID, string[] ModelData)
+        {
+            return ModelsTblAdapter.GetModelByCarInfo(CarID, ModelData[0], CommonFuncs.StringToNInt(ModelData[1])
+                                                   , CommonFuncs.StringToNInt(ModelData[2])).GetValueOrDefault(-1);
         }
 
     }

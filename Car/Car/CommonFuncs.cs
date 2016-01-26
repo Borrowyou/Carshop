@@ -30,10 +30,36 @@ namespace Car
         public static string[] ModelNameExtract(HtmlElement heModelElem, int IndexElement)
         {
             string ModelName = heModelElem.Children[IndexElement].InnerText;
+            string YearManuf = string.Empty;
+            string YearStop = string.Empty;
             string[] Separator = { " от ", " до " };
             string[] ModelData = ModelName.Split(Separator, StringSplitOptions.RemoveEmptyEntries);
-            return ModelData;
+            if (ModelData.Length > 1)
+                YearManuf = ModelData[1].Substring(0, 4);
+            else
+                YearManuf = null;
+            if (ModelData.Length > 2)
+                YearStop = ModelData[2].Substring(0, 4);
+            else
+                YearStop = null;
+            string[] ExtractedData = { ModelData[0], YearManuf, YearStop };
+            return ExtractedData;
         }
 
+        public static void InvokeOnChange(HtmlElement MainElem, HtmlElement SubElement)
+        {
+            string OldInnerTxt = SubElement.InnerText;
+            MainElem.RaiseEvent("onChange");
+            while (OldInnerTxt == SubElement.InnerText)
+            {
+                Application.DoEvents();
+            }
+        }
+        public static int? StringToNInt(string val)
+        {
+            int i;
+            return int.TryParse(val, out i) ? (int?)i : null;
+        }
+        
     }
 }

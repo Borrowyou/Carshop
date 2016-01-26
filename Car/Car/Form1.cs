@@ -148,7 +148,7 @@ namespace Car
                // LoadSite(testWb, currentLink);
                 //sLink = testWb.Url.ToString();
                 SetElements();
-                SearchPartPage(webTest);
+                SearchPartPage  (webTest);
                 LoadSite(webTest, oldLink);
                 SetElements();
                 string YearManuf = string.Empty;
@@ -226,6 +226,61 @@ namespace Car
             }
         }
 
+        public void ASearchPartPage(WebBrowser wbCurrentPage)
+        {
+            label1.Text = wbCurrentPage.Url.ToString();
+            DateTime Now = DateTime.Now;
+            List<string> NextLink = new List<string>();
+            List<string> FoundLinks = new List<string>();
+            List<string> FetchedLinks = new List<string>();
+            string oldLink = string.Empty;
+            var TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
+            var NextPage = wbCurrentPage.Document.GetElementById("pagination");
+            string LastPageNavLink = string.Empty;
+            for (int ind = 0; ind < NextPage.Children.Count; ind++)
+            {
+                HtmlElement elem = NextPage.Children[ind];
+                if (elem.OuterHtml.Contains("Отвори последна страница"))
+                    LastPageNavLink = FindLinks(elem.OuterHtml)[0].ToString();
+            }
+
+            WebClient webClient = new WebClient();
+            string pageCont = webClient.DownloadString(wbCurrentPage.Url.ToString());
+            HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
+            CurrentDoc.LoadHtml(pageCont);
+            bool KeepCrawl = true;
+            while (TableElem != null && !FetchedLinks.Contains(wbCurrentPage.Url.ToString()) && KeepCrawl)
+            {
+                TableElem = wbCurrentPage.Document.GetElementById("search-result-table");
+                NextPage = wbCurrentPage.Document.GetElementById("pagination");
+                label1.Text = wbCurrentPage.Url.ToString();
+                foreach (HtmlElement row in TableElem.Children)
+                {
+                    FoundLinks = FindLinks(row.InnerHtml);
+                    if (FoundLinks.Count != 0)
+                    {
+                        foreach (var Link in FoundLinks)
+                        {
+                            partS_LINKTableAdapter1.Insert(GEN_ID("PART_LINKS"), GEN_ID("PART_ID"), Constants.AutoBimLink + Link, DateTime.Now);
+                        }
+                    }
+
+                }
+                var hrefs = NextPage.GetElementsByTagName("a");
+                string NextUrl = string.Empty;
+                foreach (HtmlElement Links in hrefs)
+                    if (Links.InnerText.Contains("следваща"))
+                    {
+                        NextLink = FindLinks(Links.OuterHtml);
+                        if (NextLink.Count > 0)
+                            NextUrl = NextLink[0];
+                    }
+                KeepCrawl = NextLink.Count > 0;
+                oldLink = wbCurrentPage.Url.ToString();
+                LoadSite(wbCurrentPage, Constants.AutoBimLink + NextUrl);
+                FetchedLinks.Add(oldLink);
+            }
+        }
         public List<string> FindLinks(string TableTxt)
         {
             MatchCollection m1 = Regex.Matches(TableTxt, @"(<A.*?>.*?</A>)",
@@ -329,7 +384,9 @@ namespace Car
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            CarSearch Carsearcher = new CarSearch();
+            Carsearcher.InitSiteConnection();
+            Carsearcher.GetCarMarks();
         }
 
         private int GEN_ID(String sGenerator)
@@ -356,6 +413,23 @@ namespace Car
                 conn.Close();
                 return GenValue;
             }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ModelSearcher MdlSrch = new ModelSearcher();
+            MdlSrch.InitSiteConnection();
+            MdlSrch.CycleMarksAndGetModels();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
 
         } //bla
     }

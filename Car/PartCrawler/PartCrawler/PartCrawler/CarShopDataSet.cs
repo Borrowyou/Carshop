@@ -13,6 +13,7 @@ namespace PartCrawler {
         public SUB_CATEGORIESTableAdapter SubCategoryAdapter { get; set; }
         public PARTS_LINKTableAdapter PartLinkTblAdapter { get; set; }
         public PartsTableAdapter PartsTblAdapter { get; set; }
+        public ModelsTableAdapter ModelsTblAdapter { get; set; }
         public void InitAdapters()
         {
             CarsTblAdapter = new CarsTableAdapter();
@@ -22,33 +23,44 @@ namespace PartCrawler {
             PartLinkTblAdapter = new PARTS_LINKTableAdapter();
             PartsTblAdapter = new PartsTableAdapter();
         }
-        public ModelsTableAdapter ModelsTblAdapter { get; set; }
+
 
         public int GEN_ID(String sGenerator)
         {
-            using (SqlConnection conn = new SqlConnection(CarsTblAdapter.Connection.ConnectionString.ToString()))
-            using (SqlCommand cmd = new SqlCommand("dbo.SP_GEN_ID", conn))
+            bool Success = false;
+            int GenValue = -1;
+            while (!Success)
             {
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    using (SqlConnection conn = new SqlConnection(CarsTblAdapter.Connection.ConnectionString.ToString()))
+                    using (SqlCommand cmd = new SqlCommand("dbo.SP_GEN_ID", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                // set up the parameters
-                cmd.Parameters.Add("@GENERATOR_NAME", SqlDbType.VarChar, 32);
-                cmd.Parameters.Add("@GENERATOR_STEP", SqlDbType.Int);
-                cmd.Parameters.Add("@NEW_VALUE", SqlDbType.Int).Direction = ParameterDirection.Output;
+                        // set up the parameters
+                        cmd.Parameters.Add("@GENERATOR_NAME", SqlDbType.VarChar, 32);
+                        cmd.Parameters.Add("@GENERATOR_STEP", SqlDbType.Int);
+                        cmd.Parameters.Add("@NEW_VALUE", SqlDbType.Int).Direction = ParameterDirection.Output;
 
-                // set parameter values
-                cmd.Parameters["@GENERATOR_NAME"].Value = sGenerator;
-                cmd.Parameters["@GENERATOR_STEP"].Value = 1;
-                // open connection and execute stored procedure
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                        // set parameter values
+                        cmd.Parameters["@GENERATOR_NAME"].Value = sGenerator;
+                        cmd.Parameters["@GENERATOR_STEP"].Value = 1;
+                        // open connection and execute stored procedure
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
 
-                // read output value from @NewId
-                int GenValue = Convert.ToInt32(cmd.Parameters["@NEW_VALUE"].Value);
-                conn.Close();
-                return GenValue;
+                        // read output value from @NewId
+                        GenValue = Convert.ToInt32(cmd.Parameters["@NEW_VALUE"].Value);
+                        conn.Close();
+                        Success = true;
+
+                    }
+                }
+                catch
+                { }
             }
-
+            return GenValue;
         }
 
         public int GetCarIDByName(string sCarName)

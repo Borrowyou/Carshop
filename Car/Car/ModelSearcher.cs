@@ -26,6 +26,7 @@ namespace Car
        {
            this.wbTest = new WebBrowser();
            this.DSCarShop = new CarShopDataSet();
+           DSCarShop.InitAdapters();
        }
 
        public WebBrowser PwbTest
@@ -74,41 +75,30 @@ namespace Car
                 }
             }
         }
-        public async void CycleMarksAndGetModels()
+        public void CycleMarksAndGetModels()
         {
 
             var MarkSelect = wbTest.Document.GetElementById("search_brand_id"); // get the mark 
             var ModelSelect = wbTest.Document.GetElementById("model_id"); // get model select
             mshtml.HTMLSelectElement AllCars = MarkSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
             mshtml.HTMLSelectElement AllModels = ModelSelect.DomElement as mshtml.HTMLSelectElement; // all items in mark select
-            string menu = string.Empty;
-            string modelMenu = string.Empty;
-            using (XmlWriter writer = XmlWriter.Create("Models.xml"))
+            for (int i = 1; i < AllCars.length; i++)
             {
-                writer.WriteStartDocument();
-                writer.WriteStartElement("Cars_Models");
-                for (int i = 1; i < AllCars.length; i++)
+                AllCars.selectedIndex = i;
+                CommonFuncs.InvokeOnChange(MarkSelect, ModelSelect);
+                
+                int CarID = DSCarShop.GEN_ID("Cars");
+                DSCarShop.CarsTblAdapter.Insert(CarID, MarkSelect.Children[i].InnerText);
+                for (int k = 1; k < AllModels.length; k++)
                 {
-
-                    AllCars.selectedIndex = i;
-                    MarkSelect.RaiseEvent("onChange");
-                    while (AllModels.length < 2)
-                    {
-                        Application.DoEvents();
-                    }
-                    HtmlElement OptCarMark = MarkSelect.Children[i];
-                    await Task.Delay(100);
-                    menu = OptCarMark.InnerHtml;
-                    modelMenu = AllModels.innerText;
-                    CycleModels(writer, i);//
-
+                    string[] ModelData = CommonFuncs.ModelNameExtract(ModelSelect, k);
+                    int ModelID = DSCarShop.GEN_ID("Models");
+                    int? YearManuf = CommonFuncs.StringToNInt(ModelData[1]);
+                    int? YearStop = CommonFuncs.StringToNInt(ModelData[2]);
+                    DSCarShop.ModelsTblAdapter.Insert(ModelID, ModelData[0], YearManuf, YearStop, CarID, null);
                 }
-                writer.WriteEndElement();
-                writer.WriteEndDocument();
             }
-            System.Diagnostics.Process.Start("Models.xml");
-            SaveMaodelsToDB();
-        } //bla
+        }
         public void SaveMaodelsToDB()
         {
             CarShopDataSet.ModelsDataTable DSModels = new CarShopDataSet.ModelsDataTable();
