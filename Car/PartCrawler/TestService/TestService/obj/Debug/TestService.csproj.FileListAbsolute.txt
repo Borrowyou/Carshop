@@ -1,0 +1,9 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\bin\Debug\TestService.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.Form1.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.Properties.Resources.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\bin\Debug\TestService.dll.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\bin\Debug\TestService.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestService\TestService\obj\Debug\TestService.dll

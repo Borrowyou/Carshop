@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.InstallLog
+Installing service WCFWindowsServiceSample...
+Service WCFWindowsServiceSample has been successfully installed.
+Creating EventLog source WCFWindowsServiceSample in log Application...
+Committing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.InstallLog

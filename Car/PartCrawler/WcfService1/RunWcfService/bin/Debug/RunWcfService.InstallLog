@@ -1,0 +1,39 @@
+﻿Installing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe assembly.
+Committing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe assembly.
+Remove InstallState file because there are no installers.
+Installing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe assembly.
+Committing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog
+No public installers with the RunInstallerAttribute.Yes attribute could be found in the C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe assembly.
+Remove InstallState file because there are no installers.
+Installing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog
+Installing service RunService...
+Service RunService has been successfully installed.
+Creating EventLog source RunService in log Application...
+Committing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.InstallLog

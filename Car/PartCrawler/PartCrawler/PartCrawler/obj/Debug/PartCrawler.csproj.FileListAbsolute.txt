@@ -10,3 +10,4 @@ C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\obj
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\HtmlAgilityPack.dll
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\HtmlAgilityPack.xml
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\obj\Debug\PartCrawler.ProjectInstaller.resources

@@ -1,0 +1,8 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\bin\Debug\TestServ.exe.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\bin\Debug\TestServ.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\bin\Debug\TestServ.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\bin\Debug\WcfService1.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\bin\Debug\WcfService1.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\obj\Debug\TestServ.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\obj\Debug\TestServ.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\TestServ\TestServ\obj\Debug\TestServ.pdb

@@ -1,0 +1,11 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\obj\Debug\RunWcfService.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\RunWcfService.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\WcfService1.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\WcfService1.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\obj\Debug\RunWcfService.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\obj\Debug\RunWcfService.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\obj\Debug\RunWcfService.ProjectInstaller.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\obj\Debug\RunWcfService.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WcfService1\RunWcfService\bin\Debug\App.config

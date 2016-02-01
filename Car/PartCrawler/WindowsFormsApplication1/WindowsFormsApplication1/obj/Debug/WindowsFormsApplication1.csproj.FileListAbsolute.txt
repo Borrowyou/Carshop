@@ -1,3 +1,11 @@
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\TestService.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\TestService.pdb

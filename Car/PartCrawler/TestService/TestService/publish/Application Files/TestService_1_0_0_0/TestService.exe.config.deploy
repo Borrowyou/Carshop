@@ -1,0 +1,22 @@
+﻿<?xml version="1.0"?>
+<configuration>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+    </startup>
+    <system.serviceModel>
+        <bindings>
+            <wsHttpBinding>
+                <binding name="WSHttpBinding_IParts" />
+            </wsHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://192.168.0.110:8000/Getstarted" binding="wsHttpBinding"
+                bindingConfiguration="WSHttpBinding_IParts" contract="ServiceReference1.IParts"
+                name="WSHttpBinding_IParts">
+                <identity>
+                    <servicePrincipalName value="host/Server1" />
+                </identity>
+            </endpoint>
+        </client>
+    </system.serviceModel>
+</configuration>

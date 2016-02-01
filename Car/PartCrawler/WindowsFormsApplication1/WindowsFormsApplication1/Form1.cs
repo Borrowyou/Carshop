@@ -16,5 +16,17 @@ namespace WindowsFormsApplication1
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            label1.Text = "Work";
+            ServiceReference1.CalculatorClient calc = new ServiceReference1.CalculatorClient();
+            label1.Text = calc.Add(5, 6).ToString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new TestService.Form1().Show();
+        }
     }
 }

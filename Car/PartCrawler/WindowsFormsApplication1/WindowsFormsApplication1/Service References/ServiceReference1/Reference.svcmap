@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="837986db-0715-42df-9e2d-eec5d35f3f06" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.168.0.110:8000/ServiceModelSamples/service" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.disco" MetadataType="Disco" ID="0e60c7b0-166d-4e28-a49f-5d7c53aa5684" SourceId="1" SourceUrl="http://192.168.0.110:8000/ServiceModelSamples/service?disco" />
+    <MetadataFile FileName="CalculatorService.wsdl" MetadataType="Wsdl" ID="da05e059-310e-47fb-8864-480c7ac179b2" SourceId="1" SourceUrl="http://192.168.0.110:8000/ServiceModelSamples/service?wsdl" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b9e5b201-f7e3-4e61-a6c0-c62bf8232c8b" SourceId="1" SourceUrl="http://192.168.0.110:8000/ServiceModelSamples/service?wsdl=wsdl0" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="47608655-ac14-4040-ab6a-4fc27de6a157" SourceId="1" SourceUrl="http://192.168.0.110:8000/ServiceModelSamples/service?xsd=xsd1" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="0f6a9a1c-56a2-4e07-a961-04fcf6f46e49" SourceId="1" SourceUrl="http://192.168.0.110:8000/ServiceModelSamples/service?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

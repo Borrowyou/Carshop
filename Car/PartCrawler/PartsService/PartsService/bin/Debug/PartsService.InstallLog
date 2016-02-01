@@ -1,0 +1,13 @@
+﻿Installing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.InstallLog
+Installing service PartsService...
+Service PartsService has been successfully installed.
+Creating EventLog source PartsService in log Application...
+Committing assembly 'C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe'.
+Affected parameters are:
+   logtoconsole = 
+   assemblypath = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe
+   logfile = C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.InstallLog

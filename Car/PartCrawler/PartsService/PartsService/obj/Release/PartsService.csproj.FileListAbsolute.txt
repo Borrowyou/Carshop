@@ -1,0 +1,1 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Release\PartsService.exe.config

@@ -1,0 +1,6 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\bin\Debug\PartsService.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\obj\Debug\PartsService.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\obj\Debug\PartsService.exe
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartsService\PartsService\obj\Debug\PartsService.pdb
