@@ -32,5 +32,15 @@ namespace PartCrawler.Properties {
                 return ((string)(this["CarShopConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER1;Initial Catalog=CarShop;User ID=fit")]
+        public string CarShopConnectionString1 {
+            get {
+                return ((string)(this["CarShopConnectionString1"]));
+            }
+        }
     }
 }

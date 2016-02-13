@@ -1,0 +1,9 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\bin\Debug\PartManagement.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\bin\Debug\PartManagement.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\obj\Debug\PartManagement.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\obj\Debug\PartManagement.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\obj\Debug\PartManagement.FormParts.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\obj\Debug\PartManagement.csproj.GenerateResource.Cache
+C:\PartsManager\Bin\PartManagement.dll
+C:\PartsManager\Bin\PartManagement.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\PartManagement\obj\Debug\PartManagement.csprojResolveAssemblyReference.cache
