@@ -1,0 +1,10 @@
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\bin\Debug\DataManagement.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\bin\Debug\DataManagement.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.dll.licenses
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.pdb
+C:\PartsManager\Bin\DataManagement.pdb
+C:\PartsManager\Bin\DataManagement.dll.config
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.FormManageClients.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\DataManagement\obj\Debug\DataManagement.csproj.GenerateResource.Cache

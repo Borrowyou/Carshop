@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DataManagement;
 
 namespace AutoPartManager
 {
@@ -17,13 +18,30 @@ namespace AutoPartManager
             InitializeComponent();
         }
 
-        private void partsToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            PartManagement.FormParts PartsForm = new PartManagement.FormParts();
-            PartsForm.TopLevel = false;
-            PartsForm.Parent = this;
-            PartsForm.Show();
-            
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManageClients FormClients = new FormManageClients();
+            FormClients.Show();
         }
 
     }

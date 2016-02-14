@@ -18,6 +18,7 @@ using Car;
 using HtmlAgilityPack;
 using PartsService;
 using CommonFuncsU;
+using ResStringU;
 
 namespace PartCrawler
 {
@@ -135,6 +136,7 @@ namespace PartCrawler
                     double? Price = 0.0;
                     string Description = string.Empty;
                     string PartManuf = string.Empty;
+                    string imgLink = string.Empty;
                     foreach (HtmlNode AllElems in Spans)
                     {
                         if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("sku"))
@@ -143,7 +145,10 @@ namespace PartCrawler
                             PartManuf = AllElems.InnerText;
                         if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("mpn"))
                             OE = AllElems.InnerText;
+                        
                     }
+                    var ImgNode = CurrentDoc.DocumentNode.SelectNodes("//img[@id='mainImage']");
+                    imgLink = CommonFuncs.FindImgSrcNode(ImgNode[0]);
                     var PriceNode = CurrentDoc.DocumentNode.SelectNodes("//span[@itemprop='price']");
                     if (PriceNode != null)
                         Price = Convert.ToDouble(PriceNode[0].InnerText.Replace(".", ","));
@@ -151,10 +156,16 @@ namespace PartCrawler
                     foreach (HtmlNode Elems in Paragraphs)
                         if (Elems.OuterHtml != null && Elems.OuterHtml.Contains("description"))
                             Description = Elems.InnerText;
+                    byte[] PartImg;
+                    using (var client = new WebClient())
+                    {
+                        PartImg =  client.DownloadData(Constants.AutoBimLink + imgLink);
+                    }
+
                     if (Price > 0)
                     {
                         PartID = DSCarShop.GEN_ID("Parts");
-                        DSCarShop.PartsTblAdapter.Insert(PartID, PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID);
+                        DSCarShop.PartsTblAdapter.Insert(PartID, PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID, PartImg);
                         Part["PART_ID"] = PartID;
                         Part["LAST_UPDATE"] = DateTime.Now;
 
@@ -164,5 +175,6 @@ namespace PartCrawler
                 }
             }
         }
+
     }
 }

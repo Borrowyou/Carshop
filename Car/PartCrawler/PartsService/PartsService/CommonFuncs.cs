@@ -159,6 +159,11 @@ namespace CommonFuncsU
             }
             return LinkList;
         }
+
+        public static string FindImgSrcNode(HtmlNode imgNode)
+        {
+            return imgNode.Attributes[@"src"].Value;
+        }
         
     }
 }

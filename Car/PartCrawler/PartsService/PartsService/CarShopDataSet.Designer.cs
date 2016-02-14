@@ -1994,6 +1994,8 @@ namespace PartsService {
             
             private global::System.Data.DataColumn columnCATEGORY_ID;
             
+            private global::System.Data.DataColumn columnIMG;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public PartsDataTable() {
@@ -2093,6 +2095,14 @@ namespace PartsService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IMGColumn {
+                get {
+                    return this.columnIMG;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2128,7 +2138,7 @@ namespace PartsService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PartsRow AddPartsRow(int Part_ID, string part_name, double part_price, string part_details, string part_manuf, CarsRow parentCarsRowByFK_Car_Partss, ModelsRow parentModelsRowByFK_Models, int CATEGORY_ID) {
+            public PartsRow AddPartsRow(int Part_ID, string part_name, double part_price, string part_details, string part_manuf, CarsRow parentCarsRowByFK_Car_Partss, ModelsRow parentModelsRowByFK_Models, int CATEGORY_ID, byte[] IMG) {
                 PartsRow rowPartsRow = ((PartsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Part_ID,
@@ -2138,7 +2148,8 @@ namespace PartsService {
                         part_manuf,
                         null,
                         null,
-                        CATEGORY_ID};
+                        CATEGORY_ID,
+                        IMG};
                 if ((parentCarsRowByFK_Car_Partss != null)) {
                     columnValuesArray[5] = parentCarsRowByFK_Car_Partss[0];
                 }
@@ -2182,6 +2193,7 @@ namespace PartsService {
                 this.columnCar_ID = base.Columns["Car_ID"];
                 this.columnModel_ID = base.Columns["Model_ID"];
                 this.columnCATEGORY_ID = base.Columns["CATEGORY_ID"];
+                this.columnIMG = base.Columns["IMG"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2203,6 +2215,8 @@ namespace PartsService {
                 base.Columns.Add(this.columnModel_ID);
                 this.columnCATEGORY_ID = new global::System.Data.DataColumn("CATEGORY_ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCATEGORY_ID);
+                this.columnIMG = new global::System.Data.DataColumn("IMG", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIMG);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnPart_ID}, true));
                 this.columnPart_ID.AllowDBNull = false;
@@ -3576,6 +3590,22 @@ namespace PartsService {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] IMG {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableParts.IMGColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IMG\' in table \'Parts\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableParts.IMGColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ModelsRow ModelsRow {
                 get {
                     return ((ModelsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Models"])));
@@ -3678,6 +3708,18 @@ namespace PartsService {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCATEGORY_IDNull() {
                 this[this.tableParts.CATEGORY_IDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIMGNull() {
+                return this.IsNull(this.tableParts.IMGColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIMGNull() {
+                this[this.tableParts.IMGColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6040,10 +6082,11 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
             tableMapping.ColumnMappings.Add("Car_ID", "Car_ID");
             tableMapping.ColumnMappings.Add("Model_ID", "Model_ID");
             tableMapping.ColumnMappings.Add("CATEGORY_ID", "CATEGORY_ID");
+            tableMapping.ColumnMappings.Add("IMG", "IMG");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Parts] WHERE (([Part_ID] = @Original_Part_ID) AND ((@IsNull_part_name = 1 AND [part_name] IS NULL) OR ([part_name] = @Original_part_name)) AND ((@IsNull_part_price = 1 AND [part_price] IS NULL) OR ([part_price] = @Original_part_price)) AND ((@IsNull_part_manuf = 1 AND [part_manuf] IS NULL) OR ([part_manuf] = @Original_part_manuf)) AND ((@IsNull_Car_ID = 1 AND [Car_ID] IS NULL) OR ([Car_ID] = @Original_Car_ID)) AND ((@IsNull_Model_ID = 1 AND [Model_ID] IS NULL) OR ([Model_ID] = @Original_Model_ID)) AND ((@IsNull_CATEGORY_ID = 1 AND [CATEGORY_ID] IS NULL) OR ([CATEGORY_ID] = @Original_CATEGORY_ID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Parts] WHERE (([Part_ID] = @Original_Part_ID) AND ((@IsNull_part_name = 1 AND [part_name] IS NULL) OR ([part_name] = @Original_part_name)) AND ((@IsNull_part_price = 1 AND [part_price] IS NULL) OR ([part_price] = @Original_part_price)) AND ((@IsNull_part_manuf = 1 AND [part_manuf] IS NULL) OR ([part_manuf] = @Original_part_manuf)) AND ((@IsNull_Car_ID = 1 AND [Car_ID] IS NULL) OR ([Car_ID] = @Original_Car_ID)) AND ((@IsNull_Model_ID = 1 AND [Model_ID] IS NULL) OR ([Model_ID] = @Original_Model_ID)) AND ((@IsNull_CATEGORY_ID = 1 AND [CATEGORY_ID] IS NULL) OR ([CATEGORY_ID] = @Original_CATEGORY_ID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Part_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Part_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_part_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "part_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -6060,8 +6103,8 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CATEGORY_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CATEGORY_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Parts] ([Part_ID], [part_name], [part_price], [part_details], [part_manuf], [Car_ID], [Model_ID], [CATEGORY_ID]) VALUES (@Part_ID, @part_name, @part_price, @part_details, @part_manuf, @Car_ID, @Model_ID, @CATEGORY_ID);
-SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID FROM Parts WHERE (Part_ID = @Part_ID)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Parts] ([Part_ID], [part_name], [part_price], [part_details], [part_manuf], [Car_ID], [Model_ID], [CATEGORY_ID], [IMG]) VALUES (@Part_ID, @part_name, @part_price, @part_details, @part_manuf, @Car_ID, @Model_ID, @CATEGORY_ID, @IMG);
+SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID, IMG FROM Parts WHERE (Part_ID = @Part_ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Part_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Part_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "part_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6071,10 +6114,11 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Car_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Car_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Model_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Model_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CATEGORY_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CATEGORY_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IMG", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IMG", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Parts] SET [Part_ID] = @Part_ID, [part_name] = @part_name, [part_price] = @part_price, [part_details] = @part_details, [part_manuf] = @part_manuf, [Car_ID] = @Car_ID, [Model_ID] = @Model_ID, [CATEGORY_ID] = @CATEGORY_ID WHERE (([Part_ID] = @Original_Part_ID) AND ((@IsNull_part_name = 1 AND [part_name] IS NULL) OR ([part_name] = @Original_part_name)) AND ((@IsNull_part_price = 1 AND [part_price] IS NULL) OR ([part_price] = @Original_part_price)) AND ((@IsNull_part_manuf = 1 AND [part_manuf] IS NULL) OR ([part_manuf] = @Original_part_manuf)) AND ((@IsNull_Car_ID = 1 AND [Car_ID] IS NULL) OR ([Car_ID] = @Original_Car_ID)) AND ((@IsNull_Model_ID = 1 AND [Model_ID] IS NULL) OR ([Model_ID] = @Original_Model_ID)) AND ((@IsNull_CATEGORY_ID = 1 AND [CATEGORY_ID] IS NULL) OR ([CATEGORY_ID] = @Original_CATEGORY_ID)));
-SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID FROM Parts WHERE (Part_ID = @Part_ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Parts] SET [Part_ID] = @Part_ID, [part_name] = @part_name, [part_price] = @part_price, [part_details] = @part_details, [part_manuf] = @part_manuf, [Car_ID] = @Car_ID, [Model_ID] = @Model_ID, [CATEGORY_ID] = @CATEGORY_ID, [IMG] = @IMG WHERE (([Part_ID] = @Original_Part_ID) AND ((@IsNull_part_name = 1 AND [part_name] IS NULL) OR ([part_name] = @Original_part_name)) AND ((@IsNull_part_price = 1 AND [part_price] IS NULL) OR ([part_price] = @Original_part_price)) AND ((@IsNull_part_manuf = 1 AND [part_manuf] IS NULL) OR ([part_manuf] = @Original_part_manuf)) AND ((@IsNull_Car_ID = 1 AND [Car_ID] IS NULL) OR ([Car_ID] = @Original_Car_ID)) AND ((@IsNull_Model_ID = 1 AND [Model_ID] IS NULL) OR ([Model_ID] = @Original_Model_ID)) AND ((@IsNull_CATEGORY_ID = 1 AND [CATEGORY_ID] IS NULL) OR ([CATEGORY_ID] = @Original_CATEGORY_ID)));
+SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID, IMG FROM Parts WHERE (Part_ID = @Part_ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Part_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Part_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "part_name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6084,6 +6128,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Car_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Car_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Model_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Model_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CATEGORY_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CATEGORY_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IMG", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IMG", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Part_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Part_ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_part_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "part_name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_part_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "part_name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -6113,7 +6158,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID" +
-                ", CATEGORY_ID FROM dbo.Parts";
+                ", CATEGORY_ID, IMG FROM Parts";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6244,7 +6289,7 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Part_ID, string part_name, global::System.Nullable<double> part_price, string part_details, string part_manuf, global::System.Nullable<int> Car_ID, global::System.Nullable<int> Model_ID, global::System.Nullable<int> CATEGORY_ID) {
+        public virtual int Insert(int Part_ID, string part_name, global::System.Nullable<double> part_price, string part_details, string part_manuf, global::System.Nullable<int> Car_ID, global::System.Nullable<int> Model_ID, global::System.Nullable<int> CATEGORY_ID, byte[] IMG) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Part_ID));
             if ((part_name == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6288,6 +6333,12 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
+            if ((IMG == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((byte[])(IMG));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6308,7 +6359,23 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Part_ID, string part_name, global::System.Nullable<double> part_price, string part_details, string part_manuf, global::System.Nullable<int> Car_ID, global::System.Nullable<int> Model_ID, global::System.Nullable<int> CATEGORY_ID, int Original_Part_ID, string Original_part_name, global::System.Nullable<double> Original_part_price, string Original_part_manuf, global::System.Nullable<int> Original_Car_ID, global::System.Nullable<int> Original_Model_ID, global::System.Nullable<int> Original_CATEGORY_ID) {
+        public virtual int Update(
+                    int Part_ID, 
+                    string part_name, 
+                    global::System.Nullable<double> part_price, 
+                    string part_details, 
+                    string part_manuf, 
+                    global::System.Nullable<int> Car_ID, 
+                    global::System.Nullable<int> Model_ID, 
+                    global::System.Nullable<int> CATEGORY_ID, 
+                    byte[] IMG, 
+                    int Original_Part_ID, 
+                    string Original_part_name, 
+                    global::System.Nullable<double> Original_part_price, 
+                    string Original_part_manuf, 
+                    global::System.Nullable<int> Original_Car_ID, 
+                    global::System.Nullable<int> Original_Model_ID, 
+                    global::System.Nullable<int> Original_CATEGORY_ID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Part_ID));
             if ((part_name == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6352,54 +6419,60 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Part_ID));
-            if ((Original_part_name == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((IMG == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_part_name));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((byte[])(IMG));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Part_ID));
+            if ((Original_part_name == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_part_name));
             }
             if ((Original_part_price.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((double)(Original_part_price.Value));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(Original_part_price.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             if ((Original_part_manuf == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_part_manuf));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_part_manuf));
             }
             if ((Original_Car_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Car_ID.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_Car_ID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((Original_Model_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_Model_ID.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_Model_ID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             if ((Original_CATEGORY_ID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_CATEGORY_ID.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_CATEGORY_ID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6421,8 +6494,8 @@ SELECT Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string part_name, global::System.Nullable<double> part_price, string part_details, string part_manuf, global::System.Nullable<int> Car_ID, global::System.Nullable<int> Model_ID, global::System.Nullable<int> CATEGORY_ID, int Original_Part_ID, string Original_part_name, global::System.Nullable<double> Original_part_price, string Original_part_manuf, global::System.Nullable<int> Original_Car_ID, global::System.Nullable<int> Original_Model_ID, global::System.Nullable<int> Original_CATEGORY_ID) {
-            return this.Update(Original_Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID, Original_Part_ID, Original_part_name, Original_part_price, Original_part_manuf, Original_Car_ID, Original_Model_ID, Original_CATEGORY_ID);
+        public virtual int Update(string part_name, global::System.Nullable<double> part_price, string part_details, string part_manuf, global::System.Nullable<int> Car_ID, global::System.Nullable<int> Model_ID, global::System.Nullable<int> CATEGORY_ID, byte[] IMG, int Original_Part_ID, string Original_part_name, global::System.Nullable<double> Original_part_price, string Original_part_manuf, global::System.Nullable<int> Original_Car_ID, global::System.Nullable<int> Original_Model_ID, global::System.Nullable<int> Original_CATEGORY_ID) {
+            return this.Update(Original_Part_ID, part_name, part_price, part_details, part_manuf, Car_ID, Model_ID, CATEGORY_ID, IMG, Original_Part_ID, Original_part_name, Original_part_price, Original_part_manuf, Original_Car_ID, Original_Model_ID, Original_CATEGORY_ID);
         }
     }
     

@@ -13,3 +13,4 @@ C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\AutoPar
 C:\PartsManager\Bin\AutoPartManager.exe.config
 C:\PartsManager\Bin\AutoPartManager.exe
 C:\PartsManager\Bin\AutoPartManager.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.MainForm1.resources
