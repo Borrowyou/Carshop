@@ -585,3 +585,56 @@
 2016-02-13 18:33:47,info,Parts,Getting partshttp://www.avto.bim.bg/Konektor-za-trubi-6x8x6mm-za-ALFA-ROMEO-145-ot-1995-do-1998_p53417m1.html
 2016-02-13 18:33:49,info,Parts,Getting partshttp://www.avto.bim.bg/Konektor-za-trubi-8x16x8mm-za-ALFA-ROMEO-145-ot-1995-do-1998_p53299m1.html
 2016-02-13 18:33:50,info,Parts,Getting partshttp://www.avto.bim.bg/Konektor-za-trubi-8X8X10-MM-za-ALFA-ROMEO-145-ot-1995-do-1998_p55629m1.html
+2016-02-20 14:29:35,info,Service,Starting Service
+2016-02-20 14:29:35,info,Service,Updater start
+2016-02-20 14:29:35,info,Service,Updater started
+2016-02-20 14:29:35,info,Service,Trying to start WCF
+2016-02-20 14:29:35,info,Service,WCF Service started
+2016-02-20 14:29:35,info,Service,WCF Service starting
+2016-02-20 14:29:35,info,Service,Part info working
+2016-02-20 14:29:35,info,Parts,Part Crawler class created
+2016-02-20 14:29:35,info,Service,Finished starting parts info 
+2016-02-20 14:29:36,info,Service,Crawler started
+2016-02-20 14:29:36,info,Service,Part info trying to start
+2016-02-20 14:29:36,info,Service,Crawler starting
+2016-02-21 16:41:39,info,Service,Starting Service
+2016-02-21 16:41:39,info,Service,Updater started
+2016-02-21 16:41:39,info,Service,Trying to start WCF
+2016-02-21 16:41:39,info,Service,Updater start
+2016-02-21 16:41:39,info,Service,WCF Service started
+2016-02-21 16:41:39,info,Service,WCF Service starting
+2016-02-21 16:41:39,info,Service,Part info working
+2016-02-21 16:41:39,info,Service,Finished starting parts info 
+2016-02-21 16:41:39,info,Service,Crawler starting
+2016-02-21 16:41:39,info,Service,Crawler started
+2016-02-21 16:41:39,info,Service,Part info trying to start
+2016-02-21 16:41:39,info,Parts,Part Crawler class created
+2016-02-21 16:41:39,info,Service,Starting WIndows Serivce
+2016-02-21 16:41:40,info,Service,Opened WcfParts 
+2016-02-21 16:41:45,info,Parts,Getting partshttp://www.avto.bim.bg/Stop-vunshen-desen-za-ALFA-ROMEO-147-ot-2000-do-2005_p106m5.html
+2016-02-21 16:41:59,info,Parts,Getting partshttp://www.avto.bim.bg/Stop-vunshen-lqv-za-ALFA-ROMEO-147-ot-2000-do-2005_p107m5.html
+2016-02-21 16:42:00,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-dqsno-izpuknalo-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38450m5.html
+2016-02-21 16:42:01,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-dqsno-izpuknalo-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p36051m5.html
+2016-02-21 16:42:02,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-asferichno-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38448m5.html
+2016-02-21 16:42:02,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-asferichno-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p28757m5.html
+2016-02-21 16:42:03,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-izpuknalo-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p38979m5.html
+2016-02-21 16:42:04,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-plosko-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38449m5.html
+2016-02-21 16:42:05,info,Parts,Getting partshttp://www.avto.bim.bg/Treti-stop-hrom-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p59182m5.html
+2016-02-21 16:42:05,info,Parts,Getting partshttp://www.avto.bim.bg/Troinik-s-vuzvraten-klapan-1br-za-ALFA-ROMEO-147-ot-2000-do-2005_p51325m5.html
+2016-02-21 16:42:07,info,Parts,Getting partshttp://www.avto.bim.bg/Tuning-stopove-hrom-komplekt-lqv-i-desen-za-ALFA-ROMEO-147-ot-2000-do-2005_p12584m5.html
+2016-02-21 16:42:08,info,Parts,Getting partshttp://www.avto.bim.bg/UDAREN-TAMPON-GURNE--za-ALFA-ROMEO-147-ot-2000-do-2005_p60514m5.html
+2016-02-21 16:42:38,info,Parts,Getting partshttp://www.avto.bim.bg/Universalna-kapachka-za-rezervoar-za-ALFA-ROMEO-147-ot-2000-do-2005_p58867m5.html
+2016-02-21 16:42:40,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53324m5.html
+2016-02-21 16:42:41,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-vratite-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53306m5.html
+2016-02-21 16:42:42,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-interior-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p58485m5.html
+2016-02-21 16:42:43,info,Parts,Getting partshttp://www.avto.bim.bg/Univrsalni-krepeji-za-stelki-12-chasti-za-ALFA-ROMEO-147-ot-2000-do-2005_p47028m5.html
+2016-02-21 16:42:44,info,Parts,Getting partshttp://www.avto.bim.bg/Univrsalni-krepeji-za-stelki-8-chasti-za-ALFA-ROMEO-147-ot-2000-do-2005_p53164m5.html
+2016-02-21 16:42:45,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-stelki-krugli-12-chasti-Bejovi-za-ALFA-ROMEO-147-ot-2000-do-2005_p52882m5.html
+2016-02-21 16:42:47,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-stelki-krugli-12-chasti-Sivi-za-ALFA-ROMEO-147-ot-2000-do-2005_p53007m5.html
+2016-02-21 16:42:48,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-stelki-ovalni-dupki-8-chasti-za-ALFA-ROMEO-147-ot-2000-do-2005_p47029m5.html
+2016-02-21 16:42:49,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-stelki-ovalni-dupki-8-chasti-Bejovi-za-ALFA-ROMEO-147-ot-2000-do-2005_p52883m5.html
+2016-02-21 16:42:51,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-stelki-ovalni-dupki-8-chasti-Sivi-za-ALFA-ROMEO-147-ot-2000-do-2005_p53008m5.html
+2016-02-21 16:42:52,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-sivi-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53340m5.html
+2016-02-21 16:42:53,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-sivi-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53293m5.html
+2016-02-21 16:42:54,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-cherni-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53292m5.html
+2016-02-21 16:42:55,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-cherni-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53298m5.html

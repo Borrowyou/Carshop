@@ -1,0 +1,12 @@
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\bin\Debug\AutoPartManager.exe.config
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\bin\Debug\AutoPartManager.exe
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\bin\Debug\AutoPartManager.pdb
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.Properties.Resources.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.exe
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.pdb
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.FormAutoPartManager.resources
+C:\PartsManager\Bin\AutoPartManager.exe.config
+C:\PartsManager\Bin\AutoPartManager.exe
+C:\PartsManager\Bin\AutoPartManager.pdb
