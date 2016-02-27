@@ -96,11 +96,12 @@
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ClientsDataSet.Designer.cs">
+    <Compile Include="ClientsDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataMngStrings.cs" />
     <Compile Include="FormClients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,7 +156,7 @@
     <None Include="ClientsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ClientsDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ClientsDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>

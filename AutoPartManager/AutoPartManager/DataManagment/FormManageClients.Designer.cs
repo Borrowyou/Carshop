@@ -45,8 +45,14 @@
             this.RichtxtDetails = new System.Windows.Forms.RichTextBox();
             this.txtEditDetails = new DevExpress.XtraEditors.TextEdit();
             this.chkIsFIrm = new DevExpress.XtraEditors.CheckEdit();
-            this.clientByIDTableAdapter = new DataManagment.ClientsDataSetTableAdapters.ClientByIDTableAdapter();
-            this.btnAddCar = new DevExpress.XtraEditors.SimpleButton();
+            this.ClientCarsBindingSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.AllCarsBindSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.ModelsBindSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.YearsList = new System.Windows.Forms.BindingSource(this.components);
+            this.EngTypeBindSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAddCar = new System.Windows.Forms.Button();
+            this.carsTableAdapter = new DataManagment.ClientsDataSetTableAdapters.CarsTableAdapter();
+            this.ModelYearsBindSrc = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtEditClientName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).BeginInit();
@@ -56,6 +62,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEditClientEmail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditDetails.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsFIrm.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientCarsBindingSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEditClientName
@@ -143,7 +155,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(15, 403);
+            this.btnSave.Location = new System.Drawing.Point(15, 439);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
@@ -154,7 +166,7 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button2.Location = new System.Drawing.Point(119, 403);
+            this.button2.Location = new System.Drawing.Point(119, 439);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 11;
@@ -165,7 +177,7 @@
             // button3
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.Location = new System.Drawing.Point(222, 403);
+            this.button3.Location = new System.Drawing.Point(222, 439);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 12;
@@ -201,24 +213,56 @@
             this.chkIsFIrm.TabIndex = 2;
             this.chkIsFIrm.CheckedChanged += new System.EventHandler(this.chkIsFIrm_CheckedChanged);
             // 
-            // clientByIDTableAdapter
+            // ClientCarsBindingSrc
             // 
-            this.clientByIDTableAdapter.ClearBeforeFill = true;
+            this.ClientCarsBindingSrc.DataMember = "CLIENT_CARS";
+            this.ClientCarsBindingSrc.DataSource = this.ClientsDset;
+            this.ClientCarsBindingSrc.Sort = "";
+            this.ClientCarsBindingSrc.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.ClientCarsBindingSrc_AddingNew);
+            // 
+            // AllCarsBindSrc
+            // 
+            this.AllCarsBindSrc.DataMember = "Cars";
+            this.AllCarsBindSrc.DataSource = this.ClientsDset;
+            // 
+            // ModelsBindSrc
+            // 
+            this.ModelsBindSrc.DataMember = "Models";
+            this.ModelsBindSrc.DataSource = this.ClientsDset;
+            // 
+            // YearsList
+            // 
+            this.YearsList.DataMember = "FUN_YEARS_BETWEEN_LIST";
+            this.YearsList.DataSource = this.ClientsDset;
+            // 
+            // EngTypeBindSrc
+            // 
+            this.EngTypeBindSrc.DataMember = "LOOKUP_ITEMS";
+            this.EngTypeBindSrc.DataSource = this.ClientsDset;
             // 
             // btnAddCar
             // 
-            this.btnAddCar.Location = new System.Drawing.Point(27, 273);
+            this.btnAddCar.Location = new System.Drawing.Point(332, 24);
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(19, 19);
-            this.btnAddCar.TabIndex = 15;
-            this.btnAddCar.Text = "+";
-            this.btnAddCar.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAddCar.Size = new System.Drawing.Size(75, 23);
+            this.btnAddCar.TabIndex = 16;
+            this.btnAddCar.Text = "button1";
+            this.btnAddCar.UseVisualStyleBackColor = true;
+            // 
+            // carsTableAdapter
+            // 
+            this.carsTableAdapter.ClearBeforeFill = true;
+            // 
+            // ModelYearsBindSrc
+            // 
+            this.ModelYearsBindSrc.DataMember = "ModelYears";
+            this.ModelYearsBindSrc.DataSource = this.ClientsDset;
             // 
             // FormManageClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 438);
+            this.ClientSize = new System.Drawing.Size(365, 474);
             this.Controls.Add(this.btnAddCar);
             this.Controls.Add(this.chkIsFIrm);
             this.Controls.Add(this.txtEditDetails);
@@ -247,6 +291,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtEditClientEmail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditDetails.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkIsFIrm.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientCarsBindingSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,12 +315,18 @@
         private ClientsDataSet ClientsDset;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource ClientBindingSource;
-        private ClientsDataSetTableAdapters.ClientByIDTableAdapter clientByIDTableAdapter;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox RichtxtDetails;
         private DevExpress.XtraEditors.TextEdit txtEditDetails;
         private DevExpress.XtraEditors.CheckEdit chkIsFIrm;
-        private DevExpress.XtraEditors.SimpleButton btnAddCar;
+        private System.Windows.Forms.BindingSource ClientCarsBindingSrc;
+        private System.Windows.Forms.Button btnAddCar;
+        private System.Windows.Forms.BindingSource AllCarsBindSrc;
+        private ClientsDataSetTableAdapters.CarsTableAdapter carsTableAdapter;
+        private System.Windows.Forms.BindingSource ModelsBindSrc;
+        private System.Windows.Forms.BindingSource ModelYearsBindSrc;
+        private System.Windows.Forms.BindingSource YearsList;
+        private System.Windows.Forms.BindingSource EngTypeBindSrc;
     }
 }

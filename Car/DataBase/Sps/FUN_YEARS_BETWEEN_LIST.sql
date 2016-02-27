@@ -1,0 +1,25 @@
+IF EXISTS (SELECT * FROM SYSOBJECTS WHERE XTYPE IN ('FN', 'IF', 'TF') AND NAME = 'FUN_YEARS_BETWEEN_LIST')
+	BEGIN
+		PRINT 'DROPPING FUNCTION FUN_YEARS_BETWEEN_LIST'
+		DROP  FUNCTION DBO.FUN_YEARS_BETWEEN_LIST
+	END
+GO 
+
+PRINT 'CREATING FUNCTION FUN_YEARS_BETWEEN_LIST'
+GO
+
+CREATE FUNCTION FUN_YEARS_BETWEEN_LIST(@From INT, @To INT)
+RETURNS TABLE
+RETURN
+with  CTE as
+        (
+        select @FROM as yr
+        union all
+        select  yr + 1
+        from    CTE
+        where   yr < @To
+        )
+select  yr
+from    CTE
+GO
+

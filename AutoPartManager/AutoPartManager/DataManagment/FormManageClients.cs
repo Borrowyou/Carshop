@@ -31,7 +31,12 @@ namespace DataManagment
             InitializeComponent();
             ClientsDset = AClientDet;
             ClientBindingSource.DataSource = ClientsDset;
-            ClientBindingSource.DataSource = ClientsDset.ClientByID;
+            AllCarsBindSrc.DataSource = ClientsDset;
+            ClientCarsBindingSrc.DataSource = ClientsDset;
+            ModelsBindSrc.DataSource = ClientsDset;
+            YearsList.DataSource = ClientsDset;
+            ModelYearsBindSrc.DataSource = ClientsDset;
+            EngTypeBindSrc.DataSource = ClientsDset;
             PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
             DefHeight = Height;
             btnPosTop = btnAddCar.Top;
@@ -42,7 +47,9 @@ namespace DataManagment
 
         private void FormManageClients_Load(object sender, EventArgs e)
         {
-            ClientsDset.LoadClientByID(1);
+
+           ClientsDset.LoadClientByID(1);
+           ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
         }
         private void LinkControls()
         { 
@@ -132,6 +139,16 @@ namespace DataManagment
             ListClientCars.Last().Setplaces = ClearAndReplace;
             Controls.Add(ListClientCars.Last());
             ClearAndReplace();
+        }
+
+        private void CarsBindSrc_AddingNew(object sender, AddingNewEventArgs e)
+        {
+            ;
+        }
+
+        private void ClientCarsBindingSrc_AddingNew(object sender, AddingNewEventArgs e)
+        {
+            ;
         }
 
     }
