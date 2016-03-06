@@ -40,14 +40,6 @@ namespace DataManagment {
         
         private CLIENT_CARSDataTable tableCLIENT_CARS;
         
-        private global::System.Data.DataRelation relationFK_CARS;
-        
-        private global::System.Data.DataRelation relationFK_CLIENT_CARS_CLIENTS;
-        
-        private global::System.Data.DataRelation relationFK_CLIENT_CARS_CLIENTS1;
-        
-        private global::System.Data.DataRelation relationFK_CLIENT_CARS_MODELS;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -370,10 +362,6 @@ namespace DataManagment {
                     this.tableCLIENT_CARS.InitVars();
                 }
             }
-            this.relationFK_CARS = this.Relations["FK_CARS"];
-            this.relationFK_CLIENT_CARS_CLIENTS = this.Relations["FK_CLIENT_CARS_CLIENTS"];
-            this.relationFK_CLIENT_CARS_CLIENTS1 = this.Relations["FK_CLIENT_CARS_CLIENTS1"];
-            this.relationFK_CLIENT_CARS_MODELS = this.Relations["FK_CLIENT_CARS_MODELS"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -400,22 +388,6 @@ namespace DataManagment {
             base.Tables.Add(this.tableLOOKUP_ITEMS);
             this.tableCLIENT_CARS = new CLIENT_CARSDataTable();
             base.Tables.Add(this.tableCLIENT_CARS);
-            this.relationFK_CARS = new global::System.Data.DataRelation("FK_CARS", new global::System.Data.DataColumn[] {
-                        this.tableCars.Car_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableModelYears.CAR_IDColumn}, false);
-            this.Relations.Add(this.relationFK_CARS);
-            this.relationFK_CLIENT_CARS_CLIENTS = new global::System.Data.DataRelation("FK_CLIENT_CARS_CLIENTS", new global::System.Data.DataColumn[] {
-                        this.tableClients.CLIENT_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCLIENT_CARS.CLIENT_IDColumn}, false);
-            this.Relations.Add(this.relationFK_CLIENT_CARS_CLIENTS);
-            this.relationFK_CLIENT_CARS_CLIENTS1 = new global::System.Data.DataRelation("FK_CLIENT_CARS_CLIENTS1", new global::System.Data.DataColumn[] {
-                        this.tableClientByID.CLIENT_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCLIENT_CARS.CLIENT_IDColumn}, false);
-            this.Relations.Add(this.relationFK_CLIENT_CARS_CLIENTS1);
-            this.relationFK_CLIENT_CARS_MODELS = new global::System.Data.DataRelation("FK_CLIENT_CARS_MODELS", new global::System.Data.DataColumn[] {
-                        this.tableModels.MODEL_IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableCLIENT_CARS.MODEL_IDColumn}, false);
-            this.Relations.Add(this.relationFK_CLIENT_CARS_MODELS);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1634,16 +1606,13 @@ namespace DataManagment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelYearsRow AddModelYearsRow(string MODEL_NAME, int YEARFROM, int YEARTO, CarsRow parentCarsRowByFK_CARS) {
+            public ModelYearsRow AddModelYearsRow(string MODEL_NAME, int YEARFROM, int YEARTO, int CAR_ID) {
                 ModelYearsRow rowModelYearsRow = ((ModelYearsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         MODEL_NAME,
                         YEARFROM,
                         YEARTO,
-                        null};
-                if ((parentCarsRowByFK_CARS != null)) {
-                    columnValuesArray[3] = parentCarsRowByFK_CARS[0];
-                }
+                        CAR_ID};
                 rowModelYearsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowModelYearsRow);
                 return rowModelYearsRow;
@@ -2743,22 +2712,16 @@ namespace DataManagment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENT_CARSRow AddCLIENT_CARSRow(int CLIENT_CAR_ID, ClientsRow parentClientsRowByFK_CLIENT_CARS_CLIENTS, int CAR_ID, ModelsRow parentModelsRowByFK_CLIENT_CARS_MODELS, int CAR_YEAR, string ENGINE_TYPE, double ENGINE_SIZE) {
+            public CLIENT_CARSRow AddCLIENT_CARSRow(int CLIENT_CAR_ID, int CLIENT_ID, int CAR_ID, int MODEL_ID, int CAR_YEAR, string ENGINE_TYPE, double ENGINE_SIZE) {
                 CLIENT_CARSRow rowCLIENT_CARSRow = ((CLIENT_CARSRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CLIENT_CAR_ID,
-                        null,
+                        CLIENT_ID,
                         CAR_ID,
-                        null,
+                        MODEL_ID,
                         CAR_YEAR,
                         ENGINE_TYPE,
                         ENGINE_SIZE};
-                if ((parentClientsRowByFK_CLIENT_CARS_CLIENTS != null)) {
-                    columnValuesArray[1] = parentClientsRowByFK_CLIENT_CARS_CLIENTS[0];
-                }
-                if ((parentModelsRowByFK_CLIENT_CARS_MODELS != null)) {
-                    columnValuesArray[3] = parentModelsRowByFK_CLIENT_CARS_MODELS[1];
-                }
                 rowCLIENT_CARSRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENT_CARSRow);
                 return rowCLIENT_CARSRow;
@@ -3140,17 +3103,6 @@ namespace DataManagment {
             public void SetDETAILSNull() {
                 this[this.tableClients.DETAILSColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENT_CARSRow[] GetCLIENT_CARSRows() {
-                if ((this.Table.ChildRelations["FK_CLIENT_CARS_CLIENTS"] == null)) {
-                    return new CLIENT_CARSRow[0];
-                }
-                else {
-                    return ((CLIENT_CARSRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CLIENT_CARS_CLIENTS"])));
-                }
-            }
         }
         
         /// <summary>
@@ -3345,17 +3297,6 @@ namespace DataManagment {
             public void SetDETAILSNull() {
                 this[this.tableClientByID.DETAILSColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENT_CARSRow[] GetCLIENT_CARSRows() {
-                if ((this.Table.ChildRelations["FK_CLIENT_CARS_CLIENTS1"] == null)) {
-                    return new CLIENT_CARSRow[0];
-                }
-                else {
-                    return ((CLIENT_CARSRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CLIENT_CARS_CLIENTS1"])));
-                }
-            }
         }
         
         /// <summary>
@@ -3409,17 +3350,6 @@ namespace DataManagment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCar_ModelNull() {
                 this[this.tableCars.Car_ModelColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelYearsRow[] GetModelYearsRows() {
-                if ((this.Table.ChildRelations["FK_CARS"] == null)) {
-                    return new ModelYearsRow[0];
-                }
-                else {
-                    return ((ModelYearsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CARS"])));
-                }
             }
         }
         
@@ -3498,17 +3428,6 @@ namespace DataManagment {
                 }
                 set {
                     this[this.tableModelYears.CAR_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CarsRow CarsRow {
-                get {
-                    return ((CarsRow)(this.GetParentRow(this.Table.ParentRelations["FK_CARS"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CARS"]);
                 }
             }
             
@@ -3612,17 +3531,6 @@ namespace DataManagment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMODEL_NAMENull() {
                 this[this.tableModels.MODEL_NAMEColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENT_CARSRow[] GetCLIENT_CARSRows() {
-                if ((this.Table.ChildRelations["FK_CLIENT_CARS_MODELS"] == null)) {
-                    return new CLIENT_CARSRow[0];
-                }
-                else {
-                    return ((CLIENT_CARSRow[])(base.GetChildRows(this.Table.ChildRelations["FK_CLIENT_CARS_MODELS"])));
-                }
             }
         }
         
@@ -3826,39 +3734,6 @@ namespace DataManagment {
                 }
                 set {
                     this[this.tableCLIENT_CARS.ENGINE_SIZEColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ClientsRow ClientsRow {
-                get {
-                    return ((ClientsRow)(this.GetParentRow(this.Table.ParentRelations["FK_CLIENT_CARS_CLIENTS"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CLIENT_CARS_CLIENTS"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ClientByIDRow ClientByIDRow {
-                get {
-                    return ((ClientByIDRow)(this.GetParentRow(this.Table.ParentRelations["FK_CLIENT_CARS_CLIENTS1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CLIENT_CARS_CLIENTS1"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ModelsRow ModelsRow {
-                get {
-                    return ((ModelsRow)(this.GetParentRow(this.Table.ParentRelations["FK_CLIENT_CARS_MODELS"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_CLIENT_CARS_MODELS"]);
                 }
             }
             
@@ -6550,12 +6425,24 @@ SELECT CLIENT_CAR_ID, CLIENT_ID, CAR_ID, MODEL_ID, CAR_YEAR, ENGINE_TYPE, ENGINE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CLIENT_CAR_ID, CLIENT_ID, CAR_ID, MODEL_ID, CAR_YEAR, ENGINE_TYPE, ENGINE_" +
                 "SIZE FROM dbo.CLIENT_CARS";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT CLIENT_CAR_ID, CLIENT_ID, CAR_ID, MODEL_ID, CAR_YEAR, ENGINE_TYPE, ENGINE_" +
+                "SIZE FROM dbo.CLIENT_CARS\r\nWHERE CLIENT_CAR_ID = @ClientCarID";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientCarID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLIENT_CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT CLIENT_CAR_ID, CLIENT_ID, CAR_ID, MODEL_ID, CAR_YEAR, ENGINE_TYPE, ENGINE_" +
+                "SIZE FROM dbo.CLIENT_CARS\r\nWHERE CLIENT_ID = @ClientID";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CLIENT_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6577,6 +6464,58 @@ SELECT CLIENT_CAR_ID, CLIENT_ID, CAR_ID, MODEL_ID, CAR_YEAR, ENGINE_TYPE, ENGINE
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual ClientsDataSet.CLIENT_CARSDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            ClientsDataSet.CLIENT_CARSDataTable dataTable = new ClientsDataSet.CLIENT_CARSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillClientCarByID(ClientsDataSet.CLIENT_CARSDataTable dataTable, int ClientCarID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ClientCarID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClientsDataSet.CLIENT_CARSDataTable GetDataBy(int ClientCarID) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ClientCarID));
+            ClientsDataSet.CLIENT_CARSDataTable dataTable = new ClientsDataSet.CLIENT_CARSDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillClientCarsByClient(ClientsDataSet.CLIENT_CARSDataTable dataTable, int ClientID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ClientID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ClientsDataSet.CLIENT_CARSDataTable GetDataBy1(int ClientID) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(ClientID));
             ClientsDataSet.CLIENT_CARSDataTable dataTable = new ClientsDataSet.CLIENT_CARSDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

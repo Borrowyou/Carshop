@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlFrameClients = new System.Windows.Forms.Panel();
+            this.PnlBtns = new System.Windows.Forms.Panel();
+            this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridClients = new DevExpress.XtraGrid.GridControl();
             this.AllClientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -43,6 +45,9 @@
             this.colEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDETAILS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.pnlFormClient = new System.Windows.Forms.Panel();
+            this.pnlFrameClients.SuspendLayout();
+            this.PnlBtns.SuspendLayout();
             this.pnlClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllClientsBindingSource)).BeginInit();
@@ -53,12 +58,32 @@
             // pnlFrameClients
             // 
             this.pnlFrameClients.AutoScroll = true;
+            this.pnlFrameClients.Controls.Add(this.pnlFormClient);
+            this.pnlFrameClients.Controls.Add(this.PnlBtns);
             this.pnlFrameClients.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlFrameClients.Location = new System.Drawing.Point(446, 0);
             this.pnlFrameClients.MinimumSize = new System.Drawing.Size(330, 340);
             this.pnlFrameClients.Name = "pnlFrameClients";
             this.pnlFrameClients.Size = new System.Drawing.Size(330, 340);
             this.pnlFrameClients.TabIndex = 0;
+            // 
+            // PnlBtns
+            // 
+            this.PnlBtns.Controls.Add(this.btnNew);
+            this.PnlBtns.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlBtns.Location = new System.Drawing.Point(0, 0);
+            this.PnlBtns.Name = "PnlBtns";
+            this.PnlBtns.Size = new System.Drawing.Size(330, 33);
+            this.PnlBtns.TabIndex = 0;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Location = new System.Drawing.Point(6, 3);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(74, 27);
+            this.btnNew.TabIndex = 0;
+            this.btnNew.Text = "Нов клиент";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // pnlClients
             // 
@@ -166,6 +191,14 @@
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
+            // pnlFormClient
+            // 
+            this.pnlFormClient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFormClient.Location = new System.Drawing.Point(0, 33);
+            this.pnlFormClient.Name = "pnlFormClient";
+            this.pnlFormClient.Size = new System.Drawing.Size(330, 307);
+            this.pnlFormClient.TabIndex = 1;
+            // 
             // FormClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,6 +210,8 @@
             this.Name = "FormClients";
             this.Text = "FormManageClients";
             this.Load += new System.EventHandler(this.FormManageClients_Load);
+            this.pnlFrameClients.ResumeLayout(false);
+            this.PnlBtns.ResumeLayout(false);
             this.pnlClients.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllClientsBindingSource)).EndInit();
@@ -202,6 +237,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn colEMAIL;
         private DevExpress.XtraGrid.Columns.GridColumn colDETAILS;
         private System.Windows.Forms.BindingSource AllClientsBindingSource;
+        private System.Windows.Forms.Panel PnlBtns;
+        private DevExpress.XtraEditors.SimpleButton btnNew;
+        private System.Windows.Forms.Panel pnlFormClient;
 
 
     }

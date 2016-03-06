@@ -57,6 +57,7 @@
             this.частиToolStripMenuItem.Name = "частиToolStripMenuItem";
             this.частиToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.частиToolStripMenuItem.Text = "Части";
+            this.частиToolStripMenuItem.Click += new System.EventHandler(this.частиToolStripMenuItem_Click);
             // 
             // FormAutoPartManager
             // 

@@ -40,8 +40,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lblTelephone = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.RichtxtDetails = new System.Windows.Forms.RichTextBox();
             this.txtEditDetails = new DevExpress.XtraEditors.TextEdit();
             this.chkIsFIrm = new DevExpress.XtraEditors.CheckEdit();
@@ -83,8 +81,6 @@
             // 
             this.ClientBindingSource.DataMember = "ClientByID";
             this.ClientBindingSource.DataSource = this.ClientsDset;
-            this.ClientBindingSource.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.ClientBindingSource_AddingNew);
-            this.ClientBindingSource.PositionChanged += new System.EventHandler(this.ClientBindingSource_PositionChanged);
             // 
             // ClientsDset
             // 
@@ -159,31 +155,9 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "button1";
+            this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button2.Location = new System.Drawing.Point(119, 439);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.Location = new System.Drawing.Point(222, 439);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // RichtxtDetails
             // 
@@ -218,7 +192,6 @@
             this.ClientCarsBindingSrc.DataMember = "CLIENT_CARS";
             this.ClientCarsBindingSrc.DataSource = this.ClientsDset;
             this.ClientCarsBindingSrc.Sort = "";
-            this.ClientCarsBindingSrc.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.ClientCarsBindingSrc_AddingNew);
             // 
             // AllCarsBindSrc
             // 
@@ -242,12 +215,13 @@
             // 
             // btnAddCar
             // 
-            this.btnAddCar.Location = new System.Drawing.Point(332, 24);
+            this.btnAddCar.Location = new System.Drawing.Point(27, 273);
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(75, 23);
+            this.btnAddCar.Size = new System.Drawing.Size(19, 23);
             this.btnAddCar.TabIndex = 16;
-            this.btnAddCar.Text = "button1";
+            this.btnAddCar.Text = "+";
             this.btnAddCar.UseVisualStyleBackColor = true;
+            this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click_1);
             // 
             // carsTableAdapter
             // 
@@ -267,8 +241,6 @@
             this.Controls.Add(this.chkIsFIrm);
             this.Controls.Add(this.txtEditDetails);
             this.Controls.Add(this.RichtxtDetails);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblTelephone);
             this.Controls.Add(this.labelControl1);
@@ -315,8 +287,6 @@
         private ClientsDataSet ClientsDset;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.BindingSource ClientBindingSource;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.RichTextBox RichtxtDetails;
         private DevExpress.XtraEditors.TextEdit txtEditDetails;
         private DevExpress.XtraEditors.CheckEdit chkIsFIrm;

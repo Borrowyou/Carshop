@@ -20,6 +20,7 @@ namespace DataManagment
         public ModelYearsTableAdapter ModelYearsTblAdapter { get; set; }
         public FUN_YEARS_BETWEEN_LISTTableAdapter YearsBtwnTblAdapter { get; set; }
         public LOOKUP_ITEMSTableAdapter LookUpsTblAdapter { get; set; }
+        public int FClientID { get; set; }
 
         public void InitAdapters()
         {
@@ -46,21 +47,6 @@ namespace DataManagment
 
         void CLIENT_CARS_RowChanged(object sender, DataRowChangeEventArgs e)
         {
-          /*  var r = e;
-            var Row = e.Row["CAR_ID"];
-
-            var Val = Convert.ToInt32(e.Row["CAR_ID"]);
-            ModelsTblAdapter.FillModelsByCarID(Models, Val);
-            
-     
-            var CarID = Convert.ToInt32(e.Row["CAR_ID"]);
-            var ModelID = Convert.ToInt32(e.Row["MODEL_ID"]);
-            var Model_Name = ModelsTblAdapter.GetModelNameByID(ModelID);
-            ModelYearsTblAdapter.FillModelYearsByModel(ModelYears, CarID, Model_Name);
-
-            var From = Convert.ToInt32(ModelYears.Rows[0]["YEARFROM"]);
-            var To = Convert.ToInt32(ModelYears.Rows[0]["YEARTO"]);
-            YearsBtwnTblAdapter.Fill(FUN_YEARS_BETWEEN_LIST, From, To);*/
            
         }
 
@@ -107,10 +93,12 @@ namespace DataManagment
         {
             ClientsTblAdapter.Fill(Clients);
         }
+
         public void LoadClientByID(int ClientID)
         {
             ClientByIDTblAdapter.FillClientByID(ClientByID, ClientID);
         }
+
         public void SaveClientByID()
         {
             try
@@ -129,7 +117,7 @@ namespace DataManagment
         private void Clients_Cars_OnTableNewRow(object sender, DataTableNewRowEventArgs e)
         {
             e.Row["CLIENT_CAR_ID"] = GEN_ID("CLIENTS_CAR_ID");
-            e.Row["Client_ID"] = ClientByID.Rows[0]["CLIENT_ID"];
+            e.Row["Client_ID"] = FClientID;
         }
 
         public void LoadMarks()
@@ -159,12 +147,36 @@ namespace DataManagment
                 YearsBtwnTblAdapter.Fill(FUN_YEARS_BETWEEN_LIST, From, To);
             }
         }
+        public void LoadCarLookUps()
+        {
+            if (CLIENT_CARS.Count > 0)
+            {
+                var Val = Convert.ToInt32(CLIENT_CARS.Rows[0]["CAR_ID"]);
+                ModelsTblAdapter.FillModelsByCarID(Models, Val);
+                var CarID = Convert.ToInt32(CLIENT_CARS.Rows[0]["CAR_ID"]);
+                var ModelID = Convert.ToInt32(CLIENT_CARS.Rows[0]["MODEL_ID"]);
+                var Model_Name = ModelsTblAdapter.GetModelNameByID(ModelID);
+                ModelYearsTblAdapter.FillModelYearsByModel(ModelYears, CarID, Model_Name);
 
+                var From = Convert.ToInt32(ModelYears.Rows[0]["YEARFROM"]);
+                var To = Convert.ToInt32(ModelYears.Rows[0]["YEARTO"]);
+                YearsBtwnTblAdapter.Fill(FUN_YEARS_BETWEEN_LIST, From, To);
+            }
+            
+        }
         public void LoadLookUpByName(string LName)
         {
             LookUpsTblAdapter.FillLookUpByName(LOOKUP_ITEMS, LName);
         }
+        public void LoadClientCarByID(int ClientCarID)
+        {
+            ClientsCarsTblAdapter.FillClientCarByID(CLIENT_CARS, ClientCarID);
+        }
 
+        public void LoadClientsCars(int Client_ID)
+        {
+            ClientsCarsTblAdapter.FillClientCarsByClient(CLIENT_CARS, Client_ID);
+        }
     }
 }
 

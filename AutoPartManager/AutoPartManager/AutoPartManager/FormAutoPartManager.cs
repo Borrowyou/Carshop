@@ -41,6 +41,12 @@ namespace AutoPartManager
 
         }
 
+        private void частиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TFormParts FormParts = new TFormParts();
+            FormParts.Show();
+        }
+
 
     }
 }

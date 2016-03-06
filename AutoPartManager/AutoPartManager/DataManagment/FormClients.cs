@@ -13,14 +13,15 @@ namespace DataManagment
     public partial class FormClients : Form
     {
         public ClientsDataSet ClientsDset { get; set; }
-
+        public FormManageClients FormManage { get; set; }
         public FormClients()
         {
             InitializeComponent();
             clientsDataSet.InitAdapters();
-            FormManageClients FormManage = new FormManageClients(clientsDataSet);
+            FormManage = new FormManageClients(clientsDataSet);
             FormManage.TopLevel = false;
-            pnlFrameClients.Controls.Add(FormManage);
+            
+            pnlFormClient.Controls.Add(FormManage);
             FormManage.Show();
         }
 
@@ -31,7 +32,12 @@ namespace DataManagment
 
         private void AllClientsBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            clientsDataSet.LoadClientByID((int)clientsDataSet.Clients.Rows[AllClientsBindingSource.Position]["CLIENT_ID"]);
+            FormManage.LoadOrInsertClient((int)clientsDataSet.Clients.Rows[AllClientsBindingSource.Position]["CLIENT_ID"]);
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            FormManage.LoadOrInsertClient(-1);
         }
 
 

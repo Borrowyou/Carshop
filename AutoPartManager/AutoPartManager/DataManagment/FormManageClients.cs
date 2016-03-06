@@ -17,6 +17,7 @@ namespace DataManagment
         int PnlTop;
         int DefHeight;
         int btnPosTop;
+        public int FClientID { get; set; }
 
         public FormManageClients()
         {
@@ -31,12 +32,6 @@ namespace DataManagment
             InitializeComponent();
             ClientsDset = AClientDet;
             ClientBindingSource.DataSource = ClientsDset;
-            AllCarsBindSrc.DataSource = ClientsDset;
-            ClientCarsBindingSrc.DataSource = ClientsDset;
-            ModelsBindSrc.DataSource = ClientsDset;
-            YearsList.DataSource = ClientsDset;
-            ModelYearsBindSrc.DataSource = ClientsDset;
-            EngTypeBindSrc.DataSource = ClientsDset;
             PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
             DefHeight = Height;
             btnPosTop = btnAddCar.Top;
@@ -47,13 +42,7 @@ namespace DataManagment
 
         private void FormManageClients_Load(object sender, EventArgs e)
         {
-
-           ClientsDset.LoadClientByID(1);
            ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
-        }
-        private void LinkControls()
-        { 
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,6 +50,8 @@ namespace DataManagment
             txtEditDetails.EditValue = RichtxtDetails.Text;
             ClientBindingSource.EndEdit();
             ClientsDset.SaveClientByID();
+            foreach (var ClientCar in ListClientCars)
+                ClientCar.SaveClientCars();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -68,19 +59,6 @@ namespace DataManagment
             ClientBindingSource.AddNew();
         }
 
-        private void ClientBindingSource_PositionChanged(object sender, EventArgs e)
-        {
-            ;
-        }
-
-        private void ClientBindingSource_AddingNew(object sender, AddingNewEventArgs e)
-        {
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
         private void chkIsFIrm_CheckedChanged(object sender, EventArgs e)
         {
             chkIsFIrm.EditValue = (chkIsFIrm.Checked) ? "Y" : "N";
@@ -133,23 +111,44 @@ namespace DataManagment
             ReArrangeObjects();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAddCar_Click_1(object sender, EventArgs e)
         {
-            ListClientCars.Add(new PanelClientCar());
+            ListClientCars.Add(new PanelClientCar(FClientID, -1));
             ListClientCars.Last().Setplaces = ClearAndReplace;
             Controls.Add(ListClientCars.Last());
             ClearAndReplace();
         }
 
-        private void CarsBindSrc_AddingNew(object sender, AddingNewEventArgs e)
+        public void LoadOrInsertClient(int ClientID)
         {
-            ;
+            FClientID = ClientID;
+            for (int i = 0; i < ListClientCars.Count; i++)
+            {
+                ListClientCars[i].Dispose();
+            }
+            ClearAndReplace();
+            if (ClientID == -1)
+            {
+                ClientBindingSource.AddNew();
+            }
+            else
+            {
+                ClientsDset.LoadClientByID(ClientID);
+                ClientsDset.LoadClientsCars(ClientID);
+ 
+                foreach (DataRow CurrRow in ClientsDset.CLIENT_CARS)
+                {
+                    ListClientCars.Add(new PanelClientCar(ClientID, Convert.ToInt32(CurrRow["CLIENT_CAR_ID"])));
+                    ListClientCars.Last().Setplaces = ClearAndReplace;
+                    Controls.Add(ListClientCars.Last());
+                    ClearAndReplace();  
+                }
+            }
         }
 
-        private void ClientCarsBindingSrc_AddingNew(object sender, AddingNewEventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            ;
-        }
 
+        }
     }
 }

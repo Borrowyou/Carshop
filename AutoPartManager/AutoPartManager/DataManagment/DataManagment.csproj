@@ -96,7 +96,7 @@
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ClientsDataSet1.Designer.cs">
+    <Compile Include="ClientsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
@@ -131,6 +131,17 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TFormParts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TFormParts.Designer.cs">
+      <DependentUpon>TFormParts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TPartsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TPartsDataSet.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormClients.resx">
@@ -147,6 +158,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TFormParts.resx">
+      <DependentUpon>TFormParts.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -156,7 +170,7 @@
     <None Include="ClientsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ClientsDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ClientsDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
@@ -164,6 +178,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TPartsDataSet.xsc">
+      <DependentUpon>TPartsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TPartsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TPartsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TPartsDataSet.xss">
+      <DependentUpon>TPartsDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -19,17 +19,28 @@ namespace DataManagment
         public PanelClientCar()
         {
             InitializeComponent();
-            ClientsDSet.InitAdapters();
-            ClientsDSet.LoadMarks();
-            carsBindingSource.DataSource = ClientsDSet;
-            ClientsDSet.LoadMarks();
+            ClientsDset.InitAdapters();
+            ClientCarsBindingSrc.AddNew();
+            ClientsDset.LoadMarks();
+            ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
         }
-        public PanelClientCar(ClientsDataSet AClientsDSet, int APanelID)
+
+        public PanelClientCar(int ClientID, int ClientCarID)
         {
             InitializeComponent();
-            ClientsDSet = AClientsDSet;
-            PanelID = APanelID;
-
+            LoadClientCarID(ClientID, ClientCarID);
+        }
+        private void LoadClientCarID(int ClientID, int ClientCarID)
+        {
+            ClientsDset.InitAdapters();
+            ClientsDset.FClientID = ClientID;
+            if (ClientCarID == -1)
+                ClientCarsBindingSrc.AddNew();
+            else
+                ClientsDset.LoadClientCarByID(ClientCarID);
+            ClientsDset.LoadMarks();
+            ClientsDset.LoadCarLookUps();
+            ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
         }
 
         private void PanelClientCar_Load(object sender, EventArgs e)
@@ -39,9 +50,13 @@ namespace DataManagment
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
+            ClientCarsBindingSrc.RemoveCurrent();
+            ClientCarsBindingSrc.EndEdit();
+            ClientsDset.SaveClientByID();
+
+            ClientsDset.AcceptChanges();
             this.Dispose();
             Setplaces();
-            
         }
 
         private void cBxMark_EditValueChanged(object sender, EventArgs e)
@@ -49,9 +64,19 @@ namespace DataManagment
             ;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+    
+
+        public void SaveClientCars()
         {
-            ClientsDSet.LoadMarks();
+            try
+            {
+                ClientCarsBindingSrc.EndEdit();
+                ClientsDset.ClientsCarsTblAdapter.Update(ClientsDset.CLIENT_CARS);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Update failed" + ex.Message);
+            }
         }
     }
 }
