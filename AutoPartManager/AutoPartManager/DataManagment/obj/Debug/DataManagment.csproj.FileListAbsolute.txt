@@ -10,6 +10,8 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagme
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.csproj.GenerateResource.Cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormClients.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.Properties.Resources.resources
-C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.csprojResolveAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.PanelClientCar.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormParts.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormSearchParts.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormManagePart.resources

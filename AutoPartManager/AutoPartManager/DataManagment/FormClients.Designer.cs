@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlFrameClients = new System.Windows.Forms.Panel();
+            this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@
             this.colEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDETAILS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.pnlFormClient = new System.Windows.Forms.Panel();
             this.pnlFrameClients.SuspendLayout();
             this.PnlBtns.SuspendLayout();
             this.pnlClients.SuspendLayout();
@@ -66,6 +66,14 @@
             this.pnlFrameClients.Name = "pnlFrameClients";
             this.pnlFrameClients.Size = new System.Drawing.Size(330, 340);
             this.pnlFrameClients.TabIndex = 0;
+            // 
+            // pnlFormClient
+            // 
+            this.pnlFormClient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlFormClient.Location = new System.Drawing.Point(0, 33);
+            this.pnlFormClient.Name = "pnlFormClient";
+            this.pnlFormClient.Size = new System.Drawing.Size(330, 307);
+            this.pnlFormClient.TabIndex = 1;
             // 
             // PnlBtns
             // 
@@ -190,14 +198,6 @@
             this.splitter1.Size = new System.Drawing.Size(3, 294);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
-            // 
-            // pnlFormClient
-            // 
-            this.pnlFormClient.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlFormClient.Location = new System.Drawing.Point(0, 33);
-            this.pnlFormClient.Name = "pnlFormClient";
-            this.pnlFormClient.Size = new System.Drawing.Size(330, 307);
-            this.pnlFormClient.TabIndex = 1;
             // 
             // FormClients
             // 

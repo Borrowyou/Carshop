@@ -101,6 +101,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ClientsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataMngStrings.cs" />
     <Compile Include="FormClients.cs">
       <SubType>Form</SubType>
@@ -131,11 +136,36 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="TCommonDataSet.cs">
+      <DependentUpon>TCommonDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TCommonDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TCommonDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TFormManagePart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TFormManagePart.Designer.cs">
+      <DependentUpon>TFormManagePart.cs</DependentUpon>
+    </Compile>
     <Compile Include="TFormParts.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TFormParts.Designer.cs">
       <DependentUpon>TFormParts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TFormSearchParts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TFormSearchParts.Designer.cs">
+      <DependentUpon>TFormSearchParts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TPartsDataSet.cs">
+      <DependentUpon>TPartsDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="TPartsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -158,8 +188,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TFormManagePart.resx">
+      <DependentUpon>TFormManagePart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TFormParts.resx">
       <DependentUpon>TFormParts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TFormSearchParts.resx">
+      <DependentUpon>TFormSearchParts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +206,7 @@
     <None Include="ClientsDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ClientsDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ClientsDataSet1.Designer.cs</LastGenOutput>
     </None>
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
@@ -178,6 +214,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TCommonDataSet.xsc">
+      <DependentUpon>TCommonDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TCommonDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TCommonDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TCommonDataSet.xss">
+      <DependentUpon>TCommonDataSet.xsd</DependentUpon>
     </None>
     <None Include="TPartsDataSet.xsc">
       <DependentUpon>TPartsDataSet.xsd</DependentUpon>

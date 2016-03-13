@@ -19,10 +19,10 @@ namespace DataManagment
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            FormClients FrmClients = new FormClients();
-            FrmClients.MdiParent = this;
-            FrmClients.Dock = DockStyle.Fill;
-            FrmClients.Show();
+            TFormSearchParts FormSearchParts = new TFormSearchParts();
+            FormSearchParts.MdiParent = this;
+            FormSearchParts.Dock = DockStyle.Fill;
+            FormSearchParts.Show();
         }
     }
 }
