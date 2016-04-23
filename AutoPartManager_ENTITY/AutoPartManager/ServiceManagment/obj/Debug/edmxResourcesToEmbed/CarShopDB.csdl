@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarShopModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CarShopEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="APPOITMENTS" EntityType="CarShopModel.APPOITMENT" />
+    <EntitySet Name="Cars" EntityType="CarShopModel.Car" />
+    <EntitySet Name="Clients" EntityType="CarShopModel.Client" />
+    <EntitySet Name="LOOKUP_ITEMS" EntityType="CarShopModel.LOOKUP_ITEMS" />
+    <EntitySet Name="Models" EntityType="CarShopModel.Model" />
+    <EntitySet Name="Parts" EntityType="CarShopModel.Part" />
+    <EntitySet Name="PARTS_LINK" EntityType="CarShopModel.PARTS_LINK" />
+    <EntitySet Name="PROVIDER_CATEGORIES" EntityType="CarShopModel.PROVIDER_CATEGORIES" />
+    <EntitySet Name="REPAIR_SERVICES" EntityType="CarShopModel.REPAIR_SERVICES" />
+    <EntitySet Name="SERVICES" EntityType="CarShopModel.SERVICE" />
+    <EntitySet Name="SUB_CATEGORIES" EntityType="CarShopModel.SUB_CATEGORIES" />
+    <EntitySet Name="sysdiagrams" EntityType="CarShopModel.sysdiagram" />
+    <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="CarShopModel.FK_APPOITMENTS_CLIENT_ID">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Partss" Association="CarShopModel.FK_Car_Partss">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARS" Association="CarShopModel.FK_CARS">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models" Association="CarShopModel.FK_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+    <FunctionImport Name="FUN_YEARS_BETWEEN_LIST" ReturnType="Collection(CarShopModel.FUN_YEARS_BETWEEN_LIST_Result)" IsComposable="true">
+      <Parameter Name="From" Mode="In" Type="Int32" />
+      <Parameter Name="To" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GEN_ID">
+      <Parameter Name="GENERATOR_NAME" Mode="In" Type="String" />
+      <Parameter Name="GENERATOR_STEP" Mode="In" Type="Int32" />
+      <Parameter Name="NEW_VALUE" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="VIEW_CLIENT_CARS" EntityType="CarShopModel.VIEW_CLIENT_CARS" />
+    <EntitySet Name="CLIENT_CARS" EntityType="CarShopModel.CLIENT_CARS" />
+    <AssociationSet Name="FK_CLIENT_CARS_CLIENTS" Association="CarShopModel.FK_CLIENT_CARS_CLIENTS">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_CARS_MODELS" Association="CarShopModel.FK_CLIENT_CARS_MODELS">
+      <End Role="Model" EntitySet="Models" />
+      <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="FUN_YEARS_BETWEEN_LIST_Result">
+    <Property Name="yr" Type="Int32" />
+  </ComplexType>
+  <EntityType Name="APPOITMENT">
+    <Key>
+      <PropertyRef Name="APPOITMENT_ID" />
+    </Key>
+    <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="APPOITMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="CarShopModel.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="Car_ID" />
+    </Key>
+    <Property Name="Car_ID" Type="Int32" Nullable="false" />
+    <Property Name="Car_Model" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_Car_Partss" FromRole="Cars" ToRole="Parts" />
+    <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CARS" FromRole="Cars" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="CLIENT_ID" />
+    </Key>
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENT_NAME" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="CLIENT_FORM" Type="DateTime" Precision="3" />
+    <Property Name="COMPANY" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="TELEPHONE" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="DETAILS" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENTS_CLIENT_ID" FromRole="Clients" ToRole="APPOITMENTS" />
+    <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_CLIENTS" FromRole="Client" ToRole="CLIENT_CARS" />
+  </EntityType>
+  <EntityType Name="LOOKUP_ITEMS">
+    <Key>
+      <PropertyRef Name="L_ITEM_ID" />
+    </Key>
+    <Property Name="L_ITEM_ID" Type="Int32" Nullable="false" />
+    <Property Name="LOOKUP_NAME" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
+    <Property Name="ITEM_CODE" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="ITEM_NAME" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="ITEM_DESCRIPT" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+    <Property Name="MODEL_NAME" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="YEAR_MANUF" Type="Int32" />
+    <Property Name="YEAR_STOP" Type="Int32" />
+    <Property Name="CAR_ID" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Car" Relationship="CarShopModel.FK_CARS" FromRole="Models" ToRole="Cars" />
+    <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_Models" FromRole="Models" ToRole="Parts" />
+    <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_MODELS" FromRole="Model" ToRole="CLIENT_CARS" />
+  </EntityType>
+  <EntityType Name="Part">
+    <Key>
+      <PropertyRef Name="Part_ID" />
+    </Key>
+    <Property Name="Part_ID" Type="Int32" Nullable="false" />
+    <Property Name="part_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="part_price" Type="Double" />
+    <Property Name="part_details" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="part_manuf" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+    <Property Name="Car_ID" Type="Int32" />
+    <Property Name="Model_ID" Type="Int32" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Car" Relationship="CarShopModel.FK_Car_Partss" FromRole="Parts" ToRole="Cars" />
+    <NavigationProperty Name="Model" Relationship="CarShopModel.FK_Models" FromRole="Parts" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="PARTS_LINK">
+    <Key>
+      <PropertyRef Name="LINK_ID" />
+    </Key>
+    <Property Name="LINK_ID" Type="Int32" Nullable="false" />
+    <Property Name="PART_ID" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="LAST_UPDATE" Type="DateTime" Precision="3" />
+    <Property Name="THREAD" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PROVIDER_CATEGORIES">
+    <Key>
+      <PropertyRef Name="P_CATEGORY_ID" />
+    </Key>
+    <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PROVIDER_NAME" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="M_CATEGORY_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="REPAIR_SERVICES">
+    <Key>
+      <PropertyRef Name="SERVICE_ID" />
+    </Key>
+    <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SERVICE">
+    <Key>
+      <PropertyRef Name="SERVICE_ID" />
+    </Key>
+    <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="PRICE_PER_HOUR" Type="Double" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SUB_CATEGORIES">
+    <Key>
+      <PropertyRef Name="SUB_CATEGORY_ID" />
+    </Key>
+    <Property Name="SUB_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="S_CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_APPOITMENTS_CLIENT_ID">
+    <End Role="Clients" Type="CarShopModel.Client" Multiplicity="1" />
+    <End Role="APPOITMENTS" Type="CarShopModel.APPOITMENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="CLIENT_ID" />
+      </Principal>
+      <Dependent Role="APPOITMENTS">
+        <PropertyRef Name="CLIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Partss">
+    <End Role="Cars" Type="CarShopModel.Car" Multiplicity="0..1" />
+    <End Role="Parts" Type="CarShopModel.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="Car_ID" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="Car_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARS">
+    <End Role="Cars" Type="CarShopModel.Car" Multiplicity="0..1" />
+    <End Role="Models" Type="CarShopModel.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="Car_ID" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models">
+    <End Role="Models" Type="CarShopModel.Model" Multiplicity="0..1" />
+    <End Role="Parts" Type="CarShopModel.Part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="MODEL_ID" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="Model_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VIEW_CLIENT_CARS">
+    <Key>
+      <PropertyRef Name="CLIENT_CAR_ID" />
+      <PropertyRef Name="CLIENT_ID" />
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Type="Int32" Name="CLIENT_CAR_ID" Nullable="false" />
+    <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="MODEL_ID" Nullable="false" />
+    <Property Type="Int32" Name="CAR_YEAR" />
+    <Property Type="String" Name="ENGINE_TYPE" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ENGINE_SIZE" />
+    <Property Type="String" Name="MODEL_NAME" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ENGINE_TYPE_DESCR" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CLIENT_CARS">
+    <Key>
+      <PropertyRef Name="CLIENT_CAR_ID" />
+    </Key>
+    <Property Type="Int32" Name="CLIENT_CAR_ID" Nullable="false" />
+    <Property Type="Int32" Name="CLIENT_ID" Nullable="false" />
+    <Property Type="Int32" Name="CAR_ID" Nullable="false" />
+    <Property Type="Int32" Name="MODEL_ID" Nullable="false" />
+    <Property Type="Int32" Name="CAR_YEAR" />
+    <Property Type="String" Name="ENGINE_TYPE" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Double" Name="ENGINE_SIZE" />
+    <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Client" />
+    <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Model" />
+  </EntityType>
+  <Association Name="FK_CLIENT_CARS_CLIENTS">
+    <End Type="CarShopModel.Client" Role="Client" Multiplicity="1" />
+    <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="CLIENT_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_CARS">
+        <PropertyRef Name="CLIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_CARS_MODELS">
+    <End Type="CarShopModel.Model" Role="Model" Multiplicity="1" />
+    <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="MODEL_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_CARS">
+        <PropertyRef Name="MODEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

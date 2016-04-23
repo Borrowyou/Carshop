@@ -15,3 +15,4 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagme
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormSearchParts.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.csprojResolveAssemblyReference.cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormManagePart.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormServicesManage.resources

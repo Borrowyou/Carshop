@@ -1,0 +1,10 @@
+C:\PartsManager\Bin\ServiceManagment.dll
+C:\PartsManager\Bin\ServiceManagment.pdb
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.TFormAppointments.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.csproj.GenerateResource.Cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.dll
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.pdb
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.TFormManageAppoitment.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.dll.licenses
+C:\PartsManager\Bin\ServiceManagment.dll.config

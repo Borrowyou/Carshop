@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="eee4ea6760f14958ad4214290a3479ce" Name="Diagram1" ShowGrid="true" ZoomLevel="74">
+        <EntityTypeShape EntityType="CarShopModel.APPOITMENT" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.Car" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.Client" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.LOOKUP_ITEMS" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.Model" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.Part" Width="1.5" PointX="8.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.PARTS_LINK" Width="1.5" PointX="2.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.PROVIDER_CATEGORIES" Width="1.5" PointX="4.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.REPAIR_SERVICES" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.SERVICE" Width="1.5" PointX="6.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.SUB_CATEGORIES" Width="1.5" PointX="8.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarShopModel.sysdiagram" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <AssociationConnector Association="CarShopModel.FK_APPOITMENTS_CLIENT_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShopModel.FK_Car_Partss" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShopModel.FK_CARS" ManuallyRouted="false" />
+        <AssociationConnector Association="CarShopModel.FK_Models" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CarShopModel.VIEW_CLIENT_CARS" Width="1.5" PointX="0.5" PointY="1.25" />
+        <EntityTypeShape EntityType="CarShopModel.CLIENT_CARS" Width="1.5" PointX="5.5" PointY="4.625" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_CLIENTS" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_MODELS" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
