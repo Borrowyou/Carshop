@@ -16,4 +16,3 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Auto
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.csproj.GenerateResource.Cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.exe
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartManager\obj\Debug\AutoPartManager.pdb
-C:\PartsManager\Bin\NLog.config

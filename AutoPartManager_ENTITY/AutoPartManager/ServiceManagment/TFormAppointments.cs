@@ -17,9 +17,15 @@ namespace ServiceManagment
         public TFormAppointments()
         {
             InitializeComponent();
-            DMAppoitm = new DMAppointments();
-            InitFormAppManage();
-
+            try
+            {
+                DMAppoitm = new DMAppointments();
+                InitFormAppManage();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
         }
 
         public void InitFormAppManage()

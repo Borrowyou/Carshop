@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Objects;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +11,10 @@ namespace ServiceManagment
 {
     public class DMAppointments
     {
-        public CarShopEntities1 CurrContex;
+        public CarShopEntities2 CurrContex;
         public DMAppointments()
         {
-            CurrContex = new CarShopEntities1();
+            CurrContex = new CarShopEntities2();
             
         }
 
@@ -25,7 +25,7 @@ namespace ServiceManagment
             return Convert.ToInt32(NewValue.Value); 
         }
 
-        public DbSet<Client> GetAllClients()
+        public DbSet<Clients> GetAllClients()
         {
             return CurrContex.Clients;
         }

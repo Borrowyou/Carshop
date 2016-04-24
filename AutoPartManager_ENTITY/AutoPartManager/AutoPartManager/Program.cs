@@ -33,7 +33,7 @@ namespace AutoPartManager
             catch (Exception exc)
             {
                 LogFatalException(exc);
-                throw;
+                MessageBox.Show(exc.Message);
             }
         }
 
@@ -42,7 +42,7 @@ namespace AutoPartManager
             string message = String.Format(
                 "(Application version {0}) {1}", Application.ProductVersion, exc.Message);
 
-            _logger.Fatal(message, exc);
+            _logger.Error(message, exc);
         }
 
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)

@@ -15,6 +15,7 @@ namespace AutoPartManager
     public partial class FormAutoPartManager : Form
     {
         TFormAppointments FormAppointments;
+        
 
         public FormAutoPartManager()
         {
@@ -39,9 +40,7 @@ namespace AutoPartManager
 
         private void FormAutoPartManager_Load(object sender, EventArgs e)
         {
-            Assembly assembly = Assembly.LoadFile("C:\\PartsManager\\Bin\\DataManagment.dll");
             InitFormAppointments();
-
         }
 
         private void частиToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +62,13 @@ namespace AutoPartManager
             pnlForm.Controls.Add(FormAppointments);
             FormAppointments.Dock = DockStyle.Fill;
             FormAppointments.Show();
+        }
+
+        private void услугиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TFormServicesManage FormServiceManage = new TFormServicesManage();
+            FormServiceManage.Show();
+
         }
 
     }

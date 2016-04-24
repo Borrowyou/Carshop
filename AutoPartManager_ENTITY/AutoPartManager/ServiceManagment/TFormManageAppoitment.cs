@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +18,6 @@ namespace ServiceManagment
         DMAppointments DMAppoitm;
         Logger logger;
         FormManageClients FormMngClients;
-        APPOITMENT CurrentApp;
 
         public TFormManageAppoitment()
         {
@@ -28,23 +26,27 @@ namespace ServiceManagment
             DMAppoitm = new DMAppointments();
             InitNewAppoitment();
             SetDataSources();
+            DMAppoitm.CurrContex.SERVICE_WORKS.Load();
             
         }
 
         public void InitNewAppoitment()
         {
             aPPOITMENTBindingSource.AddNew();
-            ((APPOITMENT)aPPOITMENTBindingSource.Current).APPOITMENT_DATE = DateTime.Now;
+            ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID = DMAppoitm.GenID("APPOITMENTS_ID");
+            ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_DATE = DateTime.Now;
         }
 
         public void ReloadAllClients()
         {
             clientBindingSource.DataSource = DMAppoitm.GetAllClients().ToList();
+
         }
 
         public void SetDataSources()
         {
             clientBindingSource.DataSource = DMAppoitm.GetAllClients().ToList();
+            sERVICE_WORKSBindingSource.DataSource = DMAppoitm.CurrContex.SERVICE_WORKS.Local.ToBindingList();
         }
 
         private void aPPOITMENTBindingSource_PositionChanged(object sender, EventArgs e)
@@ -54,7 +56,7 @@ namespace ServiceManagment
 
         private void aPPOITMENTBindingSource_CurrentItemChanged(object sender, EventArgs e)
         {
-            int ClientID = ((APPOITMENT)aPPOITMENTBindingSource.Current).CLIENT_ID;
+            int ClientID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).CLIENT_ID;
             cLIENT_CARSBindingSource.DataSource = DMAppoitm.GetAllClients_Cars(ClientID).ToList();
         }
         private void Save()
@@ -62,8 +64,8 @@ namespace ServiceManagment
             try
             {
                 aPPOITMENTBindingSource.EndEdit();
-                ((APPOITMENT)aPPOITMENTBindingSource.Current).APPOITMENT_ID = DMAppoitm.GenID("APPOITMENTS_ID");
-                DMAppoitm.CurrContex.APPOITMENTS.Add(((APPOITMENT)aPPOITMENTBindingSource.Current));
+                sERVICE_WORKSBindingSource.EndEdit();
+                DMAppoitm.CurrContex.APPOITMENTS.Add(((APPOITMENTS)aPPOITMENTBindingSource.Current));
                 DMAppoitm.CurrContex.SaveChanges();
             }
             catch(Exception Ex)
@@ -77,7 +79,7 @@ namespace ServiceManagment
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            Save();
+          
         }
 
         private void aPPOITMENTBindingSource_AddingNew(object sender, AddingNewEventArgs e)
@@ -97,9 +99,23 @@ namespace ServiceManagment
             //CurrentAppoitment().CLIENT_ID = FormMngClients.FClientID;
         }
 
-        private APPOITMENT CurrentAppoitment()
+        private APPOITMENTS CurrentAppoitment()
         {
-            return (APPOITMENT)aPPOITMENTBindingSource.Current;
+            return (APPOITMENTS)aPPOITMENTBindingSource.Current;
+        }
+
+        private void btnAddServiceWork_Click(object sender, EventArgs e)
+        {
+            sERVICE_WORKSBindingSource.AddNew();
+            ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).SERVICE_WORK_ID = DMAppoitm.GenID("SERVICE_WORK_ID");
+            ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).APPOITMENT_ID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID;
+            ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).WORK_STATUS = DMStrings.ServiceWorkPend;
+
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            Save();
         }
 
     }

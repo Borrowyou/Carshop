@@ -46,9 +46,13 @@
     <Reference Include="DevExpress.XtraPrinting.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraScheduler.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraScheduler.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -57,7 +61,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -78,10 +81,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="APPOITMENT.cs">
+    <Compile Include="APPOITMENTS.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Car.cs">
+    <Compile Include="Cars.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="CarShopDB.Context.cs">
@@ -99,12 +102,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CarShopDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Client.cs">
+    <Compile Include="Clients.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="CLIENT_CARS.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataMngStrings.cs" />
     <Compile Include="DBFuncs.cs" />
     <Compile Include="DMAppointments.cs" />
     <Compile Include="FUN_YEARS_BETWEEN_LIST_Result.cs">
@@ -114,10 +118,10 @@
     <Compile Include="LOOKUP_ITEMS.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model.cs">
+    <Compile Include="Models.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Part.cs">
+    <Compile Include="Parts.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="PARTS_LINK.cs">
@@ -135,13 +139,16 @@
     <Compile Include="REPAIR_SERVICES.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICE.cs">
+    <Compile Include="SERVICES.cs">
+      <DependentUpon>CarShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICE_WORKS.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="SUB_CATEGORIES.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="TFormAppointments.cs">
@@ -159,6 +166,12 @@
     <Compile Include="VIEW_CLIENT_CARS.cs">
       <DependentUpon>CarShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_Cars_Models.cs">
+      <DependentUpon>CarShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Car_Model_Part.cs">
+      <DependentUpon>CarShopDB.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -171,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EntityDeploy Include="CarShopDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CarShopDB.Designer.cs</LastGenOutput>
@@ -188,16 +204,14 @@
       <DependentUpon>CarShopDB.edmx</DependentUpon>
       <LastGenOutput>CarShopDB.cs</LastGenOutput>
     </None>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\APPOITMENT.datasource" />
-    <None Include="Properties\DataSources\Client.datasource" />
+    <None Include="Properties\DataSources\APPOITMENTS.datasource" />
+    <None Include="Properties\DataSources\Clients.datasource" />
     <None Include="Properties\DataSources\CLIENT_CARS.datasource" />
+    <None Include="Properties\DataSources\SERVICE_WORKS.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

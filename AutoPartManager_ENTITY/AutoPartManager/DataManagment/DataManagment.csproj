@@ -11,6 +11,8 @@
     <AssemblyName>DataManagment</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,14 +79,27 @@
       <Private>True</Private>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.4.3.1\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -100,7 +115,16 @@
     <Reference Include="UIAutomationClient" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APPOITMENTS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="AssemblyLoader.cs" />
+    <Compile Include="Cars.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Clients.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="ClientsDataSet.cs">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -110,7 +134,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CLIENT_CARS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataMngStrings.cs" />
+    <Compile Include="DMServices.cs" />
+    <Compile Include="EDMCarShop.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDMCarShop.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMCarShop.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EDMCarShop.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EDMCarShop.edmx</DependentUpon>
+    </Compile>
     <Compile Include="FormClients.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,12 +166,26 @@
     <Compile Include="FormManageClients.Designer.cs">
       <DependentUpon>FormManageClients.cs</DependentUpon>
     </Compile>
-    <Compile Include="LogExtensions.cs" />
+    <Compile Include="FUN_YEARS_BETWEEN_LIST_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LOOKUP_ITEMS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="PanelClientCar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PanelClientCar.Designer.cs">
       <DependentUpon>PanelClientCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parts.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PARTS_LINK.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -140,6 +197,21 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PROVIDER_CATEGORIES.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REPAIR_SERVICES.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICES.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SUB_CATEGORIES.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="TCommonDataSet.cs">
       <DependentUpon>TCommonDataSet.xsd</DependentUpon>
@@ -183,6 +255,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TPartsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="VIEW_CLIENT_CARS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Cars_Models.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Car_Model_Part.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormClients.resx">
@@ -225,7 +306,32 @@
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </None>
+    <EntityDeploy Include="EDMCarShop.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EDMCarShop.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EDMCarShop.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDMCarShop.edmx</DependentUpon>
+      <LastGenOutput>EDMCarShop.Context.cs</LastGenOutput>
+    </None>
+    <None Include="EDMCarShop.edmx.diagram">
+      <DependentUpon>EDMCarShop.edmx</DependentUpon>
+    </None>
+    <None Include="EDMCarShop.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EDMCarShop.edmx</DependentUpon>
+      <LastGenOutput>EDMCarShop.cs</LastGenOutput>
+    </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CarShopEntities.datasource" />
+    <None Include="Properties\DataSources\SERVICE.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -319,7 +425,11 @@
   <ItemGroup>
     <None Include="Resources\DevExpress.XtraRichEdit.v14.2.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

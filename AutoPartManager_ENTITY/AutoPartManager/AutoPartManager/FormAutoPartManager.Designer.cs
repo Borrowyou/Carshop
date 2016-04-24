@@ -34,6 +34,7 @@
             this.PnlBtms = new System.Windows.Forms.Panel();
             this.btnAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.услугиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.PnlBtms.SuspendLayout();
             this.SuspendLayout();
@@ -42,7 +43,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientsToolStripMenuItem,
-            this.частиToolStripMenuItem});
+            this.частиToolStripMenuItem,
+            this.услугиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(386, 24);
@@ -89,6 +91,13 @@
             this.pnlForm.Size = new System.Drawing.Size(386, 194);
             this.pnlForm.TabIndex = 3;
             // 
+            // услугиToolStripMenuItem
+            // 
+            this.услугиToolStripMenuItem.Name = "услугиToolStripMenuItem";
+            this.услугиToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.услугиToolStripMenuItem.Text = "Услуги";
+            this.услугиToolStripMenuItem.Click += new System.EventHandler(this.услугиToolStripMenuItem_Click);
+            // 
             // FormAutoPartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,6 +126,7 @@
         private System.Windows.Forms.Panel PnlBtms;
         private DevExpress.XtraEditors.SimpleButton btnAppoitments;
         private System.Windows.Forms.Panel pnlForm;
+        private System.Windows.Forms.ToolStripMenuItem услугиToolStripMenuItem;
 
 
     }

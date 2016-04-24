@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="FUN_YEARS_BETWEEN_LIST_Result">
+    <Property Name="yr" Type="Int32" />
+  </ComplexType>
+  <EntityType Name="APPOITMENTS">
+    <Key>
+      <PropertyRef Name="APPOITMENT_ID" />
+    </Key>
+    <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="APPOITMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
+  </EntityType>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="Car_ID" />
+    </Key>
+    <Property Name="Car_ID" Type="Int32" Nullable="false" />
+    <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK_Car_Partss" FromRole="Cars" ToRole="Parts" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_CARS" FromRole="Cars" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="CLIENT_CARS">
+    <Key>
+      <PropertyRef Name="CLIENT_CAR_ID" />
+    </Key>
+    <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+    <Property Name="CAR_YEAR" Type="Int32" />
+    <Property Name="ENGINE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ENGINE_SIZE" Type="Double" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Clients" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="CLIENT_ID" />
+    </Key>
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false">
+      <Documentation>
+        <LongDescription>Service ID</LongDescription>
+      </Documentation>
+    </Property>
+    <Property Name="CLIENT_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CLIENT_FORM" Type="DateTime" Precision="3" />
+    <Property Name="COMPANY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TELEPHONE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DETAILS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="APPOITMENTS" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="Clients" ToRole="APPOITMENTS" />
+    <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_CLIENTS" FromRole="Clients" ToRole="CLIENT_CARS" />
+  </EntityType>
+  <EntityType Name="LOOKUP_ITEMS">
+    <Key>
+      <PropertyRef Name="L_ITEM_ID" />
+    </Key>
+    <Property Name="L_ITEM_ID" Type="Int32" Nullable="false" />
+    <Property Name="LOOKUP_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ITEM_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ITEM_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ITEM_DESCRIPT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Models">
+    <Key>
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+    <Property Name="MODEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="YEAR_MANUF" Type="Int32" />
+    <Property Name="YEAR_STOP" Type="Int32" />
+    <Property Name="CAR_ID" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_CARS" FromRole="Models" ToRole="Cars" />
+    <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="Models" ToRole="CLIENT_CARS" />
+    <NavigationProperty Name="Parts" Relationship="Self.FK_Models" FromRole="Models" ToRole="Parts" />
+  </EntityType>
+  <EntityType Name="Parts">
+    <Key>
+      <PropertyRef Name="Part_ID" />
+    </Key>
+    <Property Name="Part_ID" Type="Int32" Nullable="false" />
+    <Property Name="part_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="part_price" Type="Double" />
+    <Property Name="part_details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="part_manuf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Car_ID" Type="Int32" />
+    <Property Name="Model_ID" Type="Int32" />
+    <Property Name="CATEGORY_ID" Type="Int32" />
+    <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Cars" Relationship="Self.FK_Car_Partss" FromRole="Parts" ToRole="Cars" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Models" FromRole="Parts" ToRole="Models" />
+  </EntityType>
+  <EntityType Name="PARTS_LINK">
+    <Key>
+      <PropertyRef Name="LINK_ID" />
+    </Key>
+    <Property Name="LINK_ID" Type="Int32" Nullable="false" />
+    <Property Name="PART_ID" Type="Int32" />
+    <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_UPDATE" Type="DateTime" Precision="3" />
+    <Property Name="THREAD" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PROVIDER_CATEGORIES">
+    <Key>
+      <PropertyRef Name="P_CATEGORY_ID" />
+    </Key>
+    <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PROVIDER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="M_CATEGORY_ID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="REPAIR_SERVICES">
+    <Key>
+      <PropertyRef Name="SERVICE_ID" />
+    </Key>
+    <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SERVICES">
+    <Key>
+      <PropertyRef Name="SERVICE_ID" />
+    </Key>
+    <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false">
+      <Documentation>
+        <LongDescription>1</LongDescription>
+      </Documentation>
+    </Property>
+    <Property Name="PRICE_PER_HOUR" Type="Double" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SUB_CATEGORIES">
+    <Key>
+      <PropertyRef Name="SUB_CATEGORY_ID" />
+    </Key>
+    <Property Name="SUB_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
+    <Property Name="S_CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="V_Car_Model_Part">
+    <Key>
+      <PropertyRef Name="Part_ID" />
+      <PropertyRef Name="Car_ID" />
+      <PropertyRef Name="Model_ID" />
+    </Key>
+    <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Part_ID" Type="Int32" Nullable="false" />
+    <Property Name="Part_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Part_price" Type="Double" />
+    <Property Name="Part_details" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Part_Manuf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Car_ID" Type="Int32" Nullable="false" />
+    <Property Name="Model_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="V_Cars_Models">
+    <Key>
+      <PropertyRef Name="CAR_ID" />
+      <PropertyRef Name="Model_ID" />
+    </Key>
+    <Property Name="CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Model_ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="VIEW_CLIENT_CARS">
+    <Key>
+      <PropertyRef Name="CLIENT_CAR_ID" />
+      <PropertyRef Name="CLIENT_ID" />
+      <PropertyRef Name="MODEL_ID" />
+    </Key>
+    <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
+    <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+    <Property Name="CAR_YEAR" Type="Int32" />
+    <Property Name="ENGINE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ENGINE_SIZE" Type="Double" />
+    <Property Name="MODEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ENGINE_TYPE_DESCR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_APPOITMENTS_CLIENT_ID">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="CLIENT_ID" />
+      </Principal>
+      <Dependent Role="APPOITMENTS">
+        <PropertyRef Name="CLIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Car_Partss">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="Car_ID" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="Car_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARS">
+    <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
+    <End Role="Models" Type="Self.Models" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cars">
+        <PropertyRef Name="Car_ID" />
+      </Principal>
+      <Dependent Role="Models">
+        <PropertyRef Name="CAR_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_CARS_CLIENTS">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="CLIENT_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_CARS">
+        <PropertyRef Name="CLIENT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CLIENT_CARS_MODELS">
+    <End Role="Models" Type="Self.Models" Multiplicity="1" />
+    <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="MODEL_ID" />
+      </Principal>
+      <Dependent Role="CLIENT_CARS">
+        <PropertyRef Name="MODEL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Models">
+    <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
+    <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Models">
+        <PropertyRef Name="MODEL_ID" />
+      </Principal>
+      <Dependent Role="Parts">
+        <PropertyRef Name="Model_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarShopDB" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="APPOITMENTS" EntityType="Self.APPOITMENTS" />
+    <EntitySet Name="Cars" EntityType="Self.Cars" />
+    <EntitySet Name="CLIENT_CARS" EntityType="Self.CLIENT_CARS" />
+    <EntitySet Name="Clients" EntityType="Self.Clients" />
+    <EntitySet Name="LOOKUP_ITEMS" EntityType="Self.LOOKUP_ITEMS" />
+    <EntitySet Name="Models" EntityType="Self.Models" />
+    <EntitySet Name="Parts" EntityType="Self.Parts" />
+    <EntitySet Name="PARTS_LINK" EntityType="Self.PARTS_LINK" />
+    <EntitySet Name="PROVIDER_CATEGORIES" EntityType="Self.PROVIDER_CATEGORIES" />
+    <EntitySet Name="REPAIR_SERVICES" EntityType="Self.REPAIR_SERVICES" />
+    <EntitySet Name="SERVICES" EntityType="Self.SERVICES" />
+    <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="V_Car_Model_Part" EntityType="Self.V_Car_Model_Part" />
+    <EntitySet Name="V_Cars_Models" EntityType="Self.V_Cars_Models" />
+    <EntitySet Name="VIEW_CLIENT_CARS" EntityType="Self.VIEW_CLIENT_CARS" />
+    <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="Self.FK_APPOITMENTS_CLIENT_ID">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Car_Partss" Association="Self.FK_Car_Partss">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARS" Association="Self.FK_CARS">
+      <End Role="Cars" EntitySet="Cars" />
+      <End Role="Models" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_CARS_CLIENTS" Association="Self.FK_CLIENT_CARS_CLIENTS">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CLIENT_CARS_MODELS" Association="Self.FK_CLIENT_CARS_MODELS">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Models" Association="Self.FK_Models">
+      <End Role="Models" EntitySet="Models" />
+      <End Role="Parts" EntitySet="Parts" />
+    </AssociationSet>
+    <FunctionImport Name="FUN_YEARS_BETWEEN_LIST" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_YEARS_BETWEEN_LIST_Result)">
+      <Parameter Name="From" Mode="In" Type="Int32" />
+      <Parameter Name="To" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_GEN_ID">
+      <Parameter Name="GENERATOR_NAME" Mode="In" Type="String" />
+      <Parameter Name="GENERATOR_STEP" Mode="In" Type="Int32" />
+      <Parameter Name="NEW_VALUE" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

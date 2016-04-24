@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="CarShopModelStoreContainer" CdmEntityContainer="CarShopEntities1">
+  <EntityContainerMapping StorageEntityContainer="CarShopDBStoreContainer" CdmEntityContainer="CarShopEntities2">
     <EntitySetMapping Name="APPOITMENTS">
-      <EntityTypeMapping TypeName="CarShopModel.APPOITMENT">
+      <EntityTypeMapping TypeName="CarShopDB.APPOITMENTS">
         <MappingFragment StoreEntitySet="APPOITMENTS">
           <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
           <ScalarProperty Name="APPOITMENT_DATE" ColumnName="APPOITMENT_DATE" />
@@ -12,15 +12,28 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Cars">
-      <EntityTypeMapping TypeName="CarShopModel.Car">
+      <EntityTypeMapping TypeName="CarShopDB.Cars">
         <MappingFragment StoreEntitySet="Cars">
           <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
           <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CLIENT_CARS">
+      <EntityTypeMapping TypeName="CarShopDB.CLIENT_CARS">
+        <MappingFragment StoreEntitySet="CLIENT_CARS">
+          <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
+          <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+          <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+          <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
+          <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
+          <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Clients">
-      <EntityTypeMapping TypeName="CarShopModel.Client">
+      <EntityTypeMapping TypeName="CarShopDB.Clients">
         <MappingFragment StoreEntitySet="Clients">
           <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
           <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
@@ -33,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LOOKUP_ITEMS">
-      <EntityTypeMapping TypeName="CarShopModel.LOOKUP_ITEMS">
+      <EntityTypeMapping TypeName="CarShopDB.LOOKUP_ITEMS">
         <MappingFragment StoreEntitySet="LOOKUP_ITEMS">
           <ScalarProperty Name="L_ITEM_ID" ColumnName="L_ITEM_ID" />
           <ScalarProperty Name="LOOKUP_NAME" ColumnName="LOOKUP_NAME" />
@@ -44,7 +57,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Models">
-      <EntityTypeMapping TypeName="CarShopModel.Model">
+      <EntityTypeMapping TypeName="CarShopDB.Models">
         <MappingFragment StoreEntitySet="Models">
           <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
           <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
@@ -56,7 +69,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Parts">
-      <EntityTypeMapping TypeName="CarShopModel.Part">
+      <EntityTypeMapping TypeName="CarShopDB.Parts">
         <MappingFragment StoreEntitySet="Parts">
           <ScalarProperty Name="Part_ID" ColumnName="Part_ID" />
           <ScalarProperty Name="part_name" ColumnName="part_name" />
@@ -71,7 +84,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PARTS_LINK">
-      <EntityTypeMapping TypeName="CarShopModel.PARTS_LINK">
+      <EntityTypeMapping TypeName="CarShopDB.PARTS_LINK">
         <MappingFragment StoreEntitySet="PARTS_LINK">
           <ScalarProperty Name="LINK_ID" ColumnName="LINK_ID" />
           <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
@@ -82,7 +95,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PROVIDER_CATEGORIES">
-      <EntityTypeMapping TypeName="CarShopModel.PROVIDER_CATEGORIES">
+      <EntityTypeMapping TypeName="CarShopDB.PROVIDER_CATEGORIES">
         <MappingFragment StoreEntitySet="PROVIDER_CATEGORIES">
           <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
           <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
@@ -92,15 +105,25 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="REPAIR_SERVICES">
-      <EntityTypeMapping TypeName="CarShopModel.REPAIR_SERVICES">
+      <EntityTypeMapping TypeName="CarShopDB.REPAIR_SERVICES">
         <MappingFragment StoreEntitySet="REPAIR_SERVICES">
           <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
           <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SERVICE_WORKS">
+      <EntityTypeMapping TypeName="CarShopDB.SERVICE_WORKS">
+        <MappingFragment StoreEntitySet="SERVICE_WORKS">
+          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+          <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+          <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+          <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="SERVICES">
-      <EntityTypeMapping TypeName="CarShopModel.SERVICE">
+      <EntityTypeMapping TypeName="CarShopDB.SERVICES">
         <MappingFragment StoreEntitySet="SERVICES">
           <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
           <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
@@ -110,7 +133,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SUB_CATEGORIES">
-      <EntityTypeMapping TypeName="CarShopModel.SUB_CATEGORIES">
+      <EntityTypeMapping TypeName="CarShopDB.SUB_CATEGORIES">
         <MappingFragment StoreEntitySet="SUB_CATEGORIES">
           <ScalarProperty Name="SUB_CATEGORY_ID" ColumnName="SUB_CATEGORY_ID" />
           <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
@@ -119,7 +142,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="CarShopModel.sysdiagram">
+      <EntityTypeMapping TypeName="CarShopDB.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -129,40 +152,52 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionName="CarShopModel.Store.FUN_YEARS_BETWEEN_LIST" FunctionImportName="FUN_YEARS_BETWEEN_LIST">
+    <EntitySetMapping Name="V_Car_Model_Part">
+      <EntityTypeMapping TypeName="CarShopDB.V_Car_Model_Part">
+        <MappingFragment StoreEntitySet="V_Car_Model_Part">
+          <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+          <ScalarProperty Name="Model_Name" ColumnName="Model_Name" />
+          <ScalarProperty Name="Part_ID" ColumnName="Part_ID" />
+          <ScalarProperty Name="Part_Name" ColumnName="Part_Name" />
+          <ScalarProperty Name="Part_price" ColumnName="Part_price" />
+          <ScalarProperty Name="Part_details" ColumnName="Part_details" />
+          <ScalarProperty Name="Part_Manuf" ColumnName="Part_Manuf" />
+          <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+          <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_Cars_Models">
+      <EntityTypeMapping TypeName="CarShopDB.V_Cars_Models">
+        <MappingFragment StoreEntitySet="V_Cars_Models">
+          <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+          <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+          <ScalarProperty Name="Model_name" ColumnName="Model_name" />
+          <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VIEW_CLIENT_CARS">
+      <EntityTypeMapping TypeName="CarShopDB.VIEW_CLIENT_CARS">
+        <MappingFragment StoreEntitySet="VIEW_CLIENT_CARS">
+          <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
+          <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+          <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
+          <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
+          <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
+          <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
+          <ScalarProperty Name="ENGINE_TYPE_DESCR" ColumnName="ENGINE_TYPE_DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="CarShopDB.Store.FUN_YEARS_BETWEEN_LIST" FunctionImportName="FUN_YEARS_BETWEEN_LIST">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="CarShopModel.FUN_YEARS_BETWEEN_LIST_Result">
+        <ComplexTypeMapping TypeName="CarShopDB.FUN_YEARS_BETWEEN_LIST_Result">
           <ScalarProperty Name="yr" ColumnName="yr" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_GEN_ID" FunctionName="CarShopModel.Store.SP_GEN_ID" />
-    <EntitySetMapping Name="VIEW_CLIENT_CARS">
-      <EntityTypeMapping TypeName="CarShopModel.VIEW_CLIENT_CARS">
-        <MappingFragment StoreEntitySet="VIEW_CLIENT_CARS">
-          <ScalarProperty Name="ENGINE_TYPE_DESCR" ColumnName="ENGINE_TYPE_DESCR" />
-          <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
-          <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
-          <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
-          <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
-          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
-          <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-          <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CLIENT_CARS">
-      <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
-        <MappingFragment StoreEntitySet="CLIENT_CARS">
-          <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
-          <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
-          <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
-          <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
-          <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
-          <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-          <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GEN_ID" FunctionName="CarShopDB.Store.SP_GEN_ID" />
   </EntityContainerMapping>
 </Mapping>

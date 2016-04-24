@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lblClient = new DevExpress.XtraEditors.LabelControl();
             this.gridLookUpEdit1 = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.aPPOITMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -43,6 +45,7 @@
             this.colCLIENT_CARS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnFindClient = new DevExpress.XtraEditors.SimpleButton();
             this.SrchClientCar = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_CAR_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,30 +54,32 @@
             this.colCAR_YEAR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENGINE_TYPE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENGINE_SIZE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colClients = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colModels = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblCar = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
             this.AppTime = new DevExpress.XtraEditors.TimeEdit();
             this.AppntDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateTime = new System.Windows.Forms.Label();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.pnlApptment = new DevExpress.XtraEditors.PanelControl();
-            this.pnlExtWindows = new DevExpress.XtraEditors.PanelControl();
-            this.aPPOITMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colClients = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModels = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnAddServiceWork = new DevExpress.XtraEditors.SimpleButton();
+            this.sERVICE_WORKSGridControl = new DevExpress.XtraGrid.GridControl();
+            this.sERVICE_WORKSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SrchClientCar.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AppTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlApptment)).BeginInit();
             this.pnlApptment.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlExtWindows)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblClient
@@ -98,6 +103,17 @@
             this.gridLookUpEdit1.Properties.View = this.gridLookUpEdit1View;
             this.gridLookUpEdit1.Size = new System.Drawing.Size(238, 20);
             this.gridLookUpEdit1.TabIndex = 1;
+            // 
+            // aPPOITMENTBindingSource
+            // 
+            this.aPPOITMENTBindingSource.DataSource = typeof(ServiceManagment.APPOITMENTS);
+            this.aPPOITMENTBindingSource.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.aPPOITMENTBindingSource_AddingNew);
+            this.aPPOITMENTBindingSource.CurrentItemChanged += new System.EventHandler(this.aPPOITMENTBindingSource_CurrentItemChanged);
+            this.aPPOITMENTBindingSource.PositionChanged += new System.EventHandler(this.aPPOITMENTBindingSource_PositionChanged);
+            // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataSource = typeof(ServiceManagment.Clients);
             // 
             // gridLookUpEdit1View
             // 
@@ -202,6 +218,10 @@
             this.SrchClientCar.Size = new System.Drawing.Size(238, 20);
             this.SrchClientCar.TabIndex = 16;
             // 
+            // cLIENT_CARSBindingSource
+            // 
+            this.cLIENT_CARSBindingSource.DataSource = typeof(ServiceManagment.CLIENT_CARS);
+            // 
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -268,6 +288,20 @@
             this.colENGINE_SIZE.Visible = true;
             this.colENGINE_SIZE.VisibleIndex = 6;
             // 
+            // colClients
+            // 
+            this.colClients.FieldName = "Clients";
+            this.colClients.Name = "colClients";
+            this.colClients.Visible = true;
+            this.colClients.VisibleIndex = 7;
+            // 
+            // colModels
+            // 
+            this.colModels.FieldName = "Models.MODEL_NAME";
+            this.colModels.Name = "colModels";
+            this.colModels.Visible = true;
+            this.colModels.VisibleIndex = 8;
+            // 
             // lblCar
             // 
             this.lblCar.AutoSize = true;
@@ -314,17 +348,11 @@
             this.lblDateTime.TabIndex = 11;
             this.lblDateTime.Text = "Дата и час";
             // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(353, 121);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 18;
-            this.simpleButton2.Text = "simpleButton2";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
             // pnlApptment
             // 
+            this.pnlApptment.Controls.Add(this.btnSave);
+            this.pnlApptment.Controls.Add(this.btnAddServiceWork);
+            this.pnlApptment.Controls.Add(this.sERVICE_WORKSGridControl);
             this.pnlApptment.Controls.Add(this.lblClient);
             this.pnlApptment.Controls.Add(this.gridLookUpEdit1);
             this.pnlApptment.Controls.Add(this.lblDateTime);
@@ -334,72 +362,74 @@
             this.pnlApptment.Controls.Add(this.lblCar);
             this.pnlApptment.Controls.Add(this.SrchClientCar);
             this.pnlApptment.Controls.Add(this.btnFindClient);
-            this.pnlApptment.Controls.Add(this.simpleButton2);
             this.pnlApptment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlApptment.Location = new System.Drawing.Point(0, 0);
             this.pnlApptment.Name = "pnlApptment";
-            this.pnlApptment.Size = new System.Drawing.Size(808, 462);
+            this.pnlApptment.Size = new System.Drawing.Size(1162, 462);
             this.pnlApptment.TabIndex = 19;
             // 
-            // pnlExtWindows
+            // btnAddServiceWork
             // 
-            this.pnlExtWindows.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlExtWindows.Location = new System.Drawing.Point(454, 0);
-            this.pnlExtWindows.Name = "pnlExtWindows";
-            this.pnlExtWindows.Size = new System.Drawing.Size(354, 462);
-            this.pnlExtWindows.TabIndex = 20;
+            this.btnAddServiceWork.Location = new System.Drawing.Point(22, 148);
+            this.btnAddServiceWork.Name = "btnAddServiceWork";
+            this.btnAddServiceWork.Size = new System.Drawing.Size(75, 23);
+            this.btnAddServiceWork.TabIndex = 19;
+            this.btnAddServiceWork.Text = "Добави";
+            this.btnAddServiceWork.Click += new System.EventHandler(this.btnAddServiceWork_Click);
             // 
-            // aPPOITMENTBindingSource
+            // sERVICE_WORKSGridControl
             // 
-            this.aPPOITMENTBindingSource.DataSource = typeof(ServiceManagment.APPOITMENT);
-            this.aPPOITMENTBindingSource.AddingNew += new System.ComponentModel.AddingNewEventHandler(this.aPPOITMENTBindingSource_AddingNew);
-            this.aPPOITMENTBindingSource.CurrentItemChanged += new System.EventHandler(this.aPPOITMENTBindingSource_CurrentItemChanged);
-            this.aPPOITMENTBindingSource.PositionChanged += new System.EventHandler(this.aPPOITMENTBindingSource_PositionChanged);
+            this.sERVICE_WORKSGridControl.DataSource = this.sERVICE_WORKSBindingSource;
+            this.sERVICE_WORKSGridControl.Location = new System.Drawing.Point(22, 177);
+            this.sERVICE_WORKSGridControl.MainView = this.gridView2;
+            this.sERVICE_WORKSGridControl.Name = "sERVICE_WORKSGridControl";
+            this.sERVICE_WORKSGridControl.Size = new System.Drawing.Size(406, 220);
+            this.sERVICE_WORKSGridControl.TabIndex = 18;
+            this.sERVICE_WORKSGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
             // 
-            // clientBindingSource
+            // sERVICE_WORKSBindingSource
             // 
-            this.clientBindingSource.DataSource = typeof(ServiceManagment.Client);
+            this.sERVICE_WORKSBindingSource.DataMember = "SERVICE_WORKS";
+            this.sERVICE_WORKSBindingSource.DataSource = this.aPPOITMENTBindingSource;
             // 
-            // cLIENT_CARSBindingSource
+            // gridView2
             // 
-            this.cLIENT_CARSBindingSource.DataSource = typeof(ServiceManagment.CLIENT_CARS);
+            this.gridView2.GridControl = this.sERVICE_WORKSGridControl;
+            this.gridView2.Name = "gridView2";
             // 
-            // colClients
+            // btnSave
             // 
-            this.colClients.FieldName = "Clients";
-            this.colClients.Name = "colClients";
-            this.colClients.Visible = true;
-            this.colClients.VisibleIndex = 7;
-            // 
-            // colModels
-            // 
-            this.colModels.FieldName = "Models.MODEL_NAME";
-            this.colModels.Name = "colModels";
-            this.colModels.Visible = true;
-            this.colModels.VisibleIndex = 8;
+            this.btnSave.Location = new System.Drawing.Point(344, 121);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(84, 24);
+            this.btnSave.TabIndex = 20;
+            this.btnSave.Text = "Запази";
+            this.btnSave.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // TFormManageAppoitment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 462);
-            this.Controls.Add(this.pnlExtWindows);
+            this.ClientSize = new System.Drawing.Size(1162, 462);
             this.Controls.Add(this.pnlApptment);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TFormManageAppoitment";
             this.Text = "TFormManageAppoitment";
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SrchClientCar.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AppTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlApptment)).EndInit();
             this.pnlApptment.ResumeLayout(false);
             this.pnlApptment.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlExtWindows)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -438,8 +468,11 @@
         private DevExpress.XtraGrid.Columns.GridColumn colENGINE_SIZE;
         private DevExpress.XtraGrid.Columns.GridColumn colClients;
         private DevExpress.XtraGrid.Columns.GridColumn colModels;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.PanelControl pnlApptment;
-        private DevExpress.XtraEditors.PanelControl pnlExtWindows;
+        private DevExpress.XtraEditors.SimpleButton btnAddServiceWork;
+        private DevExpress.XtraGrid.GridControl sERVICE_WORKSGridControl;
+        private System.Windows.Forms.BindingSource sERVICE_WORKSBindingSource;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
     }
 }
