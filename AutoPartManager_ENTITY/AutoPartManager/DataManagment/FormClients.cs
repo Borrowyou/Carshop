@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
+using AutoPartDataModels;
 
 namespace DataManagment
 {
@@ -14,25 +16,34 @@ namespace DataManagment
     {
         public ClientsDataSet ClientsDset { get; set; }
         public FormManageClients FormManage { get; set; }
+        DMClients CDMClients;
         public FormClients()
         {
             InitializeComponent();
-            clientsDataSet.InitAdapters();
-            FormManage = new FormManageClients(clientsDataSet);
+           // clientsDataSet.InitAdapters();
+            FormManage = new FormManageClients();
             FormManage.TopLevel = false;
             
             pnlFormClient.Controls.Add(FormManage);
             FormManage.Show();
         }
 
+        private void SetDataSources()
+        {
+            clientsBindingSource.DataSource = CDMClients.GetClientsDbSet().Local.ToBindingList();
+        }
+
+
         private void FormManageClients_Load(object sender, EventArgs e)
         {
-            clientsDataSet.LoadClients();
+            CDMClients = new DMClients();
+            SetDataSources();
+            CDMClients.LoadAllClients();
         }
 
         private void AllClientsBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            FormManage.LoadOrInsertClient((int)clientsDataSet.Clients.Rows[AllClientsBindingSource.Position]["CLIENT_ID"]);
+
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -40,7 +51,16 @@ namespace DataManagment
             FormManage.LoadOrInsertClient(-1);
         }
 
-
-
+        private void clientsBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                FormManage.LoadOrInsertClient(((Clients)clientsBindingSource.Current).CLIENT_ID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

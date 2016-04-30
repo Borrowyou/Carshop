@@ -2,73 +2,96 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
+using AutoPartDataModels;
 
 namespace DataManagment
 {
     public partial class FormManageClients : Form
     {
+        bool InsertState;
         List<PanelClientCar> ListClientCars;
         int PnlTop;
         int DefHeight;
         int btnPosTop;
+        List<CLIENT_CARS> ClientCars;
         public int FClientID { get; set; }
+        public DMClients CDMClients;
 
         public FormManageClients()
         {
             InitializeComponent();
-            ClientsDset.InitAdapters();
+          //  ClientsDset.InitAdapters();
+            CDMClients = new DMClients();
             ListClientCars = new List<PanelClientCar>();
+            SetDataSources();
             PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
             DefHeight = Height;
-        }
-        public FormManageClients(ClientsDataSet AClientDet)
-        {
-            InitializeComponent();
-            ClientsDset = AClientDet;
-            ClientBindingSource.DataSource = ClientsDset;
-            PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
-            DefHeight = Height;
-            btnPosTop = btnAddCar.Top;
-            ListClientCars = new List<PanelClientCar>();
- 
+           // pnlEmployeeData.Visible = false;
         }
 
+        public void SetDataSources()
+        {
+            lOOKUP_ITEMSBindingSource.DataSource = CDMClients.GetClienTypesLookUp().ToList();      
+        }
 
         private void FormManageClients_Load(object sender, EventArgs e)
         {
-           ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
+        }
+
+        public Clients CurrClient()
+        {
+            return (Clients)clientsBindingSource.Current;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            SaveClientData();
+        }
+
+        private void SaveClientData()
+        {
             txtEditDetails.EditValue = RichtxtDetails.Text;
-            ClientBindingSource.EndEdit();
-            ClientsDset.SaveClientByID();
+            clientsBindingSource.EndEdit();
+            try
+            {
+                if (InsertState)
+                {
+                    CDMClients.CurrContex.Entry(CurrClient()).State = EntityState.Added;
+                }
+                else
+                {
+                    CDMClients.CurrContex.Entry(CurrClient()).State = EntityState.Modified;
+                }
+                CDMClients.CurrContex.SaveChanges();
+            }
+            catch (Exception E)
+            {
+                MessageBox.Show(E.Message);
+            }
+
             foreach (var ClientCar in ListClientCars)
                 ClientCar.SaveClientCars();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ClientBindingSource.AddNew();
         }
 
         private void chkIsFIrm_CheckedChanged(object sender, EventArgs e)
         {
-            chkIsFIrm.EditValue = (chkIsFIrm.Checked) ? "Y" : "N";
         }
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
             ClearAndReplace();
             ListClientCars.Add(new PanelClientCar());
-            Controls.Add(ListClientCars.Last());
+            pnlCommonClData.Controls.Add(ListClientCars.Last());
             ListClientCars.Last().Setplaces = ClearAndReplace;
             ListClientCars.Last().Left = RichtxtDetails.Left;
             ClearAndReplace();
@@ -113,9 +136,10 @@ namespace DataManagment
 
         private void btnAddCar_Click_1(object sender, EventArgs e)
         {
-            ListClientCars.Add(new PanelClientCar(FClientID, -1));
+            ListClientCars.Add(new PanelClientCar(null, 
+                ((Clients)clientsBindingSource.Current).CLIENT_ID ));
             ListClientCars.Last().Setplaces = ClearAndReplace;
-            Controls.Add(ListClientCars.Last());
+            pnlCommonClData.Controls.Add(ListClientCars.Last());
             ClearAndReplace();
         }
 
@@ -129,26 +153,47 @@ namespace DataManagment
             ClearAndReplace();
             if (ClientID == -1)
             {
-                ClientBindingSource.AddNew();
+                InitNewCLient();
             }
             else
             {
-                ClientsDset.LoadClientByID(ClientID);
-                ClientsDset.LoadClientsCars(ClientID);
- 
-                foreach (DataRow CurrRow in ClientsDset.CLIENT_CARS)
+                InsertState = false;
+                BindClientByID(ClientID);
+                ClientCars = CDMClients.LoadClientCars(ClientID).ToList();
+                foreach (CLIENT_CARS CurrCar in ClientCars)
                 {
-                    ListClientCars.Add(new PanelClientCar(ClientID, Convert.ToInt32(CurrRow["CLIENT_CAR_ID"])));
+                    ListClientCars.Add(new PanelClientCar(CurrCar, -1));
                     ListClientCars.Last().Setplaces = ClearAndReplace;
-                    Controls.Add(ListClientCars.Last());
+                    pnlCommonClData.Controls.Add(ListClientCars.Last());
                     ClearAndReplace();  
                 }
             }
         }
 
+
+        public void BindClientByID(int ClientID)
+        {
+
+            clientsBindingSource.DataSource = CDMClients.CurrContex.Clients.Where(c => c.CLIENT_ID == ClientID).ToList();
+            CDMClients.CurrContex.Clients.Attach((Clients)clientsBindingSource.Current);
+            
+        }
         private void button3_Click(object sender, EventArgs e)
         {
 
         }
+
+        public void InitNewCLient()
+        {
+            InsertState = true;
+            clientsBindingSource.AddNew();
+            CurrClient().CLIENT_ID = CDMClients.GenID("CLIENTS");
+            CurrClient().CLIENT_FORM = DateTime.Now;
+            CurrClient().CLIENT_TYPE = DMStrings.ClientTypePrivate;
+                
+            clientsBindingSource.ResetBindings(false);
+        }
+
+
     }
 }

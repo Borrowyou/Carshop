@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using NLog;
-
+using AutoPartDataModels;
 namespace DataManagment
 {
     public partial class TFormServicesManage : Form

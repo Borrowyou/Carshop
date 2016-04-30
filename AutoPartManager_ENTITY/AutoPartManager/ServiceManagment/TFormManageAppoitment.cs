@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using NLog;
+using AutoPartDataModels;
 using DataManagment;
 
 namespace ServiceManagment
@@ -18,16 +19,36 @@ namespace ServiceManagment
         DMAppointments DMAppoitm;
         Logger logger;
         FormManageClients FormMngClients;
+        public bool InsertState;
 
         public TFormManageAppoitment()
         {
             InitializeComponent();
             logger = LogManager.GetCurrentClassLogger();
             DMAppoitm = new DMAppointments();
+            LoadCommonData();
             InitNewAppoitment();
             SetDataSources();
-            DMAppoitm.CurrContex.SERVICE_WORKS.Load();
+            DMAppoitm.CurrContex.SERVICE_WORKS.Include(l =>l.LOOKUP_ITEMS) .Load();
             
+        }
+
+        public TFormManageAppoitment(bool AInsertState)
+        {
+            InitializeComponent();
+            InsertState = AInsertState;
+            logger = LogManager.GetCurrentClassLogger();
+            DMAppoitm = new DMAppointments();
+            LoadCommonData();
+            InitNewAppoitment();
+            SetDataSources();
+            DMAppoitm.CurrContex.SERVICE_WORKS.Include(l => l.LOOKUP_ITEMS).Load();
+
+        }
+        public void LoadCommonData()
+        {
+            sERVICESBindingSource.DataSource = DMAppoitm.CurrContex.SERVICES.ToList();
+            lOOKUP_ITEMSBindingSource.DataSource = DMAppoitm.CurrContex.LOOKUP_ITEMS.ToList();
         }
 
         public void InitNewAppoitment()
@@ -47,6 +68,7 @@ namespace ServiceManagment
         {
             clientBindingSource.DataSource = DMAppoitm.GetAllClients().ToList();
             sERVICE_WORKSBindingSource.DataSource = DMAppoitm.CurrContex.SERVICE_WORKS.Local.ToBindingList();
+            EmpListBindSrc.DataSource = DMAppoitm.CurrContex.EMPLOYEES.ToList();
         }
 
         private void aPPOITMENTBindingSource_PositionChanged(object sender, EventArgs e)
@@ -65,13 +87,22 @@ namespace ServiceManagment
             {
                 aPPOITMENTBindingSource.EndEdit();
                 sERVICE_WORKSBindingSource.EndEdit();
-                DMAppoitm.CurrContex.APPOITMENTS.Add(((APPOITMENTS)aPPOITMENTBindingSource.Current));
+                if (InsertState)
+                {
+                    DMAppoitm.CurrContex.APPOITMENTS.Add(((APPOITMENTS)aPPOITMENTBindingSource.Current));    
+                }
+                else
+                {
+                    DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
+                }
+
                 DMAppoitm.CurrContex.SaveChanges();
+                InsertState = false;
             }
             catch(Exception Ex)
             {
                 logger.Error(Ex);
-                throw Ex;
+                MessageBox.Show(Ex.Message);
             }
             
         
@@ -92,11 +123,9 @@ namespace ServiceManagment
             FormMngClients = new FormManageClients();
             FormMngClients.FormBorderStyle = FormBorderStyle.Sizable;
             FormMngClients.LoadOrInsertClient(-1);
-            //pnlExtWindows.Controls.Add(FormMngClients);
             FormMngClients.ShowDialog();
             ReloadAllClients();
             gridLookUpEdit1.EditValue = FormMngClients.FClientID;
-            //CurrentAppoitment().CLIENT_ID = FormMngClients.FClientID;
         }
 
         private APPOITMENTS CurrentAppoitment()
@@ -110,12 +139,45 @@ namespace ServiceManagment
             ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).SERVICE_WORK_ID = DMAppoitm.GenID("SERVICE_WORK_ID");
             ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).APPOITMENT_ID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID;
             ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).WORK_STATUS = DMStrings.ServiceWorkPend;
+            CurrAppoitment().SERVICE_WORKS.Add(CurrentServiceWork());
 
+        }
+        private SERVICE_WORKS CurrentServiceWork()
+        {
+            return (SERVICE_WORKS)sERVICE_WORKSBindingSource.Current;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Save();
+        }
+
+        private void btnAddNewWorker_Click(object sender, EventArgs e)
+        {
+            EmplSrvBindingSrc.AddNew();
+            CurrEmplWork().EMPLOYEE_WORK_ID = DMAppoitm.GenID("EMPLOYEE_WORKS");
+            CurrEmplWork().SERVICE_WORK_ID = CurrentServiceWork().SERVICE_WORK_ID;
+            CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Add(CurrEmplWork());  
+        }
+
+        private EMPLOYEES_SERVICE_WORKS CurrEmplWork()
+        {
+            return (EMPLOYEES_SERVICE_WORKS)EmplSrvBindingSrc.Current;
+        }
+
+        private void sERVICE_WORKSBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void LoadEmplServices()
+        { 
+            
+        }
+
+        private APPOITMENTS CurrAppoitment()
+        {
+            return (APPOITMENTS)aPPOITMENTBindingSource.Current;
         }
 
     }

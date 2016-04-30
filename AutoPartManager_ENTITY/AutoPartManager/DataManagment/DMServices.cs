@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
+using AutoPartDataModels;
 
 namespace DataManagment
 {
     public class DMServices
     {
-        public CarShopDB CurrContex;
+        public CarShopEntities CurrContex;
         public DMServices()
         {
-            CurrContex = new CarShopDB();
+            CurrContex = new CarShopEntities();
         }
 
         public int GenID(string GenName)

@@ -71,5 +71,11 @@ namespace AutoPartManager
 
         }
 
+        private void служителиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormEmployees CFormEmpl = new FormEmployees();
+            CFormEmpl.Show();
+        }
+
     }
 }

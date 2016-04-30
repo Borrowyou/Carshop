@@ -30,3 +30,5 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Data
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.pdb
 C:\PartsManager\Bin\NLog.config
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormEmployees.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageEmployee.resources

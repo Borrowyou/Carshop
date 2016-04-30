@@ -35,8 +35,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridClients = new DevExpress.XtraGrid.GridControl();
-            this.AllClientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientsDataSet = new DataManagment.ClientsDataSet();
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewClients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,8 +49,7 @@
             this.PnlBtns.SuspendLayout();
             this.pnlClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AllClientsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientsDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewClients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +102,7 @@
             // 
             // gridClients
             // 
-            this.gridClients.DataSource = this.AllClientsBindingSource;
+            this.gridClients.DataSource = this.clientsBindingSource;
             this.gridClients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridClients.Location = new System.Drawing.Point(0, 0);
             this.gridClients.MainView = this.gridViewClients;
@@ -114,16 +112,10 @@
             this.gridClients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewClients});
             // 
-            // AllClientsBindingSource
+            // clientsBindingSource
             // 
-            this.AllClientsBindingSource.DataMember = "Clients";
-            this.AllClientsBindingSource.DataSource = this.clientsDataSet;
-            this.AllClientsBindingSource.PositionChanged += new System.EventHandler(this.AllClientsBindingSource_PositionChanged);
-            // 
-            // clientsDataSet
-            // 
-            this.clientsDataSet.DataSetName = "ClientsDataSet";
-            this.clientsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.clientsBindingSource.DataSource = typeof(AutoPartDataModels.Clients);
+            this.clientsBindingSource.PositionChanged += new System.EventHandler(this.clientsBindingSource_PositionChanged);
             // 
             // gridViewClients
             // 
@@ -214,8 +206,7 @@
             this.PnlBtns.ResumeLayout(false);
             this.pnlClients.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AllClientsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientsDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewClients)).EndInit();
             this.ResumeLayout(false);
 
@@ -226,7 +217,6 @@
         private System.Windows.Forms.Panel pnlFrameClients;
         private System.Windows.Forms.Panel pnlClients;
         private System.Windows.Forms.Splitter splitter1;
-        private ClientsDataSet clientsDataSet;
         private DevExpress.XtraGrid.GridControl gridClients;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewClients;
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_ID;
@@ -236,10 +226,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTELEPHONE;
         private DevExpress.XtraGrid.Columns.GridColumn colEMAIL;
         private DevExpress.XtraGrid.Columns.GridColumn colDETAILS;
-        private System.Windows.Forms.BindingSource AllClientsBindingSource;
         private System.Windows.Forms.Panel PnlBtns;
         private DevExpress.XtraEditors.SimpleButton btnNew;
         private System.Windows.Forms.Panel pnlFormClient;
+        private System.Windows.Forms.BindingSource clientsBindingSource;
 
 
     }

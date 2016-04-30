@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutoPartDataModels;
+using System.Data.Entity;
 
 namespace DataManagment
 {
@@ -15,32 +17,49 @@ namespace DataManagment
         public delegate void ReSetAll();
         public ReSetAll Setplaces;
         public int PanelID;
+        public CLIENT_CARS ClientCar;
+        public bool StateNew;
+        public DMClients CDMClients;
 
         public PanelClientCar()
-        {
-            InitializeComponent();
+        {           
             ClientsDset.InitAdapters();
-            ClientCarsBindingSrc.AddNew();
-            ClientsDset.LoadMarks();
-            ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
         }
 
-        public PanelClientCar(int ClientID, int ClientCarID)
+
+        public PanelClientCar(CLIENT_CARS AClientCar, int ClientID)
         {
             InitializeComponent();
-            LoadClientCarID(ClientID, ClientCarID);
+            CDMClients = new DMClients();
+            if (AClientCar == null)
+                GenerateNewClient(ClientID);
+            else
+            {
+                ClientCar = AClientCar;
+                StateNew = false;
+            }
+            
+            SetDataSources();
         }
+        private void GenerateNewClient(int ClientID)
+        {
+            ClientCar = new CLIENT_CARS();
+            ClientCar.CLIENT_CAR_ID = CDMClients.GenID("CLIENTS_CAR_ID");
+            ClientCar.CLIENT_ID = ClientID;
+            StateNew = true;
+        }
+
+        private void SetDataSources()
+        {
+            cLIENT_CARSBindingSource.DataSource = ClientCar;
+            AllCarsBindSrc.DataSource = CDMClients.CurrContex.Cars.ToList();
+            EngTypeBindSrc.DataSource = CDMClients.GetEngineTypes().ToList();
+        }
+
+       
         private void LoadClientCarID(int ClientID, int ClientCarID)
         {
-            ClientsDset.InitAdapters();
-            ClientsDset.FClientID = ClientID;
-            if (ClientCarID == -1)
-                ClientCarsBindingSrc.AddNew();
-            else
-                ClientsDset.LoadClientCarByID(ClientCarID);
-            ClientsDset.LoadMarks();
-            ClientsDset.LoadCarLookUps();
-            ClientsDset.LoadLookUpByName(DMStrings.EngTypeLup);
+
         }
 
         private void PanelClientCar_Load(object sender, EventArgs e)
@@ -50,18 +69,14 @@ namespace DataManagment
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            ClientCarsBindingSrc.RemoveCurrent();
-            ClientCarsBindingSrc.EndEdit();
-            ClientsDset.SaveClientByID();
-
-            ClientsDset.AcceptChanges();
             this.Dispose();
             Setplaces();
+            
         }
 
         private void cBxMark_EditValueChanged(object sender, EventArgs e)
         {
-            ;
+            
         }
 
     
@@ -70,13 +85,39 @@ namespace DataManagment
         {
             try
             {
-                ClientCarsBindingSrc.EndEdit();
-                ClientsDset.ClientsCarsTblAdapter.Update(ClientsDset.CLIENT_CARS);
+                cLIENT_CARSBindingSource.EndEdit();
+                if (StateNew)
+                    CDMClients.CurrContex.CLIENT_CARS.Add(ClientCar);
+                else
+                {
+                    CDMClients.CurrContex.CLIENT_CARS.Attach(ClientCar);
+                }
+                CDMClients.CurrContex.SaveChanges();
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show("Update failed" + ex.Message);
             }
+            
+        }
+
+        private void cLIENT_CARSBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (ClientCar != null)
+                ModelsBindSrc.DataSource = CDMClients.CurrContex.Models.
+                            Where(m => m.CAR_ID == ((CLIENT_CARS)cLIENT_CARSBindingSource.Current).CAR_ID).ToList();
+        }
+
+        private void cLIENT_CARSBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void ModelsBindSrc_CurrentChanged(object sender, EventArgs e)
+        {
+            if (ClientCar != null)
+                YearsList.DataSource = CDMClients.LoadCarYears(((Models)ModelsBindSrc.Current).CAR_ID,
+                                    ((Models)ModelsBindSrc.Current).MODEL_NAME).ToList();
         }
     }
 }

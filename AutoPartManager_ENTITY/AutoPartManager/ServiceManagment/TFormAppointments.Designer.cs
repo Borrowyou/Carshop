@@ -31,12 +31,14 @@
             this.pnlBtns = new System.Windows.Forms.Panel();
             this.btnNewAppointment = new DevExpress.XtraEditors.SimpleButton();
             this.pnlFormHolder = new System.Windows.Forms.Panel();
+            this.btnViewAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBtns.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBtns
             // 
             this.pnlBtns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlBtns.Controls.Add(this.btnViewAppoitments);
             this.pnlBtns.Controls.Add(this.btnNewAppointment);
             this.pnlBtns.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlBtns.Location = new System.Drawing.Point(0, 0);
@@ -51,6 +53,7 @@
             this.btnNewAppointment.Size = new System.Drawing.Size(58, 43);
             this.btnNewAppointment.TabIndex = 0;
             this.btnNewAppointment.Text = "Нов запис";
+            this.btnNewAppointment.Click += new System.EventHandler(this.btnNewAppointment_Click);
             // 
             // pnlFormHolder
             // 
@@ -59,6 +62,15 @@
             this.pnlFormHolder.Name = "pnlFormHolder";
             this.pnlFormHolder.Size = new System.Drawing.Size(554, 339);
             this.pnlFormHolder.TabIndex = 1;
+            // 
+            // btnViewAppoitments
+            // 
+            this.btnViewAppoitments.Location = new System.Drawing.Point(3, 61);
+            this.btnViewAppoitments.Name = "btnViewAppoitments";
+            this.btnViewAppoitments.Size = new System.Drawing.Size(58, 43);
+            this.btnViewAppoitments.TabIndex = 1;
+            this.btnViewAppoitments.Text = "Часове";
+            this.btnViewAppoitments.Click += new System.EventHandler(this.btnViewAppoitments_Click);
             // 
             // TFormAppointments
             // 
@@ -80,5 +92,6 @@
         private System.Windows.Forms.Panel pnlBtns;
         private DevExpress.XtraEditors.SimpleButton btnNewAppointment;
         private System.Windows.Forms.Panel pnlFormHolder;
+        private DevExpress.XtraEditors.SimpleButton btnViewAppoitments;
     }
 }

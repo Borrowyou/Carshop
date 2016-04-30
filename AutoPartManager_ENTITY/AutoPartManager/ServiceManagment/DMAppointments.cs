@@ -6,15 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.Entity;
+using AutoPartDataModels;
 
 namespace ServiceManagment
 {
     public class DMAppointments
     {
-        public CarShopEntities2 CurrContex;
+        public CarShopEntities CurrContex;
         public DMAppointments()
         {
-            CurrContex = new CarShopEntities2();
+            CurrContex = new CarShopEntities();
             
         }
 
@@ -35,6 +36,18 @@ namespace ServiceManagment
  
         }
 
+        public DbSet<APPOITMENTS> GetAppoitmentsDBSet()
+        {
+            return CurrContex.APPOITMENTS;
+        }
+
+        public void LoadAllAppoitments()
+        {
+            CurrContex.APPOITMENTS.Local.Clear();
+            var AllAppoitments = CurrContex.APPOITMENTS;
+            foreach (APPOITMENTS CurrApp in AllAppoitments)
+                CurrContex.APPOITMENTS.Local.Add(CurrApp);
+        }
 
     }
 }
