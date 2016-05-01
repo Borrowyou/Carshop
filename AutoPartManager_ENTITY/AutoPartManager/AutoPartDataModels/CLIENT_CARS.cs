@@ -14,6 +14,12 @@ namespace AutoPartDataModels
     
     public partial class CLIENT_CARS
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CLIENT_CARS()
+        {
+            this.APPOITMENTS = new HashSet<APPOITMENTS>();
+        }
+    
         public int CLIENT_CAR_ID { get; set; }
         public int CLIENT_ID { get; set; }
         public int CAR_ID { get; set; }
@@ -25,5 +31,7 @@ namespace AutoPartDataModels
         public virtual Clients Clients { get; set; }
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         public virtual Models Models { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
     }
 }

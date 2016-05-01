@@ -32,5 +32,25 @@ namespace ServiceManagment
              
         }
 
+        private void gridViewAppoitments_DoubleClick(object sender, EventArgs e)
+        {
+            EditCurrentAppoitment();
+        }
+
+        private void EditCurrentAppoitment()
+        {
+            int AppID = SelectedApp().APPOITMENT_ID;
+            TFormManageAppoitment FormManageAppoitment;
+            FormManageAppoitment = new TFormManageAppoitment(false);
+            FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
+            FormManageAppoitment.LoadOrInsAppt(AppID);
+            FormManageAppoitment.ShowDialog();
+
+        }
+
+        private APPOITMENTS SelectedApp()
+        {
+            return (APPOITMENTS)aPPOITMENTSBindingSource.Current;
+        }
     }
 }

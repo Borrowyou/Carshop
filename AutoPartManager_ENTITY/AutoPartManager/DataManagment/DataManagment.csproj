@@ -126,6 +126,7 @@
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DMEmployees.cs" />
+    <Compile Include="DMParts.cs" />
     <Compile Include="FormEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,13 +268,23 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AutoPartDataModels.APPOITMENTS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Cars.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Clients.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.CLIENT_CARS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES_SERVICE_WORKS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.FUN_YEARS_BETWEEN_LIST_Result.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.LOOKUP_ITEMS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Models.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.Parts.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.PARTS_LINK.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.PROVIDER_CATEGORIES.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.REPAIR_SERVICES.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SERVICES.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORKS.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORK_PARTS.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SUB_CATEGORIES.datasource" />
     <None Include="Properties\DataSources\CarShopEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

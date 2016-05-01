@@ -12,18 +12,25 @@ namespace DataManagment
 {
     public partial class TFormManagePart : Form
     {
+        DMParts CDMParts;
+
         public TFormManagePart()
         {
             InitializeComponent();
+            CDMParts = new DMParts();
             Dock = DockStyle.Fill;
         }
         public TFormManagePart(TPartsDataSet APartsDSet)
         {
             InitializeComponent();
-            this.PartsDataSet = APartsDSet;
-            PartBindSrc.DataSource = PartsDataSet;
             Dock = DockStyle.Fill;
         }
+
+        public void LoadPartByID(int PartID)
+        {
+            partsBindingSource.DataSource = CDMParts.CurrContex.Parts.Where(p => p.Part_ID == PartID).ToList();
+        }
+        
 
 
         private void TFormManagePart_Load(object sender, EventArgs e)

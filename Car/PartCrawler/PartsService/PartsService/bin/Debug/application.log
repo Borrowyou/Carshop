@@ -638,3 +638,46 @@
 2016-02-21 16:42:53,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-sivi-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53293m5.html
 2016-02-21 16:42:54,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-cherni-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53292m5.html
 2016-02-21 16:42:55,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-cherni-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53298m5.html
+2016-05-01 17:24:37,info,Service,Starting Service
+2016-05-01 17:24:37,info,Service,Updater start
+2016-05-01 17:24:37,info,Service,Updater started
+2016-05-01 17:24:37,info,Service,Trying to start WCF
+2016-05-01 17:24:37,info,Service,WCF Service starting
+2016-05-01 17:24:37,info,Service,WCF Service started
+2016-05-01 17:24:37,info,Service,Part info working
+2016-05-01 17:24:38,info,Service,Finished starting parts info 
+2016-05-01 17:24:38,info,Service,Crawler starting
+2016-05-01 17:24:38,info,Service,Crawler started
+2016-05-01 17:24:38,info,Service,Part info trying to start
+2016-05-01 17:24:38,info,Parts,Part Crawler class created
+2016-05-01 17:24:38,info,Service,Starting WIndows Serivce
+2016-05-01 17:24:41,info,Parts,Getting partshttp://www.avto.bim.bg/Stop-vunshen-desen-za-ALFA-ROMEO-147-ot-2000-do-2005_p106m5.html
+2016-05-01 17:24:48,info,Service,Opened WcfParts 
+2016-05-01 17:25:02,info,Parts,Getting partshttp://www.avto.bim.bg/Stop-vunshen-lqv-za-ALFA-ROMEO-147-ot-2000-do-2005_p107m5.html
+2016-05-01 17:25:02,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-dqsno-izpuknalo-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38450m5.html
+2016-05-01 17:25:03,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-dqsno-izpuknalo-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p36051m5.html
+2016-05-01 17:25:04,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-asferichno-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38448m5.html
+2016-05-01 17:25:05,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-asferichno-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p28757m5.html
+2016-05-01 17:25:06,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-izpuknalo-s-podgrev-za-ALFA-ROMEO-147-ot-2000-do-2005_p38979m5.html
+2016-05-01 17:25:06,info,Parts,Getting partshttp://www.avto.bim.bg/Stuklo-za-ogledalo-lqvo-plosko-bez-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p38449m5.html
+2016-05-01 17:25:07,info,Parts,Getting partshttp://www.avto.bim.bg/Treti-stop-hrom-osnova-za-ALFA-ROMEO-147-ot-2000-do-2005_p59182m5.html
+2016-05-01 17:25:08,info,Parts,Getting partshttp://www.avto.bim.bg/Troinik-s-vuzvraten-klapan-1br-za-ALFA-ROMEO-147-ot-2000-do-2005_p51325m5.html
+2016-05-01 17:25:09,info,Parts,Getting partshttp://www.avto.bim.bg/Tuning-stopove-hrom-komplekt-lqv-i-desen-za-ALFA-ROMEO-147-ot-2000-do-2005_p12584m5.html
+2016-05-01 17:25:09,info,Parts,Getting partshttp://www.avto.bim.bg/UDAREN-TAMPON-GURNE--za-ALFA-ROMEO-147-ot-2000-do-2005_p60514m5.html
+2016-05-01 17:25:10,info,Parts,Getting partshttp://www.avto.bim.bg/Universalna-kapachka-za-rezervoar-za-ALFA-ROMEO-147-ot-2000-do-2005_p58867m5.html
+2016-05-01 17:25:11,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53324m5.html
+2016-05-01 17:25:11,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-vratite-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p53306m5.html
+2016-05-01 17:25:12,info,Parts,Getting partshttp://www.avto.bim.bg/Universalni-krepeji-za-interior-10br-za-ALFA-ROMEO-147-ot-2000-do-2005_p58485m5.html
+2016-05-01 17:29:45,info,Service,Starting Service
+2016-05-01 17:29:45,info,Service,Updater started
+2016-05-01 17:29:45,info,Service,Trying to start WCF
+2016-05-01 17:29:45,info,Service,Updater start
+2016-05-01 17:29:45,info,Service,WCF Service started
+2016-05-01 17:29:45,info,Service,WCF Service starting
+2016-05-01 17:29:45,info,Service,Part info working
+2016-05-01 17:29:45,info,Service,Finished starting parts info 
+2016-05-01 17:29:45,info,Service,Crawler starting
+2016-05-01 17:29:45,info,Parts,Part Crawler class created
+2016-05-01 17:29:45,info,Service,Crawler started
+2016-05-01 17:29:45,info,Service,Part info trying to start
+2016-05-01 17:29:45,info,Parts,Getting partshttp://www.avto.bim.bg/Stop-vunshen-desen-za-ALFA-ROMEO-147-ot-2000-do-2005_p106m5.html

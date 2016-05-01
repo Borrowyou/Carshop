@@ -127,6 +127,14 @@
           <Property Name="SERVICE_ID" Type="int" Nullable="false" />
           <Property Name="SERVICE_NAME" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="SERVICE_WORK_PARTS">
+          <Key>
+            <PropertyRef Name="WORK_PART_ID" />
+          </Key>
+          <Property Name="WORK_PART_ID" Type="int" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
+          <Property Name="PART_ID" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SERVICE_WORKS">
           <Key>
             <PropertyRef Name="SERVICE_WORK_ID" />
@@ -135,6 +143,8 @@
           <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
           <Property Name="SERVICE_ID" Type="int" Nullable="false" />
           <Property Name="WORK_STATUS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TIME_START" Type="datetime" />
+          <Property Name="TIME_FINISH" Type="datetime" />
           <Property Name="WORK_PRICE" Type="float" />
         </EntityType>
         <EntityType Name="SERVICES">
@@ -164,6 +174,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
+          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="1" />
+          <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_CARS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
+            </Principal>
+            <Dependent Role="APPOITMENTS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_APPOITMENTS_CLIENT_ID">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
@@ -296,6 +318,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_S_WORK_PART_SERVICEWORKS">
+          <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="1" />
+          <End Role="SERVICE_WORK_PARTS" Type="Self.SERVICE_WORK_PARTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORK_PARTS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERV_WORK_PART_PARTS">
+          <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
+          <End Role="SERVICE_WORK_PARTS" Type="Self.SERVICE_WORK_PARTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Part_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORK_PARTS">
+              <PropertyRef Name="PART_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SERVICE_WORK_APPOITMENT_ID">
           <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="1" />
           <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="*" />
@@ -332,6 +378,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="FUN_CALC_APP_SUM_BY_APP_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="APPOITMENT_ID" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
+                <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
+                <Property Name="SERVICE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+                <Property Name="PART_NAME" Type="varchar" MaxLength="255" />
+                <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
+                <Property Name="WORK_PRICE" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="FUN_YEARS_BETWEEN_LIST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="From" Type="int" Mode="In" />
           <Parameter Name="To" Type="int" Mode="In" />
@@ -361,10 +422,15 @@
           <EntitySet Name="PARTS_LINK" EntityType="Self.PARTS_LINK" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PROVIDER_CATEGORIES" EntityType="Self.PROVIDER_CATEGORIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REPAIR_SERVICES" EntityType="Self.REPAIR_SERVICES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SERVICE_WORK_PARTS" EntityType="Self.SERVICE_WORK_PARTS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICE_WORKS" EntityType="Self.SERVICE_WORKS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICES" EntityType="Self.SERVICES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="Self.FK_APPOITMENT_CLIENT_CAR_ID">
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+          </AssociationSet>
           <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="Self.FK_APPOITMENTS_CLIENT_ID">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
@@ -409,6 +475,14 @@
             <End Role="Models" EntitySet="Models" />
             <End Role="Parts" EntitySet="Parts" />
           </AssociationSet>
+          <AssociationSet Name="FK_S_WORK_PART_SERVICEWORKS" Association="Self.FK_S_WORK_PART_SERVICEWORKS">
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_WORK_PART_PARTS" Association="Self.FK_SERV_WORK_PART_PARTS">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
           <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="Self.FK_SERVICE_WORK_APPOITMENT_ID">
             <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
             <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
@@ -438,7 +512,8 @@
           <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
           <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="Self.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="APPOITMENTS" ToRole="CLIENT_CARS" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -463,6 +538,7 @@
           <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Clients" />
           <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
           <NavigationProperty Name="Models" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="CLIENT_CARS" ToRole="APPOITMENTS" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -490,8 +566,8 @@
           <Property Name="ITEM_DESCRIPT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="LOOKUP_ITEMS" ToRole="CLIENT_CARS" />
           <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENTS_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="Clients" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="Self.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="SERVICE_WORKS" />
           <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="SERVICE_WORKS" />
         </EntityType>
         <EntityType Name="Models">
           <Key>
@@ -522,6 +598,7 @@
           <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Cars" Relationship="Self.FK_Car_Partss" FromRole="Parts" ToRole="Cars" />
           <NavigationProperty Name="Models" Relationship="Self.FK_Models" FromRole="Parts" ToRole="Models" />
+          <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="Parts" ToRole="SERVICE_WORK_PARTS" />
         </EntityType>
         <EntityType Name="PARTS_LINK">
           <Key>
@@ -549,20 +626,6 @@
           <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
           <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="SERVICE_WORKS">
-          <Key>
-            <PropertyRef Name="SERVICE_WORK_ID" />
-          </Key>
-          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
-          <Property Name="WORK_STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="WORK_PRICE" Type="Double" />
-          <NavigationProperty Name="APPOITMENTS" Relationship="Self.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="SERVICE_WORKS" ToRole="APPOITMENTS" />
-          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="SERVICE_WORKS" ToRole="LOOKUP_ITEMS" />
-          <NavigationProperty Name="SERVICES" Relationship="Self.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICE_WORKS" ToRole="SERVICES" />
-          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="SERVICE_WORKS" ToRole="EMPLOYEES_SERVICE_WORKS" />
-        </EntityType>
         <EntityType Name="SERVICES">
           <Key>
             <PropertyRef Name="SERVICE_ID" />
@@ -571,7 +634,7 @@
           <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRICE_PER_HOUR" Type="Double" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="Self.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICES" ToRole="SERVICE_WORKS" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICES" ToRole="SERVICE_WORKS" />
         </EntityType>
         <EntityType Name="SUB_CATEGORIES">
           <Key>
@@ -600,18 +663,6 @@
             </Principal>
             <Dependent Role="APPOITMENTS">
               <PropertyRef Name="CLIENT_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SERVICE_WORK_APPOITMENT_ID">
-          <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="1" />
-          <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="APPOITMENTS">
-              <PropertyRef Name="APPOITMENT_ID" />
-            </Principal>
-            <Dependent Role="SERVICE_WORKS">
-              <PropertyRef Name="APPOITMENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -687,18 +738,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SERVICE_WORKS_STATUS_LOOKUP">
-          <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
-          <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LOOKUP_ITEMS">
-              <PropertyRef Name="ITEM_CODE" />
-            </Principal>
-            <Dependent Role="SERVICE_WORKS">
-              <PropertyRef Name="WORK_STATUS" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Models">
           <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
           <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
@@ -708,18 +747,6 @@
             </Principal>
             <Dependent Role="Parts">
               <PropertyRef Name="Model_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SERVICE_WORKS_SERVICES">
-          <End Role="SERVICES" Type="Self.SERVICES" Multiplicity="1" />
-          <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SERVICES">
-              <PropertyRef Name="SERVICE_ID" />
-            </Principal>
-            <Dependent Role="SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -734,17 +761,12 @@
           <EntitySet Name="PARTS_LINK" EntityType="Self.PARTS_LINK" />
           <EntitySet Name="PROVIDER_CATEGORIES" EntityType="Self.PROVIDER_CATEGORIES" />
           <EntitySet Name="REPAIR_SERVICES" EntityType="Self.REPAIR_SERVICES" />
-          <EntitySet Name="SERVICE_WORKS" EntityType="Self.SERVICE_WORKS" />
           <EntitySet Name="SERVICES" EntityType="Self.SERVICES" />
           <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="Self.FK_APPOITMENTS_CLIENT_ID">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="Self.FK_SERVICE_WORK_APPOITMENT_ID">
-            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Partss" Association="Self.FK_Car_Partss">
             <End Role="Cars" EntitySet="Cars" />
@@ -770,17 +792,9 @@
             <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
             <End Role="Clients" EntitySet="Clients" />
           </AssociationSet>
-          <AssociationSet Name="FK_SERVICE_WORKS_STATUS_LOOKUP" Association="Self.FK_SERVICE_WORKS_STATUS_LOOKUP">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-          </AssociationSet>
           <AssociationSet Name="FK_Models" Association="Self.FK_Models">
             <End Role="Models" EntitySet="Models" />
             <End Role="Parts" EntitySet="Parts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SERVICE_WORKS_SERVICES" Association="Self.FK_SERVICE_WORKS_SERVICES">
-            <End Role="SERVICES" EntitySet="SERVICES" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
           </AssociationSet>
           <FunctionImport Name="FUN_YEARS_BETWEEN_LIST" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_YEARS_BETWEEN_LIST_Result)">
             <Parameter Name="From" Mode="In" Type="Int32" />
@@ -792,10 +806,6 @@
             <Parameter Name="NEW_VALUE" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="EMPLOYEES_SERVICE_WORKS" EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" />
-          <AssociationSet Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS" Association="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS">
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
-          </AssociationSet>
           <EntitySet Name="EMPLOYEES" EntityType="CarShopModel.EMPLOYEES" />
           <AssociationSet Name="FK_EMPL_SERV_WORKS_EMPL_ID" Association="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID">
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
@@ -805,6 +815,39 @@
             <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
             <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
           </AssociationSet>
+          <EntitySet Name="SERVICE_WORKS" EntityType="CarShopModel.SERVICE_WORKS" />
+          <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID">
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_WORKS_STATUS_LOOKUP" Association="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS" Association="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS">
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_WORKS_SERVICES" Association="CarShopModel.FK_SERVICE_WORKS_SERVICES">
+            <End Role="SERVICES" EntitySet="SERVICES" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          <EntitySet Name="SERVICE_WORK_PARTS" EntityType="CarShopModel.SERVICE_WORK_PARTS" />
+          <AssociationSet Name="FK_SERV_WORK_PART_PARTS" Association="CarShopModel.FK_SERV_WORK_PART_PARTS">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_WORK_PART_SERVICEWORKS" Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS">
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
+          <FunctionImport Name="FUN_CALC_APP_SUM_BY_APP_ID" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result)">
+          <Parameter Name="APPOITMENT_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID">
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="EMPLOYEES_SERVICE_WORKS">
           <Key>
@@ -813,21 +856,9 @@
           <Property Name="EMPLOYEE_WORK_ID" Type="Int32" Nullable="false" />
           <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
           <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="SERVICE_WORKS" />
           <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="SERVICE_WORKS" />
         </EntityType>
-        <Association Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS">
-          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="1" />
-          <End Type="CarShopModel.EMPLOYEES_SERVICE_WORKS" Role="EMPLOYEES_SERVICE_WORKS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_WORK_ID" />
-            </Principal>
-            <Dependent Role="EMPLOYEES_SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_WORK_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="EMPLOYEES">
           <Key>
             <PropertyRef Name="EMPLOYEE_ID" />
@@ -864,6 +895,125 @@
             </Principal>
             <Dependent Role="EMPLOYEES">
               <PropertyRef Name="EMPL_TYPE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SERVICE_WORKS">
+          <Key>
+            <PropertyRef Name="SERVICE_WORK_ID" />
+          </Key>
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="WORK_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_START" Type="DateTime" Precision="3" />
+          <Property Name="TIME_FINISH" Type="DateTime" Precision="3" />
+          <Property Name="WORK_PRICE" Type="Double" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="SERVICE_WORKS" ToRole="APPOITMENTS" />
+          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="SERVICE_WORKS" ToRole="LOOKUP_ITEMS" />
+          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="SERVICE_WORKS" ToRole="EMPLOYEES_SERVICE_WORKS" />
+          <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SERVICES" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICE_WORKS" ToRole="SERVICES" />
+          <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORKS" ToRole="SERVICE_WORK_PARTS" />
+        </EntityType>
+        <Association Name="FK_SERVICE_WORK_APPOITMENT_ID">
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPOITMENTS">
+              <PropertyRef Name="APPOITMENT_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORKS">
+              <PropertyRef Name="APPOITMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICE_WORKS_STATUS_LOOKUP">
+          <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOOKUP_ITEMS">
+              <PropertyRef Name="ITEM_CODE" />
+            </Principal>
+            <Dependent Role="SERVICE_WORKS">
+              <PropertyRef Name="WORK_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS">
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="1" />
+          <End Type="CarShopModel.EMPLOYEES_SERVICE_WORKS" Role="EMPLOYEES_SERVICE_WORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Principal>
+            <Dependent Role="EMPLOYEES_SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICE_WORKS_SERVICES">
+          <End Type="CarShopModel.SERVICES" Role="SERVICES" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICES">
+              <PropertyRef Name="SERVICE_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SERVICE_WORK_PARTS">
+          <Key>
+            <PropertyRef Name="WORK_PART_ID" />
+          </Key>
+          <Property Name="WORK_PART_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="PART_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="SERVICE_WORK_PARTS" ToRole="Parts" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORK_PARTS" ToRole="SERVICE_WORKS" />
+        </EntityType>
+        <Association Name="FK_SERV_WORK_PART_PARTS">
+          <End Type="CarShopModel.Parts" Role="Parts" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORK_PARTS" Role="SERVICE_WORK_PARTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parts">
+              <PropertyRef Name="Part_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORK_PARTS">
+              <PropertyRef Name="PART_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_S_WORK_PART_SERVICEWORKS">
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORK_PARTS" Role="SERVICE_WORK_PARTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORK_PARTS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="FUN_CALC_APP_SUM_BY_APP_ID_Result">
+          <Property Type="Int32" Name="APPOITMENT_ID" Nullable="false" />
+          <Property Type="Int32" Name="SERVICE_WORK_ID" Nullable="false" />
+          <Property Type="String" Name="SERVICE_NAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PART_NAME" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PART_MANUF" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="WORK_PRICE" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="1" />
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_CARS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
+            </Principal>
+            <Dependent Role="APPOITMENTS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -984,17 +1134,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SERVICE_WORKS">
-            <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
-              <MappingFragment StoreEntitySet="SERVICE_WORKS">
-                <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
-                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
-                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SERVICES">
             <EntityTypeMapping TypeName="CarShopModel.SERVICES">
               <MappingFragment StoreEntitySet="SERVICES">
@@ -1056,6 +1195,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SERVICE_WORKS">
+            <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
+              <MappingFragment StoreEntitySet="SERVICE_WORKS">
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
+                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+                <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+                <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICE_WORK_PARTS">
+            <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORK_PARTS">
+              <MappingFragment StoreEntitySet="SERVICE_WORK_PARTS">
+                <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
+                <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+                <ScalarProperty Name="WORK_PART_ID" ColumnName="WORK_PART_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="FUN_CALC_APP_SUM_BY_APP_ID" FunctionName="CarShopModel.Store.FUN_CALC_APP_SUM_BY_APP_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result">
+                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+                <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+                <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
+                <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
+                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

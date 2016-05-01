@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridEmployyes = new DevExpress.XtraGrid.GridControl();
-            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource();
             this.gridViewEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -134,6 +133,7 @@
             this.gridViewEmployees.GridControl = this.gridEmployyes;
             this.gridViewEmployees.Name = "gridViewEmployees";
             this.gridViewEmployees.OptionsBehavior.Editable = false;
+            this.gridViewEmployees.OptionsFind.AlwaysVisible = true;
             this.gridViewEmployees.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gridViewEmployees.OptionsView.ShowGroupPanel = false;
             // 

@@ -18,7 +18,7 @@ namespace AutoPartDataModels
         public int SERVICE_WORK_ID { get; set; }
         public int EMPLOYEE_ID { get; set; }
     
-        public virtual SERVICE_WORKS SERVICE_WORKS { get; set; }
         public virtual EMPLOYEES EMPLOYEES { get; set; }
+        public virtual SERVICE_WORKS SERVICE_WORKS { get; set; }
     }
 }

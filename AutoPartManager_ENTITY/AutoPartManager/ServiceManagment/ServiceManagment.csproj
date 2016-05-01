@@ -40,6 +40,7 @@
     <Reference Include="DevExpress.Printing.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v14.2.Core, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraBars.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGrid.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v14.2, Version=14.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -90,6 +91,12 @@
     <Compile Include="FormAllAppoitments.Designer.cs">
       <DependentUpon>FormAllAppoitments.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAllServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAllServices.Designer.cs">
+      <DependentUpon>FormAllServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -114,6 +121,9 @@
     <EmbeddedResource Include="FormAllAppoitments.resx">
       <DependentUpon>FormAllAppoitments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAllServices.resx">
+      <DependentUpon>FormAllServices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="TFormAppointments.resx">
       <DependentUpon>TFormAppointments.cs</DependentUpon>
@@ -136,9 +146,12 @@
     <None Include="Properties\DataSources\AutoPartDataModels.CLIENT_CARS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES_SERVICE_WORKS.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.FUN_CALC_APP_SUM_BY_APP_ID_Result.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.LOOKUP_ITEMS.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.Parts.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.SERVICES.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORKS.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORK_PARTS.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

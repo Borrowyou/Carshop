@@ -36,11 +36,11 @@
             this.colPRICE_PER_HOUR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PnlMenuBtns = new DevExpress.XtraEditors.PanelControl();
+            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnNewService = new DevExpress.XtraEditors.SimpleButton();
             this.pnlGridHolder = new DevExpress.XtraEditors.PanelControl();
-            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICEBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICEGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewServices)).BeginInit();
@@ -73,6 +73,7 @@
             this.gridViewServices.Name = "gridViewServices";
             this.gridViewServices.OptionsCustomization.AllowQuickHideColumns = false;
             this.gridViewServices.OptionsCustomization.AllowRowSizing = true;
+            this.gridViewServices.OptionsFind.AlwaysVisible = true;
             this.gridViewServices.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewServices.OptionsView.ShowGroupPanel = false;
             // 
@@ -117,6 +118,24 @@
             this.PnlMenuBtns.Size = new System.Drawing.Size(88, 338);
             this.PnlMenuBtns.TabIndex = 1;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(5, 300);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(68, 26);
+            this.btnClose.TabIndex = 1;
+            this.btnClose.Text = "Затвори";
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(5, 70);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Отказ";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(5, 41);
@@ -143,24 +162,6 @@
             this.pnlGridHolder.Name = "pnlGridHolder";
             this.pnlGridHolder.Size = new System.Drawing.Size(651, 338);
             this.pnlGridHolder.TabIndex = 2;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(5, 70);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Отказ";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(5, 300);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(68, 26);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Затвори";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // TFormServicesManage
             // 

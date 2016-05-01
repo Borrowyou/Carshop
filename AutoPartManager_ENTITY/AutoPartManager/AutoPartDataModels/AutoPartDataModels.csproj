@@ -86,6 +86,9 @@
     <Compile Include="EMPLOYEES_SERVICE_WORKS.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="FUN_CALC_APP_SUM_BY_APP_ID_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="FUN_YEARS_BETWEEN_LIST_Result.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
@@ -112,6 +115,9 @@
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="SERVICE_WORKS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICE_WORK_PARTS.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="SUB_CATEGORIES.cs">

@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.pnlBtns = new System.Windows.Forms.Panel();
+            this.btnViewAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.btnNewAppointment = new DevExpress.XtraEditors.SimpleButton();
             this.pnlFormHolder = new System.Windows.Forms.Panel();
-            this.btnViewAppoitments = new DevExpress.XtraEditors.SimpleButton();
+            this.btnServices = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBtns.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlBtns
             // 
             this.pnlBtns.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlBtns.Controls.Add(this.btnServices);
             this.pnlBtns.Controls.Add(this.btnViewAppoitments);
             this.pnlBtns.Controls.Add(this.btnNewAppointment);
             this.pnlBtns.Dock = System.Windows.Forms.DockStyle.Left;
@@ -45,6 +47,15 @@
             this.pnlBtns.Name = "pnlBtns";
             this.pnlBtns.Size = new System.Drawing.Size(68, 339);
             this.pnlBtns.TabIndex = 0;
+            // 
+            // btnViewAppoitments
+            // 
+            this.btnViewAppoitments.Location = new System.Drawing.Point(3, 61);
+            this.btnViewAppoitments.Name = "btnViewAppoitments";
+            this.btnViewAppoitments.Size = new System.Drawing.Size(58, 43);
+            this.btnViewAppoitments.TabIndex = 1;
+            this.btnViewAppoitments.Text = "Часове";
+            this.btnViewAppoitments.Click += new System.EventHandler(this.btnViewAppoitments_Click);
             // 
             // btnNewAppointment
             // 
@@ -63,14 +74,14 @@
             this.pnlFormHolder.Size = new System.Drawing.Size(554, 339);
             this.pnlFormHolder.TabIndex = 1;
             // 
-            // btnViewAppoitments
+            // btnServices
             // 
-            this.btnViewAppoitments.Location = new System.Drawing.Point(3, 61);
-            this.btnViewAppoitments.Name = "btnViewAppoitments";
-            this.btnViewAppoitments.Size = new System.Drawing.Size(58, 43);
-            this.btnViewAppoitments.TabIndex = 1;
-            this.btnViewAppoitments.Text = "Часове";
-            this.btnViewAppoitments.Click += new System.EventHandler(this.btnViewAppoitments_Click);
+            this.btnServices.Location = new System.Drawing.Point(3, 110);
+            this.btnServices.Name = "btnServices";
+            this.btnServices.Size = new System.Drawing.Size(57, 40);
+            this.btnServices.TabIndex = 0;
+            this.btnServices.Text = "Ремонти";
+            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
             // 
             // TFormAppointments
             // 
@@ -93,5 +104,6 @@
         private DevExpress.XtraEditors.SimpleButton btnNewAppointment;
         private System.Windows.Forms.Panel pnlFormHolder;
         private DevExpress.XtraEditors.SimpleButton btnViewAppoitments;
+        private DevExpress.XtraEditors.SimpleButton btnServices;
     }
 }

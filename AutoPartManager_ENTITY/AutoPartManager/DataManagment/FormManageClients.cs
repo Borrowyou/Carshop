@@ -26,13 +26,11 @@ namespace DataManagment
         public FormManageClients()
         {
             InitializeComponent();
-          //  ClientsDset.InitAdapters();
             CDMClients = new DMClients();
             ListClientCars = new List<PanelClientCar>();
             SetDataSources();
             PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
             DefHeight = Height;
-           // pnlEmployeeData.Visible = false;
         }
 
         public void SetDataSources()

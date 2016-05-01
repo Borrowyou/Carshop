@@ -20,6 +20,7 @@ namespace AutoPartManager
         public FormAutoPartManager()
         {
             InitializeComponent();
+            InitFormAppointments();
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -58,7 +59,6 @@ namespace AutoPartManager
         {
             FormAppointments = new TFormAppointments();
             FormAppointments.TopLevel = false;
-
             pnlForm.Controls.Add(FormAppointments);
             FormAppointments.Dock = DockStyle.Fill;
             FormAppointments.Show();

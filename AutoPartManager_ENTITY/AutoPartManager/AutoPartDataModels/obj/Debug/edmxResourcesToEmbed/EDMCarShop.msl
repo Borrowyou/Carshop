@@ -112,17 +112,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SERVICE_WORKS">
-      <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
-        <MappingFragment StoreEntitySet="SERVICE_WORKS">
-          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
-          <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
-          <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-          <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
-          <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SERVICES">
       <EntityTypeMapping TypeName="CarShopModel.SERVICES">
         <MappingFragment StoreEntitySet="SERVICES">
@@ -184,5 +173,39 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="SERVICE_WORKS">
+      <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
+        <MappingFragment StoreEntitySet="SERVICE_WORKS">
+          <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+          <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+          <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
+          <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+          <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+          <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SERVICE_WORK_PARTS">
+      <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORK_PARTS">
+        <MappingFragment StoreEntitySet="SERVICE_WORK_PARTS">
+          <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
+          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+          <ScalarProperty Name="WORK_PART_ID" ColumnName="WORK_PART_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="FUN_CALC_APP_SUM_BY_APP_ID" FunctionName="CarShopModel.Store.FUN_CALC_APP_SUM_BY_APP_ID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result">
+          <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+          <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+          <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
+          <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
+          <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

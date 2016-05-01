@@ -41,13 +41,36 @@ namespace ServiceManagment
             return CurrContex.APPOITMENTS;
         }
 
+        public DbSet<SERVICE_WORKS> GetServiceWorksDBSet()
+        {
+            return CurrContex.SERVICE_WORKS;
+        }
+
         public void LoadAllAppoitments()
         {
             CurrContex.APPOITMENTS.Local.Clear();
-            var AllAppoitments = CurrContex.APPOITMENTS;
+            var AllAppoitments = CurrContex.APPOITMENTS.Include(a => a.Clients).Include(a => a.SERVICE_WORKS)
+                                .Include(a =>a.CLIENT_CARS.Models);
             foreach (APPOITMENTS CurrApp in AllAppoitments)
                 CurrContex.APPOITMENTS.Local.Add(CurrApp);
         }
 
+        public IQueryable<APPOITMENTS> LoadAppByID(int AppID)
+        {
+            return CurrContex.APPOITMENTS.Where(a => a.APPOITMENT_ID == AppID)
+                .Include(a => a.SERVICE_WORKS)
+                .Include(a => a.SERVICE_WORKS.Select(sv => sv.EMPLOYEES_SERVICE_WORKS))
+                .Include(a => a.SERVICE_WORKS.Select(sp => sp.SERVICE_WORK_PARTS));
+        }
+
+        public void LoadServices()
+        {
+            var ServicesWorks = CurrContex.SERVICE_WORKS.Include(s => s.SERVICES)
+                                .Include(s => s.APPOITMENTS.Clients)
+                                .Include(s => s.APPOITMENTS.CLIENT_CARS.Models);
+            foreach (SERVICE_WORKS CurrWork in ServicesWorks)
+                CurrContex.SERVICE_WORKS.Local.Add(CurrWork);
+
+        }
     }
 }

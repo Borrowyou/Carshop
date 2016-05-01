@@ -28,309 +28,329 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.pnlGridParts = new System.Windows.Forms.Panel();
-            this.pnlGridPrts = new System.Windows.Forms.Panel();
-            this.GridParts = new DevExpress.XtraGrid.GridControl();
-            this.AllPartsBindSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.PartsDataSet = new DataManagment.TPartsDataSet();
-            this.gridViewParts = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCar_Model = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModel_Name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.pnlGridHolder = new DevExpress.XtraEditors.PanelControl();
+            this.pnlFrameHolder = new DevExpress.XtraEditors.PanelControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.lblModel = new DevExpress.XtraEditors.LabelControl();
+            this.lblMark = new DevExpress.XtraEditors.LabelControl();
+            this.LookUpModels = new DevExpress.XtraEditors.LookUpEdit();
+            this.ModelsBindSrc = new System.Windows.Forms.BindingSource();
+            this.lookUpMarks = new DevExpress.XtraEditors.LookUpEdit();
+            this.MarksBindSrc = new System.Windows.Forms.BindingSource();
+            this.partsBindingSource = new System.Windows.Forms.BindingSource();
+            this.partsGridParts = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPart_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPart_Name = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPart_price = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPart_details = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPart_Manuf = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpart_name = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpart_price = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpart_details = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colpart_manuf = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCar_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModel_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.pnlSrchCtrls = new System.Windows.Forms.Panel();
-            this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.SrchFilterBndSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.CarsBindSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.CommonDataSet = new DataManagment.TCommonDataSet();
-            this.pnlFormPart = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.ModelsBindSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.partsSrchFilterTableAdapter = new DataManagment.TPartsDataSetTableAdapters.PartsSrchFilterTableAdapter();
-            this.pnlGridParts.SuspendLayout();
-            this.pnlGridPrts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridParts)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AllPartsBindSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewParts)).BeginInit();
-            this.pnlSrchCtrls.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SrchFilterBndSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CarsBindSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CommonDataSet)).BeginInit();
+            this.colCATEGORY_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIMG = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCars = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colModels = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSERVICE_WORK_PARTS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGridHolder)).BeginInit();
+            this.pnlGridHolder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlFrameHolder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpModels.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpMarks.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MarksBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsGridParts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlGridParts
+            // pnlGridHolder
             // 
-            this.pnlGridParts.Controls.Add(this.pnlGridPrts);
-            this.pnlGridParts.Controls.Add(this.pnlSrchCtrls);
-            this.pnlGridParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGridParts.Location = new System.Drawing.Point(0, 0);
-            this.pnlGridParts.Name = "pnlGridParts";
-            this.pnlGridParts.Size = new System.Drawing.Size(586, 301);
-            this.pnlGridParts.TabIndex = 0;
+            this.pnlGridHolder.Controls.Add(this.partsGridParts);
+            this.pnlGridHolder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlGridHolder.Location = new System.Drawing.Point(2, 33);
+            this.pnlGridHolder.Name = "pnlGridHolder";
+            this.pnlGridHolder.Size = new System.Drawing.Size(522, 304);
+            this.pnlGridHolder.TabIndex = 0;
             // 
-            // pnlGridPrts
+            // pnlFrameHolder
             // 
-            this.pnlGridPrts.Controls.Add(this.GridParts);
-            this.pnlGridPrts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGridPrts.Location = new System.Drawing.Point(0, 35);
-            this.pnlGridPrts.Name = "pnlGridPrts";
-            this.pnlGridPrts.Size = new System.Drawing.Size(586, 266);
-            this.pnlGridPrts.TabIndex = 4;
+            this.pnlFrameHolder.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlFrameHolder.Location = new System.Drawing.Point(529, 2);
+            this.pnlFrameHolder.Name = "pnlFrameHolder";
+            this.pnlFrameHolder.Size = new System.Drawing.Size(255, 335);
+            this.pnlFrameHolder.TabIndex = 0;
             // 
-            // GridParts
+            // panelControl1
             // 
-            this.GridParts.DataSource = this.AllPartsBindSrc;
-            this.GridParts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GridParts.Location = new System.Drawing.Point(0, 0);
-            this.GridParts.MainView = this.gridViewParts;
-            this.GridParts.Name = "GridParts";
-            this.GridParts.Size = new System.Drawing.Size(586, 266);
-            this.GridParts.TabIndex = 2;
-            this.GridParts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewParts});
+            this.panelControl1.Controls.Add(this.btnSearch);
+            this.panelControl1.Controls.Add(this.lblModel);
+            this.panelControl1.Controls.Add(this.lblMark);
+            this.panelControl1.Controls.Add(this.LookUpModels);
+            this.panelControl1.Controls.Add(this.lookUpMarks);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl1.Location = new System.Drawing.Point(2, 2);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(522, 31);
+            this.panelControl1.TabIndex = 1;
             // 
-            // AllPartsBindSrc
+            // btnSearch
             // 
-            this.AllPartsBindSrc.DataMember = "ModelParts";
-            this.AllPartsBindSrc.DataSource = this.PartsDataSet;
-            this.AllPartsBindSrc.PositionChanged += new System.EventHandler(this.AllPartsBindSrc_PositionChanged);
+            this.btnSearch.Location = new System.Drawing.Point(441, 3);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Обнови";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // PartsDataSet
+            // lblModel
             // 
-            this.PartsDataSet.DataSetName = "TPartsDataSet";
-            this.PartsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.lblModel.Location = new System.Drawing.Point(153, 8);
+            this.lblModel.Name = "lblModel";
+            this.lblModel.Size = new System.Drawing.Size(37, 13);
+            this.lblModel.TabIndex = 3;
+            this.lblModel.Text = "Модел:";
             // 
-            // gridViewParts
+            // lblMark
             // 
-            this.gridViewParts.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCar_Model,
-            this.colModel_Name,
+            this.lblMark.Location = new System.Drawing.Point(5, 8);
+            this.lblMark.Name = "lblMark";
+            this.lblMark.Size = new System.Drawing.Size(36, 13);
+            this.lblMark.TabIndex = 2;
+            this.lblMark.Text = "Марка:";
+            // 
+            // LookUpModels
+            // 
+            this.LookUpModels.Location = new System.Drawing.Point(196, 5);
+            this.LookUpModels.Name = "LookUpModels";
+            this.LookUpModels.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LookUpModels.Properties.DataSource = this.ModelsBindSrc;
+            this.LookUpModels.Properties.DisplayMember = "MODEL_NAME";
+            this.LookUpModels.Properties.ValueMember = "MODEL_ID";
+            this.LookUpModels.Size = new System.Drawing.Size(100, 20);
+            this.LookUpModels.TabIndex = 1;
+            // 
+            // ModelsBindSrc
+            // 
+            this.ModelsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
+            // 
+            // lookUpMarks
+            // 
+            this.lookUpMarks.Location = new System.Drawing.Point(47, 5);
+            this.lookUpMarks.Name = "lookUpMarks";
+            this.lookUpMarks.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpMarks.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Car_ID", "Car_ID", 57, DevExpress.Utils.FormatType.Numeric, "", true, DevExpress.Utils.HorzAlignment.Far),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Car_Model", "Car_Model", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Parts", "Parts", 35, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Models", "Models", 43, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.lookUpMarks.Properties.DataSource = this.MarksBindSrc;
+            this.lookUpMarks.Properties.DisplayMember = "Car_Model";
+            this.lookUpMarks.Properties.ValueMember = "Car_ID";
+            this.lookUpMarks.Size = new System.Drawing.Size(100, 20);
+            this.lookUpMarks.TabIndex = 0;
+            this.lookUpMarks.EditValueChanged += new System.EventHandler(this.lookUpMarks_EditValueChanged);
+            // 
+            // MarksBindSrc
+            // 
+            this.MarksBindSrc.DataSource = typeof(AutoPartDataModels.Cars);
+            this.MarksBindSrc.PositionChanged += new System.EventHandler(this.MarksBindSrc_PositionChanged);
+            // 
+            // partsBindingSource
+            // 
+            this.partsBindingSource.DataSource = typeof(AutoPartDataModels.Parts);
+            this.partsBindingSource.PositionChanged += new System.EventHandler(this.partsBindingSource_PositionChanged);
+            // 
+            // partsGridParts
+            // 
+            this.partsGridParts.DataSource = this.partsBindingSource;
+            this.partsGridParts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.partsGridParts.Location = new System.Drawing.Point(2, 2);
+            this.partsGridParts.MainView = this.gridView1;
+            this.partsGridParts.Name = "partsGridParts";
+            this.partsGridParts.Size = new System.Drawing.Size(518, 300);
+            this.partsGridParts.TabIndex = 1;
+            this.partsGridParts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            this.partsGridParts.DoubleClick += new System.EventHandler(this.partsGridParts_DoubleClick);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPart_ID,
-            this.colPart_Name,
-            this.colPart_price,
-            this.colPart_details,
-            this.colPart_Manuf,
+            this.colpart_name,
+            this.colpart_price,
+            this.colpart_details,
+            this.colpart_manuf,
             this.colCar_ID,
-            this.colModel_ID});
-            this.gridViewParts.GridControl = this.GridParts;
-            this.gridViewParts.Name = "gridViewParts";
-            this.gridViewParts.OptionsBehavior.Editable = false;
-            this.gridViewParts.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
-            this.gridViewParts.OptionsView.ShowGroupPanel = false;
-            // 
-            // colCar_Model
-            // 
-            this.colCar_Model.FieldName = "Car_Model";
-            this.colCar_Model.Name = "colCar_Model";
-            this.colCar_Model.Visible = true;
-            this.colCar_Model.VisibleIndex = 0;
-            // 
-            // colModel_Name
-            // 
-            this.colModel_Name.FieldName = "Model_Name";
-            this.colModel_Name.Name = "colModel_Name";
-            this.colModel_Name.Visible = true;
-            this.colModel_Name.VisibleIndex = 1;
+            this.colModel_ID,
+            this.colCATEGORY_ID,
+            this.colIMG,
+            this.colCars,
+            this.colModels,
+            this.colSERVICE_WORK_PARTS});
+            this.gridView1.GridControl = this.partsGridParts;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsFind.AlwaysVisible = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // colPart_ID
             // 
             this.colPart_ID.FieldName = "Part_ID";
             this.colPart_ID.Name = "colPart_ID";
-            this.colPart_ID.Visible = true;
-            this.colPart_ID.VisibleIndex = 2;
             // 
-            // colPart_Name
+            // colpart_name
             // 
-            this.colPart_Name.FieldName = "Part_Name";
-            this.colPart_Name.Name = "colPart_Name";
-            this.colPart_Name.Visible = true;
-            this.colPart_Name.VisibleIndex = 3;
+            this.colpart_name.FieldName = "part_name";
+            this.colpart_name.Name = "colpart_name";
+            this.colpart_name.Visible = true;
+            this.colpart_name.VisibleIndex = 0;
             // 
-            // colPart_price
+            // colpart_price
             // 
-            this.colPart_price.FieldName = "Part_price";
-            this.colPart_price.Name = "colPart_price";
-            this.colPart_price.Visible = true;
-            this.colPart_price.VisibleIndex = 4;
+            this.colpart_price.FieldName = "part_price";
+            this.colpart_price.Name = "colpart_price";
+            this.colpart_price.Visible = true;
+            this.colpart_price.VisibleIndex = 3;
             // 
-            // colPart_details
+            // colpart_details
             // 
-            this.colPart_details.FieldName = "Part_details";
-            this.colPart_details.Name = "colPart_details";
-            this.colPart_details.Visible = true;
-            this.colPart_details.VisibleIndex = 5;
+            this.colpart_details.FieldName = "part_details";
+            this.colpart_details.Name = "colpart_details";
+            this.colpart_details.Visible = true;
+            this.colpart_details.VisibleIndex = 1;
             // 
-            // colPart_Manuf
+            // colpart_manuf
             // 
-            this.colPart_Manuf.FieldName = "Part_Manuf";
-            this.colPart_Manuf.Name = "colPart_Manuf";
-            this.colPart_Manuf.Visible = true;
-            this.colPart_Manuf.VisibleIndex = 6;
+            this.colpart_manuf.FieldName = "part_manuf";
+            this.colpart_manuf.Name = "colpart_manuf";
+            this.colpart_manuf.Visible = true;
+            this.colpart_manuf.VisibleIndex = 2;
             // 
             // colCar_ID
             // 
             this.colCar_ID.FieldName = "Car_ID";
             this.colCar_ID.Name = "colCar_ID";
-            this.colCar_ID.Visible = true;
-            this.colCar_ID.VisibleIndex = 7;
             // 
             // colModel_ID
             // 
             this.colModel_ID.FieldName = "Model_ID";
             this.colModel_ID.Name = "colModel_ID";
-            this.colModel_ID.Visible = true;
-            this.colModel_ID.VisibleIndex = 8;
             // 
-            // pnlSrchCtrls
+            // colCATEGORY_ID
             // 
-            this.pnlSrchCtrls.Controls.Add(this.lookUpEdit2);
-            this.pnlSrchCtrls.Controls.Add(this.lookUpEdit1);
-            this.pnlSrchCtrls.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSrchCtrls.Location = new System.Drawing.Point(0, 0);
-            this.pnlSrchCtrls.Name = "pnlSrchCtrls";
-            this.pnlSrchCtrls.Size = new System.Drawing.Size(586, 35);
-            this.pnlSrchCtrls.TabIndex = 3;
+            this.colCATEGORY_ID.FieldName = "CATEGORY_ID";
+            this.colCATEGORY_ID.Name = "colCATEGORY_ID";
             // 
-            // lookUpEdit2
+            // colIMG
             // 
-            this.lookUpEdit2.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.SrchFilterBndSrc, "Model_ID", true));
-            this.lookUpEdit2.Location = new System.Drawing.Point(138, 10);
-            this.lookUpEdit2.Name = "lookUpEdit2";
-            this.lookUpEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit2.Properties.DataSource = this.ModelsBindSrc;
-            this.lookUpEdit2.Properties.DisplayMember = "MODEL_NAME";
-            this.lookUpEdit2.Properties.ValueMember = "MODEL_ID";
-            this.lookUpEdit2.Size = new System.Drawing.Size(100, 20);
-            this.lookUpEdit2.TabIndex = 1;
+            this.colIMG.FieldName = "IMG";
+            this.colIMG.Name = "colIMG";
             // 
-            // lookUpEdit1
+            // colCars
             // 
-            this.lookUpEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.SrchFilterBndSrc, "Car_ID", true));
-            this.lookUpEdit1.Location = new System.Drawing.Point(11, 10);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Car_Model", "Марка", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
-            this.lookUpEdit1.Properties.DataSource = this.CarsBindSrc;
-            this.lookUpEdit1.Properties.DisplayMember = "Car_Model";
-            this.lookUpEdit1.Properties.ValueMember = "Car_ID";
-            this.lookUpEdit1.Size = new System.Drawing.Size(121, 20);
-            this.lookUpEdit1.TabIndex = 0;
-            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
+            this.colCars.FieldName = "Cars";
+            this.colCars.Name = "colCars";
             // 
-            // SrchFilterBndSrc
+            // colModels
             // 
-            this.SrchFilterBndSrc.DataMember = "PartsSrchFilter";
-            this.SrchFilterBndSrc.DataSource = this.PartsDataSet;
-            this.SrchFilterBndSrc.CurrentChanged += new System.EventHandler(this.SrchFilterBndSrc_CurrentChanged);
-            this.SrchFilterBndSrc.CurrentItemChanged += new System.EventHandler(this.SrchFilterBndSrc_CurrentItemChanged);
+            this.colModels.FieldName = "Models";
+            this.colModels.Name = "colModels";
             // 
-            // CarsBindSrc
+            // colSERVICE_WORK_PARTS
             // 
-            this.CarsBindSrc.DataMember = "Cars";
-            this.CarsBindSrc.DataSource = this.CommonDataSet;
-            this.CarsBindSrc.PositionChanged += new System.EventHandler(this.CarsBindSrc_PositionChanged);
+            this.colSERVICE_WORK_PARTS.FieldName = "SERVICE_WORK_PARTS";
+            this.colSERVICE_WORK_PARTS.Name = "colSERVICE_WORK_PARTS";
             // 
-            // CommonDataSet
+            // splitterControl1
             // 
-            this.CommonDataSet.DataSetName = "TCommonDataSet";
-            this.CommonDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitterControl1.Location = new System.Drawing.Point(524, 2);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(5, 335);
+            this.splitterControl1.TabIndex = 0;
+            this.splitterControl1.TabStop = false;
             // 
-            // pnlFormPart
+            // panelControl2
             // 
-            this.pnlFormPart.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFormPart.Location = new System.Drawing.Point(386, 0);
-            this.pnlFormPart.Name = "pnlFormPart";
-            this.pnlFormPart.Size = new System.Drawing.Size(200, 301);
-            this.pnlFormPart.TabIndex = 1;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(383, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 301);
-            this.splitter1.TabIndex = 0;
-            this.splitter1.TabStop = false;
-            // 
-            // ModelsBindSrc
-            // 
-            this.ModelsBindSrc.DataMember = "Models";
-            this.ModelsBindSrc.DataSource = this.CommonDataSet;
-            // 
-            // partsSrchFilterTableAdapter
-            // 
-            this.partsSrchFilterTableAdapter.ClearBeforeFill = true;
+            this.panelControl2.Controls.Add(this.pnlGridHolder);
+            this.panelControl2.Controls.Add(this.panelControl1);
+            this.panelControl2.Controls.Add(this.splitterControl1);
+            this.panelControl2.Controls.Add(this.pnlFrameHolder);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(786, 339);
+            this.panelControl2.TabIndex = 0;
             // 
             // TFormSearchParts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(586, 301);
-            this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.pnlFormPart);
-            this.Controls.Add(this.pnlGridParts);
+            this.ClientSize = new System.Drawing.Size(786, 339);
+            this.Controls.Add(this.panelControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TFormSearchParts";
             this.Text = "TFormSearchParts";
             this.Load += new System.EventHandler(this.TFormSearchParts_Load);
-            this.pnlGridParts.ResumeLayout(false);
-            this.pnlGridPrts.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridParts)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AllPartsBindSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PartsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewParts)).EndInit();
-            this.pnlSrchCtrls.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SrchFilterBndSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CarsBindSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CommonDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlGridHolder)).EndInit();
+            this.pnlGridHolder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnlFrameHolder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LookUpModels.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpMarks.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MarksBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.partsGridParts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlGridParts;
-        private System.Windows.Forms.Panel pnlFormPart;
-        private System.Windows.Forms.Splitter splitter1;
-        private DevExpress.XtraGrid.GridControl GridParts;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridViewParts;
-        private System.Windows.Forms.BindingSource AllPartsBindSrc;
-        private TPartsDataSet PartsDataSet;
-        private DevExpress.XtraGrid.Columns.GridColumn colCar_Model;
-        private DevExpress.XtraGrid.Columns.GridColumn colModel_Name;
+        private DevExpress.XtraEditors.PanelControl pnlGridHolder;
+        private DevExpress.XtraEditors.PanelControl pnlFrameHolder;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private System.Windows.Forms.BindingSource partsBindingSource;
+        private DevExpress.XtraGrid.GridControl partsGridParts;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colPart_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colPart_Name;
-        private DevExpress.XtraGrid.Columns.GridColumn colPart_price;
-        private DevExpress.XtraGrid.Columns.GridColumn colPart_details;
-        private DevExpress.XtraGrid.Columns.GridColumn colPart_Manuf;
+        private DevExpress.XtraGrid.Columns.GridColumn colpart_name;
+        private DevExpress.XtraGrid.Columns.GridColumn colpart_price;
+        private DevExpress.XtraGrid.Columns.GridColumn colpart_details;
+        private DevExpress.XtraGrid.Columns.GridColumn colpart_manuf;
         private DevExpress.XtraGrid.Columns.GridColumn colCar_ID;
         private DevExpress.XtraGrid.Columns.GridColumn colModel_ID;
-        private System.Windows.Forms.Panel pnlGridPrts;
-        private System.Windows.Forms.Panel pnlSrchCtrls;
-        private TCommonDataSet CommonDataSet;
-        private System.Windows.Forms.BindingSource CarsBindSrc;
-        private System.Windows.Forms.BindingSource SrchFilterBndSrc;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit2;
+        private DevExpress.XtraGrid.Columns.GridColumn colCATEGORY_ID;
+        private DevExpress.XtraGrid.Columns.GridColumn colIMG;
+        private DevExpress.XtraGrid.Columns.GridColumn colCars;
+        private DevExpress.XtraGrid.Columns.GridColumn colModels;
+        private DevExpress.XtraGrid.Columns.GridColumn colSERVICE_WORK_PARTS;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
+        private DevExpress.XtraEditors.LabelControl lblModel;
+        private DevExpress.XtraEditors.LabelControl lblMark;
+        private DevExpress.XtraEditors.LookUpEdit LookUpModels;
+        private DevExpress.XtraEditors.LookUpEdit lookUpMarks;
+        private System.Windows.Forms.BindingSource MarksBindSrc;
         private System.Windows.Forms.BindingSource ModelsBindSrc;
-        private TPartsDataSetTableAdapters.PartsSrchFilterTableAdapter partsSrchFilterTableAdapter;
+        private DevExpress.XtraEditors.SimpleButton btnSearch;
+        private DevExpress.XtraEditors.PanelControl panelControl2;
+
 
     }
 }

@@ -7,64 +7,95 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.Entity;
+using AutoPartDataModels;
 namespace DataManagment
 {
     public partial class TFormSearchParts : Form
     {
         TFormManagePart FormManagePart;
+        DMParts CDMParts;
+        public int PartID;
         public TFormSearchParts()
         {
             InitializeComponent();
-            CommonDataSet = PartsDataSet.CommonDataSet;
+            CDMParts = new DMParts();
         }
 
+        public TFormSearchParts(int CarID, int ModelID)
+        {
+            InitializeComponent();
+            CDMParts = new DMParts();
+            lookUpMarks.EditValue = CarID;
+            LookUpModels.EditValue = ModelID;
+            CDMParts.LoadParts(CurrSelModel()); 
+        }
         private void TFormSearchParts_Load(object sender, EventArgs e)
         {
-
-            FormManagePart = new TFormManagePart(PartsDataSet);
+            FormManagePart = new TFormManagePart();
             FormManagePart.TopLevel = false;
-            pnlFormPart.Controls.Add(FormManagePart);
-            PartsDataSet.SetEvents();
+            pnlFrameHolder.Controls.Add(FormManagePart);
             FormManagePart.Show();
             SetDataSources();
-            SrchFilterBndSrc.DataSource = PartsDataSet;
-            CommonDataSet.LoadAllCarMarks();
-
-            this.PartsDataSet.LoadAllParts();
-
         }
 
         private void AllPartsBindSrc_PositionChanged(object sender, EventArgs e)
         {
-            if (AllPartsBindSrc.Position >= 0)
-                PartsDataSet.LoadPartByID((int)PartsDataSet.ModelParts.Rows[AllPartsBindSrc.Position]["PART_ID"]);
+
         }
 
         private void SetDataSources()
         {
-            CarsBindSrc.DataSource = CommonDataSet;
-            ModelsBindSrc.DataSource = CommonDataSet;
+            partsBindingSource.DataSource = CDMParts.GetPartsDBSet().Local.ToBindingList();
+            MarksBindSrc.DataSource = CDMParts.CurrContex.Cars.ToList();
         }
 
-        private void CarsBindSrc_PositionChanged(object sender, EventArgs e)
+        private void MarksBindSrc_PositionChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void SrchFilterBndSrc_CurrentChanged(object sender, EventArgs e)
+        private int CurrSelModel()
         {
-            ;
+            if (LookUpModels.EditValue == null)
+                return 0;
+            else
+                return (int)LookUpModels.EditValue;
+        }
+        private int CurrSelMark()
+        {
+            if (lookUpMarks.EditValue == null)
+                return 0;
+            else
+                return (int)lookUpMarks.EditValue;
         }
 
-        private void SrchFilterBndSrc_CurrentItemChanged(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
-            ;
+            CDMParts.LoadParts(CurrSelModel());
         }
 
-        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        private void lookUpMarks_EditValueChanged(object sender, EventArgs e)
         {
-
+            int SelMark = CurrSelMark();
+            ModelsBindSrc.DataSource = CDMParts.CurrContex.Models.Where(m => m.CAR_ID == SelMark).ToList();
         }
+
+        private void partsBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            FormManagePart.LoadPartByID(CurrSeletcedPart().Part_ID);
+        }
+
+        private Parts CurrSeletcedPart()
+        {
+            return (Parts)partsBindingSource.Current;
+        }
+
+        private void partsGridParts_DoubleClick(object sender, EventArgs e)
+        {
+            PartID = CurrSeletcedPart().Part_ID;
+            Close();
+        }
+
     }
 }

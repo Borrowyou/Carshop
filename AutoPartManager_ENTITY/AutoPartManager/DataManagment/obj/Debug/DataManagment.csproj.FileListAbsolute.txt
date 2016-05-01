@@ -2,10 +2,7 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagme
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\bin\Debug\DataManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.pdb
-C:\PartsManager\Bin\DataManagment.dll
-C:\PartsManager\Bin\DataManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll.licenses
-C:\PartsManager\Bin\DataManagment.dll.config
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageClients.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.csproj.GenerateResource.Cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormClients.resources
@@ -17,8 +14,10 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagme
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormManagePart.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormServicesManage.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.csprojResolveAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormEmployees.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormClients.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageClients.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageEmployee.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.PanelClientCar.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.Properties.Resources.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormManagePart.resources
@@ -27,8 +26,9 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Data
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormServicesManage.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.csproj.GenerateResource.Cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll.licenses
+C:\PartsManager\Bin\NLog.config
+C:\PartsManager\Bin\DataManagment.dll.config
+C:\PartsManager\Bin\DataManagment.dll
+C:\PartsManager\Bin\DataManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.pdb
-C:\PartsManager\Bin\NLog.config
-C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormEmployees.resources
-C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageEmployee.resources

@@ -14,6 +14,7 @@ namespace ServiceManagment
     {
         TFormManageAppoitment FormManageAppoitment;
         FormAllAppoitments FormAllAppt;
+        FormAllServices FormAllServ;
         DMAppointments DMAppoitm;
         public TFormAppointments()
         {
@@ -25,18 +26,19 @@ namespace ServiceManagment
             catch (Exception Ex)
             {
                 MessageBox.Show(Ex.Message);
-    
             }
         }
 
         public void InitFormAppManage()
         {
-            if (FormManageAppoitment == null)
-                FormManageAppoitment = new TFormManageAppoitment(true);
+            if (FormManageAppoitment != null)
+                FormManageAppoitment.Dispose();
+            FormManageAppoitment = new TFormManageAppoitment(true);
             FormManageAppoitment.TopLevel = false;
             FormManageAppoitment.Dock = DockStyle.Fill;
             pnlFormHolder.Controls.Clear();
             pnlFormHolder.Controls.Add(FormManageAppoitment);
+            FormManageAppoitment.LoadOrInsAppt(-1);
             FormManageAppoitment.Show();
         }
 
@@ -48,14 +50,31 @@ namespace ServiceManagment
 
         private void btnViewAppoitments_Click(object sender, EventArgs e)
         {
-            if (FormAllAppt == null)
-                FormAllAppt = new FormAllAppoitments();
+            if (FormAllAppt != null)
+                FormAllAppt.Dispose();
+            FormAllAppt = new FormAllAppoitments();
             FormAllAppt.TopLevel = false;
             FormAllAppt.Dock = DockStyle.Fill;
             pnlFormHolder.Controls.Clear();
             pnlFormHolder.Controls.Add(FormAllAppt);
             FormAllAppt.Show();
+
             
+        }
+
+        private void btnServices_Click(object sender, EventArgs e)
+        {
+            if (FormAllServ != null)
+                FormAllServ.Dispose();
+            FormAllServ = new FormAllServices();
+            FormAllServ.TopLevel = false;
+            FormAllServ.Dock = DockStyle.Fill;
+            pnlFormHolder.Controls.Clear();
+            pnlFormHolder.Controls.Add(FormAllServ);
+            FormAllServ.ShowInTaskbar = true;
+            FormAllServ.Show();
+
+
         }
 
     }

@@ -17,3 +17,4 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Serv
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.pdb
 C:\PartsManager\Bin\NLog.config
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormAllAppoitments.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormAllServices.resources

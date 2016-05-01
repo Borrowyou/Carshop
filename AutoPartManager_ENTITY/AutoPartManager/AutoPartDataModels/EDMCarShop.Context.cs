@@ -38,12 +38,13 @@ namespace AutoPartDataModels
         public virtual DbSet<PARTS_LINK> PARTS_LINK { get; set; }
         public virtual DbSet<PROVIDER_CATEGORIES> PROVIDER_CATEGORIES { get; set; }
         public virtual DbSet<REPAIR_SERVICES> REPAIR_SERVICES { get; set; }
-        public virtual DbSet<SERVICE_WORKS> SERVICE_WORKS { get; set; }
         public virtual DbSet<SERVICES> SERVICES { get; set; }
         public virtual DbSet<SUB_CATEGORIES> SUB_CATEGORIES { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
         public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }
+        public virtual DbSet<SERVICE_WORKS> SERVICE_WORKS { get; set; }
+        public virtual DbSet<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
     
         [DbFunction("CarShopEntities", "FUN_YEARS_BETWEEN_LIST")]
         public virtual IQueryable<FUN_YEARS_BETWEEN_LIST_Result> FUN_YEARS_BETWEEN_LIST(Nullable<int> from, Nullable<int> to)
@@ -70,6 +71,16 @@ namespace AutoPartDataModels
                 new ObjectParameter("GENERATOR_STEP", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GEN_ID", gENERATOR_NAMEParameter, gENERATOR_STEPParameter, nEW_VALUE);
+        }
+    
+        [DbFunction("CarShopEntities", "FUN_CALC_APP_SUM_BY_APP_ID")]
+        public virtual IQueryable<FUN_CALC_APP_SUM_BY_APP_ID_Result> FUN_CALC_APP_SUM_BY_APP_ID(Nullable<int> aPPOITMENT_ID)
+        {
+            var aPPOITMENT_IDParameter = aPPOITMENT_ID.HasValue ?
+                new ObjectParameter("APPOITMENT_ID", aPPOITMENT_ID) :
+                new ObjectParameter("APPOITMENT_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FUN_CALC_APP_SUM_BY_APP_ID_Result>("[CarShopEntities].[FUN_CALC_APP_SUM_BY_APP_ID](@APPOITMENT_ID)", aPPOITMENT_IDParameter);
         }
     }
 }

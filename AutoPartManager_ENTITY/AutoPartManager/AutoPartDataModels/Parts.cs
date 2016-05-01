@@ -14,6 +14,12 @@ namespace AutoPartDataModels
     
     public partial class Parts
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Parts()
+        {
+            this.SERVICE_WORK_PARTS = new HashSet<SERVICE_WORK_PARTS>();
+        }
+    
         public int Part_ID { get; set; }
         public string part_name { get; set; }
         public Nullable<double> part_price { get; set; }
@@ -26,5 +32,7 @@ namespace AutoPartDataModels
     
         public virtual Cars Cars { get; set; }
         public virtual Models Models { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
     }
 }
