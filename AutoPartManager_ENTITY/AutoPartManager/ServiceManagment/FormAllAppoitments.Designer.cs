@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.aPPOITMENTSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.aPPOITMENTSBindingSource = new System.Windows.Forms.BindingSource();
             this.GridCtrlAppoitments = new DevExpress.XtraGrid.GridControl();
             this.gridViewAppoitments = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAPPOITMENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,6 +77,7 @@
             this.colCLIENT_CARS});
             this.gridViewAppoitments.GridControl = this.GridCtrlAppoitments;
             this.gridViewAppoitments.Name = "gridViewAppoitments";
+            this.gridViewAppoitments.OptionsView.ShowGroupPanel = false;
             this.gridViewAppoitments.DoubleClick += new System.EventHandler(this.gridViewAppoitments_DoubleClick);
             // 
             // colAPPOITMENT_ID
@@ -87,6 +87,7 @@
             // 
             // colAPPOITMENT_DATE
             // 
+            this.colAPPOITMENT_DATE.Caption = "Дата и час";
             this.colAPPOITMENT_DATE.DisplayFormat.FormatString = "dd";
             this.colAPPOITMENT_DATE.FieldName = "APPOITMENT_DATE";
             this.colAPPOITMENT_DATE.Name = "colAPPOITMENT_DATE";
@@ -105,6 +106,7 @@
             // 
             // colClients
             // 
+            this.colClients.Caption = "Клиент";
             this.colClients.FieldName = "Clients.CLIENT_NAME";
             this.colClients.Name = "colClients";
             this.colClients.Visible = true;
@@ -117,10 +119,11 @@
             // 
             // colCLIENT_CARS
             // 
+            this.colCLIENT_CARS.Caption = "Кола";
             this.colCLIENT_CARS.FieldName = "CLIENT_CARS.Models.MODEL_NAME";
             this.colCLIENT_CARS.Name = "colCLIENT_CARS";
             this.colCLIENT_CARS.Visible = true;
-            this.colCLIENT_CARS.VisibleIndex = 3;
+            this.colCLIENT_CARS.VisibleIndex = 2;
             // 
             // repositoryItemSearchLookUpEdit1
             // 

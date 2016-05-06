@@ -39,6 +39,7 @@
     <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
     <NavigationProperty Name="Models" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
     <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="CLIENT_CARS" ToRole="APPOITMENTS" />
+    <Property Name="CAR_REG_NUMB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Clients">
     <Key>
@@ -348,6 +349,7 @@
       <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
       <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
     </AssociationSet>
+    <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" />
   </EntityContainer>
   <EntityType Name="EMPLOYEES_SERVICE_WORKS">
     <Key>
@@ -517,4 +519,17 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="VIEW_APPOITMENT_CLIENT_SUMS">
+    <Key>
+      <PropertyRef Name="APPOITMENT_ID" />
+      <PropertyRef Name="SERVICE_WORK_ID" />
+      <PropertyRef Name="SERVICE_NAME" />
+    </Key>
+    <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PART_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PART_MANUF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="WORK_PRICE" Type="Double" />
+  </EntityType>
 </Schema>

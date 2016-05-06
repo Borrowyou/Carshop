@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.Entity;
 using AutoPartDataModels;
+using DataManagment;
 
 namespace ServiceManagment
 {
@@ -65,12 +66,44 @@ namespace ServiceManagment
 
         public void LoadServices()
         {
-            var ServicesWorks = CurrContex.SERVICE_WORKS.Include(s => s.SERVICES)
+            var ServicesWorks = CurrContex.SERVICE_WORKS
+                                .Include(s => s.SERVICES)
                                 .Include(s => s.APPOITMENTS.Clients)
-                                .Include(s => s.APPOITMENTS.CLIENT_CARS.Models);
+                                .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
+                                .Include(e => e.EMPLOYEES_SERVICE_WORKS);
             foreach (SERVICE_WORKS CurrWork in ServicesWorks)
                 CurrContex.SERVICE_WORKS.Local.Add(CurrWork);
 
         }
+        public IQueryable<LOOKUP_ITEMS> GetServiceWorkStatuses()
+        {
+
+            return CurrContex.LOOKUP_ITEMS.Where(l => l.LOOKUP_NAME == DMStrings.ServiceWorkStatuses);
+        }
+
+        public IQueryable<EMPLOYEES> GetMechanicsList()
+        {
+            return CurrContex.EMPLOYEES.Where(e => e.EMPL_TYPE == DMStrings.EmplTypeMech);
+        }
+
+        public void LoadServicesByMechAndStatus(int EmplID, string WorkStatus)
+        {
+            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus)
+                .Include(s => s.SERVICES)
+                .Include(s => s.APPOITMENTS.Clients)
+                .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
+                .Include(e => e.EMPLOYEES_SERVICE_WORKS);
+            CurrContex.SERVICE_WORKS.Local.Clear();
+            foreach (SERVICE_WORKS CurrWork in ServicesWorks)
+                CurrContex.SERVICE_WORKS.Local.Add(CurrWork);
+
+        }
+
+        public IQueryable<EMPLOYEES_SERVICE_WORKS> GetServWorkEmployees(int ServWorkID)
+        {
+            return CurrContex.EMPLOYEES_SERVICE_WORKS.Where(e => e.SERVICE_WORK_ID == ServWorkID)
+                                                      .Include(ew => ew.EMPLOYEES);
+        }
+
     }
 }

@@ -71,7 +71,7 @@
             this.lookUpEdit1.Properties.DataSource = this.lOOKUP_ITEMSBindingSource;
             this.lookUpEdit1.Properties.DisplayMember = "ITEM_NAME";
             this.lookUpEdit1.Properties.ValueMember = "ITEM_CODE";
-            this.lookUpEdit1.Size = new System.Drawing.Size(100, 20);
+            this.lookUpEdit1.Size = new System.Drawing.Size(110, 20);
             this.lookUpEdit1.TabIndex = 18;
             // 
             // clientsBindingSource

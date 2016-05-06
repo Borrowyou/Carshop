@@ -22,6 +22,7 @@
     <EntitySetMapping Name="CLIENT_CARS">
       <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
         <MappingFragment StoreEntitySet="CLIENT_CARS">
+          <ScalarProperty Name="CAR_REG_NUMB" ColumnName="CAR_REG_NUMB" />
           <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
           <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
           <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
@@ -207,5 +208,17 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="VIEW_APPOITMENT_CLIENT_SUMS">
+      <EntityTypeMapping TypeName="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS">
+        <MappingFragment StoreEntitySet="VIEW_APPOITMENT_CLIENT_SUMS">
+          <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+          <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
+          <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
+          <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+          <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+          <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

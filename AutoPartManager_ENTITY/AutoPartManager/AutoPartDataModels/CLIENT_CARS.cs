@@ -27,6 +27,7 @@ namespace AutoPartDataModels
         public Nullable<int> CAR_YEAR { get; set; }
         public string ENGINE_TYPE { get; set; }
         public Nullable<double> ENGINE_SIZE { get; set; }
+        public string CAR_REG_NUMB { get; set; }
     
         public virtual Clients Clients { get; set; }
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }

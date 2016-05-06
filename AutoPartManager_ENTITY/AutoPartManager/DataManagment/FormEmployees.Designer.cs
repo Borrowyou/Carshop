@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridEmployyes = new DevExpress.XtraGrid.GridControl();
-            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource();
+            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -144,6 +145,7 @@
             // 
             // colNAME
             // 
+            this.colNAME.Caption = "Име";
             this.colNAME.FieldName = "NAME";
             this.colNAME.Name = "colNAME";
             this.colNAME.Visible = true;
@@ -153,50 +155,52 @@
             // 
             this.colEMPL_TYPE.FieldName = "EMPL_TYPE";
             this.colEMPL_TYPE.Name = "colEMPL_TYPE";
-            this.colEMPL_TYPE.Visible = true;
-            this.colEMPL_TYPE.VisibleIndex = 1;
             // 
             // colTELEPHONE
             // 
+            this.colTELEPHONE.Caption = "Телефон";
             this.colTELEPHONE.FieldName = "TELEPHONE";
             this.colTELEPHONE.Name = "colTELEPHONE";
-            this.colTELEPHONE.Visible = true;
-            this.colTELEPHONE.VisibleIndex = 2;
             // 
             // colEMAIL
             // 
+            this.colEMAIL.Caption = "Email";
             this.colEMAIL.FieldName = "EMAIL";
             this.colEMAIL.Name = "colEMAIL";
             this.colEMAIL.Visible = true;
-            this.colEMAIL.VisibleIndex = 3;
+            this.colEMAIL.VisibleIndex = 1;
             // 
             // colDETAILS
             // 
+            this.colDETAILS.Caption = "Подробности";
             this.colDETAILS.FieldName = "DETAILS";
             this.colDETAILS.Name = "colDETAILS";
             this.colDETAILS.Visible = true;
-            this.colDETAILS.VisibleIndex = 4;
+            this.colDETAILS.VisibleIndex = 2;
             // 
             // colDATE_EMPLOYEE
             // 
+            this.colDATE_EMPLOYEE.Caption = "Дата назначаване";
             this.colDATE_EMPLOYEE.FieldName = "DATE_EMPLOYEE";
             this.colDATE_EMPLOYEE.Name = "colDATE_EMPLOYEE";
             this.colDATE_EMPLOYEE.Visible = true;
-            this.colDATE_EMPLOYEE.VisibleIndex = 5;
+            this.colDATE_EMPLOYEE.VisibleIndex = 3;
             // 
             // colQUIT_DATE
             // 
+            this.colQUIT_DATE.Caption = "Дата напускане";
             this.colQUIT_DATE.FieldName = "QUIT_DATE";
             this.colQUIT_DATE.Name = "colQUIT_DATE";
             this.colQUIT_DATE.Visible = true;
-            this.colQUIT_DATE.VisibleIndex = 6;
+            this.colQUIT_DATE.VisibleIndex = 4;
             // 
             // colLOOKUP_ITEMS
             // 
-            this.colLOOKUP_ITEMS.FieldName = "LOOKUP_ITEMS";
+            this.colLOOKUP_ITEMS.Caption = "Длъжност";
+            this.colLOOKUP_ITEMS.FieldName = "LOOKUP_ITEMS.ITEM_NAME";
             this.colLOOKUP_ITEMS.Name = "colLOOKUP_ITEMS";
             this.colLOOKUP_ITEMS.Visible = true;
-            this.colLOOKUP_ITEMS.VisibleIndex = 7;
+            this.colLOOKUP_ITEMS.VisibleIndex = 5;
             // 
             // splitter1
             // 

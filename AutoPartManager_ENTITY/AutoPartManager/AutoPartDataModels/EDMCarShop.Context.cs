@@ -45,6 +45,7 @@ namespace AutoPartDataModels
         public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }
         public virtual DbSet<SERVICE_WORKS> SERVICE_WORKS { get; set; }
         public virtual DbSet<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
+        public virtual DbSet<VIEW_APPOITMENT_CLIENT_SUMS> VIEW_APPOITMENT_CLIENT_SUMS { get; set; }
     
         [DbFunction("CarShopEntities", "FUN_YEARS_BETWEEN_LIST")]
         public virtual IQueryable<FUN_YEARS_BETWEEN_LIST_Result> FUN_YEARS_BETWEEN_LIST(Nullable<int> from, Nullable<int> to)

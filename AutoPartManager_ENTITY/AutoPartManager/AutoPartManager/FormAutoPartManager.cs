@@ -23,6 +23,7 @@ namespace AutoPartManager
             InitFormAppointments();
         }
 
+  
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 

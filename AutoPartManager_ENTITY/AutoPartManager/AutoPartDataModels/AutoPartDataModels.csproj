@@ -126,6 +126,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="VIEW_APPOITMENT_CLIENT_SUMS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

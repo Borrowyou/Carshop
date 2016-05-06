@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label cAR_REG_NUMBLabel;
             this.LupCBoxCars = new DevExpress.XtraEditors.LookUpEdit();
-            this.ClientsDset = new DataManagment.ClientsDataSet();
+            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AllCarsBindSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.ClientsDset = new DataManagment.ClientsDataSet();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.lblSize = new DevExpress.XtraEditors.LabelControl();
             this.lblEngineType = new DevExpress.XtraEditors.LabelControl();
@@ -46,10 +48,12 @@
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
             this.txtEngSize = new DevExpress.XtraEditors.TextEdit();
-            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cAR_REG_NUMBTextEdit = new DevExpress.XtraEditors.TextEdit();
+            cAR_REG_NUMBLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LupCBoxCars.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.YearsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).BeginInit();
@@ -58,7 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEngSize.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cAR_REG_NUMBTextEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // LupCBoxCars
@@ -76,14 +80,20 @@
             this.LupCBoxCars.Size = new System.Drawing.Size(86, 20);
             this.LupCBoxCars.TabIndex = 16;
             // 
-            // ClientsDset
+            // cLIENT_CARSBindingSource
             // 
-            this.ClientsDset.DataSetName = "ClientsDset";
-            this.ClientsDset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.cLIENT_CARSBindingSource.DataSource = typeof(AutoPartDataModels.CLIENT_CARS);
+            this.cLIENT_CARSBindingSource.CurrentChanged += new System.EventHandler(this.cLIENT_CARSBindingSource_CurrentChanged);
+            this.cLIENT_CARSBindingSource.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.cLIENT_CARSBindingSource_ListChanged);
             // 
             // AllCarsBindSrc
             // 
             this.AllCarsBindSrc.DataSource = typeof(AutoPartDataModels.Cars);
+            // 
+            // ClientsDset
+            // 
+            this.ClientsDset.DataSetName = "ClientsDset";
+            this.ClientsDset.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // simpleButton1
             // 
@@ -178,7 +188,7 @@
             this.lookUpEdit2.Properties.DataSource = this.ModelsBindSrc;
             this.lookUpEdit2.Properties.DisplayMember = "MODEL_NAME";
             this.lookUpEdit2.Properties.ValueMember = "MODEL_ID";
-            this.lookUpEdit2.Size = new System.Drawing.Size(86, 20);
+            this.lookUpEdit2.Size = new System.Drawing.Size(97, 20);
             this.lookUpEdit2.TabIndex = 19;
             // 
             // lookUpEdit3
@@ -193,7 +203,7 @@
             this.lookUpEdit3.Properties.DataSource = this.EngTypeBindSrc;
             this.lookUpEdit3.Properties.DisplayMember = "ITEM_NAME";
             this.lookUpEdit3.Properties.ValueMember = "ITEM_CODE";
-            this.lookUpEdit3.Size = new System.Drawing.Size(84, 20);
+            this.lookUpEdit3.Size = new System.Drawing.Size(95, 20);
             this.lookUpEdit3.TabIndex = 20;
             // 
             // txtEngSize
@@ -204,16 +214,29 @@
             this.txtEngSize.Size = new System.Drawing.Size(72, 20);
             this.txtEngSize.TabIndex = 21;
             // 
-            // cLIENT_CARSBindingSource
+            // cAR_REG_NUMBLabel
             // 
-            this.cLIENT_CARSBindingSource.DataSource = typeof(AutoPartDataModels.CLIENT_CARS);
-            this.cLIENT_CARSBindingSource.CurrentChanged += new System.EventHandler(this.cLIENT_CARSBindingSource_CurrentChanged);
-            this.cLIENT_CARSBindingSource.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.cLIENT_CARSBindingSource_ListChanged);
+            cAR_REG_NUMBLabel.AutoSize = true;
+            cAR_REG_NUMBLabel.Location = new System.Drawing.Point(151, 83);
+            cAR_REG_NUMBLabel.Name = "cAR_REG_NUMBLabel";
+            cAR_REG_NUMBLabel.Size = new System.Drawing.Size(56, 13);
+            cAR_REG_NUMBLabel.TabIndex = 21;
+            cAR_REG_NUMBLabel.Text = "Рег. Ном.";
+            // 
+            // cAR_REG_NUMBTextEdit
+            // 
+            this.cAR_REG_NUMBTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.cLIENT_CARSBindingSource, "CAR_REG_NUMB", true));
+            this.cAR_REG_NUMBTextEdit.Location = new System.Drawing.Point(208, 80);
+            this.cAR_REG_NUMBTextEdit.Name = "cAR_REG_NUMBTextEdit";
+            this.cAR_REG_NUMBTextEdit.Size = new System.Drawing.Size(95, 20);
+            this.cAR_REG_NUMBTextEdit.TabIndex = 22;
             // 
             // PanelClientCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(cAR_REG_NUMBLabel);
+            this.Controls.Add(this.cAR_REG_NUMBTextEdit);
             this.Controls.Add(this.txtEngSize);
             this.Controls.Add(this.lookUpEdit3);
             this.Controls.Add(this.lookUpEdit2);
@@ -226,11 +249,12 @@
             this.Controls.Add(this.lblModel);
             this.Controls.Add(this.lblCar);
             this.Name = "PanelClientCar";
-            this.Size = new System.Drawing.Size(310, 127);
+            this.Size = new System.Drawing.Size(321, 127);
             this.Load += new System.EventHandler(this.PanelClientCar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LupCBoxCars.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.YearsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).EndInit();
@@ -239,7 +263,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEngSize.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cAR_REG_NUMBTextEdit.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +289,7 @@
         private DevExpress.XtraEditors.LookUpEdit lookUpEdit3;
         private DevExpress.XtraEditors.TextEdit txtEngSize;
         private System.Windows.Forms.BindingSource cLIENT_CARSBindingSource;
+        private DevExpress.XtraEditors.TextEdit cAR_REG_NUMBTextEdit;
 
     }
 }

@@ -31,6 +31,9 @@ namespace DataManagment
             SetDataSources();
             PnlTop = RichtxtDetails.Top + RichtxtDetails.Height + 5;
             DefHeight = Height;
+            btnPosTop = PnlTop;
+
+
         }
 
         public void SetDataSources()
@@ -117,7 +120,7 @@ namespace DataManagment
             
             if (ListClientCars.Count > 0)
             {
-                btnAddCar.Top = ListClientCars.Last().Top + ListClientCars.Last().Height + 5;
+                btnAddCar.Top = ListClientCars.Last().Top + ListClientCars.Last().Height ;
                 Height = ListClientCars.Last().Top + ListClientCars.Last().Height + 60;
             }
         }
@@ -166,6 +169,7 @@ namespace DataManagment
                     ClearAndReplace();  
                 }
             }
+            ClearAndReplace();
         }
 
 

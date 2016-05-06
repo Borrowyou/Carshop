@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridClients = new DevExpress.XtraGrid.GridControl();
-            this.clientsBindingSource = new System.Windows.Forms.BindingSource();
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewClients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_FORM = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCOMPANY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTELEPHONE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDETAILS = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,6 +66,7 @@
             // 
             // pnlFormClient
             // 
+            this.pnlFormClient.AutoScroll = true;
             this.pnlFormClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFormClient.Location = new System.Drawing.Point(0, 33);
             this.pnlFormClient.Name = "pnlFormClient";
@@ -122,7 +123,6 @@
             this.colCLIENT_ID,
             this.colCLIENT_NAME,
             this.colCLIENT_FORM,
-            this.colCOMPANY,
             this.colTELEPHONE,
             this.colEMAIL,
             this.colDETAILS});
@@ -137,50 +137,51 @@
             // 
             this.colCLIENT_ID.FieldName = "CLIENT_ID";
             this.colCLIENT_ID.Name = "colCLIENT_ID";
-            this.colCLIENT_ID.Visible = true;
-            this.colCLIENT_ID.VisibleIndex = 0;
             // 
             // colCLIENT_NAME
             // 
+            this.colCLIENT_NAME.Caption = "Име";
             this.colCLIENT_NAME.FieldName = "CLIENT_NAME";
             this.colCLIENT_NAME.Name = "colCLIENT_NAME";
             this.colCLIENT_NAME.Visible = true;
-            this.colCLIENT_NAME.VisibleIndex = 1;
+            this.colCLIENT_NAME.VisibleIndex = 0;
+            this.colCLIENT_NAME.Width = 85;
             // 
             // colCLIENT_FORM
             // 
+            this.colCLIENT_FORM.Caption = "Дата Добавяне";
             this.colCLIENT_FORM.FieldName = "CLIENT_FORM";
             this.colCLIENT_FORM.Name = "colCLIENT_FORM";
             this.colCLIENT_FORM.Visible = true;
-            this.colCLIENT_FORM.VisibleIndex = 2;
-            // 
-            // colCOMPANY
-            // 
-            this.colCOMPANY.FieldName = "COMPANY";
-            this.colCOMPANY.Name = "colCOMPANY";
-            this.colCOMPANY.Visible = true;
-            this.colCOMPANY.VisibleIndex = 3;
+            this.colCLIENT_FORM.VisibleIndex = 1;
+            this.colCLIENT_FORM.Width = 155;
             // 
             // colTELEPHONE
             // 
+            this.colTELEPHONE.Caption = "Телефон";
             this.colTELEPHONE.FieldName = "TELEPHONE";
             this.colTELEPHONE.Name = "colTELEPHONE";
             this.colTELEPHONE.Visible = true;
-            this.colTELEPHONE.VisibleIndex = 4;
+            this.colTELEPHONE.VisibleIndex = 2;
+            this.colTELEPHONE.Width = 108;
             // 
             // colEMAIL
             // 
+            this.colEMAIL.Caption = "Email";
             this.colEMAIL.FieldName = "EMAIL";
             this.colEMAIL.Name = "colEMAIL";
             this.colEMAIL.Visible = true;
-            this.colEMAIL.VisibleIndex = 5;
+            this.colEMAIL.VisibleIndex = 3;
+            this.colEMAIL.Width = 51;
             // 
             // colDETAILS
             // 
+            this.colDETAILS.Caption = "Детайли";
             this.colDETAILS.FieldName = "DETAILS";
             this.colDETAILS.Name = "colDETAILS";
             this.colDETAILS.Visible = true;
-            this.colDETAILS.VisibleIndex = 6;
+            this.colDETAILS.VisibleIndex = 4;
+            this.colDETAILS.Width = 29;
             // 
             // splitter1
             // 
@@ -222,7 +223,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_ID;
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_NAME;
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_FORM;
-        private DevExpress.XtraGrid.Columns.GridColumn colCOMPANY;
         private DevExpress.XtraGrid.Columns.GridColumn colTELEPHONE;
         private DevExpress.XtraGrid.Columns.GridColumn colEMAIL;
         private DevExpress.XtraGrid.Columns.GridColumn colDETAILS;

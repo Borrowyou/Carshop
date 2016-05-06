@@ -35,7 +35,7 @@ namespace DataManagment
 
         public void LoadAllEMployees()
         {
-            CurrContex.EMPLOYEES.Load();
+            CurrContex.EMPLOYEES.Include(e => e.LOOKUP_ITEMS) .Load();
         }
 
         public IQueryable<LOOKUP_ITEMS> GetEmplTypeLUps()

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
+using System.Diagnostics;
 using NLog;
 using AutoPartDataModels;
 using DataManagment;
@@ -73,7 +74,9 @@ namespace ServiceManagment
                     LoadAppotimentByID(ApptID);
                 }
                 sERVICE_WORKSBindingSource.MoveFirst();
+                BestFitAll();
             }
+
             finally
             {
                 LoadData = false;
@@ -245,7 +248,7 @@ namespace ServiceManagment
 
         private void sERVICE_WORKSBindingSource_CurrentChanged(object sender, EventArgs e)
         {
-
+        
 
         }
 
@@ -313,8 +316,11 @@ namespace ServiceManagment
         {
             folderBrowserDialog1.ShowDialog();
             string SavePath = folderBrowserDialog1.SelectedPath + "\\" + DateTime.Now.ToShortDateString() + ".pdf";
-            fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl.ExportToPdf(SavePath);
-
+            if (SavePath != "")
+            {
+                fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl.ExportToPdf(SavePath);
+                Process.Start(SavePath);
+            }
         }
 
         private void btnCalc_Click(object sender, EventArgs e)
@@ -325,6 +331,35 @@ namespace ServiceManagment
         {
             fUN_CALC_APP_SUM_BY_APP_ID_ResultBindingSource.DataSource = DMAppoitm.CurrContex.FUN_CALC_APP_SUM_BY_APP_ID(
                                             CurrAppoitment().APPOITMENT_ID).ToList();
+        }
+
+        private void gridView2_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName == "SERVICE_ID")
+            {
+                CurrentServiceWork().SERVICES = DMAppoitm.CurrContex.SERVICES.
+                                            Find(CurrentServiceWork().SERVICE_ID);
+                     
+                CurrentServiceWork().WORK_PRICE = CurrentServiceWork().SERVICES.PRICE_PER_HOUR;
+            sERVICE_WORKSBindingSource.ResetCurrentItem();
+            }
+
+            if (e.Column.FieldName == "WORK_STATUS")
+            {
+                if (CurrentServiceWork().WORK_STATUS == DMStrings.ServiceWorkStarted)
+                    CurrentServiceWork().TIME_START = DateTime.Now;
+                else if (CurrentServiceWork().WORK_STATUS == DMStrings.ServiceWorkFinished)
+                    CurrentServiceWork().TIME_FINISH = DateTime.Now;
+
+                
+            }
+
+
+        }
+
+        private void BestFitAll()
+        {
+
         }
     }
 }

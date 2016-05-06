@@ -26,7 +26,7 @@
         <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_MODELS" ManuallyRouted="false" />
         <AssociationConnector Association="CarShopModel.FK_CLIENTS_TYPE_LOOKUP" ManuallyRouted="false" />
         <AssociationConnector Association="CarShopModel.FK_Models" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" Width="1.5" PointX="12" PointY="10.625" />
+        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" Width="1.5" PointX="10" PointY="11" />
         <EntityTypeShape EntityType="CarShopModel.EMPLOYEES" Width="1.5" PointX="3" PointY="11.75" />
         <AssociationConnector Association="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" />
         <AssociationConnector Association="CarShopModel.FK_EMPL_TYPE_LOOKUP" />
@@ -39,6 +39,7 @@
         <AssociationConnector Association="CarShopModel.FK_SERV_WORK_PART_PARTS" />
         <AssociationConnector Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" />
         <AssociationConnector Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" />
+        <EntityTypeShape EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" Width="1.5" PointX="12.375" PointY="10.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

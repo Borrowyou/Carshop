@@ -92,15 +92,18 @@
             // 
             // btnAppoitments
             // 
+            this.btnAppoitments.Appearance.Options.UseTextOptions = true;
+            this.btnAppoitments.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.btnAppoitments.Location = new System.Drawing.Point(12, 3);
             this.btnAppoitments.Name = "btnAppoitments";
-            this.btnAppoitments.Size = new System.Drawing.Size(82, 38);
+            this.btnAppoitments.Size = new System.Drawing.Size(65, 38);
             this.btnAppoitments.TabIndex = 3;
-            this.btnAppoitments.Text = "simpleButton1";
+            this.btnAppoitments.Text = "Часове и ремонти";
             this.btnAppoitments.Click += new System.EventHandler(this.btnAppoitments_Click);
             // 
             // pnlForm
             // 
+            this.pnlForm.AutoScroll = true;
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 68);
             this.pnlForm.Name = "pnlForm";
@@ -117,7 +120,8 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormAutoPartManager";
-            this.Text = "Form1";
+            this.Text = "Авто трейдър";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormAutoPartManager_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

@@ -32,6 +32,7 @@
           <Property Name="CAR_YEAR" Type="int" />
           <Property Name="ENGINE_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ENGINE_SIZE" Type="float" />
+          <Property Name="CAR_REG_NUMB" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -173,6 +174,21 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEW_APPOITMENT_CLIENT_SUMS">
+          <Key>
+            <PropertyRef Name="APPOITMENT_ID" />
+            <PropertyRef Name="SERVICE_WORK_ID" />
+            <PropertyRef Name="SERVICE_NAME" />
+          </Key>
+          <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
+          <Property Name="SERVICE_NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PART_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
+          <Property Name="WORK_PRICE" Type="float" />
         </EntityType>
         <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
           <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="1" />
@@ -427,6 +443,16 @@
           <EntitySet Name="SERVICES" EntityType="Self.SERVICES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="Self.VIEW_APPOITMENT_CLIENT_SUMS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[APPOITMENT_ID] AS [APPOITMENT_ID], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[SERVICE_WORK_ID] AS [SERVICE_WORK_ID], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[SERVICE_NAME] AS [SERVICE_NAME], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[PART_NAME] AS [PART_NAME], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[PART_MANUF] AS [PART_MANUF], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[WORK_PRICE] AS [WORK_PRICE]
+    FROM [dbo].[VIEW_APPOITMENT_CLIENT_SUMS] AS [VIEW_APPOITMENT_CLIENT_SUMS]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="Self.FK_APPOITMENT_CLIENT_CAR_ID">
             <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
             <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
@@ -539,6 +565,7 @@
           <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
           <NavigationProperty Name="Models" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
           <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="CLIENT_CARS" ToRole="APPOITMENTS" />
+          <Property Name="CAR_REG_NUMB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -848,6 +875,7 @@
             <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
             <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
           </AssociationSet>
+          <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" />
           </EntityContainer>
         <EntityType Name="EMPLOYEES_SERVICE_WORKS">
           <Key>
@@ -1017,6 +1045,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VIEW_APPOITMENT_CLIENT_SUMS">
+          <Key>
+            <PropertyRef Name="APPOITMENT_ID" />
+            <PropertyRef Name="SERVICE_WORK_ID" />
+            <PropertyRef Name="SERVICE_NAME" />
+          </Key>
+          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PART_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PART_MANUF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WORK_PRICE" Type="Double" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1044,6 +1085,7 @@
           <EntitySetMapping Name="CLIENT_CARS">
             <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
               <MappingFragment StoreEntitySet="CLIENT_CARS">
+                <ScalarProperty Name="CAR_REG_NUMB" ColumnName="CAR_REG_NUMB" />
                 <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
                 <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
                 <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
@@ -1229,6 +1271,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="VIEW_APPOITMENT_CLIENT_SUMS">
+            <EntityTypeMapping TypeName="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS">
+              <MappingFragment StoreEntitySet="VIEW_APPOITMENT_CLIENT_SUMS">
+                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+                <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
+                <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
+                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+                <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
