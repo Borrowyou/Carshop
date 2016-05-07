@@ -15,6 +15,7 @@ namespace AutoPartManager
     public partial class FormAutoPartManager : Form
     {
         TFormAppointments FormAppointments;
+        FormReports CDMFormCarReports;
         
 
         public FormAutoPartManager()
@@ -60,6 +61,7 @@ namespace AutoPartManager
         {
             FormAppointments = new TFormAppointments();
             FormAppointments.TopLevel = false;
+            pnlForm.Controls.Clear();
             pnlForm.Controls.Add(FormAppointments);
             FormAppointments.Dock = DockStyle.Fill;
             FormAppointments.Show();
@@ -78,5 +80,20 @@ namespace AutoPartManager
             CFormEmpl.Show();
         }
 
+
+        private void InitReportsForm()
+        {
+            CDMFormCarReports = new FormReports();
+            CDMFormCarReports.TopLevel = false;
+            pnlForm.Controls.Clear();
+            pnlForm.Controls.Add(CDMFormCarReports);
+            CDMFormCarReports.Dock = DockStyle.Fill;
+            CDMFormCarReports.Show();
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            InitReportsForm();
+        }
     }
 }

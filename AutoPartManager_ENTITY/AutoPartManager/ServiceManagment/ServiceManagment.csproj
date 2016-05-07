@@ -85,6 +85,7 @@
     <Compile Include="DataMngStrings.cs" />
     <Compile Include="DBFuncs.cs" />
     <Compile Include="DMAppointments.cs" />
+    <Compile Include="DMReports.cs" />
     <Compile Include="FormAllAppoitments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +97,18 @@
     </Compile>
     <Compile Include="FormAllServices.Designer.cs">
       <DependentUpon>FormAllServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportCarServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportCarServices.Designer.cs">
+      <DependentUpon>FormReportCarServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReports.Designer.cs">
+      <DependentUpon>FormReports.cs</DependentUpon>
     </Compile>
     <Compile Include="LogExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAllServices.resx">
       <DependentUpon>FormAllServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportCarServices.resx">
+      <DependentUpon>FormReportCarServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReports.resx">
+      <DependentUpon>FormReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAutoPartManager));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.частиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.услугиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.служителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlBtms = new System.Windows.Forms.Panel();
+            this.btnReports = new DevExpress.XtraEditors.SimpleButton();
             this.btnAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.pnlForm = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -83,6 +85,7 @@
             // 
             // PnlBtms
             // 
+            this.PnlBtms.Controls.Add(this.btnReports);
             this.PnlBtms.Controls.Add(this.btnAppoitments);
             this.PnlBtms.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlBtms.Location = new System.Drawing.Point(0, 24);
@@ -90,13 +93,24 @@
             this.PnlBtms.Size = new System.Drawing.Size(386, 44);
             this.PnlBtms.TabIndex = 2;
             // 
+            // btnReports
+            // 
+            this.btnReports.Appearance.Options.UseTextOptions = true;
+            this.btnReports.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.btnReports.Location = new System.Drawing.Point(83, 3);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(65, 38);
+            this.btnReports.TabIndex = 4;
+            this.btnReports.Text = "Справки";
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
+            // 
             // btnAppoitments
             // 
             this.btnAppoitments.Appearance.Options.UseTextOptions = true;
             this.btnAppoitments.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.btnAppoitments.Location = new System.Drawing.Point(12, 3);
             this.btnAppoitments.Name = "btnAppoitments";
-            this.btnAppoitments.Size = new System.Drawing.Size(65, 38);
+            this.btnAppoitments.Size = new System.Drawing.Size(65, 41);
             this.btnAppoitments.TabIndex = 3;
             this.btnAppoitments.Text = "Часове и ремонти";
             this.btnAppoitments.Click += new System.EventHandler(this.btnAppoitments_Click);
@@ -118,6 +132,7 @@
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.PnlBtms);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormAutoPartManager";
             this.Text = "Авто трейдър";
@@ -141,6 +156,7 @@
         private System.Windows.Forms.Panel pnlForm;
         private System.Windows.Forms.ToolStripMenuItem услугиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem служителиToolStripMenuItem;
+        private DevExpress.XtraEditors.SimpleButton btnReports;
 
 
     }

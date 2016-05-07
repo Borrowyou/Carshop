@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormClients));
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridClients = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.обновиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewClients = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,6 +51,7 @@
             this.PnlBtns.SuspendLayout();
             this.pnlClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewClients)).BeginInit();
             this.SuspendLayout();
@@ -102,6 +106,7 @@
             // 
             // gridClients
             // 
+            this.gridClients.ContextMenuStrip = this.contextMenuStrip1;
             this.gridClients.DataSource = this.clientsBindingSource;
             this.gridClients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridClients.Location = new System.Drawing.Point(0, 0);
@@ -111,6 +116,21 @@
             this.gridClients.TabIndex = 0;
             this.gridClients.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewClients});
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.обновиToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 26);
+            // 
+            // обновиToolStripMenuItem
+            // 
+            this.обновиToolStripMenuItem.Name = "обновиToolStripMenuItem";
+            this.обновиToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.обновиToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.обновиToolStripMenuItem.Text = "Обнови";
+            this.обновиToolStripMenuItem.Click += new System.EventHandler(this.обновиToolStripMenuItem_Click);
             // 
             // clientsBindingSource
             // 
@@ -200,13 +220,15 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.pnlClients);
             this.Controls.Add(this.pnlFrameClients);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormClients";
-            this.Text = "FormManageClients";
+            this.Text = "Клиенти";
             this.Load += new System.EventHandler(this.FormManageClients_Load);
             this.pnlFrameClients.ResumeLayout(false);
             this.PnlBtns.ResumeLayout(false);
             this.pnlClients.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridClients)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewClients)).EndInit();
             this.ResumeLayout(false);
@@ -230,6 +252,8 @@
         private DevExpress.XtraEditors.SimpleButton btnNew;
         private System.Windows.Forms.Panel pnlFormClient;
         private System.Windows.Forms.BindingSource clientsBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem обновиToolStripMenuItem;
 
 
     }

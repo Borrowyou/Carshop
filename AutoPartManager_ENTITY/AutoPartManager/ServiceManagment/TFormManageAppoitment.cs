@@ -102,6 +102,8 @@ namespace ServiceManagment
             aPPOITMENTBindingSource.AddNew();
             ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID = DMAppoitm.GenID("APPOITMENTS_ID");
             ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_DATE = DateTime.Now;
+            ((APPOITMENTS)aPPOITMENTBindingSource.Current).APP_STATUS = DMStrings.AppStatusActive;
+
         }
 
         public void ReloadAllClients()
@@ -298,12 +300,14 @@ namespace ServiceManagment
             FormSrchParts.FormBorderStyle = FormBorderStyle.Sizable;
             FormSrchParts.ShowDialog();
             int PartID = FormSrchParts.PartID;
-            ServicePartsBindSrc.AddNew();
-            CurrWorkPart().WORK_PART_ID = DMAppoitm.GenID("SERVICE_WORK_PART");
-            CurrWorkPart().PART_ID = PartID;
-            CurrentServiceWork().SERVICE_WORK_PARTS.Add(CurrWorkPart());
-            ServicePartsBindSrc.ResetBindings(false);
-                      
+            if (PartID > 0)
+            {
+                ServicePartsBindSrc.AddNew();
+                CurrWorkPart().WORK_PART_ID = DMAppoitm.GenID("SERVICE_WORK_PART");
+                CurrWorkPart().PART_ID = PartID;
+                CurrentServiceWork().SERVICE_WORK_PARTS.Add(CurrWorkPart());
+                ServicePartsBindSrc.ResetBindings(false);
+            }         
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -361,5 +365,27 @@ namespace ServiceManagment
         {
 
         }
+
+        private void btnRemoveEmp_Click(object sender, EventArgs e)
+        {
+            DMAppoitm.CurrContex.Entry(CurrEmplWork()).State = EntityState.Deleted;
+            CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurrEmplWork());
+            EmplSrvBindingSrc.RemoveCurrent();
+        }
+
+        private void btnRemovePart_Click(object sender, EventArgs e)
+        {
+            DMAppoitm.CurrContex.Entry(CurrWorkPart()).State = EntityState.Deleted;
+            CurrentServiceWork().SERVICE_WORK_PARTS.Remove(CurrWorkPart());
+            ServicePartsBindSrc.RemoveCurrent();
+            
+        }
+
+        private void btnMarkFinished_Click(object sender, EventArgs e)
+        {
+            CurrAppoitment().APP_STATUS = DMStrings.AppStatusFinish;
+        }
+
+        
     }
 }

@@ -14,6 +14,8 @@ namespace DataManagment
 {
     public partial class FormManageClients : Form
     {
+        public delegate void RefreshGrid();
+        public RefreshGrid ReloadFunc;
         bool InsertState;
         List<PanelClientCar> ListClientCars;
         int PnlTop;
@@ -22,6 +24,7 @@ namespace DataManagment
         List<CLIENT_CARS> ClientCars;
         public int FClientID { get; set; }
         public DMClients CDMClients;
+        
 
         public FormManageClients()
         {
@@ -53,11 +56,15 @@ namespace DataManagment
         private void button1_Click(object sender, EventArgs e)
         {
             SaveClientData();
+            if (ReloadFunc != null)
+                ReloadFunc();
         }
 
         private void SaveClientData()
         {
             txtEditDetails.EditValue = RichtxtDetails.Text;
+            foreach (var ClientCar in ListClientCars)
+                ClientCar.SaveClientCars(CurrClient());
             clientsBindingSource.EndEdit();
             try
             {
@@ -76,8 +83,7 @@ namespace DataManagment
                 MessageBox.Show(E.Message);
             }
 
-            foreach (var ClientCar in ListClientCars)
-                ClientCar.SaveClientCars();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,7 +98,7 @@ namespace DataManagment
         {
             ClearAndReplace();
             ListClientCars.Add(new PanelClientCar());
-            pnlCommonClData.Controls.Add(ListClientCars.Last());
+            Controls.Add(ListClientCars.Last());
             ListClientCars.Last().Setplaces = ClearAndReplace;
             ListClientCars.Last().Left = RichtxtDetails.Left;
             ClearAndReplace();
@@ -114,13 +120,14 @@ namespace DataManagment
         private void ReArrangeObjects()
         {
             Height = DefHeight;
-            btnAddCar.Top = btnPosTop;
+            btnAddCar.Top = RichtxtDetails.Top + RichtxtDetails.Height + 5;
+            btnSave.Top = PnlTop;
             for (int i = 0; i < ListClientCars.Count; i++)
                 ListClientCars[i].Top = PnlTop + i * ListClientCars[i].Height;
             
             if (ListClientCars.Count > 0)
             {
-                btnAddCar.Top = ListClientCars.Last().Top + ListClientCars.Last().Height ;
+                btnAddCar.Top = ListClientCars.Last().Top + ListClientCars.Last().Height;
                 Height = ListClientCars.Last().Top + ListClientCars.Last().Height + 60;
             }
         }
@@ -140,7 +147,7 @@ namespace DataManagment
             ListClientCars.Add(new PanelClientCar(null, 
                 ((Clients)clientsBindingSource.Current).CLIENT_ID ));
             ListClientCars.Last().Setplaces = ClearAndReplace;
-            pnlCommonClData.Controls.Add(ListClientCars.Last());
+            Controls.Add(ListClientCars.Last());
             ClearAndReplace();
         }
 
@@ -165,7 +172,7 @@ namespace DataManagment
                 {
                     ListClientCars.Add(new PanelClientCar(CurrCar, -1));
                     ListClientCars.Last().Setplaces = ClearAndReplace;
-                    pnlCommonClData.Controls.Add(ListClientCars.Last());
+                    Controls.Add(ListClientCars.Last());
                     ClearAndReplace();  
                 }
             }

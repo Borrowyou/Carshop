@@ -18,3 +18,8 @@ INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESC
 INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(11, 'employee_type', 'empl_t_manag', 'Управител', 'Управител')
 INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(12, 'employee_type', 'empl_t_mech', 'Монтьор', 'Монтьор')
 INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(13, 'employee_type', 'empl_t_o_m', 'Офис-Сътрудник', 'Офис-Сътрудник')
+
+
+INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(14, 'app_status', 'app_st_act', 'Активен', 'Активен')
+INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(15, 'app_status', 'app_st_canc', 'Канселиран', 'Канселиран')
+INSERT INTO LOOKUP_ITEMS(L_ITEM_ID, LOOKUP_NAME, ITEM_CODE, ITEM_NAME, ITEM_DESCRIPT) VALUES(15, 'app_status', 'app_st_fin', 'Приключен', 'Приключен')

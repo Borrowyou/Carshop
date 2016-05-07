@@ -58,7 +58,9 @@ namespace PartCrawler {
                     }
                 }
                 catch
-                { }
+                {
+                
+                }
             }
             return GenValue;
         }
@@ -74,9 +76,10 @@ namespace PartCrawler {
         }
 
         public int GetModelIDByModelInfo(int CarID, string[] ModelData)
-        { 
-            return ModelsTblAdapter.GetModelIDByModelData(CarID, ModelData[0], CommonFuncs.StringToNInt(ModelData[1])
-                                                   ,CommonFuncs.StringToNInt(ModelData[2])).GetValueOrDefault(-1);
+        {
+            return ModelsTblAdapter.GetModelIDBYModData(CarID, ModelData[0], CommonFuncs.StringToNInt(ModelData[1])
+                                                   , CommonFuncs.StringToNInt(ModelData[2])).GetValueOrDefault(-1);
+        
         }
 
         public void LoadPartsLink()

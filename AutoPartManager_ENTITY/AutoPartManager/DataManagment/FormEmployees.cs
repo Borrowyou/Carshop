@@ -16,12 +16,14 @@ namespace DataManagment
     {
         DMEmployees CDMEmployees;
         FormManageEmployee FormManageEmpl;
+
         public FormEmployees()
         {
             InitializeComponent();
             CDMEmployees = new DMEmployees();
             FormManageEmpl = new FormManageEmployee();
             FormManageEmpl.TopLevel = false;
+            FormManageEmpl.ReloadFunc = CDMEmployees.LoadAllEMployees;
 
             pnlFormClient.Controls.Add(FormManageEmpl);
             FormManageEmpl.Show();

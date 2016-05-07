@@ -15,6 +15,10 @@ namespace DataManagment
         public TFormParts()
         {
             InitializeComponent();
+            TFormSearchParts FormSearchParts = new TFormSearchParts();
+            FormSearchParts.MdiParent = this;
+            FormSearchParts.Dock = DockStyle.Fill;
+            FormSearchParts.Show();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

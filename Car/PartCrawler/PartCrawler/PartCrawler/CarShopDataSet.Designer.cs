@@ -5189,20 +5189,30 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM dbo.Models";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "select MODEL_ID\r\nfrom Models\r\nWHERE CAR_ID = @CARID AND MODEL_NAME = @MODEL_NAME " +
-                "AND YEAR_MANUF = @YEARSTART AND YEAR_STOP = @YEARSTOP";
+            this._commandCollection[1].CommandText = "SELECT        MODEL_ID\r\nFROM            Models\r\nWHERE        (CAR_ID = @CARID) AN" +
+                "D (MODEL_NAME = @MODEL_NAME) AND (YEAR_MANUF = @YEARSTART) AND (YEAR_STOP = @YEA" +
+                "RSTOP)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_NAME", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEARSTART", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_MANUF", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEARSTOP", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "select MODEL_ID\r\nfrom Models\r\nWHERE CAR_ID = @CARID AND MODEL_NAME = @MODEL_NAME " +
+                "AND YEAR_MANUF = @YEARSTART AND YEAR_STOP = @YEARSTOP";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CARID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CAR_ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MODEL_NAME", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "MODEL_NAME", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEARSTART", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_MANUF", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@YEARSTOP", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "YEAR_STOP", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5476,7 +5486,7 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetModelIDByModelData(global::System.Nullable<int> CARID, string MODEL_NAME, global::System.Nullable<int> YEARSTART, global::System.Nullable<int> YEARSTOP) {
+        public virtual global::System.Nullable<int> GetModelIDBYModData(global::System.Nullable<int> CARID, string MODEL_NAME, global::System.Nullable<int> YEARSTART, global::System.Nullable<int> YEARSTOP) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((CARID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(CARID.Value));
@@ -5522,6 +5532,58 @@ SELECT MODEL_ID, MODEL_NAME, YEAR_MANUF, YEAR_STOP, CAR_ID, URL FROM Models WHER
             }
             else {
                 return new global::System.Nullable<int>(((int)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual object GetModelIDByModelData(global::System.Nullable<int> CARID, string MODEL_NAME, global::System.Nullable<int> YEARSTART, global::System.Nullable<int> YEARSTOP) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            if ((CARID.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(CARID.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((MODEL_NAME == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(MODEL_NAME));
+            }
+            if ((YEARSTART.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(YEARSTART.Value));
+            }
+            else {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((YEARSTOP.HasValue == true)) {
+                command.Parameters[3].Value = ((int)(YEARSTOP.Value));
+            }
+            else {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
             }
         }
     }

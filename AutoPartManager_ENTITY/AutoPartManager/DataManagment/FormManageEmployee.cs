@@ -16,6 +16,8 @@ namespace DataManagment
     {
         public bool InsertState;
         DMEmployees CDMEmployees;
+        public delegate void RefreshGrid();
+        public RefreshGrid ReloadFunc;
 
         public FormManageEmployee()
         {
@@ -77,6 +79,8 @@ namespace DataManagment
                     CDMEmployees.CurrContex.Entry(CurrEmployee()).State = EntityState.Modified;
                 }
                 CDMEmployees.CurrContex.SaveChanges();
+                if (ReloadFunc != null)
+                    ReloadFunc();
             }
             catch (Exception e)
             {

@@ -23,7 +23,7 @@ namespace DataManagment
            // clientsDataSet.InitAdapters();
             FormManage = new FormManageClients();
             FormManage.TopLevel = false;
-            
+            FormManage.ReloadFunc = RefreshGrid;
             pnlFormClient.Controls.Add(FormManage);
             FormManage.Show();
         }
@@ -33,6 +33,10 @@ namespace DataManagment
             clientsBindingSource.DataSource = CDMClients.GetClientsDbSet().Local.ToBindingList();
         }
 
+        private void RefreshGrid()
+        {
+            CDMClients.LoadAllClients();
+        }
 
         private void FormManageClients_Load(object sender, EventArgs e)
         {
@@ -62,5 +66,21 @@ namespace DataManagment
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void обновиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var CurrSelectedPart = clientsBindingSource.Current;
+
+            CDMClients.LoadAllClients();
+            
+
+        }
+
+        private Clients CurrClient()
+        {
+            return (Clients)clientsBindingSource.Current;
+        }
+
+
     }
 }

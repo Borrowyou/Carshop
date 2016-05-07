@@ -19,3 +19,5 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Serv
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.Properties.Resources.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReportCarServices.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReports.resources

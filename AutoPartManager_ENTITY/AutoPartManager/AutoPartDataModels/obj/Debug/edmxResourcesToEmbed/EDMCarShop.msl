@@ -4,6 +4,7 @@
     <EntitySetMapping Name="APPOITMENTS">
       <EntityTypeMapping TypeName="CarShopModel.APPOITMENTS">
         <MappingFragment StoreEntitySet="APPOITMENTS">
+          <ScalarProperty Name="APP_STATUS" ColumnName="APP_STATUS" />
           <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
           <ScalarProperty Name="APPOITMENT_DATE" ColumnName="APPOITMENT_DATE" />
           <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />

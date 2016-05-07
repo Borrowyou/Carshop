@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormManageClients));
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -45,7 +46,6 @@
             this.txtEditCientTelephone = new DevExpress.XtraEditors.TextEdit();
             this.dateEditFrom = new DevExpress.XtraEditors.DateEdit();
             this.txtEditClientName = new DevExpress.XtraEditors.TextEdit();
-            this.pnlCommonClData = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOOKUP_ITEMSBindingSource)).BeginInit();
@@ -55,8 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFrom.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditClientName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlCommonClData)).BeginInit();
-            this.pnlCommonClData.SuspendLayout();
             this.SuspendLayout();
             // 
             // lookUpEdit1
@@ -72,7 +70,7 @@
             this.lookUpEdit1.Properties.DisplayMember = "ITEM_NAME";
             this.lookUpEdit1.Properties.ValueMember = "ITEM_CODE";
             this.lookUpEdit1.Size = new System.Drawing.Size(110, 20);
-            this.lookUpEdit1.TabIndex = 18;
+            this.lookUpEdit1.TabIndex = 3;
             // 
             // clientsBindingSource
             // 
@@ -114,17 +112,17 @@
             this.RichtxtDetails.Location = new System.Drawing.Point(27, 187);
             this.RichtxtDetails.Name = "RichtxtDetails";
             this.RichtxtDetails.Size = new System.Drawing.Size(299, 80);
-            this.RichtxtDetails.TabIndex = 5;
+            this.RichtxtDetails.TabIndex = 6;
             this.RichtxtDetails.Text = "";
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(3, 526);
+            this.btnSave.Location = new System.Drawing.Point(251, 273);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 10;
-            this.btnSave.Text = "Save";
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "Запази";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -166,7 +164,7 @@
             this.txtEditClientEmail.Location = new System.Drawing.Point(81, 151);
             this.txtEditClientEmail.Name = "txtEditClientEmail";
             this.txtEditClientEmail.Size = new System.Drawing.Size(245, 20);
-            this.txtEditClientEmail.TabIndex = 4;
+            this.txtEditClientEmail.TabIndex = 5;
             // 
             // txtEditCientTelephone
             // 
@@ -174,7 +172,7 @@
             this.txtEditCientTelephone.Location = new System.Drawing.Point(81, 120);
             this.txtEditCientTelephone.Name = "txtEditCientTelephone";
             this.txtEditCientTelephone.Size = new System.Drawing.Size(245, 20);
-            this.txtEditCientTelephone.TabIndex = 3;
+            this.txtEditCientTelephone.TabIndex = 4;
             // 
             // dateEditFrom
             // 
@@ -187,7 +185,7 @@
             this.dateEditFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFrom.Size = new System.Drawing.Size(195, 20);
-            this.dateEditFrom.TabIndex = 0;
+            this.dateEditFrom.TabIndex = 1;
             // 
             // txtEditClientName
             // 
@@ -196,39 +194,33 @@
             this.txtEditClientName.Location = new System.Drawing.Point(81, 66);
             this.txtEditClientName.Name = "txtEditClientName";
             this.txtEditClientName.Size = new System.Drawing.Size(245, 20);
-            this.txtEditClientName.TabIndex = 1;
-            // 
-            // pnlCommonClData
-            // 
-            this.pnlCommonClData.Controls.Add(this.btnSave);
-            this.pnlCommonClData.Controls.Add(this.RichtxtDetails);
-            this.pnlCommonClData.Controls.Add(this.lookUpEdit1);
-            this.pnlCommonClData.Controls.Add(this.lblClType);
-            this.pnlCommonClData.Controls.Add(this.lblTelephone);
-            this.pnlCommonClData.Controls.Add(this.btnAddCar);
-            this.pnlCommonClData.Controls.Add(this.txtEditDetails);
-            this.pnlCommonClData.Controls.Add(this.labelControl1);
-            this.pnlCommonClData.Controls.Add(this.lblName);
-            this.pnlCommonClData.Controls.Add(this.lblDateADd);
-            this.pnlCommonClData.Controls.Add(this.txtEditClientEmail);
-            this.pnlCommonClData.Controls.Add(this.txtEditCientTelephone);
-            this.pnlCommonClData.Controls.Add(this.txtEditClientName);
-            this.pnlCommonClData.Controls.Add(this.dateEditFrom);
-            this.pnlCommonClData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlCommonClData.Location = new System.Drawing.Point(0, 0);
-            this.pnlCommonClData.Name = "pnlCommonClData";
-            this.pnlCommonClData.Size = new System.Drawing.Size(345, 561);
-            this.pnlCommonClData.TabIndex = 20;
+            this.txtEditClientName.TabIndex = 2;
             // 
             // FormManageClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(345, 561);
-            this.Controls.Add(this.pnlCommonClData);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.RichtxtDetails);
+            this.Controls.Add(this.lookUpEdit1);
+            this.Controls.Add(this.lblClType);
+            this.Controls.Add(this.lblTelephone);
+            this.Controls.Add(this.btnAddCar);
+            this.Controls.Add(this.txtEditDetails);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.txtEditClientName);
+            this.Controls.Add(this.txtEditCientTelephone);
+            this.Controls.Add(this.dateEditFrom);
+            this.Controls.Add(this.txtEditClientEmail);
+            this.Controls.Add(this.lblDateADd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormManageClients";
-            this.Text = "FormManageClients";
+            this.Text = "Клиент";
             this.Load += new System.EventHandler(this.FormManageClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
@@ -239,10 +231,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFrom.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEditFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEditClientName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pnlCommonClData)).EndInit();
-            this.pnlCommonClData.ResumeLayout(false);
-            this.pnlCommonClData.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -264,6 +254,5 @@
         private DevExpress.XtraEditors.TextEdit txtEditCientTelephone;
         private DevExpress.XtraEditors.DateEdit dateEditFrom;
         private DevExpress.XtraEditors.TextEdit txtEditClientName;
-        private DevExpress.XtraEditors.PanelControl pnlCommonClData;
     }
 }

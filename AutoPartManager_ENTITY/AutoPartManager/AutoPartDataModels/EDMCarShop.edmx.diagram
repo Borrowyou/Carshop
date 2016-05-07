@@ -40,6 +40,7 @@
         <AssociationConnector Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" />
         <AssociationConnector Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" />
         <EntityTypeShape EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" Width="1.5" PointX="12.375" PointY="10.75" />
+        <AssociationConnector Association="CarShopModel.FK_APP_ST_LOOKUPS" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

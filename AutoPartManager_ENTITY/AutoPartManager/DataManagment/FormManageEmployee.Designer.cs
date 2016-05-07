@@ -42,9 +42,9 @@
             this.qUIT_DATEDateEdit = new DevExpress.XtraEditors.DateEdit();
             this.tELEPHONETextEdit = new DevExpress.XtraEditors.TextEdit();
             this.eMPL_TYPELookUpEdit = new DevExpress.XtraEditors.LookUpEdit();
+            this.EmplTypeBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.eMAILTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.dETAILSTextEdit = new DevExpress.XtraEditors.TextEdit();
-            this.EmplTypeBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             dATE_EMPLOYEELabel = new System.Windows.Forms.Label();
             nAMELabel = new System.Windows.Forms.Label();
@@ -61,14 +61,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.qUIT_DATEDateEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tELEPHONETextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eMPL_TYPELookUpEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmplTypeBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eMAILTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dETAILSTextEdit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EmplTypeBindSrc)).BeginInit();
             this.SuspendLayout();
-            // 
-            // eMPLOYEESBindingSource
-            // 
-            this.eMPLOYEESBindingSource.DataSource = typeof(AutoPartDataModels.EMPLOYEES);
             // 
             // dATE_EMPLOYEELabel
             // 
@@ -78,6 +74,65 @@
             dATE_EMPLOYEELabel.Size = new System.Drawing.Size(104, 13);
             dATE_EMPLOYEELabel.TabIndex = 1;
             dATE_EMPLOYEELabel.Text = "Дата назначаване:";
+            // 
+            // nAMELabel
+            // 
+            nAMELabel.AutoSize = true;
+            nAMELabel.Location = new System.Drawing.Point(14, 47);
+            nAMELabel.Name = "nAMELabel";
+            nAMELabel.Size = new System.Drawing.Size(32, 13);
+            nAMELabel.TabIndex = 2;
+            nAMELabel.Text = "Име:";
+            nAMELabel.Click += new System.EventHandler(this.nAMELabel_Click);
+            // 
+            // qUIT_DATELabel
+            // 
+            qUIT_DATELabel.AutoSize = true;
+            qUIT_DATELabel.Location = new System.Drawing.Point(14, 167);
+            qUIT_DATELabel.Name = "qUIT_DATELabel";
+            qUIT_DATELabel.Size = new System.Drawing.Size(92, 13);
+            qUIT_DATELabel.TabIndex = 4;
+            qUIT_DATELabel.Text = "Дата напускане:";
+            // 
+            // tELEPHONELabel
+            // 
+            tELEPHONELabel.AutoSize = true;
+            tELEPHONELabel.Location = new System.Drawing.Point(14, 77);
+            tELEPHONELabel.Name = "tELEPHONELabel";
+            tELEPHONELabel.Size = new System.Drawing.Size(55, 13);
+            tELEPHONELabel.TabIndex = 6;
+            tELEPHONELabel.Text = "Телефон:";
+            // 
+            // eMPL_TYPELabel
+            // 
+            eMPL_TYPELabel.AutoSize = true;
+            eMPL_TYPELabel.Location = new System.Drawing.Point(14, 136);
+            eMPL_TYPELabel.Name = "eMPL_TYPELabel";
+            eMPL_TYPELabel.Size = new System.Drawing.Size(60, 13);
+            eMPL_TYPELabel.TabIndex = 8;
+            eMPL_TYPELabel.Text = "Длъжност";
+            // 
+            // eMAILLabel
+            // 
+            eMAILLabel.AutoSize = true;
+            eMAILLabel.Location = new System.Drawing.Point(14, 106);
+            eMAILLabel.Name = "eMAILLabel";
+            eMAILLabel.Size = new System.Drawing.Size(35, 13);
+            eMAILLabel.TabIndex = 10;
+            eMAILLabel.Text = "Email:";
+            // 
+            // dETAILSLabel
+            // 
+            dETAILSLabel.AutoSize = true;
+            dETAILSLabel.Location = new System.Drawing.Point(14, 198);
+            dETAILSLabel.Name = "dETAILSLabel";
+            dETAILSLabel.Size = new System.Drawing.Size(74, 13);
+            dETAILSLabel.TabIndex = 12;
+            dETAILSLabel.Text = "Подробности";
+            // 
+            // eMPLOYEESBindingSource
+            // 
+            this.eMPLOYEESBindingSource.DataSource = typeof(AutoPartDataModels.EMPLOYEES);
             // 
             // dATE_EMPLOYEEDateEdit
             // 
@@ -92,16 +147,6 @@
             this.dATE_EMPLOYEEDateEdit.Size = new System.Drawing.Size(231, 20);
             this.dATE_EMPLOYEEDateEdit.TabIndex = 2;
             // 
-            // nAMELabel
-            // 
-            nAMELabel.AutoSize = true;
-            nAMELabel.Location = new System.Drawing.Point(14, 47);
-            nAMELabel.Name = "nAMELabel";
-            nAMELabel.Size = new System.Drawing.Size(32, 13);
-            nAMELabel.TabIndex = 2;
-            nAMELabel.Text = "Име:";
-            nAMELabel.Click += new System.EventHandler(this.nAMELabel_Click);
-            // 
             // nAMETextEdit
             // 
             this.nAMETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.eMPLOYEESBindingSource, "NAME", true));
@@ -109,15 +154,6 @@
             this.nAMETextEdit.Name = "nAMETextEdit";
             this.nAMETextEdit.Size = new System.Drawing.Size(231, 20);
             this.nAMETextEdit.TabIndex = 3;
-            // 
-            // qUIT_DATELabel
-            // 
-            qUIT_DATELabel.AutoSize = true;
-            qUIT_DATELabel.Location = new System.Drawing.Point(14, 167);
-            qUIT_DATELabel.Name = "qUIT_DATELabel";
-            qUIT_DATELabel.Size = new System.Drawing.Size(92, 13);
-            qUIT_DATELabel.TabIndex = 4;
-            qUIT_DATELabel.Text = "Дата напускане:";
             // 
             // qUIT_DATEDateEdit
             // 
@@ -132,15 +168,6 @@
             this.qUIT_DATEDateEdit.Size = new System.Drawing.Size(231, 20);
             this.qUIT_DATEDateEdit.TabIndex = 5;
             // 
-            // tELEPHONELabel
-            // 
-            tELEPHONELabel.AutoSize = true;
-            tELEPHONELabel.Location = new System.Drawing.Point(14, 77);
-            tELEPHONELabel.Name = "tELEPHONELabel";
-            tELEPHONELabel.Size = new System.Drawing.Size(55, 13);
-            tELEPHONELabel.TabIndex = 6;
-            tELEPHONELabel.Text = "Телефон:";
-            // 
             // tELEPHONETextEdit
             // 
             this.tELEPHONETextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.eMPLOYEESBindingSource, "TELEPHONE", true));
@@ -148,15 +175,6 @@
             this.tELEPHONETextEdit.Name = "tELEPHONETextEdit";
             this.tELEPHONETextEdit.Size = new System.Drawing.Size(231, 20);
             this.tELEPHONETextEdit.TabIndex = 7;
-            // 
-            // eMPL_TYPELabel
-            // 
-            eMPL_TYPELabel.AutoSize = true;
-            eMPL_TYPELabel.Location = new System.Drawing.Point(14, 136);
-            eMPL_TYPELabel.Name = "eMPL_TYPELabel";
-            eMPL_TYPELabel.Size = new System.Drawing.Size(60, 13);
-            eMPL_TYPELabel.TabIndex = 8;
-            eMPL_TYPELabel.Text = "Длъжност";
             // 
             // eMPL_TYPELookUpEdit
             // 
@@ -173,14 +191,9 @@
             this.eMPL_TYPELookUpEdit.Size = new System.Drawing.Size(100, 20);
             this.eMPL_TYPELookUpEdit.TabIndex = 9;
             // 
-            // eMAILLabel
+            // EmplTypeBindSrc
             // 
-            eMAILLabel.AutoSize = true;
-            eMAILLabel.Location = new System.Drawing.Point(14, 106);
-            eMAILLabel.Name = "eMAILLabel";
-            eMAILLabel.Size = new System.Drawing.Size(35, 13);
-            eMAILLabel.TabIndex = 10;
-            eMAILLabel.Text = "Email:";
+            this.EmplTypeBindSrc.DataSource = typeof(AutoPartDataModels.LOOKUP_ITEMS);
             // 
             // eMAILTextEdit
             // 
@@ -190,15 +203,6 @@
             this.eMAILTextEdit.Size = new System.Drawing.Size(231, 20);
             this.eMAILTextEdit.TabIndex = 11;
             // 
-            // dETAILSLabel
-            // 
-            dETAILSLabel.AutoSize = true;
-            dETAILSLabel.Location = new System.Drawing.Point(14, 198);
-            dETAILSLabel.Name = "dETAILSLabel";
-            dETAILSLabel.Size = new System.Drawing.Size(74, 13);
-            dETAILSLabel.TabIndex = 12;
-            dETAILSLabel.Text = "Подробности";
-            // 
             // dETAILSTextEdit
             // 
             this.dETAILSTextEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.eMPLOYEESBindingSource, "DETAILS", true));
@@ -206,10 +210,6 @@
             this.dETAILSTextEdit.Name = "dETAILSTextEdit";
             this.dETAILSTextEdit.Size = new System.Drawing.Size(231, 20);
             this.dETAILSTextEdit.TabIndex = 13;
-            // 
-            // EmplTypeBindSrc
-            // 
-            this.EmplTypeBindSrc.DataSource = typeof(AutoPartDataModels.LOOKUP_ITEMS);
             // 
             // btnSave
             // 
@@ -242,7 +242,7 @@
             this.Controls.Add(this.dATE_EMPLOYEEDateEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormManageEmployee";
-            this.Text = "FormManageEmployee";
+            this.Text = "Служител";
             ((System.ComponentModel.ISupportInitialize)(this.eMPLOYEESBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dATE_EMPLOYEEDateEdit.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dATE_EMPLOYEEDateEdit.Properties)).EndInit();
@@ -251,9 +251,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.qUIT_DATEDateEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tELEPHONETextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eMPL_TYPELookUpEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EmplTypeBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eMAILTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dETAILSTextEdit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EmplTypeBindSrc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

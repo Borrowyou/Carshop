@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,18 +80,18 @@ namespace DataManagment
 
     
 
-        public void SaveClientCars()
+        public void SaveClientCars(Clients CurrClient)
         {
             try
             {
                 cLIENT_CARSBindingSource.EndEdit();
-                if (StateNew)
-                    CDMClients.CurrContex.CLIENT_CARS.Add(ClientCar);
-                else
-                {
-                    CDMClients.CurrContex.CLIENT_CARS.Attach(ClientCar);
-                }
-                CDMClients.CurrContex.SaveChanges();
+                CurrClient.CLIENT_CARS.Add(ClientCar);
+                //if (StateNew)
+                //    CDMClients.CurrContex.Entry(ClientCar).State = EntityState.Added;
+                //else
+                //{
+                //    CDMClients.CurrContex.Entry(ClientCar).State = EntityState.Modified;
+                //}
             }
             catch (System.Exception ex)
             {
@@ -115,9 +114,17 @@ namespace DataManagment
 
         private void ModelsBindSrc_CurrentChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void lookUpEdit2_EditValueChanged(object sender, EventArgs e)
+        {
             if (ClientCar != null)
-                YearsList.DataSource = CDMClients.LoadCarYears(((Models)ModelsBindSrc.Current).CAR_ID,
-                                    ((Models)ModelsBindSrc.Current).MODEL_NAME).ToList();
+            {
+                if (lookUpEdit2.EditValue != null && lookUpEdit2.Text != "")
+                    YearsList.DataSource = CDMClients.LoadCarYears(((Models)ModelsBindSrc.Current).CAR_ID,
+                                        lookUpEdit2.Text).ToList();
+            }
         }
     }
 }

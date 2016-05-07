@@ -30,6 +30,8 @@
         {
             this.aPPOITMENTSBindingSource = new System.Windows.Forms.BindingSource();
             this.GridCtrlAppoitments = new DevExpress.XtraGrid.GridControl();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip();
+            this.toolStripMenuCancel = new System.Windows.Forms.ToolStripMenuItem();
             this.gridViewAppoitments = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAPPOITMENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAPPOITMENT_DATE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,6 +44,7 @@
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridCtrlAppoitments)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAppoitments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).BeginInit();
@@ -53,6 +56,7 @@
             // 
             // GridCtrlAppoitments
             // 
+            this.GridCtrlAppoitments.ContextMenuStrip = this.contextMenuStrip1;
             this.GridCtrlAppoitments.DataSource = this.aPPOITMENTSBindingSource;
             this.GridCtrlAppoitments.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GridCtrlAppoitments.Location = new System.Drawing.Point(0, 0);
@@ -64,6 +68,21 @@
             this.GridCtrlAppoitments.TabIndex = 1;
             this.GridCtrlAppoitments.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewAppoitments});
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuCancel});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(141, 26);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // toolStripMenuCancel
+            // 
+            this.toolStripMenuCancel.Name = "toolStripMenuCancel";
+            this.toolStripMenuCancel.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuCancel.Text = "Канселирай";
+            this.toolStripMenuCancel.Click += new System.EventHandler(this.toolStripMenuCancel_Click);
             // 
             // gridViewAppoitments
             // 
@@ -77,6 +96,7 @@
             this.colCLIENT_CARS});
             this.gridViewAppoitments.GridControl = this.GridCtrlAppoitments;
             this.gridViewAppoitments.Name = "gridViewAppoitments";
+            this.gridViewAppoitments.OptionsBehavior.Editable = false;
             this.gridViewAppoitments.OptionsView.ShowGroupPanel = false;
             this.gridViewAppoitments.DoubleClick += new System.EventHandler(this.gridViewAppoitments_DoubleClick);
             // 
@@ -152,6 +172,7 @@
             this.Load += new System.EventHandler(this.FormAllAppoitments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridCtrlAppoitments)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAppoitments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit1View)).EndInit();
@@ -173,5 +194,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit1;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_CARS;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCancel;
     }
 }

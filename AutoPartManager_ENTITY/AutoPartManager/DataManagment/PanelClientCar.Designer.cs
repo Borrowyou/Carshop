@@ -65,6 +65,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.cAR_REG_NUMBTextEdit.Properties)).BeginInit();
             this.SuspendLayout();
             // 
+            // cAR_REG_NUMBLabel
+            // 
+            cAR_REG_NUMBLabel.AutoSize = true;
+            cAR_REG_NUMBLabel.Location = new System.Drawing.Point(151, 83);
+            cAR_REG_NUMBLabel.Name = "cAR_REG_NUMBLabel";
+            cAR_REG_NUMBLabel.Size = new System.Drawing.Size(56, 13);
+            cAR_REG_NUMBLabel.TabIndex = 21;
+            cAR_REG_NUMBLabel.Text = "Рег. Ном.";
+            // 
             // LupCBoxCars
             // 
             this.LupCBoxCars.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.cLIENT_CARSBindingSource, "CAR_ID", true));
@@ -190,6 +199,7 @@
             this.lookUpEdit2.Properties.ValueMember = "MODEL_ID";
             this.lookUpEdit2.Size = new System.Drawing.Size(97, 20);
             this.lookUpEdit2.TabIndex = 19;
+            this.lookUpEdit2.EditValueChanged += new System.EventHandler(this.lookUpEdit2_EditValueChanged);
             // 
             // lookUpEdit3
             // 
@@ -213,15 +223,6 @@
             this.txtEngSize.Name = "txtEngSize";
             this.txtEngSize.Size = new System.Drawing.Size(72, 20);
             this.txtEngSize.TabIndex = 21;
-            // 
-            // cAR_REG_NUMBLabel
-            // 
-            cAR_REG_NUMBLabel.AutoSize = true;
-            cAR_REG_NUMBLabel.Location = new System.Drawing.Point(151, 83);
-            cAR_REG_NUMBLabel.Name = "cAR_REG_NUMBLabel";
-            cAR_REG_NUMBLabel.Size = new System.Drawing.Size(56, 13);
-            cAR_REG_NUMBLabel.TabIndex = 21;
-            cAR_REG_NUMBLabel.Text = "Рег. Ном.";
             // 
             // cAR_REG_NUMBTextEdit
             // 

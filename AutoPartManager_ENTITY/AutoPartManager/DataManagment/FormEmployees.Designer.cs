@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmployees));
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
             this.PnlBtns = new System.Windows.Forms.Panel();
@@ -219,8 +220,9 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.pnlClients);
             this.Controls.Add(this.pnlFrameClients);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEmployees";
-            this.Text = "FormManageClients";
+            this.Text = "Служители";
             this.Load += new System.EventHandler(this.FormManageClients_Load);
             this.pnlFrameClients.ResumeLayout(false);
             this.PnlBtns.ResumeLayout(false);

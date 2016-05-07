@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFormParts));
             this.PnlBtns = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.PnlBtns.SuspendLayout();
@@ -48,7 +49,7 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 0;
-            this.btnSearch.Text = "button1";
+            this.btnSearch.Text = "Търсене";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -58,6 +59,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(557, 292);
             this.Controls.Add(this.PnlBtns);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "TFormParts";
             this.Text = "TFormParts";

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlBtns = new System.Windows.Forms.Panel();
+            this.btnServices = new DevExpress.XtraEditors.SimpleButton();
             this.btnViewAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.btnNewAppointment = new DevExpress.XtraEditors.SimpleButton();
             this.pnlFormHolder = new System.Windows.Forms.Panel();
-            this.btnServices = new DevExpress.XtraEditors.SimpleButton();
             this.pnlBtns.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +47,16 @@
             this.pnlBtns.Name = "pnlBtns";
             this.pnlBtns.Size = new System.Drawing.Size(68, 339);
             this.pnlBtns.TabIndex = 0;
+            this.pnlBtns.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlBtns_Paint);
+            // 
+            // btnServices
+            // 
+            this.btnServices.Location = new System.Drawing.Point(3, 110);
+            this.btnServices.Name = "btnServices";
+            this.btnServices.Size = new System.Drawing.Size(57, 40);
+            this.btnServices.TabIndex = 0;
+            this.btnServices.Text = "Ремонти";
+            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
             // 
             // btnViewAppoitments
             // 
@@ -73,15 +83,7 @@
             this.pnlFormHolder.Name = "pnlFormHolder";
             this.pnlFormHolder.Size = new System.Drawing.Size(554, 339);
             this.pnlFormHolder.TabIndex = 1;
-            // 
-            // btnServices
-            // 
-            this.btnServices.Location = new System.Drawing.Point(3, 110);
-            this.btnServices.Name = "btnServices";
-            this.btnServices.Size = new System.Drawing.Size(57, 40);
-            this.btnServices.TabIndex = 0;
-            this.btnServices.Text = "Ремонти";
-            this.btnServices.Click += new System.EventHandler(this.btnServices_Click);
+            this.pnlFormHolder.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlFormHolder_Paint);
             // 
             // TFormAppointments
             // 

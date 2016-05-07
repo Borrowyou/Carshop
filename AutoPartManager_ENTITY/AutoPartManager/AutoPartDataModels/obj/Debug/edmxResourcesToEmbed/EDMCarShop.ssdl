@@ -8,6 +8,7 @@
     <Property Name="APPOITMENT_DATE" Type="datetime" Nullable="false" />
     <Property Name="CLIENT_ID" Type="int" Nullable="false" />
     <Property Name="CLIENT_CAR_ID" Type="int" Nullable="false" />
+    <Property Name="APP_STATUS" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="Cars">
     <Key>
@@ -185,6 +186,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
     <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
     <Property Name="WORK_PRICE" Type="float" />
   </EntityType>
+  <Association Name="FK_APP_ST_LOOKUPS">
+    <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
+    <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP_ITEMS">
+        <PropertyRef Name="ITEM_CODE" />
+      </Principal>
+      <Dependent Role="APPOITMENTS">
+        <PropertyRef Name="APP_STATUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
     <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="1" />
     <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
@@ -448,6 +461,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
     [VIEW_APPOITMENT_CLIENT_SUMS].[WORK_PRICE] AS [WORK_PRICE]
     FROM [dbo].[VIEW_APPOITMENT_CLIENT_SUMS] AS [VIEW_APPOITMENT_CLIENT_SUMS]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_APP_ST_LOOKUPS" Association="Self.FK_APP_ST_LOOKUPS">
+      <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+      <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+    </AssociationSet>
     <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="Self.FK_APPOITMENT_CLIENT_CAR_ID">
       <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
       <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />

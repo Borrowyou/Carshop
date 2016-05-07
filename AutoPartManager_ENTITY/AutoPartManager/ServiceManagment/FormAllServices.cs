@@ -43,7 +43,7 @@ namespace ServiceManagment
 
         private void sERVICE_WORKSBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            if (CurrServWork().SERVICE_WORK_ID != null)
+            if (CurrServWork() != null && CurrServWork().SERVICE_WORK_ID != null)
             {
                 var QryRes = CDMAppoitm.GetServWorkEmployees(CurrServWork().SERVICE_WORK_ID);
                 if (QryRes != null)

@@ -30,11 +30,17 @@ namespace DataManagment
             LookUpModels.EditValue = ModelID;
             CDMParts.LoadParts(CurrSelModel()); 
         }
+
+        private void RefreshGrid()
+        {
+            CDMParts.LoadParts(CurrSelModel());
+        }
         private void TFormSearchParts_Load(object sender, EventArgs e)
         {
             FormManagePart = new TFormManagePart();
             FormManagePart.TopLevel = false;
-            pnlFrameHolder.Controls.Add(FormManagePart);
+            FormManagePart.ReloadFunc = RefreshGrid; 
+            pnlForm.Controls.Add(FormManagePart);
             FormManagePart.Show();
             SetDataSources();
         }
@@ -83,7 +89,7 @@ namespace DataManagment
 
         private void partsBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            FormManagePart.LoadPartByID(CurrSeletcedPart().Part_ID);
+            FormManagePart.LoadOrInsertPart(CurrSeletcedPart().Part_ID);
         }
 
         private Parts CurrSeletcedPart()
@@ -93,8 +99,16 @@ namespace DataManagment
 
         private void partsGridParts_DoubleClick(object sender, EventArgs e)
         {
-            PartID = CurrSeletcedPart().Part_ID;
-            Close();
+            if (Modal)
+            {
+                PartID = CurrSeletcedPart().Part_ID;
+                Close();
+            }
+        }
+
+        private void btnADd_Click(object sender, EventArgs e)
+        {
+            FormManagePart.LoadOrInsertPart(-1);
         }
 
     }

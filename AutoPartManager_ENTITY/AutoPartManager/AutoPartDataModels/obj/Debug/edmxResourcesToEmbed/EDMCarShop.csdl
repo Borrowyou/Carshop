@@ -14,6 +14,8 @@
     <NavigationProperty Name="Clients" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
     <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
     <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="APPOITMENTS" ToRole="CLIENT_CARS" />
+    <Property Name="APP_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_APP_ST_LOOKUPS" FromRole="APPOITMENTS" ToRole="LOOKUP_ITEMS" />
   </EntityType>
   <EntityType Name="Cars">
     <Key>
@@ -69,6 +71,7 @@
     <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENTS_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="Clients" />
     <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="EMPLOYEES" />
     <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="SERVICE_WORKS" />
+    <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APP_ST_LOOKUPS" FromRole="LOOKUP_ITEMS" ToRole="APPOITMENTS" />
   </EntityType>
   <EntityType Name="Models">
     <Key>
@@ -350,6 +353,10 @@
       <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
     </AssociationSet>
     <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" />
+    <AssociationSet Name="FK_APP_ST_LOOKUPS" Association="CarShopModel.FK_APP_ST_LOOKUPS">
+      <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+      <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="EMPLOYEES_SERVICE_WORKS">
     <Key>
@@ -532,4 +539,16 @@
     <Property Name="PART_MANUF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="WORK_PRICE" Type="Double" />
   </EntityType>
+  <Association Name="FK_APP_ST_LOOKUPS">
+    <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
+    <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP_ITEMS">
+        <PropertyRef Name="ITEM_CODE" />
+      </Principal>
+      <Dependent Role="APPOITMENTS">
+        <PropertyRef Name="APP_STATUS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

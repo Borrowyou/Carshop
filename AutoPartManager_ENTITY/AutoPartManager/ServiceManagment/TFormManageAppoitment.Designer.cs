@@ -28,20 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFormManageAppoitment));
             this.lblClient = new DevExpress.XtraEditors.LabelControl();
-            this.gridLookUpEdit1 = new DevExpress.XtraEditors.GridLookUpEdit();
             this.aPPOITMENTBindingSource = new System.Windows.Forms.BindingSource();
             this.clientBindingSource = new System.Windows.Forms.BindingSource();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCLIENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCLIENT_NAME = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCLIENT_FORM = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCOMPANY = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTELEPHONE = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEMAIL = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDETAILS = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAPPOITMENTS = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCLIENT_CARS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnFindClient = new DevExpress.XtraEditors.SimpleButton();
             this.SrchClientCar = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource();
@@ -52,6 +42,7 @@
             this.colMODEL_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCAR_YEAR = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENGINE_TYPE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colLOOKUP_ITEMS1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colENGINE_SIZE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClients = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModels = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -62,6 +53,9 @@
             this.AppntDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.pnlApptment = new DevExpress.XtraEditors.PanelControl();
+            this.btnMarkFinished = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRemovePart = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRemoveEmp = new DevExpress.XtraEditors.SimpleButton();
             this.btnSavePDF = new DevExpress.XtraEditors.SimpleButton();
             this.btnCalc = new DevExpress.XtraEditors.SimpleButton();
             this.fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl = new DevExpress.XtraGrid.GridControl();
@@ -74,7 +68,6 @@
             this.colPART_MANUF = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWORK_PRICE1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.btnAddNewPart = new DevExpress.XtraEditors.SimpleButton();
             this.gridServiceParts = new DevExpress.XtraGrid.GridControl();
             this.ServicePartsBindSrc = new System.Windows.Forms.BindingSource();
             this.gridViewServiceParts = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -95,10 +88,16 @@
             this.EmplSrvBindingSrc = new System.Windows.Forms.BindingSource();
             this.gridViewServiceEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemSearchLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.EmpListBindSrc = new System.Windows.Forms.BindingSource();
-            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemSearchLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEMPLOYEE_ID2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNAME1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
+            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEMPLOYEE_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
             this.sERVICE_WORKSGridControl = new DevExpress.XtraGrid.GridControl();
             this.sERVICE_WORKSBindingSource = new System.Windows.Forms.BindingSource();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -109,21 +108,35 @@
             this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource();
             this.colWORK_PRICE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repositoryItemSearchLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.sERVICESBindingSource = new System.Windows.Forms.BindingSource();
+            this.repositoryItemSearchLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSERVICE_NAME1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPRICE_PER_HOUR = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDESCRIPTION = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAPPOITMENTS1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colLOOKUP_ITEMS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICES = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTIME_START = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.colTIME_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddServiceWork = new DevExpress.XtraEditors.SimpleButton();
+            this.gridLookUpEdit1 = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SrchClientCar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -144,19 +157,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridServiceEmpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmplSrvBindingSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewServiceEmployees)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpListBindSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit4View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSGridControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOOKUP_ITEMSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICESBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // lblClient
@@ -166,21 +185,6 @@
             this.lblClient.Size = new System.Drawing.Size(37, 13);
             this.lblClient.TabIndex = 0;
             this.lblClient.Text = "Клиент";
-            // 
-            // gridLookUpEdit1
-            // 
-            this.gridLookUpEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.aPPOITMENTBindingSource, "CLIENT_ID", true));
-            this.gridLookUpEdit1.EditValue = "[EditValue is null]";
-            this.gridLookUpEdit1.Location = new System.Drawing.Point(100, 19);
-            this.gridLookUpEdit1.Name = "gridLookUpEdit1";
-            this.gridLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gridLookUpEdit1.Properties.DataSource = this.clientBindingSource;
-            this.gridLookUpEdit1.Properties.DisplayMember = "CLIENT_NAME";
-            this.gridLookUpEdit1.Properties.ValueMember = "CLIENT_ID";
-            this.gridLookUpEdit1.Properties.View = this.gridLookUpEdit1View;
-            this.gridLookUpEdit1.Size = new System.Drawing.Size(238, 20);
-            this.gridLookUpEdit1.TabIndex = 1;
             // 
             // aPPOITMENTBindingSource
             // 
@@ -192,79 +196,6 @@
             // clientBindingSource
             // 
             this.clientBindingSource.DataSource = typeof(AutoPartDataModels.Clients);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCLIENT_ID,
-            this.colCLIENT_NAME,
-            this.colCLIENT_FORM,
-            this.colCOMPANY,
-            this.colTELEPHONE,
-            this.colEMAIL,
-            this.colDETAILS,
-            this.colAPPOITMENTS,
-            this.colCLIENT_CARS});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // colCLIENT_ID
-            // 
-            this.colCLIENT_ID.FieldName = "CLIENT_ID";
-            this.colCLIENT_ID.Name = "colCLIENT_ID";
-            // 
-            // colCLIENT_NAME
-            // 
-            this.colCLIENT_NAME.Caption = "Име";
-            this.colCLIENT_NAME.FieldName = "CLIENT_NAME";
-            this.colCLIENT_NAME.Name = "colCLIENT_NAME";
-            this.colCLIENT_NAME.Visible = true;
-            this.colCLIENT_NAME.VisibleIndex = 0;
-            // 
-            // colCLIENT_FORM
-            // 
-            this.colCLIENT_FORM.FieldName = "CLIENT_FORM";
-            this.colCLIENT_FORM.Name = "colCLIENT_FORM";
-            this.colCLIENT_FORM.Visible = true;
-            this.colCLIENT_FORM.VisibleIndex = 1;
-            // 
-            // colCOMPANY
-            // 
-            this.colCOMPANY.FieldName = "COMPANY";
-            this.colCOMPANY.Name = "colCOMPANY";
-            // 
-            // colTELEPHONE
-            // 
-            this.colTELEPHONE.Caption = "Телефон";
-            this.colTELEPHONE.FieldName = "TELEPHONE";
-            this.colTELEPHONE.Name = "colTELEPHONE";
-            this.colTELEPHONE.Visible = true;
-            this.colTELEPHONE.VisibleIndex = 2;
-            // 
-            // colEMAIL
-            // 
-            this.colEMAIL.Caption = "Email";
-            this.colEMAIL.FieldName = "EMAIL";
-            this.colEMAIL.Name = "colEMAIL";
-            this.colEMAIL.Visible = true;
-            this.colEMAIL.VisibleIndex = 3;
-            // 
-            // colDETAILS
-            // 
-            this.colDETAILS.FieldName = "DETAILS";
-            this.colDETAILS.Name = "colDETAILS";
-            // 
-            // colAPPOITMENTS
-            // 
-            this.colAPPOITMENTS.FieldName = "APPOITMENTS";
-            this.colAPPOITMENTS.Name = "colAPPOITMENTS";
-            // 
-            // colCLIENT_CARS
-            // 
-            this.colCLIENT_CARS.FieldName = "CLIENT_CARS";
-            this.colCLIENT_CARS.Name = "colCLIENT_CARS";
             // 
             // btnFindClient
             // 
@@ -302,6 +233,7 @@
             this.colMODEL_ID,
             this.colCAR_YEAR,
             this.colENGINE_TYPE,
+            this.colLOOKUP_ITEMS1,
             this.colENGINE_SIZE,
             this.colClients,
             this.colModels,
@@ -344,8 +276,14 @@
             this.colENGINE_TYPE.Caption = "Вид Двигател";
             this.colENGINE_TYPE.FieldName = "ENGINE_TYPE";
             this.colENGINE_TYPE.Name = "colENGINE_TYPE";
-            this.colENGINE_TYPE.Visible = true;
-            this.colENGINE_TYPE.VisibleIndex = 1;
+            // 
+            // colLOOKUP_ITEMS1
+            // 
+            this.colLOOKUP_ITEMS1.Caption = "Вид двигател";
+            this.colLOOKUP_ITEMS1.FieldName = "LOOKUP_ITEMS.ITEM_NAME";
+            this.colLOOKUP_ITEMS1.Name = "colLOOKUP_ITEMS1";
+            this.colLOOKUP_ITEMS1.Visible = true;
+            this.colLOOKUP_ITEMS1.VisibleIndex = 4;
             // 
             // colENGINE_SIZE
             // 
@@ -353,7 +291,7 @@
             this.colENGINE_SIZE.FieldName = "ENGINE_SIZE";
             this.colENGINE_SIZE.Name = "colENGINE_SIZE";
             this.colENGINE_SIZE.Visible = true;
-            this.colENGINE_SIZE.VisibleIndex = 2;
+            this.colENGINE_SIZE.VisibleIndex = 1;
             // 
             // colClients
             // 
@@ -362,10 +300,11 @@
             // 
             // colModels
             // 
+            this.colModels.Caption = "Модел";
             this.colModels.FieldName = "Models.MODEL_NAME";
             this.colModels.Name = "colModels";
             this.colModels.Visible = true;
-            this.colModels.VisibleIndex = 3;
+            this.colModels.VisibleIndex = 2;
             // 
             // colCAR_REG_NUMB
             // 
@@ -373,7 +312,7 @@
             this.colCAR_REG_NUMB.FieldName = "CAR_REG_NUMB";
             this.colCAR_REG_NUMB.Name = "colCAR_REG_NUMB";
             this.colCAR_REG_NUMB.Visible = true;
-            this.colCAR_REG_NUMB.VisibleIndex = 4;
+            this.colCAR_REG_NUMB.VisibleIndex = 3;
             // 
             // lblCar
             // 
@@ -423,11 +362,13 @@
             // 
             // pnlApptment
             // 
+            this.pnlApptment.Controls.Add(this.btnMarkFinished);
+            this.pnlApptment.Controls.Add(this.btnRemovePart);
+            this.pnlApptment.Controls.Add(this.btnRemoveEmp);
             this.pnlApptment.Controls.Add(this.btnSavePDF);
             this.pnlApptment.Controls.Add(this.btnCalc);
             this.pnlApptment.Controls.Add(this.fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl);
             this.pnlApptment.Controls.Add(this.simpleButton1);
-            this.pnlApptment.Controls.Add(this.btnAddNewPart);
             this.pnlApptment.Controls.Add(this.gridServiceParts);
             this.pnlApptment.Controls.Add(this.btnRemoveServWork);
             this.pnlApptment.Controls.Add(this.btnAddNewWorker);
@@ -436,7 +377,6 @@
             this.pnlApptment.Controls.Add(this.btnSave);
             this.pnlApptment.Controls.Add(this.btnAddServiceWork);
             this.pnlApptment.Controls.Add(this.lblClient);
-            this.pnlApptment.Controls.Add(this.gridLookUpEdit1);
             this.pnlApptment.Controls.Add(this.lblDateTime);
             this.pnlApptment.Controls.Add(this.AppntDate);
             this.pnlApptment.Controls.Add(this.AppTime);
@@ -444,11 +384,41 @@
             this.pnlApptment.Controls.Add(this.lblCar);
             this.pnlApptment.Controls.Add(this.SrchClientCar);
             this.pnlApptment.Controls.Add(this.btnFindClient);
+            this.pnlApptment.Controls.Add(this.gridLookUpEdit1);
             this.pnlApptment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlApptment.Location = new System.Drawing.Point(0, 0);
             this.pnlApptment.Name = "pnlApptment";
             this.pnlApptment.Size = new System.Drawing.Size(1022, 489);
             this.pnlApptment.TabIndex = 19;
+            // 
+            // btnMarkFinished
+            // 
+            this.btnMarkFinished.Appearance.Options.UseTextOptions = true;
+            this.btnMarkFinished.Appearance.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.btnMarkFinished.Location = new System.Drawing.Point(932, 84);
+            this.btnMarkFinished.Name = "btnMarkFinished";
+            this.btnMarkFinished.Size = new System.Drawing.Size(75, 55);
+            this.btnMarkFinished.TabIndex = 32;
+            this.btnMarkFinished.Text = "Маркирай като приключен";
+            this.btnMarkFinished.Click += new System.EventHandler(this.btnMarkFinished_Click);
+            // 
+            // btnRemovePart
+            // 
+            this.btnRemovePart.Location = new System.Drawing.Point(851, 316);
+            this.btnRemovePart.Name = "btnRemovePart";
+            this.btnRemovePart.Size = new System.Drawing.Size(75, 23);
+            this.btnRemovePart.TabIndex = 31;
+            this.btnRemovePart.Text = "Премахни";
+            this.btnRemovePart.Click += new System.EventHandler(this.btnRemovePart_Click);
+            // 
+            // btnRemoveEmp
+            // 
+            this.btnRemoveEmp.Location = new System.Drawing.Point(851, 168);
+            this.btnRemoveEmp.Name = "btnRemoveEmp";
+            this.btnRemoveEmp.Size = new System.Drawing.Size(75, 23);
+            this.btnRemoveEmp.TabIndex = 30;
+            this.btnRemoveEmp.Text = "Премахни";
+            this.btnRemoveEmp.Click += new System.EventHandler(this.btnRemoveEmp_Click);
             // 
             // btnSavePDF
             // 
@@ -541,21 +511,12 @@
             // 
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(620, 316);
+            this.simpleButton1.Location = new System.Drawing.Point(528, 316);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(104, 23);
             this.simpleButton1.TabIndex = 26;
             this.simpleButton1.Text = "Търсене на част";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click_1);
-            // 
-            // btnAddNewPart
-            // 
-            this.btnAddNewPart.Location = new System.Drawing.Point(526, 316);
-            this.btnAddNewPart.Name = "btnAddNewPart";
-            this.btnAddNewPart.Size = new System.Drawing.Size(75, 23);
-            this.btnAddNewPart.TabIndex = 25;
-            this.btnAddNewPart.Text = "Добави част";
-            this.btnAddNewPart.Click += new System.EventHandler(this.btnAddNewPart_Click);
             // 
             // gridServiceParts
             // 
@@ -679,9 +640,9 @@
             // 
             this.btnAddNewWorker.Location = new System.Drawing.Point(526, 168);
             this.btnAddNewWorker.Name = "btnAddNewWorker";
-            this.btnAddNewWorker.Size = new System.Drawing.Size(75, 23);
+            this.btnAddNewWorker.Size = new System.Drawing.Size(95, 23);
             this.btnAddNewWorker.TabIndex = 22;
-            this.btnAddNewWorker.Text = "Добави монтьор";
+            this.btnAddNewWorker.Text = "Назначи монтьор";
             this.btnAddNewWorker.Click += new System.EventHandler(this.btnAddNewWorker_Click);
             // 
             // gridServiceEmpl
@@ -692,7 +653,8 @@
             this.gridServiceEmpl.Name = "gridServiceEmpl";
             this.gridServiceEmpl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit3,
-            this.repositoryItemGridLookUpEdit1});
+            this.repositoryItemGridLookUpEdit1,
+            this.repositoryItemSearchLookUpEdit4});
             this.gridServiceEmpl.Size = new System.Drawing.Size(398, 113);
             this.gridServiceEmpl.TabIndex = 21;
             this.gridServiceEmpl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -713,11 +675,60 @@
             // colEMPLOYEE_ID
             // 
             this.colEMPLOYEE_ID.Caption = "Служител";
-            this.colEMPLOYEE_ID.ColumnEdit = this.repositoryItemGridLookUpEdit1;
+            this.colEMPLOYEE_ID.ColumnEdit = this.repositoryItemSearchLookUpEdit4;
             this.colEMPLOYEE_ID.FieldName = "EMPLOYEE_ID";
             this.colEMPLOYEE_ID.Name = "colEMPLOYEE_ID";
             this.colEMPLOYEE_ID.Visible = true;
             this.colEMPLOYEE_ID.VisibleIndex = 0;
+            // 
+            // repositoryItemSearchLookUpEdit4
+            // 
+            this.repositoryItemSearchLookUpEdit4.AutoHeight = false;
+            this.repositoryItemSearchLookUpEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemSearchLookUpEdit4.DataSource = this.EmpListBindSrc;
+            this.repositoryItemSearchLookUpEdit4.DisplayMember = "NAME";
+            this.repositoryItemSearchLookUpEdit4.Name = "repositoryItemSearchLookUpEdit4";
+            this.repositoryItemSearchLookUpEdit4.ValueMember = "EMPLOYEE_ID";
+            this.repositoryItemSearchLookUpEdit4.View = this.repositoryItemSearchLookUpEdit4View;
+            // 
+            // EmpListBindSrc
+            // 
+            this.EmpListBindSrc.DataSource = typeof(AutoPartDataModels.EMPLOYEES);
+            // 
+            // repositoryItemSearchLookUpEdit4View
+            // 
+            this.repositoryItemSearchLookUpEdit4View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colEMPLOYEE_ID2,
+            this.colNAME1});
+            this.repositoryItemSearchLookUpEdit4View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit4View.Name = "repositoryItemSearchLookUpEdit4View";
+            this.repositoryItemSearchLookUpEdit4View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit4View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colEMPLOYEE_ID2
+            // 
+            this.colEMPLOYEE_ID2.Caption = "Вътрешен номер";
+            this.colEMPLOYEE_ID2.FieldName = "EMPLOYEE_ID";
+            this.colEMPLOYEE_ID2.Name = "colEMPLOYEE_ID2";
+            this.colEMPLOYEE_ID2.Visible = true;
+            this.colEMPLOYEE_ID2.VisibleIndex = 0;
+            // 
+            // colNAME1
+            // 
+            this.colNAME1.Caption = "Име";
+            this.colNAME1.FieldName = "NAME";
+            this.colNAME1.Name = "colNAME1";
+            this.colNAME1.Visible = true;
+            this.colNAME1.VisibleIndex = 1;
+            // 
+            // repositoryItemLookUpEdit3
+            // 
+            this.repositoryItemLookUpEdit3.AutoHeight = false;
+            this.repositoryItemLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit3.DisplayMember = "Clients";
+            this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
             // 
             // repositoryItemGridLookUpEdit1
             // 
@@ -730,24 +741,31 @@
             this.repositoryItemGridLookUpEdit1.ValueMember = "EMPLOYEE_ID";
             this.repositoryItemGridLookUpEdit1.View = this.repositoryItemGridLookUpEdit1View;
             // 
-            // EmpListBindSrc
-            // 
-            this.EmpListBindSrc.DataSource = typeof(AutoPartDataModels.EMPLOYEES);
-            // 
             // repositoryItemGridLookUpEdit1View
             // 
+            this.repositoryItemGridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colEMPLOYEE_ID1,
+            this.colNAME});
             this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
             this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
-            // repositoryItemLookUpEdit3
+            // colEMPLOYEE_ID1
             // 
-            this.repositoryItemLookUpEdit3.AutoHeight = false;
-            this.repositoryItemLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit3.DisplayMember = "Clients";
-            this.repositoryItemLookUpEdit3.Name = "repositoryItemLookUpEdit3";
+            this.colEMPLOYEE_ID1.Caption = "Вътрешен номер";
+            this.colEMPLOYEE_ID1.FieldName = "EMPLOYEE_ID";
+            this.colEMPLOYEE_ID1.Name = "colEMPLOYEE_ID1";
+            this.colEMPLOYEE_ID1.Visible = true;
+            this.colEMPLOYEE_ID1.VisibleIndex = 0;
+            // 
+            // colNAME
+            // 
+            this.colNAME.Caption = "Име";
+            this.colNAME.FieldName = "NAME";
+            this.colNAME.Name = "colNAME";
+            this.colNAME.Visible = true;
+            this.colNAME.VisibleIndex = 1;
             // 
             // sERVICE_WORKSGridControl
             // 
@@ -758,7 +776,8 @@
             this.sERVICE_WORKSGridControl.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemLookUpEdit1,
             this.repositoryItemLookUpEdit2,
-            this.repositoryItemDateEdit1});
+            this.repositoryItemDateEdit1,
+            this.repositoryItemSearchLookUpEdit3});
             this.sERVICE_WORKSGridControl.Size = new System.Drawing.Size(488, 292);
             this.sERVICE_WORKSGridControl.TabIndex = 20;
             this.sERVICE_WORKSGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -838,32 +857,62 @@
             // colSERVICE_ID
             // 
             this.colSERVICE_ID.Caption = "Услуга";
-            this.colSERVICE_ID.ColumnEdit = this.repositoryItemLookUpEdit1;
+            this.colSERVICE_ID.ColumnEdit = this.repositoryItemSearchLookUpEdit3;
             this.colSERVICE_ID.FieldName = "SERVICE_ID";
             this.colSERVICE_ID.Name = "colSERVICE_ID";
             this.colSERVICE_ID.Visible = true;
             this.colSERVICE_ID.VisibleIndex = 0;
             this.colSERVICE_ID.Width = 127;
             // 
-            // repositoryItemLookUpEdit1
+            // repositoryItemSearchLookUpEdit3
             // 
-            this.repositoryItemLookUpEdit1.AutoHeight = false;
-            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.repositoryItemSearchLookUpEdit3.AutoHeight = false;
+            this.repositoryItemSearchLookUpEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_ID", "SERVICE_ID", 82, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_NAME", "Услуга", 86, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRICE_PER_HOUR", "Средна Цена", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DESCRIPTION", "Описание", 78, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_WORKS", "SERVICE_WORKS", 95, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near)});
-            this.repositoryItemLookUpEdit1.DataSource = this.sERVICESBindingSource;
-            this.repositoryItemLookUpEdit1.DisplayMember = "SERVICE_NAME";
-            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
-            this.repositoryItemLookUpEdit1.ValueMember = "SERVICE_ID";
+            this.repositoryItemSearchLookUpEdit3.DataSource = this.sERVICESBindingSource;
+            this.repositoryItemSearchLookUpEdit3.DisplayMember = "SERVICE_NAME";
+            this.repositoryItemSearchLookUpEdit3.Name = "repositoryItemSearchLookUpEdit3";
+            this.repositoryItemSearchLookUpEdit3.ValueMember = "SERVICE_ID";
+            this.repositoryItemSearchLookUpEdit3.View = this.repositoryItemSearchLookUpEdit3View;
             // 
             // sERVICESBindingSource
             // 
             this.sERVICESBindingSource.DataSource = typeof(AutoPartDataModels.SERVICES);
+            // 
+            // repositoryItemSearchLookUpEdit3View
+            // 
+            this.repositoryItemSearchLookUpEdit3View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSERVICE_NAME1,
+            this.colPRICE_PER_HOUR,
+            this.colDESCRIPTION});
+            this.repositoryItemSearchLookUpEdit3View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.repositoryItemSearchLookUpEdit3View.Name = "repositoryItemSearchLookUpEdit3View";
+            this.repositoryItemSearchLookUpEdit3View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.repositoryItemSearchLookUpEdit3View.OptionsView.ShowGroupPanel = false;
+            // 
+            // colSERVICE_NAME1
+            // 
+            this.colSERVICE_NAME1.Caption = "Услуга";
+            this.colSERVICE_NAME1.FieldName = "SERVICE_NAME";
+            this.colSERVICE_NAME1.Name = "colSERVICE_NAME1";
+            this.colSERVICE_NAME1.Visible = true;
+            this.colSERVICE_NAME1.VisibleIndex = 0;
+            // 
+            // colPRICE_PER_HOUR
+            // 
+            this.colPRICE_PER_HOUR.Caption = "Средна цена";
+            this.colPRICE_PER_HOUR.FieldName = "PRICE_PER_HOUR";
+            this.colPRICE_PER_HOUR.Name = "colPRICE_PER_HOUR";
+            this.colPRICE_PER_HOUR.Visible = true;
+            this.colPRICE_PER_HOUR.VisibleIndex = 1;
+            // 
+            // colDESCRIPTION
+            // 
+            this.colDESCRIPTION.Caption = "Подробности";
+            this.colDESCRIPTION.FieldName = "DESCRIPTION";
+            this.colDESCRIPTION.Name = "colDESCRIPTION";
+            this.colDESCRIPTION.Visible = true;
+            this.colDESCRIPTION.VisibleIndex = 2;
             // 
             // colAPPOITMENTS1
             // 
@@ -907,6 +956,22 @@
             this.colTIME_FINISH.Visible = true;
             this.colTIME_FINISH.VisibleIndex = 4;
             // 
+            // repositoryItemLookUpEdit1
+            // 
+            this.repositoryItemLookUpEdit1.AutoHeight = false;
+            this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_ID", "SERVICE_ID", 82, DevExpress.Utils.FormatType.Numeric, "", false, DevExpress.Utils.HorzAlignment.Far),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_NAME", "Услуга", 86, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRICE_PER_HOUR", "Средна Цена", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("DESCRIPTION", "Описание", 78, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SERVICE_WORKS", "SERVICE_WORKS", 95, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Near)});
+            this.repositoryItemLookUpEdit1.DataSource = this.sERVICESBindingSource;
+            this.repositoryItemLookUpEdit1.DisplayMember = "SERVICE_NAME";
+            this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
+            this.repositoryItemLookUpEdit1.ValueMember = "SERVICE_ID";
+            // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(426, 147);
@@ -925,6 +990,92 @@
             this.btnAddServiceWork.Text = "Добави";
             this.btnAddServiceWork.Click += new System.EventHandler(this.btnAddServiceWork_Click);
             // 
+            // gridLookUpEdit1
+            // 
+            this.gridLookUpEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.aPPOITMENTBindingSource, "CLIENT_ID", true));
+            this.gridLookUpEdit1.EditValue = "[EditValue is null]";
+            this.gridLookUpEdit1.Location = new System.Drawing.Point(100, 19);
+            this.gridLookUpEdit1.Name = "gridLookUpEdit1";
+            this.gridLookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gridLookUpEdit1.Properties.DataSource = this.clientBindingSource;
+            this.gridLookUpEdit1.Properties.DisplayMember = "CLIENT_NAME";
+            this.gridLookUpEdit1.Properties.ValueMember = "CLIENT_ID";
+            this.gridLookUpEdit1.Properties.View = this.searchLookUpEdit1View;
+            this.gridLookUpEdit1.Size = new System.Drawing.Size(238, 20);
+            this.gridLookUpEdit1.TabIndex = 1;
+            // 
+            // searchLookUpEdit1View
+            // 
+            this.searchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3,
+            this.gridColumn4,
+            this.gridColumn5,
+            this.gridColumn6,
+            this.gridColumn7,
+            this.gridColumn8,
+            this.gridColumn9});
+            this.searchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.searchLookUpEdit1View.Name = "searchLookUpEdit1View";
+            this.searchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.searchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.FieldName = "CLIENT_ID";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Име";
+            this.gridColumn2.FieldName = "CLIENT_NAME";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.FieldName = "CLIENT_FORM";
+            this.gridColumn3.Name = "gridColumn3";
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.FieldName = "COMPANY";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.Caption = "Телефон";
+            this.gridColumn5.FieldName = "TELEPHONE";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 1;
+            // 
+            // gridColumn6
+            // 
+            this.gridColumn6.Caption = "Email";
+            this.gridColumn6.FieldName = "EMAIL";
+            this.gridColumn6.Name = "gridColumn6";
+            this.gridColumn6.Visible = true;
+            this.gridColumn6.VisibleIndex = 2;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.FieldName = "DETAILS";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.FieldName = "APPOITMENTS";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.FieldName = "CLIENT_CARS";
+            this.gridColumn9.Name = "gridColumn9";
+            // 
             // TFormManageAppoitment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -932,12 +1083,11 @@
             this.ClientSize = new System.Drawing.Size(1022, 489);
             this.Controls.Add(this.pnlApptment);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TFormManageAppoitment";
             this.Text = "TFormManageAppoitment";
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SrchClientCar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
@@ -959,19 +1109,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridServiceEmpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmplSrvBindingSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewServiceEmployees)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EmpListBindSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit4View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSGridControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICE_WORKSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOOKUP_ITEMSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICESBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSearchLookUpEdit3View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -981,8 +1137,6 @@
         private System.Windows.Forms.BindingSource aPPOITMENTBindingSource;
         private DevExpress.XtraEditors.LabelControl lblClient;
         private System.Windows.Forms.BindingSource clientBindingSource;
-        private DevExpress.XtraEditors.GridLookUpEdit gridLookUpEdit1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraEditors.SimpleButton btnFindClient;
         private DevExpress.XtraEditors.SearchLookUpEdit SrchClientCar;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -1004,15 +1158,6 @@
         private DevExpress.XtraEditors.PanelControl pnlApptment;
         private DevExpress.XtraEditors.SimpleButton btnAddServiceWork;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_ID;
-        private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_NAME;
-        private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_FORM;
-        private DevExpress.XtraGrid.Columns.GridColumn colCOMPANY;
-        private DevExpress.XtraGrid.Columns.GridColumn colTELEPHONE;
-        private DevExpress.XtraGrid.Columns.GridColumn colEMAIL;
-        private DevExpress.XtraGrid.Columns.GridColumn colDETAILS;
-        private DevExpress.XtraGrid.Columns.GridColumn colAPPOITMENTS;
-        private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_CARS;
         private System.Windows.Forms.BindingSource sERVICE_WORKSBindingSource;
         private System.Windows.Forms.BindingSource sERVICESBindingSource;
         private DevExpress.XtraGrid.GridControl sERVICE_WORKSGridControl;
@@ -1044,7 +1189,6 @@
         private DevExpress.XtraGrid.GridControl gridServiceParts;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewServiceParts;
         private System.Windows.Forms.BindingSource ServicePartsBindSrc;
-        private DevExpress.XtraEditors.SimpleButton btnAddNewPart;
         private DevExpress.XtraGrid.Columns.GridColumn colWORK_PART_ID;
         private DevExpress.XtraGrid.Columns.GridColumn colSERVICE_WORK_ID1;
         private DevExpress.XtraGrid.Columns.GridColumn colPART_ID;
@@ -1070,5 +1214,31 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCAR_REG_NUMB;
         private DevExpress.XtraGrid.Columns.GridColumn colParts1;
         private DevExpress.XtraGrid.Columns.GridColumn colParts2;
+        private DevExpress.XtraGrid.Columns.GridColumn colLOOKUP_ITEMS1;
+        private DevExpress.XtraGrid.Columns.GridColumn colEMPLOYEE_ID1;
+        private DevExpress.XtraGrid.Columns.GridColumn colNAME;
+        private DevExpress.XtraEditors.SearchLookUpEdit gridLookUpEdit1;
+        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit4;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit4View;
+        private DevExpress.XtraGrid.Columns.GridColumn colEMPLOYEE_ID2;
+        private DevExpress.XtraGrid.Columns.GridColumn colNAME1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit repositoryItemSearchLookUpEdit3;
+        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit3View;
+        private DevExpress.XtraGrid.Columns.GridColumn colSERVICE_NAME1;
+        private DevExpress.XtraGrid.Columns.GridColumn colPRICE_PER_HOUR;
+        private DevExpress.XtraGrid.Columns.GridColumn colDESCRIPTION;
+        private DevExpress.XtraEditors.SimpleButton btnRemovePart;
+        private DevExpress.XtraEditors.SimpleButton btnRemoveEmp;
+        private DevExpress.XtraEditors.SimpleButton btnMarkFinished;
     }
 }

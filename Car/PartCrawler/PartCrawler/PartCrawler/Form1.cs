@@ -32,10 +32,15 @@ namespace PartCrawler
         private void button2_Click(object sender, EventArgs e)
         {
             lblWriteParts.Text = "Работи";
+            var th = new Thread(() =>
+            {
+                PartLinkCrawler LinkCrawler = new PartLinkCrawler();
+                //webBrowser1 = LinkCrawler.wbBrowser;
+                LinkCrawler.GetAllPartLinks();
+            });
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
 
-            PartLinkCrawler LinkCrawler = new PartLinkCrawler();
-            //webBrowser1 = LinkCrawler.wbBrowser;
-            LinkCrawler.GetAllPartLinks();
 
             lblWriteParts.Text = "Приключи";
         }
@@ -48,20 +53,25 @@ namespace PartCrawler
         private void Form1_Load(object sender, EventArgs e)
         {
             lblWriteParts.Text = "Не работи";
-            var th = new Thread(() =>
-            {
-                PartCrawler PartCrawl = new PartCrawler();
-                for(;;)
-                    PartCrawl.GetAllPagesInfo();
-            });
-            th.SetApartmentState(ApartmentState.STA);
-            th.Start();
+
             //webBrowser1.Visible = false;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             lblWriteParts.Text = "Спрян";
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            var th = new Thread(() =>
+            {
+                PartCrawler PartCrawl = new PartCrawler();
+                    PartCrawl.GetAllPagesInfo();
+            });
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();
+
         }
     }
 }

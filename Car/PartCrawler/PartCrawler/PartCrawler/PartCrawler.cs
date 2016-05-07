@@ -89,68 +89,76 @@ namespace PartCrawler
         }
         public void GetAllPagesInfo()
         {
-            DSCarShop.LoadPartsLink();
-            foreach (DataRow Part in DSCarShop.PARTS_LINK.Rows)
+            for (; ; )
             {
-                string PartUrl = Part["URL"].ToString();
-                HtmlWeb wbClient = new HtmlWeb();
-                wbClient.OverrideEncoding = Encoding.UTF8;
-                HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
-                CurrentDoc = wbClient.Load(PartUrl);
-                int PartID = 1;
-                var CategoryDiv = CurrentDoc.GetElementbyId("breadcrumb");
-                var MarkSelect = CurrentDoc.GetElementbyId("mini_brand_id");
-                var ModelSelect = CurrentDoc.GetElementbyId("mini_model_id");
-                var PartTitleElem = CurrentDoc.GetElementbyId("part-details-h1");
-                HtmlNode MarkAnch = CategoryDiv.ChildNodes[4];
-                HtmlNode ModelAnch = CategoryDiv.ChildNodes[6];
-                
-                string MarkName = MarkAnch.InnerText.Replace("Авточасти за ", "");
-                string ModelAnchTxt = ModelAnch.InnerText.Replace("\r", "").Replace("\n", "");
-                string ModelName = ModelAnchTxt.Replace("Авточасти  за ", "").Replace(MarkName + " ", "");
-                HtmlNode CategoryAnch = CategoryDiv.ChildNodes[8];
-                
-                string Link = CategoryAnch.InnerText;
-                string ReplaceString = " за " + MarkName + " " + ModelName;
-                string Category = Link.Replace(ReplaceString, "");
-                int CarMarkID = DSCarShop.GetCarIDByName(MarkName);
-                int SubCategoryID = DSCarShop.GetSubCategIDByName(Category);
-                string[] ExtractedModel = CommonFuncs.ModelNameExtract(ModelName);
-                int ModelID = DSCarShop.GetModelIDByModelInfo(CarMarkID, ExtractedModel);
-                string PartName = PartTitleElem.InnerText.Replace(ReplaceString, "");
-                var MainDivElem = CurrentDoc.GetElementbyId("main");
-                var PriceElem = CurrentDoc.GetElementbyId("breadcrumb");
-                string ProductCode = string.Empty;
-                string OE = string.Empty;
-                var Spans = CurrentDoc.DocumentNode.SelectNodes("//span");
-                double? Price = 0.0;
-                string Description = string.Empty;
-                string PartManuf = string.Empty;
-                foreach (HtmlNode AllElems in Spans)
+                DSCarShop.LoadPartsLink();
+                foreach (DataRow Part in DSCarShop.PARTS_LINK.Rows)
                 {
-                    if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("sku"))
-                        ProductCode = AllElems.InnerText;
-                    if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("#manufacture_info_"))
-                        PartManuf = AllElems.InnerText;
-                    if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("mpn"))
-                        OE = AllElems.InnerText;
-                    /*if (AllElems.OuterHtml != null && !AllElems.OuterHtml.Contains("price_for_us") && AllElems.OuterHtml.Contains("\"price\"")
-                        && AllElems.OuterHtml.Contains("itemprop"))
+                    string PartUrl = Part["URL"].ToString();
+                    HtmlWeb wbClient = new HtmlWeb();
+                    wbClient.OverrideEncoding = Encoding.UTF8;
+                    HtmlAgilityPack.HtmlDocument CurrentDoc = new HtmlAgilityPack.HtmlDocument();
+                    CurrentDoc = wbClient.Load(PartUrl);
+                    int PartID = 1;
+                    var CategoryDiv = CurrentDoc.GetElementbyId("breadcrumb");
+                    var MarkSelect = CurrentDoc.GetElementbyId("mini_brand_id");
+                    var ModelSelect = CurrentDoc.GetElementbyId("mini_model_id");
+                    var PartTitleElem = CurrentDoc.GetElementbyId("part-details-h1");
+                    HtmlNode MarkAnch = CategoryDiv.ChildNodes[4];
+                    HtmlNode ModelAnch = CategoryDiv.ChildNodes[6];
+
+                    string MarkName = MarkAnch.InnerText.Replace("Авточасти за ", "");
+                    string ModelAnchTxt = ModelAnch.InnerText.Replace("\r", "").Replace("\n", "");
+                    string ModelName = ModelAnchTxt.Replace("Авточасти  за ", "").Replace(MarkName + " ", "");
+                    HtmlNode CategoryAnch = CategoryDiv.ChildNodes[8];
+
+                    string Link = CategoryAnch.InnerText;
+                    string ReplaceString = " за " + MarkName + " " + ModelName;
+                    string Category = Link.Replace(ReplaceString, "");
+                    int CarMarkID = DSCarShop.GetCarIDByName(MarkName);
+                    int SubCategoryID = DSCarShop.GetSubCategIDByName(Category);
+                    string[] ExtractedModel = CommonFuncs.ModelNameExtract(ModelName);
+                    int ModelID = DSCarShop.GetModelIDByModelInfo(CarMarkID, ExtractedModel);
+                    string PartName = PartTitleElem.InnerText.Replace(ReplaceString, "");
+                    var MainDivElem = CurrentDoc.GetElementbyId("main");
+                    var PriceElem = CurrentDoc.GetElementbyId("breadcrumb");
+                    string ProductCode = string.Empty;
+                    string OE = string.Empty;
+                    var Spans = CurrentDoc.DocumentNode.SelectNodes("//span");
+                    double? Price = 0.0;
+                    string Description = string.Empty;
+                    string PartManuf = string.Empty;
+                    foreach (HtmlNode AllElems in Spans)
                     {
-                        Price = Convert.ToDouble(AllElems.InnerText.Replace(".", ","));
-                        break;
-                    }*/
+                        if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("sku"))
+                            ProductCode = AllElems.InnerText;
+                        if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("#manufacture_info_"))
+                            PartManuf = AllElems.InnerText;
+                        if (AllElems.OuterHtml != null && AllElems.OuterHtml.Contains("mpn"))
+                            OE = AllElems.InnerText;
+                        /*if (AllElems.OuterHtml != null && !AllElems.OuterHtml.Contains("price_for_us") && AllElems.OuterHtml.Contains("\"price\"")
+                            && AllElems.OuterHtml.Contains("itemprop"))
+                        {
+                            Price = Convert.ToDouble(AllElems.InnerText.Replace(".", ","));
+                            break;
+                        }*/
 
 
+                    }
+                    var PriceNode = CurrentDoc.DocumentNode.SelectNodes("//span[@itemprop='price']");
+                    if (PriceNode != null)
+                        Price = Convert.ToDouble(PriceNode[0].InnerText.Replace(".", ","));
+                    var Paragraphs = CurrentDoc.DocumentNode.SelectNodes("//p");
+                    foreach (HtmlNode Elems in Paragraphs)
+                        if (Elems.OuterHtml != null && Elems.OuterHtml.Contains("description"))
+                            Description = Elems.InnerText;
+                    try
+                    {
+                        DSCarShop.PartsTblAdapter.Insert(DSCarShop.GEN_ID("Parts"), PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID);
+                    }
+                    catch (Exception E)
+                    { MessageBox.Show(E.Message); }
                 }
-                var PriceNode = CurrentDoc.DocumentNode.SelectNodes("//span[@itemprop='price']");
-                if (PriceNode != null)
-                    Price = Convert.ToDouble(PriceNode[0].InnerText.Replace(".", ","));
-                var Paragraphs = CurrentDoc.DocumentNode.SelectNodes("//p");
-                foreach (HtmlNode Elems in Paragraphs)
-                    if (Elems.OuterHtml != null && Elems.OuterHtml.Contains("description"))
-                        Description = Elems.InnerText;
-                DSCarShop.PartsTblAdapter.Insert(DSCarShop.GEN_ID("Parts"), PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID);
             }
         }
     }

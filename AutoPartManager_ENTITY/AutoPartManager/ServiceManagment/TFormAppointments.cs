@@ -87,5 +87,15 @@ namespace ServiceManagment
 
         }
 
+        private void pnlFormHolder_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnlBtns_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
     }
 }

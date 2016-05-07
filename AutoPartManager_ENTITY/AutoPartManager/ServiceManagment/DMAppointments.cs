@@ -50,7 +50,8 @@ namespace ServiceManagment
         public void LoadAllAppoitments()
         {
             CurrContex.APPOITMENTS.Local.Clear();
-            var AllAppoitments = CurrContex.APPOITMENTS.Include(a => a.Clients).Include(a => a.SERVICE_WORKS)
+            var AllAppoitments = CurrContex.APPOITMENTS.Where(a => a.APP_STATUS == DMStrings.AppStatusActive)
+                .Include(a => a.Clients).Include(a => a.SERVICE_WORKS)
                                 .Include(a =>a.CLIENT_CARS.Models);
             foreach (APPOITMENTS CurrApp in AllAppoitments)
                 CurrContex.APPOITMENTS.Local.Add(CurrApp);
@@ -66,7 +67,7 @@ namespace ServiceManagment
 
         public void LoadServices()
         {
-            var ServicesWorks = CurrContex.SERVICE_WORKS
+            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.APPOITMENTS.APP_STATUS == DMStrings.AppStatusActive)
                                 .Include(s => s.SERVICES)
                                 .Include(s => s.APPOITMENTS.Clients)
                                 .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
@@ -88,7 +89,8 @@ namespace ServiceManagment
 
         public void LoadServicesByMechAndStatus(int EmplID, string WorkStatus)
         {
-            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus)
+            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus
+                                && sw.APPOITMENTS.APP_STATUS != DMStrings.AppStatusCancel)
                 .Include(s => s.SERVICES)
                 .Include(s => s.APPOITMENTS.Clients)
                 .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
@@ -103,6 +105,14 @@ namespace ServiceManagment
         {
             return CurrContex.EMPLOYEES_SERVICE_WORKS.Where(e => e.SERVICE_WORK_ID == ServWorkID)
                                                       .Include(ew => ew.EMPLOYEES);
+        }
+
+        public void CancelAppoitmentByID(int AppID)
+        {
+            var App = CurrContex.APPOITMENTS.FirstOrDefault(a => a.APPOITMENT_ID == AppID);
+            App.APP_STATUS = DMStrings.AppStatusCancel;
+            CurrContex.Entry(App).State = EntityState.Modified;
+            CurrContex.SaveChanges();
         }
 
     }

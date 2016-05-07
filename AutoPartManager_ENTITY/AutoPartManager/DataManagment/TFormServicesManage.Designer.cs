@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sERVICEBindingSource = new System.Windows.Forms.BindingSource();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFormServicesManage));
+            this.sERVICEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sERVICEGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridViewServices = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSERVICE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -170,8 +172,9 @@
             this.ClientSize = new System.Drawing.Size(739, 338);
             this.Controls.Add(this.pnlGridHolder);
             this.Controls.Add(this.PnlMenuBtns);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TFormServicesManage";
-            this.Text = "TFormServicesManage";
+            this.Text = "Услуги";
             this.Load += new System.EventHandler(this.TFormServicesManage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sERVICEBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sERVICEGridControl)).EndInit();

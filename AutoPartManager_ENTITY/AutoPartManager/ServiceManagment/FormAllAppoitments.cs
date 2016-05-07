@@ -52,5 +52,16 @@ namespace ServiceManagment
         {
             return (APPOITMENTS)aPPOITMENTSBindingSource.Current;
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuCancel_Click(object sender, EventArgs e)
+        {
+            CDMAppoitments.CancelAppoitmentByID(SelectedApp().APPOITMENT_ID);
+            CDMAppoitments.LoadAllAppoitments();
+        }
     }
 }
