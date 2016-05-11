@@ -148,7 +148,7 @@
             this.part_nameTextEdit.Location = new System.Drawing.Point(96, 31);
             this.part_nameTextEdit.Name = "part_nameTextEdit";
             this.part_nameTextEdit.Size = new System.Drawing.Size(285, 20);
-            this.part_nameTextEdit.TabIndex = 5;
+            this.part_nameTextEdit.TabIndex = 0;
             // 
             // part_manufTextEdit
             // 
@@ -156,7 +156,7 @@
             this.part_manufTextEdit.Location = new System.Drawing.Point(96, 57);
             this.part_manufTextEdit.Name = "part_manufTextEdit";
             this.part_manufTextEdit.Size = new System.Drawing.Size(285, 20);
-            this.part_manufTextEdit.TabIndex = 7;
+            this.part_manufTextEdit.TabIndex = 1;
             // 
             // iMGPictureEdit
             // 
@@ -172,7 +172,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(95, 153);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(285, 62);
-            this.richTextBox1.TabIndex = 12;
+            this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
             // txtPrice
@@ -182,7 +182,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
-            this.txtPrice.TabIndex = 17;
+            this.txtPrice.TabIndex = 2;
             // 
             // MarksBindSrc
             // 
@@ -198,7 +198,7 @@
             this.btnSave.Location = new System.Drawing.Point(305, 430);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Запази";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -215,7 +215,7 @@
             this.searchLookUpEdit1.Properties.DisplayMember = "Car_Model";
             this.searchLookUpEdit1.Properties.ValueMember = "Car_ID";
             this.searchLookUpEdit1.Size = new System.Drawing.Size(100, 20);
-            this.searchLookUpEdit1.TabIndex = 13;
+            this.searchLookUpEdit1.TabIndex = 3;
             // 
             // searchLookUpEdit2
             // 
@@ -230,7 +230,7 @@
             this.searchLookUpEdit2.Properties.DisplayMember = "MODEL_NAME";
             this.searchLookUpEdit2.Properties.ValueMember = "MODEL_ID";
             this.searchLookUpEdit2.Size = new System.Drawing.Size(119, 20);
-            this.searchLookUpEdit2.TabIndex = 14;
+            this.searchLookUpEdit2.TabIndex = 4;
             // 
             // TFormManagePart
             // 

@@ -123,10 +123,22 @@
     <Compile Include="SUB_CATEGORIES.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="SUB_MODELS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="VIEW_APPOITMENT_CLIENT_SUMS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW_CLIENT_CARS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Cars_Models.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_Car_Model_Part.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
   </ItemGroup>

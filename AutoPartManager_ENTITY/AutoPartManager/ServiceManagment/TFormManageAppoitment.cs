@@ -115,7 +115,6 @@ namespace ServiceManagment
         public void SetDataSources()
         {
             clientBindingSource.DataSource = DMAppoitm.GetAllClients().ToList();
-            AllPartsBindSrc.DataSource = DMAppoitm.CurrContex.Parts.ToList();
             //sERVICE_WORKSBindingSource.DataSource = DMAppoitm.CurrContex.SERVICE_WORKS.Local.ToBindingList();
             EmpListBindSrc.DataSource = DMAppoitm.CurrContex.EMPLOYEES.ToList();
         }
@@ -139,11 +138,14 @@ namespace ServiceManagment
                 sERVICE_WORKSBindingSource.EndEdit();
                 if (InsertState)
                 {
-                    DMAppoitm.CurrContex.APPOITMENTS.Add(((APPOITMENTS)aPPOITMENTBindingSource.Current));    
+                    
+                    DMAppoitm.CurrContex.APPOITMENTS.Add(CurrAppoitment());
+                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Added;
                 }
                 else
                 {
                     DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
+                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Modified;
                 }
 
                 DMAppoitm.CurrContex.SaveChanges();
@@ -174,8 +176,10 @@ namespace ServiceManagment
             FormMngClients.FormBorderStyle = FormBorderStyle.Sizable;
             FormMngClients.LoadOrInsertClient(-1);
             FormMngClients.ShowDialog();
+            CurrAppoitment().CLIENT_ID = FormMngClients.FClientID;
             ReloadAllClients();
-            gridLookUpEdit1.EditValue = FormMngClients.FClientID;
+            aPPOITMENTBindingSource.ResetBindings(false);
+            
         }
 
         private APPOITMENTS CurrentAppoitment()
@@ -305,6 +309,7 @@ namespace ServiceManagment
                 ServicePartsBindSrc.AddNew();
                 CurrWorkPart().WORK_PART_ID = DMAppoitm.GenID("SERVICE_WORK_PART");
                 CurrWorkPart().PART_ID = PartID;
+                CurrWorkPart().Parts = DMAppoitm.GetPartByID(PartID);
                 CurrentServiceWork().SERVICE_WORK_PARTS.Add(CurrWorkPart());
                 ServicePartsBindSrc.ResetBindings(false);
             }         
@@ -325,6 +330,7 @@ namespace ServiceManagment
                 fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl.ExportToPdf(SavePath);
                 Process.Start(SavePath);
             }
+            fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl.ExportToHtml(SavePath);
         }
 
         private void btnCalc_Click(object sender, EventArgs e)

@@ -11,3 +11,9 @@ C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\HtmlAgilityPack.xml
 C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\obj\Debug\PartCrawler.ProjectInstaller.resources
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\AutoPartDataModels.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\EntityFramework.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\AutoPartDataModels.pdb
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\EntityFramework.xml
+C:\Users\PC\Documents\GitHub\Carshop\Car\PartCrawler\PartCrawler\PartCrawler\bin\Debug\EntityFramework.SqlServer.xml

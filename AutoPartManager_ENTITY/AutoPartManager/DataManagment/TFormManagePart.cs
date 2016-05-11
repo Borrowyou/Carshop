@@ -36,11 +36,11 @@ namespace DataManagment
             MarksBindSrc.DataSource = CDMParts.GetAllCars().ToList();
         }
 
-        public void LoadOrInsertPart(int PartID)
+        public void LoadOrInsertPart(int PartID, int MarkID = -1, int ModelID = -1)
         {
             if (PartID == -1)
             {
-                InitNewPart();
+                InitNewPart(MarkID, ModelID);
             }
             else
             {
@@ -55,11 +55,16 @@ namespace DataManagment
             partsBindingSource.DataSource = CDMParts.CurrContex.Parts.Where(p => p.Part_ID == PartID).ToList();
         }
 
-        private void InitNewPart()
+        private void InitNewPart(int MarkID, int ModelID)
         {
             InsertState = true;
             partsBindingSource.AddNew();
             CurrPart().Part_ID = CDMParts.GenID("PART_ID");
+            if (MarkID != -1 && ModelID != -1)
+            {
+                CurrPart().Car_ID = MarkID;
+                CurrPart().Model_ID = ModelID;
+            }
             partsBindingSource.ResetBindings(false);
 
         }
@@ -100,6 +105,7 @@ namespace DataManagment
                     CDMParts.CurrContex.Entry(CurrPart()).State = EntityState.Modified;
                 }
                 CDMParts.CurrContex.SaveChanges();
+                InsertState = false;
                 if (ReloadFunc != null)
                     ReloadFunc();
             }

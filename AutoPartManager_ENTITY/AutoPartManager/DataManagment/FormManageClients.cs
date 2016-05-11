@@ -199,7 +199,7 @@ namespace DataManagment
             CurrClient().CLIENT_ID = CDMClients.GenID("CLIENTS");
             CurrClient().CLIENT_FORM = DateTime.Now;
             CurrClient().CLIENT_TYPE = DMStrings.ClientTypePrivate;
-                
+            FClientID = CurrClient().CLIENT_ID;    
             clientsBindingSource.ResetBindings(false);
         }
 

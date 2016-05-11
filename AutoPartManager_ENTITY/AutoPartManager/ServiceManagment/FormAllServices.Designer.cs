@@ -37,6 +37,7 @@
             this.repositoryItemLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.WorkStatusBindingSrc = new System.Windows.Forms.BindingSource();
             this.colTIME_START = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.colTIME_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWORK_PRICE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -52,6 +53,7 @@
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemCheckedComboBoxEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit();
             this.pnlSearchMenu = new DevExpress.XtraEditors.PanelControl();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.LookUpStatus = new DevExpress.XtraEditors.LookUpEdit();
             this.lblStatus = new DevExpress.XtraEditors.LabelControl();
@@ -60,6 +62,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkStatusBindingSrc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MechanicsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
@@ -87,7 +91,8 @@
             this.repositoryItemComboBox1,
             this.repositoryItemLookUpEdit2,
             this.repositoryItemCheckedComboBoxEdit1,
-            this.repositoryItemLookUpEdit3});
+            this.repositoryItemLookUpEdit3,
+            this.repositoryItemDateEdit1});
             this.sERVICE_WORKSGridControl.Size = new System.Drawing.Size(735, 356);
             this.sERVICE_WORKSGridControl.TabIndex = 1;
             this.sERVICE_WORKSGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -113,6 +118,7 @@
             this.gridView1.GridControl = this.sERVICE_WORKSGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colSERVICE_WORK_ID
             // 
@@ -132,12 +138,15 @@
             this.colWORK_STATUS.Name = "colWORK_STATUS";
             this.colWORK_STATUS.Visible = true;
             this.colWORK_STATUS.VisibleIndex = 3;
+            this.colWORK_STATUS.Width = 102;
             // 
             // repositoryItemLookUpEdit1
             // 
             this.repositoryItemLookUpEdit1.AutoHeight = false;
             this.repositoryItemLookUpEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEdit1.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ITEM_NAME", "Статус", 68, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.repositoryItemLookUpEdit1.DataSource = this.WorkStatusBindingSrc;
             this.repositoryItemLookUpEdit1.DisplayMember = "ITEM_NAME";
             this.repositoryItemLookUpEdit1.Name = "repositoryItemLookUpEdit1";
@@ -149,19 +158,37 @@
             // 
             // colTIME_START
             // 
-            this.colTIME_START.Caption = "Започване";
+            this.colTIME_START.Caption = "Време започване";
+            this.colTIME_START.ColumnEdit = this.repositoryItemDateEdit1;
+            this.colTIME_START.DisplayFormat.FormatString = "MM/dd/yyyy hh:mm";
+            this.colTIME_START.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colTIME_START.FieldName = "TIME_START";
             this.colTIME_START.Name = "colTIME_START";
             this.colTIME_START.Visible = true;
             this.colTIME_START.VisibleIndex = 4;
+            this.colTIME_START.Width = 119;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.True;
+            this.repositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
             // 
             // colTIME_FINISH
             // 
-            this.colTIME_FINISH.Caption = "Приключване";
+            this.colTIME_FINISH.Caption = "Време приключване";
+            this.colTIME_FINISH.ColumnEdit = this.repositoryItemDateEdit1;
+            this.colTIME_FINISH.DisplayFormat.FormatString = "MM/dd/yyyy hh:mm";
+            this.colTIME_FINISH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colTIME_FINISH.FieldName = "TIME_FINISH";
             this.colTIME_FINISH.Name = "colTIME_FINISH";
             this.colTIME_FINISH.Visible = true;
             this.colTIME_FINISH.VisibleIndex = 5;
+            this.colTIME_FINISH.Width = 93;
             // 
             // colWORK_PRICE
             // 
@@ -195,6 +222,7 @@
             this.colEMPLOYEES_SERVICE_WORKS.Name = "colEMPLOYEES_SERVICE_WORKS";
             this.colEMPLOYEES_SERVICE_WORKS.Visible = true;
             this.colEMPLOYEES_SERVICE_WORKS.VisibleIndex = 6;
+            this.colEMPLOYEES_SERVICE_WORKS.Width = 97;
             // 
             // repositoryItemLookUpEdit3
             // 
@@ -264,6 +292,7 @@
             // 
             // pnlSearchMenu
             // 
+            this.pnlSearchMenu.Controls.Add(this.btnSave);
             this.pnlSearchMenu.Controls.Add(this.btnRefresh);
             this.pnlSearchMenu.Controls.Add(this.LookUpStatus);
             this.pnlSearchMenu.Controls.Add(this.lblStatus);
@@ -272,6 +301,15 @@
             this.pnlSearchMenu.Name = "pnlSearchMenu";
             this.pnlSearchMenu.Size = new System.Drawing.Size(735, 37);
             this.pnlSearchMenu.TabIndex = 2;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(648, 8);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Запази";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnRefresh
             // 
@@ -319,6 +357,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.WorkStatusBindingSrc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MechanicsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
@@ -361,5 +401,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit repositoryItemCheckedComboBoxEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEdit3;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }

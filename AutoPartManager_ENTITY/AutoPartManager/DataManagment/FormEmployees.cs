@@ -24,7 +24,6 @@ namespace DataManagment
             FormManageEmpl = new FormManageEmployee();
             FormManageEmpl.TopLevel = false;
             FormManageEmpl.ReloadFunc = CDMEmployees.LoadAllEMployees;
-
             pnlFormClient.Controls.Add(FormManageEmpl);
             FormManageEmpl.Show();
         }

@@ -32,20 +32,24 @@ namespace AutoPartDataModels
         public virtual DbSet<Cars> Cars { get; set; }
         public virtual DbSet<CLIENT_CARS> CLIENT_CARS { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
+        public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }
+        public virtual DbSet<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
         public virtual DbSet<LOOKUP_ITEMS> LOOKUP_ITEMS { get; set; }
         public virtual DbSet<Models> Models { get; set; }
         public virtual DbSet<Parts> Parts { get; set; }
         public virtual DbSet<PARTS_LINK> PARTS_LINK { get; set; }
         public virtual DbSet<PROVIDER_CATEGORIES> PROVIDER_CATEGORIES { get; set; }
         public virtual DbSet<REPAIR_SERVICES> REPAIR_SERVICES { get; set; }
+        public virtual DbSet<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
+        public virtual DbSet<SERVICE_WORKS> SERVICE_WORKS { get; set; }
         public virtual DbSet<SERVICES> SERVICES { get; set; }
         public virtual DbSet<SUB_CATEGORIES> SUB_CATEGORIES { get; set; }
+        public virtual DbSet<SUB_MODELS> SUB_MODELS { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
-        public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }
-        public virtual DbSet<SERVICE_WORKS> SERVICE_WORKS { get; set; }
-        public virtual DbSet<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
+        public virtual DbSet<V_Car_Model_Part> V_Car_Model_Part { get; set; }
+        public virtual DbSet<V_Cars_Models> V_Cars_Models { get; set; }
         public virtual DbSet<VIEW_APPOITMENT_CLIENT_SUMS> VIEW_APPOITMENT_CLIENT_SUMS { get; set; }
+        public virtual DbSet<VIEW_CLIENT_CARS> VIEW_CLIENT_CARS { get; set; }
     
         [DbFunction("CarShopEntities", "FUN_YEARS_BETWEEN_LIST")]
         public virtual IQueryable<FUN_YEARS_BETWEEN_LIST_Result> FUN_YEARS_BETWEEN_LIST(Nullable<int> from, Nullable<int> to)

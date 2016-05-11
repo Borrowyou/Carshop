@@ -145,7 +145,7 @@
             this.dATE_EMPLOYEEDateEdit.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dATE_EMPLOYEEDateEdit.Size = new System.Drawing.Size(231, 20);
-            this.dATE_EMPLOYEEDateEdit.TabIndex = 2;
+            this.dATE_EMPLOYEEDateEdit.TabIndex = 0;
             // 
             // nAMETextEdit
             // 
@@ -153,7 +153,7 @@
             this.nAMETextEdit.Location = new System.Drawing.Point(123, 41);
             this.nAMETextEdit.Name = "nAMETextEdit";
             this.nAMETextEdit.Size = new System.Drawing.Size(231, 20);
-            this.nAMETextEdit.TabIndex = 3;
+            this.nAMETextEdit.TabIndex = 1;
             // 
             // qUIT_DATEDateEdit
             // 
@@ -174,7 +174,7 @@
             this.tELEPHONETextEdit.Location = new System.Drawing.Point(123, 74);
             this.tELEPHONETextEdit.Name = "tELEPHONETextEdit";
             this.tELEPHONETextEdit.Size = new System.Drawing.Size(231, 20);
-            this.tELEPHONETextEdit.TabIndex = 7;
+            this.tELEPHONETextEdit.TabIndex = 2;
             // 
             // eMPL_TYPELookUpEdit
             // 
@@ -189,7 +189,7 @@
             this.eMPL_TYPELookUpEdit.Properties.DisplayMember = "ITEM_NAME";
             this.eMPL_TYPELookUpEdit.Properties.ValueMember = "ITEM_CODE";
             this.eMPL_TYPELookUpEdit.Size = new System.Drawing.Size(100, 20);
-            this.eMPL_TYPELookUpEdit.TabIndex = 9;
+            this.eMPL_TYPELookUpEdit.TabIndex = 4;
             // 
             // EmplTypeBindSrc
             // 
@@ -201,7 +201,7 @@
             this.eMAILTextEdit.Location = new System.Drawing.Point(123, 103);
             this.eMAILTextEdit.Name = "eMAILTextEdit";
             this.eMAILTextEdit.Size = new System.Drawing.Size(231, 20);
-            this.eMAILTextEdit.TabIndex = 11;
+            this.eMAILTextEdit.TabIndex = 3;
             // 
             // dETAILSTextEdit
             // 
@@ -209,7 +209,7 @@
             this.dETAILSTextEdit.Location = new System.Drawing.Point(123, 193);
             this.dETAILSTextEdit.Name = "dETAILSTextEdit";
             this.dETAILSTextEdit.Size = new System.Drawing.Size(231, 20);
-            this.dETAILSTextEdit.TabIndex = 13;
+            this.dETAILSTextEdit.TabIndex = 6;
             // 
             // btnSave
             // 

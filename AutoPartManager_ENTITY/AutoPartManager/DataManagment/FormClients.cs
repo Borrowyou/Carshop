@@ -24,7 +24,6 @@ namespace DataManagment
             FormManage = new FormManageClients();
             FormManage.TopLevel = false;
             FormManage.ReloadFunc = RefreshGrid;
-            pnlFormClient.Controls.Add(FormManage);
             FormManage.Show();
         }
 

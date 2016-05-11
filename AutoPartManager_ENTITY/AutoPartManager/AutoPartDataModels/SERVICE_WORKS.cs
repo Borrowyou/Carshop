@@ -23,18 +23,18 @@ namespace AutoPartDataModels
     
         public int SERVICE_WORK_ID { get; set; }
         public int APPOITMENT_ID { get; set; }
+        public int SERVICE_ID { get; set; }
         public string WORK_STATUS { get; set; }
         public Nullable<System.DateTime> TIME_START { get; set; }
         public Nullable<System.DateTime> TIME_FINISH { get; set; }
         public Nullable<double> WORK_PRICE { get; set; }
-        public int SERVICE_ID { get; set; }
     
         public virtual APPOITMENTS APPOITMENTS { get; set; }
-        public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
-        public virtual SERVICES SERVICES { get; set; }
+        public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
+        public virtual SERVICES SERVICES { get; set; }
     }
 }

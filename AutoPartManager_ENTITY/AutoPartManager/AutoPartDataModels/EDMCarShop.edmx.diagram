@@ -5,43 +5,49 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbf79146c1004985969113492c549fb9" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="CarShopModel.APPOITMENTS" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.Cars" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.CLIENT_CARS" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.Clients" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.LOOKUP_ITEMS" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.Models" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.Parts" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.PARTS_LINK" Width="1.5" PointX="6.875" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.PROVIDER_CATEGORIES" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.REPAIR_SERVICES" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.SERVICES" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.SUB_CATEGORIES" Width="1.5" PointX="5.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CarShopModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
-        <AssociationConnector Association="CarShopModel.FK_APPOITMENTS_CLIENT_ID" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_Car_Partss" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_CARS" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_CLIENTS" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_MODELS" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_CLIENTS_TYPE_LOOKUP" ManuallyRouted="false" />
-        <AssociationConnector Association="CarShopModel.FK_Models" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" Width="1.5" PointX="10" PointY="11" />
-        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="CarShopModel.APPOITMENTS" Width="1.5" PointX="5.25" PointY="13" />
+        <EntityTypeShape EntityType="CarShopModel.Cars" Width="1.5" PointX="3.75" PointY="22.5" />
+        <EntityTypeShape EntityType="CarShopModel.CLIENT_CARS" Width="1.5" PointX="8.25" PointY="12.75" />
+        <EntityTypeShape EntityType="CarShopModel.Clients" Width="1.5" PointX="3" PointY="17.625" />
+        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" Width="1.5" PointX="9.75" PointY="8" />
+        <EntityTypeShape EntityType="CarShopModel.LOOKUP_ITEMS" Width="1.5" PointX="0.75" PointY="8.25" />
+        <EntityTypeShape EntityType="CarShopModel.Models" Width="1.5" PointX="6" PointY="22.125" />
+        <EntityTypeShape EntityType="CarShopModel.Parts" Width="1.5" PointX="8.5" PointY="3.125" />
+        <EntityTypeShape EntityType="CarShopModel.PARTS_LINK" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CarShopModel.PROVIDER_CATEGORIES" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CarShopModel.REPAIR_SERVICES" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CarShopModel.SERVICE_WORK_PARTS" Width="1.5" PointX="10.75" PointY="11" />
+        <EntityTypeShape EntityType="CarShopModel.SERVICE_WORKS" Width="1.5" PointX="7.5" PointY="8.375" />
+        <EntityTypeShape EntityType="CarShopModel.SERVICES" Width="1.5" PointX="5.25" PointY="9" />
+        <EntityTypeShape EntityType="CarShopModel.SUB_CATEGORIES" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CarShopModel.SUB_MODELS" Width="1.5" PointX="6.25" PointY="4" />
+        <EntityTypeShape EntityType="CarShopModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CarShopModel.V_Car_Model_Part" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CarShopModel.V_Cars_Models" Width="1.5" PointX="10.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CarShopModel.VIEW_CLIENT_CARS" Width="1.5" PointX="12.75" PointY="0.75" />
+        <AssociationConnector Association="CarShopModel.FK_APP_ST_LOOKUPS" />
+        <AssociationConnector Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" />
+        <AssociationConnector Association="CarShopModel.FK_APPOITMENTS_CLIENT_ID" />
+        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" />
+        <AssociationConnector Association="CarShopModel.FK_Car_Partss" />
+        <AssociationConnector Association="CarShopModel.FK_CARS" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_CLIENTS" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_MODELS" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENTS_TYPE_LOOKUP" />
         <AssociationConnector Association="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" />
         <AssociationConnector Association="CarShopModel.FK_EMPL_TYPE_LOOKUP" />
-        <EntityTypeShape EntityType="CarShopModel.SERVICE_WORKS" Width="1.5" PointX="9.75" PointY="6.5" />
-        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" />
-        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" />
         <AssociationConnector Association="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" />
-        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORKS_SERVICES" />
-        <EntityTypeShape EntityType="CarShopModel.SERVICE_WORK_PARTS" Width="1.5" PointX="12" PointY="7.125" />
+        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" />
+        <AssociationConnector Association="CarShopModel.FK_Models" />
+        <AssociationConnector Association="CarShopModel.FK_SUB_MODEL_MODELS" />
+        <AssociationConnector Association="CarShopModel.FK_PARTS_SUB_MODEL_ID" />
         <AssociationConnector Association="CarShopModel.FK_SERV_WORK_PART_PARTS" />
         <AssociationConnector Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" />
-        <AssociationConnector Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" />
-        <EntityTypeShape EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" Width="1.5" PointX="12.375" PointY="10.75" />
-        <AssociationConnector Association="CarShopModel.FK_APP_ST_LOOKUPS" />
-        </Diagram>
+        <AssociationConnector Association="CarShopModel.FK_SERVICE_WORKS_SERVICES" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

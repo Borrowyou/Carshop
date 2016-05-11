@@ -86,7 +86,7 @@
             this.pnlGridHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGridHolder.Location = new System.Drawing.Point(2, 33);
             this.pnlGridHolder.Name = "pnlGridHolder";
-            this.pnlGridHolder.Size = new System.Drawing.Size(476, 304);
+            this.pnlGridHolder.Size = new System.Drawing.Size(373, 304);
             this.pnlGridHolder.TabIndex = 0;
             // 
             // partsGridParts
@@ -96,7 +96,7 @@
             this.partsGridParts.Location = new System.Drawing.Point(2, 2);
             this.partsGridParts.MainView = this.gridView1;
             this.partsGridParts.Name = "partsGridParts";
-            this.partsGridParts.Size = new System.Drawing.Size(472, 300);
+            this.partsGridParts.Size = new System.Drawing.Size(369, 300);
             this.partsGridParts.TabIndex = 1;
             this.partsGridParts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -124,6 +124,7 @@
             this.colSERVICE_WORK_PARTS});
             this.gridView1.GridControl = this.partsGridParts;
             this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsBehavior.Editable = false;
             this.gridView1.OptionsFind.AlwaysVisible = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
@@ -204,9 +205,9 @@
             this.pnlFrameHolder.Controls.Add(this.pnlForm);
             this.pnlFrameHolder.Controls.Add(this.pnlFrameBtns);
             this.pnlFrameHolder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFrameHolder.Location = new System.Drawing.Point(483, 2);
+            this.pnlFrameHolder.Location = new System.Drawing.Point(380, 2);
             this.pnlFrameHolder.Name = "pnlFrameHolder";
-            this.pnlFrameHolder.Size = new System.Drawing.Size(301, 335);
+            this.pnlFrameHolder.Size = new System.Drawing.Size(404, 335);
             this.pnlFrameHolder.TabIndex = 0;
             // 
             // pnlForm
@@ -214,7 +215,7 @@
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(2, 40);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(297, 293);
+            this.pnlForm.Size = new System.Drawing.Size(400, 293);
             this.pnlForm.TabIndex = 1;
             // 
             // pnlFrameBtns
@@ -223,7 +224,7 @@
             this.pnlFrameBtns.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlFrameBtns.Location = new System.Drawing.Point(2, 2);
             this.pnlFrameBtns.Name = "pnlFrameBtns";
-            this.pnlFrameBtns.Size = new System.Drawing.Size(297, 38);
+            this.pnlFrameBtns.Size = new System.Drawing.Size(400, 38);
             this.pnlFrameBtns.TabIndex = 0;
             // 
             // btnADd
@@ -245,13 +246,13 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(2, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(476, 31);
+            this.panelControl1.Size = new System.Drawing.Size(373, 31);
             this.panelControl1.TabIndex = 1;
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSearch.Location = new System.Drawing.Point(302, 5);
+            this.btnSearch.Location = new System.Drawing.Point(250, 5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 4;
@@ -315,7 +316,7 @@
             // splitterControl1
             // 
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitterControl1.Location = new System.Drawing.Point(478, 2);
+            this.splitterControl1.Location = new System.Drawing.Point(375, 2);
             this.splitterControl1.Name = "splitterControl1";
             this.splitterControl1.Size = new System.Drawing.Size(5, 335);
             this.splitterControl1.TabIndex = 0;

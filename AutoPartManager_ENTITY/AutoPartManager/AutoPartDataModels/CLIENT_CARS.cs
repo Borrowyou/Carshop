@@ -29,10 +29,10 @@ namespace AutoPartDataModels
         public Nullable<double> ENGINE_SIZE { get; set; }
         public string CAR_REG_NUMB { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
         public virtual Clients Clients { get; set; }
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         public virtual Models Models { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
     }
 }

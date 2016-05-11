@@ -70,7 +70,7 @@
             this.lookUpEdit1.Properties.DisplayMember = "ITEM_NAME";
             this.lookUpEdit1.Properties.ValueMember = "ITEM_CODE";
             this.lookUpEdit1.Size = new System.Drawing.Size(110, 20);
-            this.lookUpEdit1.TabIndex = 3;
+            this.lookUpEdit1.TabIndex = 2;
             // 
             // clientsBindingSource
             // 
@@ -93,7 +93,7 @@
             this.btnAddCar.Location = new System.Drawing.Point(27, 273);
             this.btnAddCar.Name = "btnAddCar";
             this.btnAddCar.Size = new System.Drawing.Size(19, 23);
-            this.btnAddCar.TabIndex = 16;
+            this.btnAddCar.TabIndex = 6;
             this.btnAddCar.Text = "+";
             this.btnAddCar.UseVisualStyleBackColor = true;
             this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click_1);
@@ -112,7 +112,7 @@
             this.RichtxtDetails.Location = new System.Drawing.Point(27, 187);
             this.RichtxtDetails.Name = "RichtxtDetails";
             this.RichtxtDetails.Size = new System.Drawing.Size(299, 80);
-            this.RichtxtDetails.TabIndex = 6;
+            this.RichtxtDetails.TabIndex = 5;
             this.RichtxtDetails.Text = "";
             // 
             // btnSave
@@ -164,7 +164,7 @@
             this.txtEditClientEmail.Location = new System.Drawing.Point(81, 151);
             this.txtEditClientEmail.Name = "txtEditClientEmail";
             this.txtEditClientEmail.Size = new System.Drawing.Size(245, 20);
-            this.txtEditClientEmail.TabIndex = 5;
+            this.txtEditClientEmail.TabIndex = 4;
             // 
             // txtEditCientTelephone
             // 
@@ -172,7 +172,7 @@
             this.txtEditCientTelephone.Location = new System.Drawing.Point(81, 120);
             this.txtEditCientTelephone.Name = "txtEditCientTelephone";
             this.txtEditCientTelephone.Size = new System.Drawing.Size(245, 20);
-            this.txtEditCientTelephone.TabIndex = 4;
+            this.txtEditCientTelephone.TabIndex = 3;
             // 
             // dateEditFrom
             // 
@@ -185,7 +185,7 @@
             this.dateEditFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEditFrom.Size = new System.Drawing.Size(195, 20);
-            this.dateEditFrom.TabIndex = 1;
+            this.dateEditFrom.TabIndex = 0;
             // 
             // txtEditClientName
             // 
@@ -194,7 +194,7 @@
             this.txtEditClientName.Location = new System.Drawing.Point(81, 66);
             this.txtEditClientName.Name = "txtEditClientName";
             this.txtEditClientName.Size = new System.Drawing.Size(245, 20);
-            this.txtEditClientName.TabIndex = 2;
+            this.txtEditClientName.TabIndex = 1;
             // 
             // FormManageClients
             // 

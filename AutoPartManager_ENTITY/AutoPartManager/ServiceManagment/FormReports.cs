@@ -16,6 +16,7 @@ namespace ServiceManagment
         public FormReports()
         {
             InitializeComponent();
+            InitFormCarServices();
         }
 
 

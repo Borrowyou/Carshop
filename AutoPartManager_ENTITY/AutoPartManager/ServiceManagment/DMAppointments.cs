@@ -62,18 +62,17 @@ namespace ServiceManagment
             return CurrContex.APPOITMENTS.Where(a => a.APPOITMENT_ID == AppID)
                 .Include(a => a.SERVICE_WORKS)
                 .Include(a => a.SERVICE_WORKS.Select(sv => sv.EMPLOYEES_SERVICE_WORKS))
-                .Include(a => a.SERVICE_WORKS.Select(sp => sp.SERVICE_WORK_PARTS));
+                .Include(a => a.SERVICE_WORKS.Select(sp => sp.SERVICE_WORK_PARTS.Select(swp => swp.Parts)));
         }
 
         public void LoadServices()
         {
-            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.APPOITMENTS.APP_STATUS == DMStrings.AppStatusActive)
+            CurrContex.SERVICE_WORKS.Where(sw => sw.APPOITMENTS.APP_STATUS == DMStrings.AppStatusActive)
                                 .Include(s => s.SERVICES)
                                 .Include(s => s.APPOITMENTS.Clients)
                                 .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
-                                .Include(e => e.EMPLOYEES_SERVICE_WORKS);
-            foreach (SERVICE_WORKS CurrWork in ServicesWorks)
-                CurrContex.SERVICE_WORKS.Local.Add(CurrWork);
+                                .Include(e => e.EMPLOYEES_SERVICE_WORKS).Load();
+
 
         }
         public IQueryable<LOOKUP_ITEMS> GetServiceWorkStatuses()
@@ -89,15 +88,14 @@ namespace ServiceManagment
 
         public void LoadServicesByMechAndStatus(int EmplID, string WorkStatus)
         {
-            var ServicesWorks = CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus
+            CurrContex.SERVICE_WORKS.Local.Clear();
+            CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus
                                 && sw.APPOITMENTS.APP_STATUS != DMStrings.AppStatusCancel)
                 .Include(s => s.SERVICES)
                 .Include(s => s.APPOITMENTS.Clients)
                 .Include(s => s.APPOITMENTS.CLIENT_CARS.Models)
-                .Include(e => e.EMPLOYEES_SERVICE_WORKS);
-            CurrContex.SERVICE_WORKS.Local.Clear();
-            foreach (SERVICE_WORKS CurrWork in ServicesWorks)
-                CurrContex.SERVICE_WORKS.Local.Add(CurrWork);
+                .Include(e => e.EMPLOYEES_SERVICE_WORKS).Load();
+            
 
         }
 
@@ -114,6 +112,12 @@ namespace ServiceManagment
             CurrContex.Entry(App).State = EntityState.Modified;
             CurrContex.SaveChanges();
         }
+
+        public Parts GetPartByID(int PartID)
+        {
+            return CurrContex.Parts.FirstOrDefault(p => p.Part_ID == PartID);
+        }
+
 
     }
 }

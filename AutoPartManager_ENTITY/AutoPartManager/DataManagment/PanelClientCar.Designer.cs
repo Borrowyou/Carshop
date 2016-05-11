@@ -87,7 +87,7 @@
             this.LupCBoxCars.Properties.DisplayMember = "Car_Model";
             this.LupCBoxCars.Properties.ValueMember = "Car_ID";
             this.LupCBoxCars.Size = new System.Drawing.Size(86, 20);
-            this.LupCBoxCars.TabIndex = 16;
+            this.LupCBoxCars.TabIndex = 0;
             // 
             // cLIENT_CARSBindingSource
             // 
@@ -183,7 +183,7 @@
             this.lookUpEdit1.Properties.DisplayMember = "yr";
             this.lookUpEdit1.Properties.ValueMember = "yr";
             this.lookUpEdit1.Size = new System.Drawing.Size(86, 20);
-            this.lookUpEdit1.TabIndex = 18;
+            this.lookUpEdit1.TabIndex = 2;
             // 
             // lookUpEdit2
             // 
@@ -198,7 +198,7 @@
             this.lookUpEdit2.Properties.DisplayMember = "MODEL_NAME";
             this.lookUpEdit2.Properties.ValueMember = "MODEL_ID";
             this.lookUpEdit2.Size = new System.Drawing.Size(97, 20);
-            this.lookUpEdit2.TabIndex = 19;
+            this.lookUpEdit2.TabIndex = 1;
             this.lookUpEdit2.EditValueChanged += new System.EventHandler(this.lookUpEdit2_EditValueChanged);
             // 
             // lookUpEdit3
@@ -214,7 +214,7 @@
             this.lookUpEdit3.Properties.DisplayMember = "ITEM_NAME";
             this.lookUpEdit3.Properties.ValueMember = "ITEM_CODE";
             this.lookUpEdit3.Size = new System.Drawing.Size(95, 20);
-            this.lookUpEdit3.TabIndex = 20;
+            this.lookUpEdit3.TabIndex = 3;
             // 
             // txtEngSize
             // 
@@ -222,7 +222,7 @@
             this.txtEngSize.Location = new System.Drawing.Point(66, 82);
             this.txtEngSize.Name = "txtEngSize";
             this.txtEngSize.Size = new System.Drawing.Size(72, 20);
-            this.txtEngSize.TabIndex = 21;
+            this.txtEngSize.TabIndex = 4;
             // 
             // cAR_REG_NUMBTextEdit
             // 
@@ -230,7 +230,7 @@
             this.cAR_REG_NUMBTextEdit.Location = new System.Drawing.Point(208, 80);
             this.cAR_REG_NUMBTextEdit.Name = "cAR_REG_NUMBTextEdit";
             this.cAR_REG_NUMBTextEdit.Size = new System.Drawing.Size(95, 20);
-            this.cAR_REG_NUMBTextEdit.TabIndex = 22;
+            this.cAR_REG_NUMBTextEdit.TabIndex = 5;
             // 
             // PanelClientCar
             // 

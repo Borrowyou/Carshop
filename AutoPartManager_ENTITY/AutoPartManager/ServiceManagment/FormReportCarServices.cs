@@ -50,13 +50,15 @@ namespace ServiceManagment
 
         private void EditCurrentAppoitment()
         {
-            int AppID = CurrServWork().APPOITMENT_ID;
-            TFormManageAppoitment FormManageAppoitment;
-            FormManageAppoitment = new TFormManageAppoitment(false);
-            FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
-            FormManageAppoitment.LoadOrInsAppt(AppID);
-            FormManageAppoitment.ShowDialog();
-
+            if (CurrServWork() != null)
+            {
+                int AppID = CurrServWork().APPOITMENT_ID;
+                TFormManageAppoitment FormManageAppoitment;
+                FormManageAppoitment = new TFormManageAppoitment(false);
+                FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
+                FormManageAppoitment.LoadOrInsAppt(AppID);
+                FormManageAppoitment.ShowDialog();
+            }
         }
 
         private SERVICE_WORKS CurrServWork()

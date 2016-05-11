@@ -29,9 +29,11 @@ namespace AutoPartDataModels
         public Nullable<int> Model_ID { get; set; }
         public Nullable<int> CATEGORY_ID { get; set; }
         public byte[] IMG { get; set; }
+        public int SUB_MODEL_ID { get; set; }
     
         public virtual Cars Cars { get; set; }
         public virtual Models Models { get; set; }
+        public virtual SUB_MODELS SUB_MODELS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
     }

@@ -21,6 +21,7 @@ namespace PartCrawler
     class PartCrawler
     {
         CarShopDataSet DSCarShop;
+        DMGenID CDMGenID;
         
         //public WebBrowser wbTest { get; set; }
         public PartCrawler()
@@ -28,6 +29,7 @@ namespace PartCrawler
             ///this.wbTest = new WebBrowser();
             this.DSCarShop = new CarShopDataSet();
             this.DSCarShop.InitAdapters();
+            CDMGenID = new DMGenID();
         }
         public void AGetAllPagesInfo()
         {
@@ -154,7 +156,7 @@ namespace PartCrawler
                             Description = Elems.InnerText;
                     try
                     {
-                        DSCarShop.PartsTblAdapter.Insert(DSCarShop.GEN_ID("Parts"), PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID);
+                        DSCarShop.PartsTblAdapter.Insert(CDMGenID.GenID("Parts"), PartName, Price, Description, PartManuf, CarMarkID, ModelID, SubCategoryID);
                     }
                     catch (Exception E)
                     { MessageBox.Show(E.Message); }

@@ -68,6 +68,12 @@
           <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
           <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'CarShop.dbo.GENERATORS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="GENERATORS">
+          <Property Name="GENERATOR_NAME" Type="varchar" MaxLength="32" />
+          <Property Name="GENERATOR_VALUE" Type="int" />
+        </EntityType>-->
         <EntityType Name="LOOKUP_ITEMS">
           <Key>
             <PropertyRef Name="ITEM_CODE" />
@@ -78,14 +84,19 @@
           <Property Name="ITEM_NAME" Type="varchar" MaxLength="30" />
           <Property Name="ITEM_DESCRIPT" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'CarShop.dbo.MODELADDRESSES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="MODELADDRESSES">
+          <Property Name="MODEL_ADDRESS" Type="varchar" MaxLength="255" />
+          <Property Name="CAR_ID" Type="int" />
+          <Property Name="MODEL_ID" Type="int" />
+        </EntityType>-->
         <EntityType Name="Models">
           <Key>
             <PropertyRef Name="MODEL_ID" />
           </Key>
           <Property Name="MODEL_ID" Type="int" Nullable="false" />
           <Property Name="MODEL_NAME" Type="varchar" MaxLength="255" />
-          <Property Name="YEAR_MANUF" Type="int" />
-          <Property Name="YEAR_STOP" Type="int" />
           <Property Name="CAR_ID" Type="int" />
           <Property Name="URL" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -102,6 +113,7 @@
           <Property Name="Model_ID" Type="int" />
           <Property Name="CATEGORY_ID" Type="int" />
           <Property Name="IMG" Type="varbinary(max)" />
+          <Property Name="SUB_MODEL_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PARTS_LINK">
           <Key>
@@ -166,6 +178,15 @@
           <Property Name="P_CATEGORY_ID" Type="int" Nullable="false" />
           <Property Name="S_CATEGORY_NAME" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="SUB_MODELS">
+          <Key>
+            <PropertyRef Name="SUB_MODEL_ID" />
+          </Key>
+          <Property Name="SUB_MODEL_ID" Type="int" Nullable="false" />
+          <Property Name="MODEL_ID" Type="int" Nullable="false" />
+          <Property Name="YEAR_MANUF" Type="int" Nullable="false" />
+          <Property Name="YEAR_STOP" Type="int" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -175,6 +196,36 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarShop.dbo.V_Car_Model_Part' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Car_Model_Part">
+          <Key>
+            <PropertyRef Name="Part_ID" />
+            <PropertyRef Name="Car_ID" />
+            <PropertyRef Name="Model_ID" />
+          </Key>
+          <Property Name="Car_Model" Type="varchar" MaxLength="255" />
+          <Property Name="Model_Name" Type="varchar" MaxLength="255" />
+          <Property Name="Part_ID" Type="int" Nullable="false" />
+          <Property Name="Part_Name" Type="varchar" MaxLength="255" />
+          <Property Name="Part_price" Type="float" />
+          <Property Name="Part_details" Type="varchar" MaxLength="255" />
+          <Property Name="Part_Manuf" Type="varchar" MaxLength="255" />
+          <Property Name="Car_ID" Type="int" Nullable="false" />
+          <Property Name="Model_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarShop.dbo.V_Cars_Models' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Cars_Models">
+          <Key>
+            <PropertyRef Name="CAR_ID" />
+            <PropertyRef Name="Model_ID" />
+          </Key>
+          <Property Name="CAR_ID" Type="int" Nullable="false" />
+          <Property Name="Car_Model" Type="varchar" MaxLength="255" />
+          <Property Name="Model_name" Type="varchar" MaxLength="255" />
+          <Property Name="Model_ID" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -190,6 +241,23 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="PART_NAME" Type="varchar" MaxLength="255" />
           <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
           <Property Name="WORK_PRICE" Type="float" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEW_CLIENT_CARS">
+          <Key>
+            <PropertyRef Name="CLIENT_CAR_ID" />
+            <PropertyRef Name="CLIENT_ID" />
+            <PropertyRef Name="MODEL_ID" />
+          </Key>
+          <Property Name="CLIENT_CAR_ID" Type="int" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="int" Nullable="false" />
+          <Property Name="MODEL_ID" Type="int" Nullable="false" />
+          <Property Name="CAR_YEAR" Type="int" />
+          <Property Name="ENGINE_TYPE" Type="varchar" MaxLength="20" />
+          <Property Name="ENGINE_SIZE" Type="float" />
+          <Property Name="MODEL_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="ENGINE_TYPE_DESCR" Type="varchar" MaxLength="30" />
         </EntityType>
         <Association Name="FK_APP_ST_LOOKUPS">
           <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
@@ -347,6 +415,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PARTS_SUB_MODEL_ID">
+          <End Role="SUB_MODELS" Type="Self.SUB_MODELS" Multiplicity="1" />
+          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_MODELS">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_S_WORK_PART_SERVICEWORKS">
           <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="1" />
           <End Role="SERVICE_WORK_PARTS" Type="Self.SERVICE_WORK_PARTS" Multiplicity="*" />
@@ -407,6 +487,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SUB_MODEL_MODELS">
+          <End Role="Models" Type="Self.Models" Multiplicity="1" />
+          <End Role="SUB_MODELS" Type="Self.SUB_MODELS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Models">
+              <PropertyRef Name="MODEL_ID" />
+            </Principal>
+            <Dependent Role="SUB_MODELS">
+              <PropertyRef Name="MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="FUN_CALC_APP_SUM_BY_APP_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="APPOITMENT_ID" Type="int" Mode="In" />
           <ReturnType>
@@ -455,7 +547,29 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <EntitySet Name="SERVICE_WORKS" EntityType="Self.SERVICE_WORKS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SERVICES" EntityType="Self.SERVICES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUB_MODELS" EntityType="Self.SUB_MODELS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_Car_Model_Part" EntityType="Self.V_Car_Model_Part" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Car_Model_Part].[Car_Model] AS [Car_Model], 
+    [V_Car_Model_Part].[Model_Name] AS [Model_Name], 
+    [V_Car_Model_Part].[Part_ID] AS [Part_ID], 
+    [V_Car_Model_Part].[Part_Name] AS [Part_Name], 
+    [V_Car_Model_Part].[Part_price] AS [Part_price], 
+    [V_Car_Model_Part].[Part_details] AS [Part_details], 
+    [V_Car_Model_Part].[Part_Manuf] AS [Part_Manuf], 
+    [V_Car_Model_Part].[Car_ID] AS [Car_ID], 
+    [V_Car_Model_Part].[Model_ID] AS [Model_ID]
+    FROM [dbo].[V_Car_Model_Part] AS [V_Car_Model_Part]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Cars_Models" EntityType="Self.V_Cars_Models" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Cars_Models].[CAR_ID] AS [CAR_ID], 
+    [V_Cars_Models].[Car_Model] AS [Car_Model], 
+    [V_Cars_Models].[Model_name] AS [Model_name], 
+    [V_Cars_Models].[Model_ID] AS [Model_ID]
+    FROM [dbo].[V_Cars_Models] AS [V_Cars_Models]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="Self.VIEW_APPOITMENT_CLIENT_SUMS" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VIEW_APPOITMENT_CLIENT_SUMS].[APPOITMENT_ID] AS [APPOITMENT_ID], 
@@ -465,6 +579,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
     [VIEW_APPOITMENT_CLIENT_SUMS].[PART_MANUF] AS [PART_MANUF], 
     [VIEW_APPOITMENT_CLIENT_SUMS].[WORK_PRICE] AS [WORK_PRICE]
     FROM [dbo].[VIEW_APPOITMENT_CLIENT_SUMS] AS [VIEW_APPOITMENT_CLIENT_SUMS]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VIEW_CLIENT_CARS" EntityType="Self.VIEW_CLIENT_CARS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEW_CLIENT_CARS].[CLIENT_CAR_ID] AS [CLIENT_CAR_ID], 
+    [VIEW_CLIENT_CARS].[CLIENT_ID] AS [CLIENT_ID], 
+    [VIEW_CLIENT_CARS].[MODEL_ID] AS [MODEL_ID], 
+    [VIEW_CLIENT_CARS].[CAR_YEAR] AS [CAR_YEAR], 
+    [VIEW_CLIENT_CARS].[ENGINE_TYPE] AS [ENGINE_TYPE], 
+    [VIEW_CLIENT_CARS].[ENGINE_SIZE] AS [ENGINE_SIZE], 
+    [VIEW_CLIENT_CARS].[MODEL_NAME] AS [MODEL_NAME], 
+    [VIEW_CLIENT_CARS].[ENGINE_TYPE_DESCR] AS [ENGINE_TYPE_DESCR]
+    FROM [dbo].[VIEW_CLIENT_CARS] AS [VIEW_CLIENT_CARS]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_APP_ST_LOOKUPS" Association="Self.FK_APP_ST_LOOKUPS">
             <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
@@ -518,6 +644,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             <End Role="Models" EntitySet="Models" />
             <End Role="Parts" EntitySet="Parts" />
           </AssociationSet>
+          <AssociationSet Name="FK_PARTS_SUB_MODEL_ID" Association="Self.FK_PARTS_SUB_MODEL_ID">
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
           <AssociationSet Name="FK_S_WORK_PART_SERVICEWORKS" Association="Self.FK_S_WORK_PART_SERVICEWORKS">
             <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
             <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
@@ -538,6 +668,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
             <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
           </AssociationSet>
+          <AssociationSet Name="FK_SUB_MODEL_MODELS" Association="Self.FK_SUB_MODEL_MODELS">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -545,6 +679,130 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
       <Schema Namespace="CarShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <ComplexType Name="FUN_YEARS_BETWEEN_LIST_Result">
           <Property Name="yr" Type="Int32" />
+        </ComplexType>
+        <EntityContainer Name="CarShopEntities" annotation:LazyLoadingEnabled="false">
+          <FunctionImport Name="FUN_YEARS_BETWEEN_LIST" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_YEARS_BETWEEN_LIST_Result)">
+            <Parameter Name="From" Mode="In" Type="Int32" />
+            <Parameter Name="To" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GEN_ID">
+            <Parameter Name="GENERATOR_NAME" Mode="In" Type="String" />
+            <Parameter Name="GENERATOR_STEP" Mode="In" Type="Int32" />
+            <Parameter Name="NEW_VALUE" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="FUN_CALC_APP_SUM_BY_APP_ID" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result)">
+          <Parameter Name="APPOITMENT_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="APPOITMENTS" EntityType="CarShopModel.APPOITMENTS" />
+          <EntitySet Name="Cars" EntityType="CarShopModel.Cars" />
+          <EntitySet Name="CLIENT_CARS" EntityType="CarShopModel.CLIENT_CARS" />
+          <EntitySet Name="Clients" EntityType="CarShopModel.Clients" />
+          <EntitySet Name="EMPLOYEES" EntityType="CarShopModel.EMPLOYEES" />
+          <EntitySet Name="EMPLOYEES_SERVICE_WORKS" EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" />
+          <EntitySet Name="LOOKUP_ITEMS" EntityType="CarShopModel.LOOKUP_ITEMS" />
+          <EntitySet Name="Models" EntityType="CarShopModel.Models" />
+          <EntitySet Name="Parts" EntityType="CarShopModel.Parts" />
+          <EntitySet Name="PARTS_LINK" EntityType="CarShopModel.PARTS_LINK" />
+          <EntitySet Name="PROVIDER_CATEGORIES" EntityType="CarShopModel.PROVIDER_CATEGORIES" />
+          <EntitySet Name="REPAIR_SERVICES" EntityType="CarShopModel.REPAIR_SERVICES" />
+          <EntitySet Name="SERVICE_WORK_PARTS" EntityType="CarShopModel.SERVICE_WORK_PARTS" />
+          <EntitySet Name="SERVICE_WORKS" EntityType="CarShopModel.SERVICE_WORKS" />
+          <EntitySet Name="SERVICES" EntityType="CarShopModel.SERVICES" />
+          <EntitySet Name="SUB_CATEGORIES" EntityType="CarShopModel.SUB_CATEGORIES" />
+          <EntitySet Name="SUB_MODELS" EntityType="CarShopModel.SUB_MODELS" />
+          <EntitySet Name="sysdiagrams" EntityType="CarShopModel.sysdiagrams" />
+          <EntitySet Name="V_Car_Model_Part" EntityType="CarShopModel.V_Car_Model_Part" />
+          <EntitySet Name="V_Cars_Models" EntityType="CarShopModel.V_Cars_Models" />
+          <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" />
+          <EntitySet Name="VIEW_CLIENT_CARS" EntityType="CarShopModel.VIEW_CLIENT_CARS" />
+          <AssociationSet Name="FK_APP_ST_LOOKUPS" Association="CarShopModel.FK_APP_ST_LOOKUPS">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID">
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="CarShopModel.FK_APPOITMENTS_CLIENT_ID">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID">
+            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Car_Partss" Association="CarShopModel.FK_Car_Partss">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CARS" Association="CarShopModel.FK_CARS">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="Models" EntitySet="Models" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_CARS_CLIENTS" Association="CarShopModel.FK_CLIENT_CARS_CLIENTS">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" Association="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_CARS_MODELS" Association="CarShopModel.FK_CLIENT_CARS_MODELS">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENTS_TYPE_LOOKUP" Association="CarShopModel.FK_CLIENTS_TYPE_LOOKUP">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPL_SERV_WORKS_EMPL_ID" Association="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID">
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPL_TYPE_LOOKUP" Association="CarShopModel.FK_EMPL_TYPE_LOOKUP">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS" Association="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS">
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_WORKS_STATUS_LOOKUP" Association="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP">
+            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Models" Association="CarShopModel.FK_Models">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUB_MODEL_MODELS" Association="CarShopModel.FK_SUB_MODEL_MODELS">
+            <End Role="Models" EntitySet="Models" />
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PARTS_SUB_MODEL_ID" Association="CarShopModel.FK_PARTS_SUB_MODEL_ID">
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
+            <End Role="Parts" EntitySet="Parts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERV_WORK_PART_PARTS" Association="CarShopModel.FK_SERV_WORK_PART_PARTS">
+            <End Role="Parts" EntitySet="Parts" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_S_WORK_PART_SERVICEWORKS" Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS">
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICE_WORKS_SERVICES" Association="CarShopModel.FK_SERVICE_WORKS_SERVICES">
+            <End Role="SERVICES" EntitySet="SERVICES" />
+            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="FUN_CALC_APP_SUM_BY_APP_ID_Result">
+          <Property Type="Int32" Name="APPOITMENT_ID" Nullable="false" />
+          <Property Type="Int32" Name="SERVICE_WORK_ID" Nullable="false" />
+          <Property Type="String" Name="SERVICE_NAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PART_NAME" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PART_MANUF" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="WORK_PRICE" Nullable="true" />
         </ComplexType>
         <EntityType Name="APPOITMENTS">
           <Key>
@@ -554,11 +812,11 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="APPOITMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
           <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
-          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="APPOITMENTS" ToRole="CLIENT_CARS" />
           <Property Name="APP_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_APP_ST_LOOKUPS" FromRole="APPOITMENTS" ToRole="LOOKUP_ITEMS" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="APPOITMENTS" ToRole="CLIENT_CARS" />
+          <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -566,8 +824,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </Key>
           <Property Name="Car_ID" Type="Int32" Nullable="false" />
           <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK_Car_Partss" FromRole="Cars" ToRole="Parts" />
-          <NavigationProperty Name="Models" Relationship="Self.FK_CARS" FromRole="Cars" ToRole="Models" />
+          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_Car_Partss" FromRole="Cars" ToRole="Parts" />
+          <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CARS" FromRole="Cars" ToRole="Models" />
         </EntityType>
         <EntityType Name="CLIENT_CARS">
           <Key>
@@ -578,13 +836,13 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="CAR_ID" Type="Int32" Nullable="false" />
           <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
           <Property Name="CAR_YEAR" Type="Int32" />
-          <Property Name="ENGINE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ENGINE_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ENGINE_SIZE" Type="Double" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Clients" />
-          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
-          <NavigationProperty Name="Models" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
-          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="CLIENT_CARS" ToRole="APPOITMENTS" />
           <Property Name="CAR_REG_NUMB" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="CLIENT_CARS" ToRole="APPOITMENTS" />
+          <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Clients" />
+          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
+          <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -596,25 +854,50 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="TELEPHONE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DETAILS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="CLIENT_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="APPOITMENTS" Relationship="Self.FK_APPOITMENTS_CLIENT_ID" FromRole="Clients" ToRole="APPOITMENTS" />
-          <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_CLIENTS" FromRole="Clients" ToRole="CLIENT_CARS" />
-          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="Self.FK_CLIENTS_TYPE_LOOKUP" FromRole="Clients" ToRole="LOOKUP_ITEMS" />
-          </EntityType>
+          <Property Name="CLIENT_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APPOITMENTS_CLIENT_ID" FromRole="Clients" ToRole="APPOITMENTS" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_CLIENTS" FromRole="Clients" ToRole="CLIENT_CARS" />
+          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_CLIENTS_TYPE_LOOKUP" FromRole="Clients" ToRole="LOOKUP_ITEMS" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMPL_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DETAILS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_EMPLOYEE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QUIT_DATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" FromRole="EMPLOYEES" ToRole="EMPLOYEES_SERVICE_WORKS" />
+          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_EMPL_TYPE_LOOKUP" FromRole="EMPLOYEES" ToRole="LOOKUP_ITEMS" />
+        </EntityType>
+        <EntityType Name="EMPLOYEES_SERVICE_WORKS">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_WORK_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="EMPLOYEES" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="SERVICE_WORKS" />
+        </EntityType>
         <EntityType Name="LOOKUP_ITEMS">
           <Key>
             <PropertyRef Name="ITEM_CODE" />
           </Key>
           <Property Name="L_ITEM_ID" Type="Int32" Nullable="false" />
-          <Property Name="LOOKUP_NAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ITEM_CODE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LOOKUP_NAME" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_CODE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ITEM_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ITEM_DESCRIPT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="LOOKUP_ITEMS" ToRole="CLIENT_CARS" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK_CLIENTS_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="Clients" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APP_ST_LOOKUPS" FromRole="LOOKUP_ITEMS" ToRole="APPOITMENTS" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="LOOKUP_ITEMS" ToRole="CLIENT_CARS" />
+          <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_CLIENTS_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="Clients" />
           <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_TYPE_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="EMPLOYEES" />
           <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="LOOKUP_ITEMS" ToRole="SERVICE_WORKS" />
-          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_APP_ST_LOOKUPS" FromRole="LOOKUP_ITEMS" ToRole="APPOITMENTS" />
         </EntityType>
         <EntityType Name="Models">
           <Key>
@@ -622,13 +905,12 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </Key>
           <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
           <Property Name="MODEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="YEAR_MANUF" Type="Int32" />
-          <Property Name="YEAR_STOP" Type="Int32" />
           <Property Name="CAR_ID" Type="Int32" />
           <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cars" Relationship="Self.FK_CARS" FromRole="Models" ToRole="Cars" />
-          <NavigationProperty Name="CLIENT_CARS" Relationship="Self.FK_CLIENT_CARS_MODELS" FromRole="Models" ToRole="CLIENT_CARS" />
-          <NavigationProperty Name="Parts" Relationship="Self.FK_Models" FromRole="Models" ToRole="Parts" />
+          <NavigationProperty Name="Cars" Relationship="CarShopModel.FK_CARS" FromRole="Models" ToRole="Cars" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_MODELS" FromRole="Models" ToRole="CLIENT_CARS" />
+          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_Models" FromRole="Models" ToRole="Parts" />
+          <NavigationProperty Name="SUB_MODELS" Relationship="CarShopModel.FK_SUB_MODEL_MODELS" FromRole="Models" ToRole="SUB_MODELS" />
         </EntityType>
         <EntityType Name="Parts">
           <Key>
@@ -643,8 +925,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="Model_ID" Type="Int32" />
           <Property Name="CATEGORY_ID" Type="Int32" />
           <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Cars" Relationship="Self.FK_Car_Partss" FromRole="Parts" ToRole="Cars" />
-          <NavigationProperty Name="Models" Relationship="Self.FK_Models" FromRole="Parts" ToRole="Models" />
+          <Property Name="SUB_MODEL_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="CarShopModel.FK_Car_Partss" FromRole="Parts" ToRole="Cars" />
+          <NavigationProperty Name="Models" Relationship="CarShopModel.FK_Models" FromRole="Parts" ToRole="Models" />
+          <NavigationProperty Name="SUB_MODELS" Relationship="CarShopModel.FK_PARTS_SUB_MODEL_ID" FromRole="Parts" ToRole="SUB_MODELS" />
           <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="Parts" ToRole="SERVICE_WORK_PARTS" />
         </EntityType>
         <EntityType Name="PARTS_LINK">
@@ -662,8 +946,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             <PropertyRef Name="P_CATEGORY_ID" />
           </Key>
           <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
-          <Property Name="CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PROVIDER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PROVIDER_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="M_CATEGORY_ID" Type="Int32" />
         </EntityType>
         <EntityType Name="REPAIR_SERVICES">
@@ -673,12 +957,39 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
           <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SERVICE_WORK_PARTS">
+          <Key>
+            <PropertyRef Name="WORK_PART_ID" />
+          </Key>
+          <Property Name="WORK_PART_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="PART_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="SERVICE_WORK_PARTS" ToRole="Parts" />
+          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORK_PARTS" ToRole="SERVICE_WORKS" />
+        </EntityType>
+        <EntityType Name="SERVICE_WORKS">
+          <Key>
+            <PropertyRef Name="SERVICE_WORK_ID" />
+          </Key>
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
+          <Property Name="WORK_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TIME_START" Type="DateTime" Precision="3" />
+          <Property Name="TIME_FINISH" Type="DateTime" Precision="3" />
+          <Property Name="WORK_PRICE" Type="Double" />
+          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="SERVICE_WORKS" ToRole="APPOITMENTS" />
+          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="SERVICE_WORKS" ToRole="EMPLOYEES_SERVICE_WORKS" />
+          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="SERVICE_WORKS" ToRole="LOOKUP_ITEMS" />
+          <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORKS" ToRole="SERVICE_WORK_PARTS" />
+          <NavigationProperty Name="SERVICES" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICE_WORKS" ToRole="SERVICES" />
+        </EntityType>
         <EntityType Name="SERVICES">
           <Key>
             <PropertyRef Name="SERVICE_ID" />
           </Key>
           <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PRICE_PER_HOUR" Type="Double" />
           <Property Name="DESCRIPTION" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICES" ToRole="SERVICE_WORKS" />
@@ -689,21 +1000,110 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </Key>
           <Property Name="SUB_CATEGORY_ID" Type="Int32" Nullable="false" />
           <Property Name="P_CATEGORY_ID" Type="Int32" Nullable="false" />
-          <Property Name="S_CATEGORY_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="S_CATEGORY_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SUB_MODELS">
+          <Key>
+            <PropertyRef Name="SUB_MODEL_ID" />
+          </Key>
+          <Property Name="SUB_MODEL_ID" Type="Int32" Nullable="false" />
+          <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+          <Property Name="YEAR_MANUF" Type="Int32" Nullable="false" />
+          <Property Name="YEAR_STOP" Type="Int32" />
+          <NavigationProperty Name="Models" Relationship="CarShopModel.FK_SUB_MODEL_MODELS" FromRole="SUB_MODELS" ToRole="Models" />
+          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_PARTS_SUB_MODEL_ID" FromRole="SUB_MODELS" ToRole="Parts" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="V_Car_Model_Part">
+          <Key>
+            <PropertyRef Name="Part_ID" />
+            <PropertyRef Name="Car_ID" />
+            <PropertyRef Name="Model_ID" />
+          </Key>
+          <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Part_ID" Type="Int32" Nullable="false" />
+          <Property Name="Part_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Part_price" Type="Double" />
+          <Property Name="Part_details" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Part_Manuf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Car_ID" Type="Int32" Nullable="false" />
+          <Property Name="Model_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="V_Cars_Models">
+          <Key>
+            <PropertyRef Name="CAR_ID" />
+            <PropertyRef Name="Model_ID" />
+          </Key>
+          <Property Name="CAR_ID" Type="Int32" Nullable="false" />
+          <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Model_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VIEW_APPOITMENT_CLIENT_SUMS">
+          <Key>
+            <PropertyRef Name="APPOITMENT_ID" />
+            <PropertyRef Name="SERVICE_WORK_ID" />
+            <PropertyRef Name="SERVICE_NAME" />
+          </Key>
+          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
+          <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PART_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PART_MANUF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="WORK_PRICE" Type="Double" />
+        </EntityType>
+        <EntityType Name="VIEW_CLIENT_CARS">
+          <Key>
+            <PropertyRef Name="CLIENT_CAR_ID" />
+            <PropertyRef Name="CLIENT_ID" />
+            <PropertyRef Name="MODEL_ID" />
+          </Key>
+          <Property Name="CLIENT_CAR_ID" Type="Int32" Nullable="false" />
+          <Property Name="CLIENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="MODEL_ID" Type="Int32" Nullable="false" />
+          <Property Name="CAR_YEAR" Type="Int32" />
+          <Property Name="ENGINE_TYPE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ENGINE_SIZE" Type="Double" />
+          <Property Name="MODEL_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ENGINE_TYPE_DESCR" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_APP_ST_LOOKUPS">
+          <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOOKUP_ITEMS">
+              <PropertyRef Name="ITEM_CODE" />
+            </Principal>
+            <Dependent Role="APPOITMENTS">
+              <PropertyRef Name="APP_STATUS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="1" />
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT_CARS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
+            </Principal>
+            <Dependent Role="APPOITMENTS">
+              <PropertyRef Name="CLIENT_CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_APPOITMENTS_CLIENT_ID">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="APPOITMENTS" Type="Self.APPOITMENTS" Multiplicity="*" />
+          <End Type="CarShopModel.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="CLIENT_ID" />
@@ -713,9 +1113,21 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SERVICE_WORK_APPOITMENT_ID">
+          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="APPOITMENTS">
+              <PropertyRef Name="APPOITMENT_ID" />
+            </Principal>
+            <Dependent Role="SERVICE_WORKS">
+              <PropertyRef Name="APPOITMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Car_Partss">
-          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
+          <End Type="CarShopModel.Cars" Role="Cars" Multiplicity="0..1" />
+          <End Type="CarShopModel.Parts" Role="Parts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cars">
               <PropertyRef Name="Car_ID" />
@@ -726,8 +1138,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CARS">
-          <End Role="Cars" Type="Self.Cars" Multiplicity="0..1" />
-          <End Role="Models" Type="Self.Models" Multiplicity="*" />
+          <End Type="CarShopModel.Cars" Role="Cars" Multiplicity="0..1" />
+          <End Type="CarShopModel.Models" Role="Models" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cars">
               <PropertyRef Name="Car_ID" />
@@ -738,8 +1150,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CLIENT_CARS_CLIENTS">
-          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
-          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+          <End Type="CarShopModel.Clients" Role="Clients" Multiplicity="1" />
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clients">
               <PropertyRef Name="CLIENT_ID" />
@@ -750,8 +1162,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CLIENT_CARS_ENG_LOOKUP_ITEMS">
-          <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
-          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+          <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOOKUP_ITEMS">
               <PropertyRef Name="ITEM_CODE" />
@@ -762,8 +1174,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CLIENT_CARS_MODELS">
-          <End Role="Models" Type="Self.Models" Multiplicity="1" />
-          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+          <End Type="CarShopModel.Models" Role="Models" Multiplicity="1" />
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Models">
               <PropertyRef Name="MODEL_ID" />
@@ -774,8 +1186,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CLIENTS_TYPE_LOOKUP">
-          <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
-          <End Role="Clients" Type="Self.Clients" Multiplicity="*" />
+          <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
+          <End Type="CarShopModel.Clients" Role="Clients" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LOOKUP_ITEMS">
               <PropertyRef Name="ITEM_CODE" />
@@ -785,147 +1197,6 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Models">
-          <End Role="Models" Type="Self.Models" Multiplicity="0..1" />
-          <End Role="Parts" Type="Self.Parts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Models">
-              <PropertyRef Name="MODEL_ID" />
-            </Principal>
-            <Dependent Role="Parts">
-              <PropertyRef Name="Model_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="CarShopEntities" annotation:LazyLoadingEnabled="false">
-          <EntitySet Name="APPOITMENTS" EntityType="Self.APPOITMENTS" />
-          <EntitySet Name="Cars" EntityType="Self.Cars" />
-          <EntitySet Name="CLIENT_CARS" EntityType="Self.CLIENT_CARS" />
-          <EntitySet Name="Clients" EntityType="Self.Clients" />
-          <EntitySet Name="LOOKUP_ITEMS" EntityType="Self.LOOKUP_ITEMS" />
-          <EntitySet Name="Models" EntityType="Self.Models" />
-          <EntitySet Name="Parts" EntityType="Self.Parts" />
-          <EntitySet Name="PARTS_LINK" EntityType="Self.PARTS_LINK" />
-          <EntitySet Name="PROVIDER_CATEGORIES" EntityType="Self.PROVIDER_CATEGORIES" />
-          <EntitySet Name="REPAIR_SERVICES" EntityType="Self.REPAIR_SERVICES" />
-          <EntitySet Name="SERVICES" EntityType="Self.SERVICES" />
-          <EntitySet Name="SUB_CATEGORIES" EntityType="Self.SUB_CATEGORIES" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <AssociationSet Name="FK_APPOITMENTS_CLIENT_ID" Association="Self.FK_APPOITMENTS_CLIENT_ID">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Car_Partss" Association="Self.FK_Car_Partss">
-            <End Role="Cars" EntitySet="Cars" />
-            <End Role="Parts" EntitySet="Parts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CARS" Association="Self.FK_CARS">
-            <End Role="Cars" EntitySet="Cars" />
-            <End Role="Models" EntitySet="Models" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CLIENT_CARS_CLIENTS" Association="Self.FK_CLIENT_CARS_CLIENTS">
-            <End Role="Clients" EntitySet="Clients" />
-            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" Association="Self.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CLIENT_CARS_MODELS" Association="Self.FK_CLIENT_CARS_MODELS">
-            <End Role="Models" EntitySet="Models" />
-            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CLIENTS_TYPE_LOOKUP" Association="Self.FK_CLIENTS_TYPE_LOOKUP">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="Clients" EntitySet="Clients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Models" Association="Self.FK_Models">
-            <End Role="Models" EntitySet="Models" />
-            <End Role="Parts" EntitySet="Parts" />
-          </AssociationSet>
-          <FunctionImport Name="FUN_YEARS_BETWEEN_LIST" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_YEARS_BETWEEN_LIST_Result)">
-            <Parameter Name="From" Mode="In" Type="Int32" />
-            <Parameter Name="To" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_GEN_ID">
-            <Parameter Name="GENERATOR_NAME" Mode="In" Type="String" />
-            <Parameter Name="GENERATOR_STEP" Mode="In" Type="Int32" />
-            <Parameter Name="NEW_VALUE" Mode="InOut" Type="Int32" />
-          </FunctionImport>
-          <EntitySet Name="EMPLOYEES_SERVICE_WORKS" EntityType="CarShopModel.EMPLOYEES_SERVICE_WORKS" />
-          <EntitySet Name="EMPLOYEES" EntityType="CarShopModel.EMPLOYEES" />
-          <AssociationSet Name="FK_EMPL_SERV_WORKS_EMPL_ID" Association="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID">
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
-            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EMPL_TYPE_LOOKUP" Association="CarShopModel.FK_EMPL_TYPE_LOOKUP">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="EMPLOYEES" EntitySet="EMPLOYEES" />
-          </AssociationSet>
-          <EntitySet Name="SERVICE_WORKS" EntityType="CarShopModel.SERVICE_WORKS" />
-          <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID">
-            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SERVICE_WORKS_STATUS_LOOKUP" Association="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS" Association="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS">
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-            <End Role="EMPLOYEES_SERVICE_WORKS" EntitySet="EMPLOYEES_SERVICE_WORKS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SERVICE_WORKS_SERVICES" Association="CarShopModel.FK_SERVICE_WORKS_SERVICES">
-            <End Role="SERVICES" EntitySet="SERVICES" />
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-          </AssociationSet>
-          <EntitySet Name="SERVICE_WORK_PARTS" EntityType="CarShopModel.SERVICE_WORK_PARTS" />
-          <AssociationSet Name="FK_SERV_WORK_PART_PARTS" Association="CarShopModel.FK_SERV_WORK_PART_PARTS">
-            <End Role="Parts" EntitySet="Parts" />
-            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_S_WORK_PART_SERVICEWORKS" Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS">
-            <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
-            <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
-          </AssociationSet>
-          <FunctionImport Name="FUN_CALC_APP_SUM_BY_APP_ID" IsComposable="true" ReturnType="Collection(CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result)">
-          <Parameter Name="APPOITMENT_ID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <AssociationSet Name="FK_APPOITMENT_CLIENT_CAR_ID" Association="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID">
-            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
-            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-          </AssociationSet>
-          <EntitySet Name="VIEW_APPOITMENT_CLIENT_SUMS" EntityType="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS" />
-          <AssociationSet Name="FK_APP_ST_LOOKUPS" Association="CarShopModel.FK_APP_ST_LOOKUPS">
-            <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
-            <End Role="APPOITMENTS" EntitySet="APPOITMENTS" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="EMPLOYEES_SERVICE_WORKS">
-          <Key>
-            <PropertyRef Name="EMPLOYEE_WORK_ID" />
-          </Key>
-          <Property Name="EMPLOYEE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EMPLOYEES" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="EMPLOYEES" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="EMPLOYEES_SERVICE_WORKS" ToRole="SERVICE_WORKS" />
-        </EntityType>
-        <EntityType Name="EMPLOYEES">
-          <Key>
-            <PropertyRef Name="EMPLOYEE_ID" />
-          </Key>
-          <Property Name="EMPLOYEE_ID" Type="Int32" Nullable="false" />
-          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="EMPL_TYPE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TELEPHONE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DETAILS" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="DATE_EMPLOYEE" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="QUIT_DATE" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_EMPL_ID" FromRole="EMPLOYEES" ToRole="EMPLOYEES_SERVICE_WORKS" />
-          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_EMPL_TYPE_LOOKUP" FromRole="EMPLOYEES" ToRole="LOOKUP_ITEMS" />
-        </EntityType>
         <Association Name="FK_EMPL_SERV_WORKS_EMPL_ID">
           <End Type="CarShopModel.EMPLOYEES" Role="EMPLOYEES" Multiplicity="1" />
           <End Type="CarShopModel.EMPLOYEES_SERVICE_WORKS" Role="EMPLOYEES_SERVICE_WORKS" Multiplicity="*" />
@@ -950,32 +1221,15 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SERVICE_WORKS">
-          <Key>
-            <PropertyRef Name="SERVICE_WORK_ID" />
-          </Key>
-          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
-          <Property Name="WORK_STATUS" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="TIME_START" Type="DateTime" Precision="3" />
-          <Property Name="TIME_FINISH" Type="DateTime" Precision="3" />
-          <Property Name="WORK_PRICE" Type="Double" />
-          <NavigationProperty Name="APPOITMENTS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="SERVICE_WORKS" ToRole="APPOITMENTS" />
-          <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="SERVICE_WORKS" ToRole="LOOKUP_ITEMS" />
-          <NavigationProperty Name="EMPLOYEES_SERVICE_WORKS" Relationship="CarShopModel.FK_EMPL_SERV_WORKS_SERVICE_WORKS" FromRole="SERVICE_WORKS" ToRole="EMPLOYEES_SERVICE_WORKS" />
-          <Property Name="SERVICE_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SERVICES" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICE_WORKS" ToRole="SERVICES" />
-          <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORKS" ToRole="SERVICE_WORK_PARTS" />
-        </EntityType>
-        <Association Name="FK_SERVICE_WORK_APPOITMENT_ID">
-          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="1" />
-          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+        <Association Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS">
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="1" />
+          <End Type="CarShopModel.EMPLOYEES_SERVICE_WORKS" Role="EMPLOYEES_SERVICE_WORKS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="APPOITMENTS">
-              <PropertyRef Name="APPOITMENT_ID" />
+            <Principal Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
             </Principal>
-            <Dependent Role="SERVICE_WORKS">
-              <PropertyRef Name="APPOITMENT_ID" />
+            <Dependent Role="EMPLOYEES_SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_WORK_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -991,40 +1245,42 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_EMPL_SERV_WORKS_SERVICE_WORKS">
-          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="1" />
-          <End Type="CarShopModel.EMPLOYEES_SERVICE_WORKS" Role="EMPLOYEES_SERVICE_WORKS" Multiplicity="*" />
+        <Association Name="FK_Models">
+          <End Type="CarShopModel.Models" Role="Models" Multiplicity="0..1" />
+          <End Type="CarShopModel.Parts" Role="Parts" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_WORK_ID" />
+            <Principal Role="Models">
+              <PropertyRef Name="MODEL_ID" />
             </Principal>
-            <Dependent Role="EMPLOYEES_SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_WORK_ID" />
+            <Dependent Role="Parts">
+              <PropertyRef Name="Model_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SERVICE_WORKS_SERVICES">
-          <End Type="CarShopModel.SERVICES" Role="SERVICES" Multiplicity="1" />
-          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
+        <Association Name="FK_SUB_MODEL_MODELS">
+          <End Type="CarShopModel.Models" Role="Models" Multiplicity="1" />
+          <End Type="CarShopModel.SUB_MODELS" Role="SUB_MODELS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SERVICES">
-              <PropertyRef Name="SERVICE_ID" />
+            <Principal Role="Models">
+              <PropertyRef Name="MODEL_ID" />
             </Principal>
-            <Dependent Role="SERVICE_WORKS">
-              <PropertyRef Name="SERVICE_ID" />
+            <Dependent Role="SUB_MODELS">
+              <PropertyRef Name="MODEL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SERVICE_WORK_PARTS">
-          <Key>
-            <PropertyRef Name="WORK_PART_ID" />
-          </Key>
-          <Property Name="WORK_PART_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="PART_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="SERVICE_WORK_PARTS" ToRole="Parts" />
-          <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORK_PARTS" ToRole="SERVICE_WORKS" />
-        </EntityType>
+        <Association Name="FK_PARTS_SUB_MODEL_ID">
+          <End Type="CarShopModel.SUB_MODELS" Role="SUB_MODELS" Multiplicity="1" />
+          <End Type="CarShopModel.Parts" Role="Parts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_MODELS">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Principal>
+            <Dependent Role="Parts">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SERV_WORK_PART_PARTS">
           <End Type="CarShopModel.Parts" Role="Parts" Multiplicity="1" />
           <End Type="CarShopModel.SERVICE_WORK_PARTS" Role="SERVICE_WORK_PARTS" Multiplicity="*" />
@@ -1049,48 +1305,15 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="FUN_CALC_APP_SUM_BY_APP_ID_Result">
-          <Property Type="Int32" Name="APPOITMENT_ID" Nullable="false" />
-          <Property Type="Int32" Name="SERVICE_WORK_ID" Nullable="false" />
-          <Property Type="String" Name="SERVICE_NAME" Nullable="false" MaxLength="100" />
-          <Property Type="String" Name="PART_NAME" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="PART_MANUF" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="WORK_PRICE" Nullable="true" />
-        </ComplexType>
-        <Association Name="FK_APPOITMENT_CLIENT_CAR_ID">
-          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="1" />
-          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
+        <Association Name="FK_SERVICE_WORKS_SERVICES">
+          <End Type="CarShopModel.SERVICES" Role="SERVICES" Multiplicity="1" />
+          <End Type="CarShopModel.SERVICE_WORKS" Role="SERVICE_WORKS" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="CLIENT_CARS">
-              <PropertyRef Name="CLIENT_CAR_ID" />
+            <Principal Role="SERVICES">
+              <PropertyRef Name="SERVICE_ID" />
             </Principal>
-            <Dependent Role="APPOITMENTS">
-              <PropertyRef Name="CLIENT_CAR_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="VIEW_APPOITMENT_CLIENT_SUMS">
-          <Key>
-            <PropertyRef Name="APPOITMENT_ID" />
-            <PropertyRef Name="SERVICE_WORK_ID" />
-            <PropertyRef Name="SERVICE_NAME" />
-          </Key>
-          <Property Name="APPOITMENT_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_WORK_ID" Type="Int32" Nullable="false" />
-          <Property Name="SERVICE_NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="PART_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="PART_MANUF" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="WORK_PRICE" Type="Double" />
-        </EntityType>
-        <Association Name="FK_APP_ST_LOOKUPS">
-          <End Type="CarShopModel.LOOKUP_ITEMS" Role="LOOKUP_ITEMS" Multiplicity="1" />
-          <End Type="CarShopModel.APPOITMENTS" Role="APPOITMENTS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LOOKUP_ITEMS">
-              <PropertyRef Name="ITEM_CODE" />
-            </Principal>
-            <Dependent Role="APPOITMENTS">
-              <PropertyRef Name="APP_STATUS" />
+            <Dependent Role="SERVICE_WORKS">
+              <PropertyRef Name="SERVICE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1100,149 +1323,6 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CarShopModelStoreContainer" CdmEntityContainer="CarShopEntities">
-          <EntitySetMapping Name="APPOITMENTS">
-            <EntityTypeMapping TypeName="CarShopModel.APPOITMENTS">
-              <MappingFragment StoreEntitySet="APPOITMENTS">
-                <ScalarProperty Name="APP_STATUS" ColumnName="APP_STATUS" />
-                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
-                <ScalarProperty Name="APPOITMENT_DATE" ColumnName="APPOITMENT_DATE" />
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="CarShopModel.Cars">
-              <MappingFragment StoreEntitySet="Cars">
-                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
-                <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CLIENT_CARS">
-            <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
-              <MappingFragment StoreEntitySet="CLIENT_CARS">
-                <ScalarProperty Name="CAR_REG_NUMB" ColumnName="CAR_REG_NUMB" />
-                <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
-                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
-                <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
-                <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
-                <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="CarShopModel.Clients">
-              <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
-                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
-                <ScalarProperty Name="CLIENT_FORM" ColumnName="CLIENT_FORM" />
-                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
-                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
-                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
-                <ScalarProperty Name="CLIENT_TYPE" ColumnName="CLIENT_TYPE" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LOOKUP_ITEMS">
-            <EntityTypeMapping TypeName="CarShopModel.LOOKUP_ITEMS">
-              <MappingFragment StoreEntitySet="LOOKUP_ITEMS">
-                <ScalarProperty Name="L_ITEM_ID" ColumnName="L_ITEM_ID" />
-                <ScalarProperty Name="LOOKUP_NAME" ColumnName="LOOKUP_NAME" />
-                <ScalarProperty Name="ITEM_CODE" ColumnName="ITEM_CODE" />
-                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
-                <ScalarProperty Name="ITEM_DESCRIPT" ColumnName="ITEM_DESCRIPT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Models">
-            <EntityTypeMapping TypeName="CarShopModel.Models">
-              <MappingFragment StoreEntitySet="Models">
-                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
-                <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
-                <ScalarProperty Name="YEAR_MANUF" ColumnName="YEAR_MANUF" />
-                <ScalarProperty Name="YEAR_STOP" ColumnName="YEAR_STOP" />
-                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Parts">
-            <EntityTypeMapping TypeName="CarShopModel.Parts">
-              <MappingFragment StoreEntitySet="Parts">
-                <ScalarProperty Name="Part_ID" ColumnName="Part_ID" />
-                <ScalarProperty Name="part_name" ColumnName="part_name" />
-                <ScalarProperty Name="part_price" ColumnName="part_price" />
-                <ScalarProperty Name="part_details" ColumnName="part_details" />
-                <ScalarProperty Name="part_manuf" ColumnName="part_manuf" />
-                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
-                <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
-                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
-                <ScalarProperty Name="IMG" ColumnName="IMG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PARTS_LINK">
-            <EntityTypeMapping TypeName="CarShopModel.PARTS_LINK">
-              <MappingFragment StoreEntitySet="PARTS_LINK">
-                <ScalarProperty Name="LINK_ID" ColumnName="LINK_ID" />
-                <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="LAST_UPDATE" ColumnName="LAST_UPDATE" />
-                <ScalarProperty Name="THREAD" ColumnName="THREAD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PROVIDER_CATEGORIES">
-            <EntityTypeMapping TypeName="CarShopModel.PROVIDER_CATEGORIES">
-              <MappingFragment StoreEntitySet="PROVIDER_CATEGORIES">
-                <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
-                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
-                <ScalarProperty Name="PROVIDER_NAME" ColumnName="PROVIDER_NAME" />
-                <ScalarProperty Name="M_CATEGORY_ID" ColumnName="M_CATEGORY_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="REPAIR_SERVICES">
-            <EntityTypeMapping TypeName="CarShopModel.REPAIR_SERVICES">
-              <MappingFragment StoreEntitySet="REPAIR_SERVICES">
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SERVICES">
-            <EntityTypeMapping TypeName="CarShopModel.SERVICES">
-              <MappingFragment StoreEntitySet="SERVICES">
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
-                <ScalarProperty Name="PRICE_PER_HOUR" ColumnName="PRICE_PER_HOUR" />
-                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SUB_CATEGORIES">
-            <EntityTypeMapping TypeName="CarShopModel.SUB_CATEGORIES">
-              <MappingFragment StoreEntitySet="SUB_CATEGORIES">
-                <ScalarProperty Name="SUB_CATEGORY_ID" ColumnName="SUB_CATEGORY_ID" />
-                <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
-                <ScalarProperty Name="S_CATEGORY_NAME" ColumnName="S_CATEGORY_NAME" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CarShopModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionName="CarShopModel.Store.FUN_YEARS_BETWEEN_LIST" FunctionImportName="FUN_YEARS_BETWEEN_LIST">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CarShopModel.FUN_YEARS_BETWEEN_LIST_Result">
@@ -1251,12 +1331,61 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GEN_ID" FunctionName="CarShopModel.Store.SP_GEN_ID" />
-          <EntitySetMapping Name="EMPLOYEES_SERVICE_WORKS">
-            <EntityTypeMapping TypeName="CarShopModel.EMPLOYEES_SERVICE_WORKS">
-              <MappingFragment StoreEntitySet="EMPLOYEES_SERVICE_WORKS">
-                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+          <FunctionImportMapping FunctionImportName="FUN_CALC_APP_SUM_BY_APP_ID" FunctionName="CarShopModel.Store.FUN_CALC_APP_SUM_BY_APP_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result">
+                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
                 <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
-                <ScalarProperty Name="EMPLOYEE_WORK_ID" ColumnName="EMPLOYEE_WORK_ID" />
+                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+                <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
+                <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
+                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="APPOITMENTS">
+            <EntityTypeMapping TypeName="CarShopModel.APPOITMENTS">
+              <MappingFragment StoreEntitySet="APPOITMENTS">
+                <ScalarProperty Name="APP_STATUS" ColumnName="APP_STATUS" />
+                <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="APPOITMENT_DATE" ColumnName="APPOITMENT_DATE" />
+                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarShopModel.Cars">
+              <MappingFragment StoreEntitySet="Cars">
+                <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CLIENT_CARS">
+            <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
+              <MappingFragment StoreEntitySet="CLIENT_CARS">
+                <ScalarProperty Name="CAR_REG_NUMB" ColumnName="CAR_REG_NUMB" />
+                <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
+                <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
+                <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
+                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="CarShopModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="CLIENT_TYPE" ColumnName="CLIENT_TYPE" />
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="CLIENT_FORM" ColumnName="CLIENT_FORM" />
+                <ScalarProperty Name="CLIENT_NAME" ColumnName="CLIENT_NAME" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1274,16 +1403,78 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SERVICE_WORKS">
-            <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
-              <MappingFragment StoreEntitySet="SERVICE_WORKS">
-                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
-                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
-                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
-                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
-                <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
-                <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+          <EntitySetMapping Name="EMPLOYEES_SERVICE_WORKS">
+            <EntityTypeMapping TypeName="CarShopModel.EMPLOYEES_SERVICE_WORKS">
+              <MappingFragment StoreEntitySet="EMPLOYEES_SERVICE_WORKS">
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+                <ScalarProperty Name="EMPLOYEE_WORK_ID" ColumnName="EMPLOYEE_WORK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOOKUP_ITEMS">
+            <EntityTypeMapping TypeName="CarShopModel.LOOKUP_ITEMS">
+              <MappingFragment StoreEntitySet="LOOKUP_ITEMS">
+                <ScalarProperty Name="ITEM_DESCRIPT" ColumnName="ITEM_DESCRIPT" />
+                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+                <ScalarProperty Name="ITEM_CODE" ColumnName="ITEM_CODE" />
+                <ScalarProperty Name="LOOKUP_NAME" ColumnName="LOOKUP_NAME" />
+                <ScalarProperty Name="L_ITEM_ID" ColumnName="L_ITEM_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Models">
+            <EntityTypeMapping TypeName="CarShopModel.Models">
+              <MappingFragment StoreEntitySet="Models">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+                <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
+                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parts">
+            <EntityTypeMapping TypeName="CarShopModel.Parts">
+              <MappingFragment StoreEntitySet="Parts">
+                <ScalarProperty Name="SUB_MODEL_ID" ColumnName="SUB_MODEL_ID" />
+                <ScalarProperty Name="IMG" ColumnName="IMG" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+                <ScalarProperty Name="part_manuf" ColumnName="part_manuf" />
+                <ScalarProperty Name="part_details" ColumnName="part_details" />
+                <ScalarProperty Name="part_price" ColumnName="part_price" />
+                <ScalarProperty Name="part_name" ColumnName="part_name" />
+                <ScalarProperty Name="Part_ID" ColumnName="Part_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARTS_LINK">
+            <EntityTypeMapping TypeName="CarShopModel.PARTS_LINK">
+              <MappingFragment StoreEntitySet="PARTS_LINK">
+                <ScalarProperty Name="THREAD" ColumnName="THREAD" />
+                <ScalarProperty Name="LAST_UPDATE" ColumnName="LAST_UPDATE" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
+                <ScalarProperty Name="LINK_ID" ColumnName="LINK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROVIDER_CATEGORIES">
+            <EntityTypeMapping TypeName="CarShopModel.PROVIDER_CATEGORIES">
+              <MappingFragment StoreEntitySet="PROVIDER_CATEGORIES">
+                <ScalarProperty Name="M_CATEGORY_ID" ColumnName="M_CATEGORY_ID" />
+                <ScalarProperty Name="PROVIDER_NAME" ColumnName="PROVIDER_NAME" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+                <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REPAIR_SERVICES">
+            <EntityTypeMapping TypeName="CarShopModel.REPAIR_SERVICES">
+              <MappingFragment StoreEntitySet="REPAIR_SERVICES">
+                <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1296,18 +1487,84 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="FUN_CALC_APP_SUM_BY_APP_ID" FunctionName="CarShopModel.Store.FUN_CALC_APP_SUM_BY_APP_ID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CarShopModel.FUN_CALC_APP_SUM_BY_APP_ID_Result">
+          <EntitySetMapping Name="SERVICE_WORKS">
+            <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
+              <MappingFragment StoreEntitySet="SERVICE_WORKS">
+                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
+                <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
+                <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+                <ScalarProperty Name="WORK_STATUS" ColumnName="WORK_STATUS" />
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
                 <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
                 <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SERVICES">
+            <EntityTypeMapping TypeName="CarShopModel.SERVICES">
+              <MappingFragment StoreEntitySet="SERVICES">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PRICE_PER_HOUR" ColumnName="PRICE_PER_HOUR" />
                 <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
-                <ScalarProperty Name="PART_NAME" ColumnName="PART_NAME" />
-                <ScalarProperty Name="PART_MANUF" ColumnName="PART_MANUF" />
-                <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+                <ScalarProperty Name="SERVICE_ID" ColumnName="SERVICE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUB_CATEGORIES">
+            <EntityTypeMapping TypeName="CarShopModel.SUB_CATEGORIES">
+              <MappingFragment StoreEntitySet="SUB_CATEGORIES">
+                <ScalarProperty Name="S_CATEGORY_NAME" ColumnName="S_CATEGORY_NAME" />
+                <ScalarProperty Name="P_CATEGORY_ID" ColumnName="P_CATEGORY_ID" />
+                <ScalarProperty Name="SUB_CATEGORY_ID" ColumnName="SUB_CATEGORY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUB_MODELS">
+            <EntityTypeMapping TypeName="CarShopModel.SUB_MODELS">
+              <MappingFragment StoreEntitySet="SUB_MODELS">
+                <ScalarProperty Name="YEAR_STOP" ColumnName="YEAR_STOP" />
+                <ScalarProperty Name="YEAR_MANUF" ColumnName="YEAR_MANUF" />
+                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+                <ScalarProperty Name="SUB_MODEL_ID" ColumnName="SUB_MODEL_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CarShopModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Car_Model_Part">
+            <EntityTypeMapping TypeName="CarShopModel.V_Car_Model_Part">
+              <MappingFragment StoreEntitySet="V_Car_Model_Part">
+                <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+                <ScalarProperty Name="Part_Manuf" ColumnName="Part_Manuf" />
+                <ScalarProperty Name="Part_details" ColumnName="Part_details" />
+                <ScalarProperty Name="Part_price" ColumnName="Part_price" />
+                <ScalarProperty Name="Part_Name" ColumnName="Part_Name" />
+                <ScalarProperty Name="Part_ID" ColumnName="Part_ID" />
+                <ScalarProperty Name="Model_Name" ColumnName="Model_Name" />
+                <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Cars_Models">
+            <EntityTypeMapping TypeName="CarShopModel.V_Cars_Models">
+              <MappingFragment StoreEntitySet="V_Cars_Models">
+                <ScalarProperty Name="Model_ID" ColumnName="Model_ID" />
+                <ScalarProperty Name="Model_name" ColumnName="Model_name" />
+                <ScalarProperty Name="Car_Model" ColumnName="Car_Model" />
+                <ScalarProperty Name="CAR_ID" ColumnName="CAR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="VIEW_APPOITMENT_CLIENT_SUMS">
             <EntityTypeMapping TypeName="CarShopModel.VIEW_APPOITMENT_CLIENT_SUMS">
               <MappingFragment StoreEntitySet="VIEW_APPOITMENT_CLIENT_SUMS">
@@ -1317,6 +1574,20 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
                 <ScalarProperty Name="SERVICE_NAME" ColumnName="SERVICE_NAME" />
                 <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
                 <ScalarProperty Name="APPOITMENT_ID" ColumnName="APPOITMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIEW_CLIENT_CARS">
+            <EntityTypeMapping TypeName="CarShopModel.VIEW_CLIENT_CARS">
+              <MappingFragment StoreEntitySet="VIEW_CLIENT_CARS">
+                <ScalarProperty Name="ENGINE_TYPE_DESCR" ColumnName="ENGINE_TYPE_DESCR" />
+                <ScalarProperty Name="MODEL_NAME" ColumnName="MODEL_NAME" />
+                <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
+                <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
+                <ScalarProperty Name="CAR_YEAR" ColumnName="CAR_YEAR" />
+                <ScalarProperty Name="MODEL_ID" ColumnName="MODEL_ID" />
+                <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
+                <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

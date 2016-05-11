@@ -62,10 +62,10 @@
             this.pnlFrameClients.Controls.Add(this.pnlFormClient);
             this.pnlFrameClients.Controls.Add(this.PnlBtns);
             this.pnlFrameClients.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFrameClients.Location = new System.Drawing.Point(446, 0);
+            this.pnlFrameClients.Location = new System.Drawing.Point(416, 0);
             this.pnlFrameClients.MinimumSize = new System.Drawing.Size(330, 340);
             this.pnlFrameClients.Name = "pnlFrameClients";
-            this.pnlFrameClients.Size = new System.Drawing.Size(330, 340);
+            this.pnlFrameClients.Size = new System.Drawing.Size(360, 340);
             this.pnlFrameClients.TabIndex = 0;
             // 
             // pnlFormClient
@@ -73,7 +73,7 @@
             this.pnlFormClient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlFormClient.Location = new System.Drawing.Point(0, 33);
             this.pnlFormClient.Name = "pnlFormClient";
-            this.pnlFormClient.Size = new System.Drawing.Size(330, 307);
+            this.pnlFormClient.Size = new System.Drawing.Size(360, 307);
             this.pnlFormClient.TabIndex = 1;
             // 
             // PnlBtns
@@ -82,7 +82,7 @@
             this.PnlBtns.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlBtns.Location = new System.Drawing.Point(0, 0);
             this.PnlBtns.Name = "PnlBtns";
-            this.PnlBtns.Size = new System.Drawing.Size(330, 33);
+            this.PnlBtns.Size = new System.Drawing.Size(360, 33);
             this.PnlBtns.TabIndex = 0;
             // 
             // btnNew
@@ -100,7 +100,7 @@
             this.pnlClients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlClients.Location = new System.Drawing.Point(0, 0);
             this.pnlClients.Name = "pnlClients";
-            this.pnlClients.Size = new System.Drawing.Size(446, 294);
+            this.pnlClients.Size = new System.Drawing.Size(416, 294);
             this.pnlClients.TabIndex = 1;
             // 
             // gridEmployyes
@@ -110,7 +110,7 @@
             this.gridEmployyes.Location = new System.Drawing.Point(0, 0);
             this.gridEmployyes.MainView = this.gridViewEmployees;
             this.gridEmployyes.Name = "gridEmployyes";
-            this.gridEmployyes.Size = new System.Drawing.Size(446, 294);
+            this.gridEmployyes.Size = new System.Drawing.Size(416, 294);
             this.gridEmployyes.TabIndex = 0;
             this.gridEmployyes.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewEmployees});
@@ -206,7 +206,7 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(443, 0);
+            this.splitter1.Location = new System.Drawing.Point(413, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 294);
             this.splitter1.TabIndex = 2;

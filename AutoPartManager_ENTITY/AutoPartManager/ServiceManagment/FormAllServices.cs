@@ -43,7 +43,7 @@ namespace ServiceManagment
 
         private void sERVICE_WORKSBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            if (CurrServWork() != null && CurrServWork().SERVICE_WORK_ID != null)
+            if (CurrServWork() != null)
             {
                 var QryRes = CDMAppoitm.GetServWorkEmployees(CurrServWork().SERVICE_WORK_ID);
                 if (QryRes != null)
@@ -67,18 +67,37 @@ namespace ServiceManagment
 
         private void sERVICE_WORKSGridControl_DoubleClick(object sender, EventArgs e)
         {
-            EditCurrentAppoitment();
+         
         }
 
         private void EditCurrentAppoitment()
         {
-            int AppID = CurrServWork().APPOITMENT_ID;
-            TFormManageAppoitment FormManageAppoitment;
-            FormManageAppoitment = new TFormManageAppoitment(false);
-            FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
-            FormManageAppoitment.LoadOrInsAppt(AppID);
-            FormManageAppoitment.ShowDialog();
+            if (CurrServWork() != null)
+            {
+                int AppID = CurrServWork().APPOITMENT_ID;
+                TFormManageAppoitment FormManageAppoitment;
+                FormManageAppoitment = new TFormManageAppoitment(false);
+                FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
+                FormManageAppoitment.LoadOrInsAppt(AppID);
+                FormManageAppoitment.ShowDialog();
+            }
+        }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CDMAppoitm.CurrContex.SaveChanges();
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show(Ex.Message);
+            }
+        }
+
+        private void gridView1_DoubleClick(object sender, EventArgs e)
+        {
+            EditCurrentAppoitment();
         }
     }
 }

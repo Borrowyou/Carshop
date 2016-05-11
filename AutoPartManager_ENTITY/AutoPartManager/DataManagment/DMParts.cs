@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,11 +33,15 @@ namespace DataManagment
 
         public void LoadParts(int ModelID)
         {
-            var AllParts = CurrContex.Parts.Where(p => p.Model_ID == ModelID);
-            CurrContex.Parts.Local.Clear();
-            foreach (Parts CurrPart in AllParts)
-                CurrContex.Parts.Local.Add(CurrPart);
 
+            CurrContex.Dispose();
+            CurrContex = new CarShopEntities();
+            CurrContex.Parts.Where(p => p.Model_ID == ModelID).Load();
+
+        }
+        public ObservableCollection<T> ToObservableCollection<T>(IEnumerable<T> enumeration)
+        {
+            return new ObservableCollection<T>(enumeration);
         }
 
         public IQueryable<Cars> GetAllCars()
