@@ -26,7 +26,6 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Data
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.TFormServicesManage.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.csproj.GenerateResource.Cache
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll.licenses
-C:\PartsManager\Bin\NLog.config
 C:\PartsManager\Bin\DataManagment.dll.config
 C:\PartsManager\Bin\DataManagment.dll
 C:\PartsManager\Bin\DataManagment.pdb

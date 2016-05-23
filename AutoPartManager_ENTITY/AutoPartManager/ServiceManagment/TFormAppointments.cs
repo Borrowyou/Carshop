@@ -19,24 +19,18 @@ namespace ServiceManagment
         public TFormAppointments()
         {
             InitializeComponent();
-            try
-            {
-                DMAppoitm = new DMAppointments();
-                if (FormAllServ != null)
-                    FormAllServ.Dispose();
-                FormAllServ = new FormAllServices();
-                FormAllServ.TopLevel = false;
-                FormAllServ.Dock = DockStyle.Fill;
-                pnlFormHolder.Controls.Clear();
-                pnlFormHolder.Controls.Add(FormAllServ);
-                FormAllServ.ShowInTaskbar = true;
-                FormAllServ.Show();
+            DMAppoitm = new DMAppointments();
+            if (FormAllServ != null)
+                FormAllServ.Dispose();
+            FormAllServ = new FormAllServices();
+            FormAllServ.TopLevel = false;
+            FormAllServ.Dock = DockStyle.Fill;
+            pnlFormHolder.Controls.Clear();
+            pnlFormHolder.Controls.Add(FormAllServ);
+            FormAllServ.ShowInTaskbar = true;
+            FormAllServ.Show();
 
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
+      
         }
 
         public void InitFormAppManage()

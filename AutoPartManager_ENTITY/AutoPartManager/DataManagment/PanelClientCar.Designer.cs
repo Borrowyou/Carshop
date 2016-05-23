@@ -40,29 +40,29 @@
             this.lblYear = new DevExpress.XtraEditors.LabelControl();
             this.lblModel = new DevExpress.XtraEditors.LabelControl();
             this.lblCar = new DevExpress.XtraEditors.LabelControl();
-            this.YearsList = new System.Windows.Forms.BindingSource(this.components);
-            this.ModelYearsBindSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.EngTypeBindSrc = new System.Windows.Forms.BindingSource(this.components);
-            this.ModelsBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.YearsList = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
+            this.ModelsBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.lookUpEdit3 = new DevExpress.XtraEditors.LookUpEdit();
+            this.EngTypeBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.txtEngSize = new DevExpress.XtraEditors.TextEdit();
             this.cAR_REG_NUMBTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.ModelYearsBindSrc = new System.Windows.Forms.BindingSource(this.components);
             cAR_REG_NUMBLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LupCBoxCars.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEngSize.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cAR_REG_NUMBTextEdit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).BeginInit();
             this.SuspendLayout();
             // 
             // cAR_REG_NUMBLabel
@@ -85,6 +85,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Car_Model", "Марка", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.LupCBoxCars.Properties.DataSource = this.AllCarsBindSrc;
             this.LupCBoxCars.Properties.DisplayMember = "Car_Model";
+            this.LupCBoxCars.Properties.NullText = "Марка";
             this.LupCBoxCars.Properties.ValueMember = "Car_ID";
             this.LupCBoxCars.Size = new System.Drawing.Size(86, 20);
             this.LupCBoxCars.TabIndex = 0;
@@ -108,9 +109,9 @@
             // 
             this.simpleButton1.Location = new System.Drawing.Point(7, 3);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(19, 23);
+            this.simpleButton1.Size = new System.Drawing.Size(91, 23);
             this.simpleButton1.TabIndex = 9;
-            this.simpleButton1.Text = "-";
+            this.simpleButton1.Text = "Премахни";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // lblSize
@@ -153,23 +154,6 @@
             this.lblCar.TabIndex = 0;
             this.lblCar.Text = "Марка:";
             // 
-            // YearsList
-            // 
-            this.YearsList.DataSource = typeof(AutoPartDataModels.FUN_YEARS_BETWEEN_LIST_Result);
-            // 
-            // ModelYearsBindSrc
-            // 
-            this.ModelYearsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
-            // 
-            // EngTypeBindSrc
-            // 
-            this.EngTypeBindSrc.DataSource = typeof(AutoPartDataModels.LOOKUP_ITEMS);
-            // 
-            // ModelsBindSrc
-            // 
-            this.ModelsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
-            this.ModelsBindSrc.CurrentChanged += new System.EventHandler(this.ModelsBindSrc_CurrentChanged);
-            // 
             // lookUpEdit1
             // 
             this.lookUpEdit1.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.cLIENT_CARSBindingSource, "CAR_YEAR", true));
@@ -181,9 +165,15 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("yr", "Година", 33, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpEdit1.Properties.DataSource = this.YearsList;
             this.lookUpEdit1.Properties.DisplayMember = "yr";
+            this.lookUpEdit1.Properties.NullText = "Година";
             this.lookUpEdit1.Properties.ValueMember = "yr";
             this.lookUpEdit1.Size = new System.Drawing.Size(86, 20);
             this.lookUpEdit1.TabIndex = 2;
+            this.lookUpEdit1.EditValueChanged += new System.EventHandler(this.lookUpEdit1_EditValueChanged);
+            // 
+            // YearsList
+            // 
+            this.YearsList.DataSource = typeof(AutoPartDataModels.FUN_YEARS_BETWEEN_LIST_Result);
             // 
             // lookUpEdit2
             // 
@@ -196,10 +186,16 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MODEL_NAME", "Модел", 78, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpEdit2.Properties.DataSource = this.ModelsBindSrc;
             this.lookUpEdit2.Properties.DisplayMember = "MODEL_NAME";
+            this.lookUpEdit2.Properties.NullText = "Модел";
             this.lookUpEdit2.Properties.ValueMember = "MODEL_ID";
             this.lookUpEdit2.Size = new System.Drawing.Size(97, 20);
             this.lookUpEdit2.TabIndex = 1;
             this.lookUpEdit2.EditValueChanged += new System.EventHandler(this.lookUpEdit2_EditValueChanged);
+            // 
+            // ModelsBindSrc
+            // 
+            this.ModelsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
+            this.ModelsBindSrc.CurrentChanged += new System.EventHandler(this.ModelsBindSrc_CurrentChanged);
             // 
             // lookUpEdit3
             // 
@@ -212,9 +208,14 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ITEM_NAME", "Вид", 68, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpEdit3.Properties.DataSource = this.EngTypeBindSrc;
             this.lookUpEdit3.Properties.DisplayMember = "ITEM_NAME";
+            this.lookUpEdit3.Properties.NullText = "Двигател";
             this.lookUpEdit3.Properties.ValueMember = "ITEM_CODE";
             this.lookUpEdit3.Size = new System.Drawing.Size(95, 20);
             this.lookUpEdit3.TabIndex = 3;
+            // 
+            // EngTypeBindSrc
+            // 
+            this.EngTypeBindSrc.DataSource = typeof(AutoPartDataModels.LOOKUP_ITEMS);
             // 
             // txtEngSize
             // 
@@ -231,6 +232,10 @@
             this.cAR_REG_NUMBTextEdit.Name = "cAR_REG_NUMBTextEdit";
             this.cAR_REG_NUMBTextEdit.Size = new System.Drawing.Size(95, 20);
             this.cAR_REG_NUMBTextEdit.TabIndex = 5;
+            // 
+            // ModelYearsBindSrc
+            // 
+            this.ModelYearsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
             // 
             // PanelClientCar
             // 
@@ -256,15 +261,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.cLIENT_CARSBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllCarsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientsDset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.YearsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit3.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EngTypeBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEngSize.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cAR_REG_NUMBTextEdit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ModelYearsBindSrc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

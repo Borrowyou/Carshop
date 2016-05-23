@@ -25,6 +25,8 @@ namespace AutoPartDataModels
         public int CLIENT_ID { get; set; }
         public int CLIENT_CAR_ID { get; set; }
         public string APP_STATUS { get; set; }
+        public string COMPLAINS { get; set; }
+        public Nullable<double> CAR_MILEAGE { get; set; }
     
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         public virtual CLIENT_CARS CLIENT_CARS { get; set; }

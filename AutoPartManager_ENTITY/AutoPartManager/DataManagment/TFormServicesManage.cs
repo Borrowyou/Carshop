@@ -16,6 +16,7 @@ namespace DataManagment
     {
         DMServices CDMServices;
         Logger logger;
+        public int ServiceID;
         public TFormServicesManage()
         {
             InitializeComponent();
@@ -74,6 +75,20 @@ namespace DataManagment
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void sERVICEGridControl_DoubleClick(object sender, EventArgs e)
+        {
+            if (CurrService().SERVICE_ID > 0)
+            {
+                ServiceID = CurrService().SERVICE_ID;
+                Close();
+            }
+        }
+
+        private SERVICES CurrService()
+        {
+            return (SERVICES)sERVICEBindingSource.Current;
         }
     }
 }

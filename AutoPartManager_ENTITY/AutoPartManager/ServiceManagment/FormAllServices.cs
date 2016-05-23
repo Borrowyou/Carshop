@@ -32,6 +32,7 @@ namespace ServiceManagment
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadFilteredServiceWorks();
+
         }
 
         private void LoadFilteredServiceWorks()
@@ -39,6 +40,7 @@ namespace ServiceManagment
             int MechID = 0;
             string WorkStatus = (string)LookUpStatus.EditValue;
             CDMAppoitm.LoadServicesByMechAndStatus(MechID, WorkStatus);
+            sERVICE_WORKSBindingSource.DataSource = CDMAppoitm.GetServiceWorksDBSet().Local.ToBindingList();
         }
 
         private void sERVICE_WORKSBindingSource_PositionChanged(object sender, EventArgs e)
@@ -85,19 +87,30 @@ namespace ServiceManagment
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CDMAppoitm.CurrContex.SaveChanges();
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message);
-            }
+            CDMAppoitm.CurrContex.SaveChanges();
+
         }
 
         private void gridView1_DoubleClick(object sender, EventArgs e)
         {
             EditCurrentAppoitment();
+        }
+
+        private void gridView1_ColumnChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void gridView1_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.FieldName == "WORK_STATUS")
+            {
+                if(CurrServWork().WORK_STATUS == DMStrings.ServiceWorkStarted)
+                    CurrServWork().TIME_START = DateTime.Now;
+                else if (CurrServWork().WORK_STATUS == DMStrings.ServiceWorkFinished)
+                    CurrServWork().TIME_FINISH = DateTime.Now;
+                sERVICE_WORKSBindingSource.ResetCurrentItem();
+            }
         }
     }
 }

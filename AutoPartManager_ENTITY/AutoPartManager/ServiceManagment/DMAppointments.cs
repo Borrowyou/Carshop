@@ -33,7 +33,8 @@ namespace ServiceManagment
         }
         public IQueryable<CLIENT_CARS> GetAllClients_Cars(int ClientID)
         {
-            return CurrContex.CLIENT_CARS.Where(b => b.CLIENT_ID == ClientID).Include(m => m.Models);
+            return CurrContex.CLIENT_CARS.Where(b => b.CLIENT_ID == ClientID).Include(m => m.Models)
+                                            .Include(m =>m.LOOKUP_ITEMS);
  
         }
 
@@ -52,7 +53,8 @@ namespace ServiceManagment
             CurrContex.APPOITMENTS.Local.Clear();
             var AllAppoitments = CurrContex.APPOITMENTS.Where(a => a.APP_STATUS == DMStrings.AppStatusActive)
                 .Include(a => a.Clients).Include(a => a.SERVICE_WORKS)
-                                .Include(a =>a.CLIENT_CARS.Models);
+                                .Include(a => a.CLIENT_CARS.Models)
+                                .Include(a => a.CLIENT_CARS.LOOKUP_ITEMS);
             foreach (APPOITMENTS CurrApp in AllAppoitments)
                 CurrContex.APPOITMENTS.Local.Add(CurrApp);
         }
@@ -60,7 +62,11 @@ namespace ServiceManagment
         public IQueryable<APPOITMENTS> LoadAppByID(int AppID)
         {
             return CurrContex.APPOITMENTS.Where(a => a.APPOITMENT_ID == AppID)
+                .Include(a => a.Clients).Include(a => a.CLIENT_CARS)
+                .Include(a => a.CLIENT_CARS.Models).Include(a => a.CLIENT_CARS.Cars)
+                .Include(a => a.CLIENT_CARS.LOOKUP_ITEMS)
                 .Include(a => a.SERVICE_WORKS)
+                .Include(a => a.SERVICE_WORKS.Select(sw => sw.SERVICES))
                 .Include(a => a.SERVICE_WORKS.Select(sv => sv.EMPLOYEES_SERVICE_WORKS))
                 .Include(a => a.SERVICE_WORKS.Select(sp => sp.SERVICE_WORK_PARTS.Select(swp => swp.Parts)));
         }
@@ -88,7 +94,8 @@ namespace ServiceManagment
 
         public void LoadServicesByMechAndStatus(int EmplID, string WorkStatus)
         {
-            CurrContex.SERVICE_WORKS.Local.Clear();
+            CurrContex.Dispose();
+            CurrContex = new CarShopEntities();
             CurrContex.SERVICE_WORKS.Where(sw => sw.WORK_STATUS == WorkStatus
                                 && sw.APPOITMENTS.APP_STATUS != DMStrings.AppStatusCancel)
                 .Include(s => s.SERVICES)

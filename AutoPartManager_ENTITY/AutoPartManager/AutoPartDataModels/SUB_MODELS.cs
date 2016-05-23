@@ -18,6 +18,7 @@ namespace AutoPartDataModels
         public SUB_MODELS()
         {
             this.Parts = new HashSet<Parts>();
+            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
         }
     
         public int SUB_MODEL_ID { get; set; }
@@ -28,5 +29,7 @@ namespace AutoPartDataModels
         public virtual Models Models { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parts> Parts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
     }
 }

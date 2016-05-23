@@ -47,6 +47,8 @@
         <AssociationConnector Association="CarShopModel.FK_SERV_WORK_PART_PARTS" />
         <AssociationConnector Association="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" />
         <AssociationConnector Association="CarShopModel.FK_SERVICE_WORKS_SERVICES" />
+        <AssociationConnector Association="CarShopModel.FK_CLIENT_CARS_SUB_MODEL_ID" />
+        <AssociationConnector Association="CarShopModel.FK_CL_CAR_ID_CARS_ID" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

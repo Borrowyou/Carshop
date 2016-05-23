@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormEmployees));
             this.pnlFrameClients = new System.Windows.Forms.Panel();
             this.pnlFormClient = new System.Windows.Forms.Panel();
@@ -36,7 +35,7 @@
             this.btnNew = new DevExpress.XtraEditors.SimpleButton();
             this.pnlClients = new System.Windows.Forms.Panel();
             this.gridEmployyes = new DevExpress.XtraGrid.GridControl();
-            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.EmployeesBindingSrc = new System.Windows.Forms.BindingSource();
             this.gridViewEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -91,7 +90,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(74, 27);
             this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "Нов клиент";
+            this.btnNew.Text = "Нов служител";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // pnlClients

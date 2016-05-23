@@ -20,30 +20,38 @@ namespace DataManagment
         {
             InitializeComponent();
             CDMParts = new DMParts();
-        }
-
-        public TFormSearchParts(int CarID, int ModelID)
-        {
-            InitializeComponent();
-            CDMParts = new DMParts();
-            lookUpMarks.EditValue = CarID;
-            LookUpModels.EditValue = ModelID;
-            CDMParts.LoadParts(CurrSelModel()); 
-        }
-
-        private void RefreshGrid()
-        {
-            CDMParts.LoadParts(CurrSelModel());
-            partsBindingSource.DataSource = CDMParts.GetPartsDBSet().Local.ToBindingList();
-        }
-        private void TFormSearchParts_Load(object sender, EventArgs e)
-        {
             FormManagePart = new TFormManagePart();
             FormManagePart.TopLevel = false;
             FormManagePart.ReloadFunc = RefreshGrid;
             pnlForm.Controls.Add(FormManagePart);
             FormManagePart.Show();
             SetDataSources();
+        }
+
+        public TFormSearchParts(int CarID, int ModelID, int SubModelID)
+        {
+            InitializeComponent();
+            CDMParts = new DMParts();
+            lookUpMarks.EditValue = CarID;
+            LookUpModels.EditValue = ModelID;
+            LupYearList.EditValue = SubModelID;
+            FormManagePart = new TFormManagePart();
+            FormManagePart.TopLevel = false;
+            FormManagePart.ReloadFunc = RefreshGrid;
+            pnlForm.Controls.Add(FormManagePart);
+            FormManagePart.Show();
+            SetDataSources();
+            AddNewPart();
+        }
+
+        public void RefreshGrid()
+        {
+            CDMParts.LoadParts(CurrSelModel(), CurrSelSubModel());
+            partsBindingSource.DataSource = CDMParts.GetPartsDBSet().Local.ToBindingList();
+        }
+        private void TFormSearchParts_Load(object sender, EventArgs e)
+        {
+ 
         }
 
         private void AllPartsBindSrc_PositionChanged(object sender, EventArgs e)
@@ -68,6 +76,14 @@ namespace DataManagment
                 return 0;
             else
                 return (int)LookUpModels.EditValue;
+        }
+
+        private int CurrSelSubModel()
+        {
+            if (LupYearList.EditValue == null)
+                return 0;
+            else
+                return (int)LupYearList.EditValue;
         }
         private int CurrSelMark()
         {
@@ -103,16 +119,54 @@ namespace DataManagment
         {
             if (Modal)
             {
-                PartID = CurrSeletcedPart().Part_ID;
+                if (CurrSeletcedPart() != null)
+                    PartID = CurrSeletcedPart().Part_ID;
                 Close();
             }
         }
 
         private void btnADd_Click(object sender, EventArgs e)
         {
+            AddNewPart();
+        }
+
+        private void AddNewPart()
+        {
             int MarkID = Convert.ToInt32(lookUpMarks.EditValue);
             int ModelID = Convert.ToInt32(LookUpModels.EditValue);
-            FormManagePart.LoadOrInsertPart(-1, MarkID, ModelID);
+            int SubModelID = Convert.ToInt32(LupYearList.EditValue);
+            FormManagePart.LoadOrInsertPart(-1, MarkID, ModelID, SubModelID);
+        }
+
+        private void ModelsBindSrc_CurrentItemChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        public Models CurrModel()
+        {
+            return (Models)ModelsBindSrc.Current;
+        }
+
+        private void LookUpModels_EditValueChanged(object sender, EventArgs e)
+        {
+            if (LookUpModels.EditValue != null)
+            {
+                int ModelID = Convert.ToInt32(LookUpModels.EditValue);
+                SubModelBindSrc.DataSource = (from subm in CDMParts.CurrContex.SUB_MODELS
+                                              where subm.MODEL_ID == ModelID
+                                              select new
+                                              {
+                                                  SubModel = subm.SUB_MODEL_ID,
+                                                  Yearlist = subm.YEAR_MANUF + " - " + subm.YEAR_STOP
+                                              }).ToList();
+            }
+
+        }
+
+        private void LupYearList_EditValueChanged(object sender, EventArgs e)
+        {
+            int SubModel = Convert.ToInt32(LupYearList.EditValue);
         }
 
     }

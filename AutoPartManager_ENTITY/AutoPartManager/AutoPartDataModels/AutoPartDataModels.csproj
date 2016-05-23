@@ -92,6 +92,7 @@
     <Compile Include="FUN_YEARS_BETWEEN_LIST_Result.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="LogException.cs" />
     <Compile Include="LOOKUP_ITEMS.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>

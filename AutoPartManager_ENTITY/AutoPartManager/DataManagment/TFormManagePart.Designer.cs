@@ -48,6 +48,9 @@
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.searchLookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.searchLookUpEdit2 = new DevExpress.XtraEditors.LookUpEdit();
+            this.LupYearList = new DevExpress.XtraEditors.LookUpEdit();
+            this.lblSubModel = new DevExpress.XtraEditors.LabelControl();
+            this.SubModelBindSrc = new System.Windows.Forms.BindingSource(this.components);
             part_IDLabel = new System.Windows.Forms.Label();
             part_detailsLabel = new System.Windows.Forms.Label();
             part_nameLabel = new System.Windows.Forms.Label();
@@ -64,6 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LupYearList.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubModelBindSrc)).BeginInit();
             this.SuspendLayout();
             // 
             // part_IDLabel
@@ -78,7 +83,7 @@
             // part_detailsLabel
             // 
             part_detailsLabel.AutoSize = true;
-            part_detailsLabel.Location = new System.Drawing.Point(11, 153);
+            part_detailsLabel.Location = new System.Drawing.Point(22, 176);
             part_detailsLabel.Name = "part_detailsLabel";
             part_detailsLabel.Size = new System.Drawing.Size(51, 13);
             part_detailsLabel.TabIndex = 2;
@@ -125,9 +130,9 @@
             lblModel.AutoSize = true;
             lblModel.Location = new System.Drawing.Point(212, 117);
             lblModel.Name = "lblModel";
-            lblModel.Size = new System.Drawing.Size(36, 13);
+            lblModel.Size = new System.Drawing.Size(43, 13);
             lblModel.TabIndex = 16;
-            lblModel.Text = "Model";
+            lblModel.Text = "Модел:";
             // 
             // part_IDLabel1
             // 
@@ -161,7 +166,7 @@
             // iMGPictureEdit
             // 
             this.iMGPictureEdit.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.partsBindingSource, "IMG", true));
-            this.iMGPictureEdit.Location = new System.Drawing.Point(10, 220);
+            this.iMGPictureEdit.Location = new System.Drawing.Point(10, 244);
             this.iMGPictureEdit.Name = "iMGPictureEdit";
             this.iMGPictureEdit.Size = new System.Drawing.Size(371, 185);
             this.iMGPictureEdit.TabIndex = 11;
@@ -169,7 +174,7 @@
             // richTextBox1
             // 
             this.richTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.partsBindingSource, "part_details", true));
-            this.richTextBox1.Location = new System.Drawing.Point(95, 153);
+            this.richTextBox1.Location = new System.Drawing.Point(95, 176);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(285, 62);
             this.richTextBox1.TabIndex = 5;
@@ -187,11 +192,11 @@
             // MarksBindSrc
             // 
             this.MarksBindSrc.DataSource = typeof(AutoPartDataModels.Cars);
-            this.MarksBindSrc.CurrentItemChanged += new System.EventHandler(this.MarksBindSrc_CurrentItemChanged);
             // 
             // ModelsBindSrc
             // 
             this.ModelsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
+            this.ModelsBindSrc.CurrentItemChanged += new System.EventHandler(this.ModelsBindSrc_CurrentItemChanged);
             // 
             // btnSave
             // 
@@ -216,6 +221,7 @@
             this.searchLookUpEdit1.Properties.ValueMember = "Car_ID";
             this.searchLookUpEdit1.Size = new System.Drawing.Size(100, 20);
             this.searchLookUpEdit1.TabIndex = 3;
+            this.searchLookUpEdit1.EditValueChanged += new System.EventHandler(this.searchLookUpEdit1_EditValueChanged);
             // 
             // searchLookUpEdit2
             // 
@@ -231,12 +237,38 @@
             this.searchLookUpEdit2.Properties.ValueMember = "MODEL_ID";
             this.searchLookUpEdit2.Size = new System.Drawing.Size(119, 20);
             this.searchLookUpEdit2.TabIndex = 4;
+            this.searchLookUpEdit2.EditValueChanged += new System.EventHandler(this.searchLookUpEdit2_EditValueChanged);
+            // 
+            // LupYearList
+            // 
+            this.LupYearList.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.partsBindingSource, "SUB_MODEL_ID", true));
+            this.LupYearList.Location = new System.Drawing.Point(95, 139);
+            this.LupYearList.Name = "LupYearList";
+            this.LupYearList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LupYearList.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Yearlist", "Година", 45, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.LupYearList.Properties.DataSource = this.SubModelBindSrc;
+            this.LupYearList.Properties.DisplayMember = "Yearlist";
+            this.LupYearList.Properties.ValueMember = "SubModel";
+            this.LupYearList.Size = new System.Drawing.Size(100, 20);
+            this.LupYearList.TabIndex = 18;
+            // 
+            // lblSubModel
+            // 
+            this.lblSubModel.Location = new System.Drawing.Point(15, 142);
+            this.lblSubModel.Name = "lblSubModel";
+            this.lblSubModel.Size = new System.Drawing.Size(41, 13);
+            this.lblSubModel.TabIndex = 17;
+            this.lblSubModel.Text = "Година:";
             // 
             // TFormManagePart
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(393, 465);
+            this.Controls.Add(this.LupYearList);
+            this.Controls.Add(this.lblSubModel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtPrice);
             this.Controls.Add(lblModel);
@@ -266,6 +298,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LupYearList.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubModelBindSrc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,6 +319,9 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.LookUpEdit searchLookUpEdit1;
         private DevExpress.XtraEditors.LookUpEdit searchLookUpEdit2;
+        private DevExpress.XtraEditors.LookUpEdit LupYearList;
+        private DevExpress.XtraEditors.LabelControl lblSubModel;
+        private System.Windows.Forms.BindingSource SubModelBindSrc;
 
 
     }

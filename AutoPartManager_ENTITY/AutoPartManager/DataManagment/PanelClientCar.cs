@@ -122,9 +122,48 @@ namespace DataManagment
             if (ClientCar != null)
             {
                 if (lookUpEdit2.EditValue != null && lookUpEdit2.Text != "")
-                    YearsList.DataSource = CDMClients.LoadCarYears(((Models)ModelsBindSrc.Current).CAR_ID,
-                                        lookUpEdit2.Text).ToList();
+                {
+                    int CarID = Convert.ToInt32(LupCBoxCars.EditValue);
+                    int ModelID = Convert.ToInt32(lookUpEdit2.EditValue);
+                    YearsList.DataSource = CDMClients.LoadCarYears(CarID, ModelID).ToList();
+
+                }
+            }
+             
+        }
+        private CLIENT_CARS CurrClientCar()
+        {
+            return (CLIENT_CARS)cLIENT_CARSBindingSource.Current;
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (CDMClients != null && CurrClientCar().MODEL_ID != 0)
+            {
+                int Year = (int)lookUpEdit1.EditValue;
+                int SubModelID = CDMClients.GetSubModelIDByYear(CurrClientCar().MODEL_ID, Year);
+                CurrClientCar().SUB_MODEL_ID = SubModelID;
+                
             }
         }
+
+        public bool IsCarRecordValid()
+        { 
+            StringBuilder ErrorList = new StringBuilder();
+            if (CurrClientCar().CAR_ID == 0)
+                ErrorList.AppendLine("Моля изберете марка или премахнете колата");
+
+            if (CurrClientCar().MODEL_ID == 0)
+                ErrorList.AppendLine("Моля изберете модел или премахнете колата");
+            if (CurrClientCar().CAR_YEAR == 0)
+                ErrorList.AppendLine("Моля изберете година или премахнете колата");
+            if (ErrorList.Length > 0)
+                MessageBox.Show(ErrorList.ToString());
+            return ErrorList.Length == 0;
+
+        }
+
     }
+
+    
 }

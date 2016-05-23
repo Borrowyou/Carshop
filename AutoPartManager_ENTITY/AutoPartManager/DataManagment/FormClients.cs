@@ -24,6 +24,8 @@ namespace DataManagment
             FormManage = new FormManageClients();
             FormManage.TopLevel = false;
             FormManage.ReloadFunc = RefreshGrid;
+            
+            pnlFormClient.Controls.Add(FormManage);
             FormManage.Show();
         }
 
@@ -35,13 +37,13 @@ namespace DataManagment
         private void RefreshGrid()
         {
             CDMClients.LoadAllClients();
+            clientsBindingSource.DataSource = CDMClients.GetClientsDbSet().Local.ToBindingList();
         }
 
         private void FormManageClients_Load(object sender, EventArgs e)
         {
             CDMClients = new DMClients();
-            SetDataSources();
-            CDMClients.LoadAllClients();
+            RefreshGrid();
         }
 
         private void AllClientsBindingSource_PositionChanged(object sender, EventArgs e)

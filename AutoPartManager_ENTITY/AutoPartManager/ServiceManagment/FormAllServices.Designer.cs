@@ -118,6 +118,8 @@
             this.gridView1.GridControl = this.sERVICE_WORKSGridControl;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.ColumnChanged += new System.EventHandler(this.gridView1_ColumnChanged);
+            this.gridView1.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridView1_CellValueChanged);
             this.gridView1.DoubleClick += new System.EventHandler(this.gridView1_DoubleClick);
             // 
             // colSERVICE_WORK_ID
@@ -313,7 +315,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(164, 8);
+            this.btnRefresh.Location = new System.Drawing.Point(227, 8);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 4;
@@ -330,8 +332,9 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ITEM_NAME", "Статус", 68, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.LookUpStatus.Properties.DataSource = this.WorkStatusBindingSrc;
             this.LookUpStatus.Properties.DisplayMember = "ITEM_NAME";
+            this.LookUpStatus.Properties.NullText = "Статус на ремонта";
             this.LookUpStatus.Properties.ValueMember = "ITEM_CODE";
-            this.LookUpStatus.Size = new System.Drawing.Size(100, 20);
+            this.LookUpStatus.Size = new System.Drawing.Size(127, 20);
             this.LookUpStatus.TabIndex = 3;
             // 
             // lblStatus

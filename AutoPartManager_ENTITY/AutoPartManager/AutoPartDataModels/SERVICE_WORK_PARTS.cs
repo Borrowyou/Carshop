@@ -17,6 +17,7 @@ namespace AutoPartDataModels
         public int WORK_PART_ID { get; set; }
         public int SERVICE_WORK_ID { get; set; }
         public int PART_ID { get; set; }
+        public Nullable<double> PART_PRICE { get; set; }
     
         public virtual Parts Parts { get; set; }
         public virtual SERVICE_WORKS SERVICE_WORKS { get; set; }

@@ -19,6 +19,7 @@ namespace AutoPartDataModels
         {
             this.Parts = new HashSet<Parts>();
             this.Models = new HashSet<Models>();
+            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
         }
     
         public int Car_ID { get; set; }
@@ -28,5 +29,7 @@ namespace AutoPartDataModels
         public virtual ICollection<Parts> Parts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Models> Models { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
     }
 }

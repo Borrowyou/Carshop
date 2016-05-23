@@ -31,12 +31,12 @@ namespace DataManagment
             return CurrContex.Parts;
         }
 
-        public void LoadParts(int ModelID)
+        public void LoadParts(int ModelID, int SubModelID)
         {
 
             CurrContex.Dispose();
             CurrContex = new CarShopEntities();
-            CurrContex.Parts.Where(p => p.Model_ID == ModelID).Load();
+            CurrContex.Parts.Where(p => p.Model_ID == ModelID && p.SUB_MODEL_ID == SubModelID).Load();
 
         }
         public ObservableCollection<T> ToObservableCollection<T>(IEnumerable<T> enumeration)

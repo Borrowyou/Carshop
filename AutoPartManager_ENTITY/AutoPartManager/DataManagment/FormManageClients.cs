@@ -58,16 +58,25 @@ namespace DataManagment
             SaveClientData();
             if (ReloadFunc != null)
                 ReloadFunc();
+            if (Modal == true)
+                Close();
+            
         }
 
         private void SaveClientData()
         {
+            bool CarsValid = true;
             txtEditDetails.EditValue = RichtxtDetails.Text;
-            foreach (var ClientCar in ListClientCars)
-                ClientCar.SaveClientCars(CurrClient());
-            clientsBindingSource.EndEdit();
-            try
+            foreach (var clientCar in ListClientCars)
             {
+                CarsValid = clientCar.IsCarRecordValid();
+            }
+            if (CarsValid)
+            {
+                foreach (var ClientCar in ListClientCars)
+                    ClientCar.SaveClientCars(CurrClient());
+                clientsBindingSource.EndEdit();
+
                 if (InsertState)
                 {
                     CDMClients.CurrContex.Entry(CurrClient()).State = EntityState.Added;
@@ -77,14 +86,12 @@ namespace DataManagment
                     CDMClients.CurrContex.Entry(CurrClient()).State = EntityState.Modified;
                 }
                 CDMClients.CurrContex.SaveChanges();
+                MessageBox.Show("Успешно запазено!");
             }
-            catch (Exception E)
-            {
-                MessageBox.Show(E.Message);
-            }
-
-
         }
+ 
+
+        
 
         private void button2_Click(object sender, EventArgs e)
         {

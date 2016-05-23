@@ -261,12 +261,6 @@
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </None>
-    <Content Include="NLog.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="NLog.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AutoPartDataModels.APPOITMENTS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Cars.datasource" />

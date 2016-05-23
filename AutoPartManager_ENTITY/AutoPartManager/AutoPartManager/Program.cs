@@ -7,6 +7,7 @@ using System.Reflection;
 using System.ComponentModel;
 using System.Threading;
 using NLog;
+using LogExceptions;
 
 namespace AutoPartManager
 {
@@ -22,8 +23,8 @@ namespace AutoPartManager
         static void Main()
         {
             _logger = LogManager.GetCurrentClassLogger();
-            //Application.ThreadException += OnThreadException;
-           // AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+            Application.ThreadException += OnThreadException;
+            AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             try
@@ -32,8 +33,9 @@ namespace AutoPartManager
             }
             catch (Exception exc)
             {
+                
                 LogFatalException(exc);
-                MessageBox.Show(exc.Message);
+     
             }
         }
 
@@ -41,8 +43,9 @@ namespace AutoPartManager
         {
             string message = String.Format(
                 "(Application version {0}) {1}", Application.ProductVersion, exc.Message);
-
+            LogExcept.LogException(exc);
             _logger.Error(message, exc);
+            MessageBox.Show(exc.Message);
         }
 
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)

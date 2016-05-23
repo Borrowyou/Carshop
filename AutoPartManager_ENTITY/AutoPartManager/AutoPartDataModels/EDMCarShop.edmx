@@ -14,6 +14,8 @@
           <Property Name="CLIENT_ID" Type="int" Nullable="false" />
           <Property Name="CLIENT_CAR_ID" Type="int" Nullable="false" />
           <Property Name="APP_STATUS" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="COMPLAINS" Type="varchar(max)" />
+          <Property Name="CAR_MILEAGE" Type="float" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -34,6 +36,7 @@
           <Property Name="ENGINE_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ENGINE_SIZE" Type="float" />
           <Property Name="CAR_REG_NUMB" Type="varchar" MaxLength="20" />
+          <Property Name="SUB_MODEL_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -68,12 +71,6 @@
           <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
           <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'CarShop.dbo.GENERATORS' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="GENERATORS">
-          <Property Name="GENERATOR_NAME" Type="varchar" MaxLength="32" />
-          <Property Name="GENERATOR_VALUE" Type="int" />
-        </EntityType>-->
         <EntityType Name="LOOKUP_ITEMS">
           <Key>
             <PropertyRef Name="ITEM_CODE" />
@@ -84,13 +81,6 @@ warning 6013: The table/view 'CarShop.dbo.GENERATORS' does not have a primary ke
           <Property Name="ITEM_NAME" Type="varchar" MaxLength="30" />
           <Property Name="ITEM_DESCRIPT" Type="varchar" MaxLength="100" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'CarShop.dbo.MODELADDRESSES' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="MODELADDRESSES">
-          <Property Name="MODEL_ADDRESS" Type="varchar" MaxLength="255" />
-          <Property Name="CAR_ID" Type="int" />
-          <Property Name="MODEL_ID" Type="int" />
-        </EntityType>-->
         <EntityType Name="Models">
           <Key>
             <PropertyRef Name="MODEL_ID" />
@@ -148,6 +138,7 @@ warning 6013: The table/view 'CarShop.dbo.MODELADDRESSES' does not have a primar
           <Property Name="WORK_PART_ID" Type="int" Nullable="false" />
           <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
           <Property Name="PART_ID" Type="int" Nullable="false" />
+          <Property Name="PART_PRICE" Type="float" />
         </EntityType>
         <EntityType Name="SERVICE_WORKS">
           <Key>
@@ -160,6 +151,7 @@ warning 6013: The table/view 'CarShop.dbo.MODELADDRESSES' does not have a primar
           <Property Name="TIME_START" Type="datetime" />
           <Property Name="TIME_FINISH" Type="datetime" />
           <Property Name="WORK_PRICE" Type="float" />
+          <Property Name="DETAILS" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="SERVICES">
           <Key>
@@ -319,6 +311,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CL_CAR_ID_CARS_ID">
+          <End Role="Cars" Type="Self.Cars" Multiplicity="1" />
+          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Car_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_CARS">
+              <PropertyRef Name="CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CLIENT_CARS_CLIENTS">
           <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
           <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
@@ -352,6 +356,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
             </Principal>
             <Dependent Role="CLIENT_CARS">
               <PropertyRef Name="MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CLIENT_CARS_SUB_MODEL_ID">
+          <End Role="SUB_MODELS" Type="Self.SUB_MODELS" Multiplicity="1" />
+          <End Role="CLIENT_CARS" Type="Self.CLIENT_CARS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_MODELS">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_CARS">
+              <PropertyRef Name="SUB_MODEL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -612,6 +628,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
             <End Role="Cars" EntitySet="Cars" />
             <End Role="Models" EntitySet="Models" />
           </AssociationSet>
+          <AssociationSet Name="FK_CL_CAR_ID_CARS_ID" Association="Self.FK_CL_CAR_ID_CARS_ID">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
           <AssociationSet Name="FK_CLIENT_CARS_CLIENTS" Association="Self.FK_CLIENT_CARS_CLIENTS">
             <End Role="Clients" EntitySet="Clients" />
             <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
@@ -622,6 +642,10 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           </AssociationSet>
           <AssociationSet Name="FK_CLIENT_CARS_MODELS" Association="Self.FK_CLIENT_CARS_MODELS">
             <End Role="Models" EntitySet="Models" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_CARS_SUB_MODEL_ID" Association="Self.FK_CLIENT_CARS_SUB_MODEL_ID">
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
             <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
           </AssociationSet>
           <AssociationSet Name="FK_CLIENTS_TYPE_LOOKUP" Association="Self.FK_CLIENTS_TYPE_LOOKUP">
@@ -795,6 +819,14 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
             <End Role="SERVICES" EntitySet="SERVICES" />
             <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
           </AssociationSet>
+          <AssociationSet Name="FK_CLIENT_CARS_SUB_MODEL_ID" Association="CarShopModel.FK_CLIENT_CARS_SUB_MODEL_ID">
+            <End Role="SUB_MODELS" EntitySet="SUB_MODELS" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CL_CAR_ID_CARS_ID" Association="CarShopModel.FK_CL_CAR_ID_CARS_ID">
+            <End Role="Cars" EntitySet="Cars" />
+            <End Role="CLIENT_CARS" EntitySet="CLIENT_CARS" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="FUN_CALC_APP_SUM_BY_APP_ID_Result">
           <Property Type="Int32" Name="APPOITMENT_ID" Nullable="false" />
@@ -817,6 +849,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_APPOITMENT_CLIENT_CAR_ID" FromRole="APPOITMENTS" ToRole="CLIENT_CARS" />
           <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_APPOITMENTS_CLIENT_ID" FromRole="APPOITMENTS" ToRole="Clients" />
           <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_SERVICE_WORK_APPOITMENT_ID" FromRole="APPOITMENTS" ToRole="SERVICE_WORKS" />
+          <Property Name="COMPLAINS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CAR_MILEAGE" Type="Double" />
         </EntityType>
         <EntityType Name="Cars">
           <Key>
@@ -826,6 +860,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <Property Name="Car_Model" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_Car_Partss" FromRole="Cars" ToRole="Parts" />
           <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CARS" FromRole="Cars" ToRole="Models" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CL_CAR_ID_CARS_ID" FromRole="Cars" ToRole="CLIENT_CARS" />
         </EntityType>
         <EntityType Name="CLIENT_CARS">
           <Key>
@@ -843,6 +878,9 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <NavigationProperty Name="Clients" Relationship="CarShopModel.FK_CLIENT_CARS_CLIENTS" FromRole="CLIENT_CARS" ToRole="Clients" />
           <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_CLIENT_CARS_ENG_LOOKUP_ITEMS" FromRole="CLIENT_CARS" ToRole="LOOKUP_ITEMS" />
           <NavigationProperty Name="Models" Relationship="CarShopModel.FK_CLIENT_CARS_MODELS" FromRole="CLIENT_CARS" ToRole="Models" />
+          <Property Name="SUB_MODEL_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SUB_MODELS" Relationship="CarShopModel.FK_CLIENT_CARS_SUB_MODEL_ID" FromRole="CLIENT_CARS" ToRole="SUB_MODELS" />
+          <NavigationProperty Name="Cars" Relationship="CarShopModel.FK_CL_CAR_ID_CARS_ID" FromRole="CLIENT_CARS" ToRole="Cars" />
         </EntityType>
         <EntityType Name="Clients">
           <Key>
@@ -966,6 +1004,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <Property Name="PART_ID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_SERV_WORK_PART_PARTS" FromRole="SERVICE_WORK_PARTS" ToRole="Parts" />
           <NavigationProperty Name="SERVICE_WORKS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORK_PARTS" ToRole="SERVICE_WORKS" />
+          <Property Name="PART_PRICE" Type="Double" />
         </EntityType>
         <EntityType Name="SERVICE_WORKS">
           <Key>
@@ -983,6 +1022,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <NavigationProperty Name="LOOKUP_ITEMS" Relationship="CarShopModel.FK_SERVICE_WORKS_STATUS_LOOKUP" FromRole="SERVICE_WORKS" ToRole="LOOKUP_ITEMS" />
           <NavigationProperty Name="SERVICE_WORK_PARTS" Relationship="CarShopModel.FK_S_WORK_PART_SERVICEWORKS" FromRole="SERVICE_WORKS" ToRole="SERVICE_WORK_PARTS" />
           <NavigationProperty Name="SERVICES" Relationship="CarShopModel.FK_SERVICE_WORKS_SERVICES" FromRole="SERVICE_WORKS" ToRole="SERVICES" />
+          <Property Name="DETAILS" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SERVICES">
           <Key>
@@ -1012,6 +1052,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <Property Name="YEAR_STOP" Type="Int32" />
           <NavigationProperty Name="Models" Relationship="CarShopModel.FK_SUB_MODEL_MODELS" FromRole="SUB_MODELS" ToRole="Models" />
           <NavigationProperty Name="Parts" Relationship="CarShopModel.FK_PARTS_SUB_MODEL_ID" FromRole="SUB_MODELS" ToRole="Parts" />
+          <NavigationProperty Name="CLIENT_CARS" Relationship="CarShopModel.FK_CLIENT_CARS_SUB_MODEL_ID" FromRole="SUB_MODELS" ToRole="CLIENT_CARS" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -1317,6 +1358,30 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_CLIENT_CARS_SUB_MODEL_ID">
+          <End Type="CarShopModel.SUB_MODELS" Role="SUB_MODELS" Multiplicity="1" />
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUB_MODELS">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_CARS">
+              <PropertyRef Name="SUB_MODEL_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CL_CAR_ID_CARS_ID">
+          <End Type="CarShopModel.Cars" Role="Cars" Multiplicity="1" />
+          <End Type="CarShopModel.CLIENT_CARS" Role="CLIENT_CARS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cars">
+              <PropertyRef Name="Car_ID" />
+            </Principal>
+            <Dependent Role="CLIENT_CARS">
+              <PropertyRef Name="CAR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1346,6 +1411,8 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <EntitySetMapping Name="APPOITMENTS">
             <EntityTypeMapping TypeName="CarShopModel.APPOITMENTS">
               <MappingFragment StoreEntitySet="APPOITMENTS">
+                <ScalarProperty Name="CAR_MILEAGE" ColumnName="CAR_MILEAGE" />
+                <ScalarProperty Name="COMPLAINS" ColumnName="COMPLAINS" />
                 <ScalarProperty Name="APP_STATUS" ColumnName="APP_STATUS" />
                 <ScalarProperty Name="CLIENT_CAR_ID" ColumnName="CLIENT_CAR_ID" />
                 <ScalarProperty Name="CLIENT_ID" ColumnName="CLIENT_ID" />
@@ -1365,6 +1432,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <EntitySetMapping Name="CLIENT_CARS">
             <EntityTypeMapping TypeName="CarShopModel.CLIENT_CARS">
               <MappingFragment StoreEntitySet="CLIENT_CARS">
+                <ScalarProperty Name="SUB_MODEL_ID" ColumnName="SUB_MODEL_ID" />
                 <ScalarProperty Name="CAR_REG_NUMB" ColumnName="CAR_REG_NUMB" />
                 <ScalarProperty Name="ENGINE_SIZE" ColumnName="ENGINE_SIZE" />
                 <ScalarProperty Name="ENGINE_TYPE" ColumnName="ENGINE_TYPE" />
@@ -1481,6 +1549,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <EntitySetMapping Name="SERVICE_WORK_PARTS">
             <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORK_PARTS">
               <MappingFragment StoreEntitySet="SERVICE_WORK_PARTS">
+                <ScalarProperty Name="PART_PRICE" ColumnName="PART_PRICE" />
                 <ScalarProperty Name="PART_ID" ColumnName="PART_ID" />
                 <ScalarProperty Name="SERVICE_WORK_ID" ColumnName="SERVICE_WORK_ID" />
                 <ScalarProperty Name="WORK_PART_ID" ColumnName="WORK_PART_ID" />
@@ -1490,6 +1559,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <EntitySetMapping Name="SERVICE_WORKS">
             <EntityTypeMapping TypeName="CarShopModel.SERVICE_WORKS">
               <MappingFragment StoreEntitySet="SERVICE_WORKS">
+                <ScalarProperty Name="DETAILS" ColumnName="DETAILS" />
                 <ScalarProperty Name="WORK_PRICE" ColumnName="WORK_PRICE" />
                 <ScalarProperty Name="TIME_FINISH" ColumnName="TIME_FINISH" />
                 <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />

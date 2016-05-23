@@ -5,7 +5,6 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceMana
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.dll.licenses
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.TFormManageAppoitment.resources
-C:\PartsManager\Bin\NLog.config
 C:\PartsManager\Bin\ServiceManagment.dll.config
 C:\PartsManager\Bin\ServiceManagment.dll
 C:\PartsManager\Bin\ServiceManagment.pdb
@@ -21,3 +20,4 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Serv
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.Properties.Resources.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReportCarServices.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReports.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.XtraReport1.resources

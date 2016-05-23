@@ -51,6 +51,9 @@
             this.pnlFrameBtns = new DevExpress.XtraEditors.PanelControl();
             this.btnADd = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.LupYearList = new DevExpress.XtraEditors.LookUpEdit();
+            this.SubModelBindSrc = new System.Windows.Forms.BindingSource(this.components);
+            this.lblSubModel = new DevExpress.XtraEditors.LabelControl();
             this.btnSearch = new DevExpress.XtraEditors.SimpleButton();
             this.lblModel = new DevExpress.XtraEditors.LabelControl();
             this.lblMark = new DevExpress.XtraEditors.LabelControl();
@@ -72,6 +75,8 @@
             this.pnlFrameBtns.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LupYearList.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubModelBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LookUpModels.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpMarks.Properties)).BeginInit();
@@ -86,7 +91,7 @@
             this.pnlGridHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlGridHolder.Location = new System.Drawing.Point(2, 33);
             this.pnlGridHolder.Name = "pnlGridHolder";
-            this.pnlGridHolder.Size = new System.Drawing.Size(373, 304);
+            this.pnlGridHolder.Size = new System.Drawing.Size(607, 410);
             this.pnlGridHolder.TabIndex = 0;
             // 
             // partsGridParts
@@ -96,7 +101,7 @@
             this.partsGridParts.Location = new System.Drawing.Point(2, 2);
             this.partsGridParts.MainView = this.gridView1;
             this.partsGridParts.Name = "partsGridParts";
-            this.partsGridParts.Size = new System.Drawing.Size(369, 300);
+            this.partsGridParts.Size = new System.Drawing.Size(603, 406);
             this.partsGridParts.TabIndex = 1;
             this.partsGridParts.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -205,9 +210,9 @@
             this.pnlFrameHolder.Controls.Add(this.pnlForm);
             this.pnlFrameHolder.Controls.Add(this.pnlFrameBtns);
             this.pnlFrameHolder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFrameHolder.Location = new System.Drawing.Point(380, 2);
+            this.pnlFrameHolder.Location = new System.Drawing.Point(614, 2);
             this.pnlFrameHolder.Name = "pnlFrameHolder";
-            this.pnlFrameHolder.Size = new System.Drawing.Size(404, 335);
+            this.pnlFrameHolder.Size = new System.Drawing.Size(404, 441);
             this.pnlFrameHolder.TabIndex = 0;
             // 
             // pnlForm
@@ -215,7 +220,7 @@
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(2, 40);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(400, 293);
+            this.pnlForm.Size = new System.Drawing.Size(400, 399);
             this.pnlForm.TabIndex = 1;
             // 
             // pnlFrameBtns
@@ -238,6 +243,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.LupYearList);
+            this.panelControl1.Controls.Add(this.lblSubModel);
             this.panelControl1.Controls.Add(this.btnSearch);
             this.panelControl1.Controls.Add(this.lblModel);
             this.panelControl1.Controls.Add(this.lblMark);
@@ -246,17 +253,41 @@
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(2, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(373, 31);
+            this.panelControl1.Size = new System.Drawing.Size(607, 31);
             this.panelControl1.TabIndex = 1;
+            // 
+            // LupYearList
+            // 
+            this.LupYearList.Location = new System.Drawing.Point(362, 6);
+            this.LupYearList.Name = "LupYearList";
+            this.LupYearList.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.LupYearList.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Yearlist", "Година", 45, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
+            this.LupYearList.Properties.DataSource = this.SubModelBindSrc;
+            this.LupYearList.Properties.DisplayMember = "Yearlist";
+            this.LupYearList.Properties.NullText = "Избери година";
+            this.LupYearList.Properties.ValueMember = "SubModel";
+            this.LupYearList.Size = new System.Drawing.Size(100, 20);
+            this.LupYearList.TabIndex = 6;
+            this.LupYearList.EditValueChanged += new System.EventHandler(this.LupYearList_EditValueChanged);
+            // 
+            // lblSubModel
+            // 
+            this.lblSubModel.Location = new System.Drawing.Point(315, 8);
+            this.lblSubModel.Name = "lblSubModel";
+            this.lblSubModel.Size = new System.Drawing.Size(41, 13);
+            this.lblSubModel.TabIndex = 5;
+            this.lblSubModel.Text = "Година:";
             // 
             // btnSearch
             // 
             this.btnSearch.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSearch.Location = new System.Drawing.Point(250, 5);
+            this.btnSearch.Location = new System.Drawing.Point(472, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Обнови";
+            this.btnSearch.Text = "Зареди";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // lblModel
@@ -285,13 +316,16 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("MODEL_NAME", "Модел", 78, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.LookUpModels.Properties.DataSource = this.ModelsBindSrc;
             this.LookUpModels.Properties.DisplayMember = "MODEL_NAME";
+            this.LookUpModels.Properties.NullText = "Избери модел";
             this.LookUpModels.Properties.ValueMember = "MODEL_ID";
             this.LookUpModels.Size = new System.Drawing.Size(100, 20);
             this.LookUpModels.TabIndex = 1;
+            this.LookUpModels.EditValueChanged += new System.EventHandler(this.LookUpModels_EditValueChanged);
             // 
             // ModelsBindSrc
             // 
             this.ModelsBindSrc.DataSource = typeof(AutoPartDataModels.Models);
+            this.ModelsBindSrc.CurrentItemChanged += new System.EventHandler(this.ModelsBindSrc_CurrentItemChanged);
             // 
             // lookUpMarks
             // 
@@ -303,6 +337,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Car_Model", "Марка", 61, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpMarks.Properties.DataSource = this.MarksBindSrc;
             this.lookUpMarks.Properties.DisplayMember = "Car_Model";
+            this.lookUpMarks.Properties.NullText = "Избери марка";
             this.lookUpMarks.Properties.ValueMember = "Car_ID";
             this.lookUpMarks.Size = new System.Drawing.Size(100, 20);
             this.lookUpMarks.TabIndex = 0;
@@ -316,9 +351,9 @@
             // splitterControl1
             // 
             this.splitterControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitterControl1.Location = new System.Drawing.Point(375, 2);
+            this.splitterControl1.Location = new System.Drawing.Point(609, 2);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(5, 335);
+            this.splitterControl1.Size = new System.Drawing.Size(5, 441);
             this.splitterControl1.TabIndex = 0;
             this.splitterControl1.TabStop = false;
             // 
@@ -331,14 +366,14 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl2.Location = new System.Drawing.Point(0, 0);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(786, 339);
+            this.panelControl2.Size = new System.Drawing.Size(1020, 445);
             this.panelControl2.TabIndex = 0;
             // 
             // TFormSearchParts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(786, 339);
+            this.ClientSize = new System.Drawing.Size(1020, 445);
             this.Controls.Add(this.panelControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -358,6 +393,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LupYearList.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SubModelBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LookUpModels.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ModelsBindSrc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpMarks.Properties)).EndInit();
@@ -400,6 +437,9 @@
         private DevExpress.XtraEditors.PanelControl pnlFrameBtns;
         private DevExpress.XtraEditors.SimpleButton btnADd;
         private DevExpress.XtraEditors.PanelControl pnlForm;
+        private DevExpress.XtraEditors.LookUpEdit LupYearList;
+        private DevExpress.XtraEditors.LabelControl lblSubModel;
+        private System.Windows.Forms.BindingSource SubModelBindSrc;
 
 
     }

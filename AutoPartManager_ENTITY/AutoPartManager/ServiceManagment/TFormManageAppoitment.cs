@@ -130,34 +130,27 @@ namespace ServiceManagment
             cLIENT_CARSBindingSource.DataSource = DMAppoitm.GetAllClients_Cars(ClientID).ToList();
 
         }
-        private void Save()
+        private void Save(Boolean Alert = false)
         {
-            try
+           
+            aPPOITMENTBindingSource.EndEdit();
+            sERVICE_WORKSBindingSource.EndEdit();
+            if (InsertState)
             {
-                aPPOITMENTBindingSource.EndEdit();
-                sERVICE_WORKSBindingSource.EndEdit();
-                if (InsertState)
-                {
                     
-                    DMAppoitm.CurrContex.APPOITMENTS.Add(CurrAppoitment());
-                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Added;
-                }
-                else
-                {
-                    DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
-                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Modified;
-                }
-
-                DMAppoitm.CurrContex.SaveChanges();
-                InsertState = false;
+                DMAppoitm.CurrContex.APPOITMENTS.Add(CurrAppoitment());
+                DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Added;
             }
-            catch(Exception Ex)
+            else
             {
-                logger.Error(Ex);
-                MessageBox.Show(Ex.Message);
+                DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
+                DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Modified;
             }
-            
-        
+            InsertState = false;
+            DMAppoitm.CurrContex.SaveChanges();
+            if (Alert)
+                MessageBox.Show("Усшешно запазено!", "Запазено");
+      
         }
 
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -211,7 +204,7 @@ namespace ServiceManagment
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            Save();
+            Save(true);
         }
 
         private void btnAddNewWorker_Click(object sender, EventArgs e)
@@ -258,18 +251,34 @@ namespace ServiceManagment
 
         }
 
+     
         private void btnRemoveServWork_Click(object sender, EventArgs e)
         {
-            foreach(EMPLOYEES_SERVICE_WORKS CurEmplWork in EmplSrvBindingSrc.List)
-            {
-                DMAppoitm.CurrContex.Entry(CurEmplWork).State = EntityState.Deleted;
-                CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurEmplWork);
-            }
+            //foreach(EMPLOYEES_SERVICE_WORKS CurEmplWork in EmplSrvBindingSrc.List)
+            //{
+            //    DMAppoitm.CurrContex.Entry(CurEmplWork).State = EntityState.Deleted;
+            //    CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurEmplWork);
+            //}
+            //EmplSrvBindingSrc.Clear();
             
-            DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State = EntityState.Deleted;
-            CurrAppoitment().SERVICE_WORKS.Remove(CurrentServiceWork());
+            //foreach (SERVICE_WORK_PARTS CurrServPart in ServicePartsBindSrc.List)
+            //{
+            //    DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State = EntityState.Deleted;
+            //    CurrentServiceWork().SERVICE_WORK_PARTS.Remove(CurrServPart);
+            //    sERVICE_WORKSBindingSource.Remove(CurrServPart);
+            //}
+            //ServicePartsBindSrc.Clear();
+            //CurrAppoitment().SERVICE_WORKS.re
+            var EmplWorkList = CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.ToList();
+            foreach (EMPLOYEES_SERVICE_WORKS EmplWork in EmplWorkList)
+            {
+                MarkAndDElEmplWork(EmplWork);
+            }
+            foreach(SERVICE_WORK_PARTS ServWorkPart in CurrentServiceWork().SERVICE_WORK_PARTS.ToList())
+            {
+                MarkAndDElServWorPartk(ServWorkPart);
+            }
             sERVICE_WORKSBindingSource.RemoveCurrent();
-
         }
 
         private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
@@ -300,8 +309,9 @@ namespace ServiceManagment
 
         private void simpleButton1_Click_1(object sender, EventArgs e)
         {
-            TFormSearchParts FormSrchParts = new TFormSearchParts(CurrClCar().CAR_ID, CurrClCar().MODEL_ID);
+            TFormSearchParts FormSrchParts = new TFormSearchParts(CurrClCar().CAR_ID, CurrClCar().MODEL_ID, CurrClCar().SUB_MODEL_ID);
             FormSrchParts.FormBorderStyle = FormBorderStyle.Sizable;
+            FormSrchParts.RefreshGrid();
             FormSrchParts.ShowDialog();
             int PartID = FormSrchParts.PartID;
             if (PartID > 0)
@@ -310,6 +320,7 @@ namespace ServiceManagment
                 CurrWorkPart().WORK_PART_ID = DMAppoitm.GenID("SERVICE_WORK_PART");
                 CurrWorkPart().PART_ID = PartID;
                 CurrWorkPart().Parts = DMAppoitm.GetPartByID(PartID);
+                CurrWorkPart().PART_PRICE = CurrWorkPart().Parts.part_price;
                 CurrentServiceWork().SERVICE_WORK_PARTS.Add(CurrWorkPart());
                 ServicePartsBindSrc.ResetBindings(false);
             }         
@@ -335,6 +346,7 @@ namespace ServiceManagment
 
         private void btnCalc_Click(object sender, EventArgs e)
         {
+            Save();
             CalcCurrentSum();
         }
         private void CalcCurrentSum()
@@ -351,7 +363,7 @@ namespace ServiceManagment
                                             Find(CurrentServiceWork().SERVICE_ID);
                      
                 CurrentServiceWork().WORK_PRICE = CurrentServiceWork().SERVICES.PRICE_PER_HOUR;
-            sERVICE_WORKSBindingSource.ResetCurrentItem();
+                sERVICE_WORKSBindingSource.ResetCurrentItem();
             }
 
             if (e.Column.FieldName == "WORK_STATUS")
@@ -360,11 +372,7 @@ namespace ServiceManagment
                     CurrentServiceWork().TIME_START = DateTime.Now;
                 else if (CurrentServiceWork().WORK_STATUS == DMStrings.ServiceWorkFinished)
                     CurrentServiceWork().TIME_FINISH = DateTime.Now;
-
-                
             }
-
-
         }
 
         private void BestFitAll()
@@ -374,10 +382,25 @@ namespace ServiceManagment
 
         private void btnRemoveEmp_Click(object sender, EventArgs e)
         {
-            DMAppoitm.CurrContex.Entry(CurrEmplWork()).State = EntityState.Deleted;
-            CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurrEmplWork());
-            EmplSrvBindingSrc.RemoveCurrent();
+            //DMAppoitm.CurrContex.Entry(CurrEmplWork()).State = EntityState.Deleted;
+            //CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurrEmplWork());
+            //EmplSrvBindingSrc.RemoveCurrent();
+            MarkAndDElEmplWork(CurrEmplWork());
         }
+        private void MarkAndDElEmplWork(EMPLOYEES_SERVICE_WORKS EmplWork)
+        {
+            DMAppoitm.CurrContex.Entry(EmplWork).State = EntityState.Deleted;
+            CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(EmplWork);
+            EmplSrvBindingSrc.Remove(EmplWork);
+        }
+
+        private void MarkAndDElServWorPartk(SERVICE_WORK_PARTS ServPart)
+        {
+            DMAppoitm.CurrContex.Entry(ServPart).State = EntityState.Deleted;
+            CurrentServiceWork().SERVICE_WORK_PARTS.Remove(ServPart);
+            ServicePartsBindSrc.Remove(ServPart);
+        }
+
 
         private void btnRemovePart_Click(object sender, EventArgs e)
         {
@@ -390,6 +413,71 @@ namespace ServiceManagment
         private void btnMarkFinished_Click(object sender, EventArgs e)
         {
             CurrAppoitment().APP_STATUS = DMStrings.AppStatusFinish;
+            Save(true);
+        }
+
+        private void gridServiceParts_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void simpleButton2_Click_1(object sender, EventArgs e)
+        {
+
+
+            folderBrowserDialog1.ShowDialog();
+            string SavePath = folderBrowserDialog1.SelectedPath + "\\" + DateTime.Now.ToShortDateString() + ".pdf";
+            if (SavePath != "")
+            {
+                XtraReport1 Rep = new XtraReport1();
+                Rep.Test(CurrAppoitment().APPOITMENT_ID);
+                Rep.ExportToPdf(SavePath);
+                Process.Start(SavePath);
+            }
+        }
+
+        private void HiperLinkClients_Click(object sender, EventArgs e)
+        {
+            if (CurrAppoitment().CLIENT_ID > 0)
+            {
+                FormMngClients = new FormManageClients();
+                FormMngClients.FormBorderStyle = FormBorderStyle.Sizable;
+                FormMngClients.LoadOrInsertClient(CurrAppoitment().CLIENT_ID);
+                FormMngClients.ShowDialog();
+                ReloadAllClients();
+                aPPOITMENTBindingSource.ResetBindings(false);
+            }
+        }
+
+        private void BtnNewService_Click(object sender, EventArgs e)
+        {
+            TFormServicesManage FormServManage = new TFormServicesManage();
+            FormServManage.ShowDialog();
+            if (FormServManage.ServiceID > 0)
+            {
+
+                LoadData = true;
+                try
+                {
+                    sERVICE_WORKSBindingSource.AddNew();
+                    ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).SERVICE_WORK_ID = DMAppoitm.GenID("SERVICE_WORK_ID");
+                    ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).APPOITMENT_ID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID;
+                    ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).WORK_STATUS = DMStrings.ServiceWorkPend;
+                    CurrentServiceWork().SERVICE_ID = FormServManage.ServiceID;
+                    CurrAppoitment().SERVICE_WORKS.Add(CurrentServiceWork());
+                    sERVICE_WORKSBindingSource.ResetBindings(false);
+                    sERVICESBindingSource.DataSource = DMAppoitm.CurrContex.SERVICES.ToList();
+                }
+                finally
+                {
+                    LoadData = false;
+                }     
+            } 
+        }
+
+        private void gridViewServiceParts_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
         }
 
         

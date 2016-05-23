@@ -34,6 +34,8 @@ namespace DataManagment
 
         public void LoadAllClients()
         {
+            CurrContex.Dispose();
+            CurrContex = new CarShopEntities();
             CurrContex.Clients.Where(c => c.CLIENT_TYPE != DMStrings.ClienTypeEmpoyee).Load();
         }
 
@@ -66,18 +68,15 @@ namespace DataManagment
             return CurrContex.CLIENT_CARS.Where(clc => clc.CLIENT_ID == ClientID);
         }
 
-        public IQueryable<FUN_YEARS_BETWEEN_LIST_Result>  LoadCarYears(int? CarID, string ModelName)
+        public IQueryable<FUN_YEARS_BETWEEN_LIST_Result>  LoadCarYears(int? CarID, int ModelID)
         {
-            var CurrentModel = from my in CurrContex.Models
-                               where (my.CAR_ID == CarID && my.MODEL_NAME == ModelName)
-                               group my by new { my.CAR_ID, my.MODEL_NAME } into g
-                               select new
-                               {
-                                min = g.Min(my => my.YEAR_MANUF),
-                                max = g.Max(my => my.YEAR_STOP)
-                               };
-            var ModelYears = CurrentModel.SingleOrDefault();
-            return CurrContex.FUN_YEARS_BETWEEN_LIST(ModelYears.min, ModelYears.max);
+
+            var CurrModelYears = CurrContex.SUB_MODELS.Where(sm => sm.MODEL_ID == ModelID);
+
+            int MinYear = CurrModelYears.Min(my => my.YEAR_MANUF);
+            int MaxYear = CurrModelYears.Max(my => my.YEAR_STOP).GetValueOrDefault(0);
+
+            return CurrContex.FUN_YEARS_BETWEEN_LIST(MinYear, MaxYear);
         }
 
         public IQueryable<LOOKUP_ITEMS> GetEngineTypes()
@@ -89,6 +88,17 @@ namespace DataManagment
         public IQueryable<LOOKUP_ITEMS> GetEmplTypeLUps()
         {
             return CurrContex.LOOKUP_ITEMS.Where(l => l.LOOKUP_NAME == DMStrings.EmplTypeLUp);
+        }
+
+        public int GetSubModelIDByYear(int ModelID, int Year)
+        {
+            SUB_MODELS CurrSubModel = CurrContex.SUB_MODELS.FirstOrDefault(sm => sm.MODEL_ID == ModelID &&
+                        (sm.YEAR_MANUF <= Year && sm.YEAR_STOP >= Year));
+            if (CurrSubModel == null)
+                return -1;
+            else
+                return CurrSubModel.SUB_MODEL_ID;
+
         }
 
     }

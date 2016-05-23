@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFormServicesManage));
-            this.sERVICEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sERVICEBindingSource = new System.Windows.Forms.BindingSource();
             this.sERVICEGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridViewServices = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSERVICE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,6 +62,7 @@
             this.sERVICEGridControl.TabIndex = 0;
             this.sERVICEGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewServices});
+            this.sERVICEGridControl.DoubleClick += new System.EventHandler(this.sERVICEGridControl_DoubleClick);
             // 
             // gridViewServices
             // 

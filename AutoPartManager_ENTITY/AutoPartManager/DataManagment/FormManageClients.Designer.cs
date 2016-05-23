@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormManageClients));
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientsBindingSource = new System.Windows.Forms.BindingSource();
+            this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource();
             this.lblClType = new DevExpress.XtraEditors.LabelControl();
             this.btnAddCar = new System.Windows.Forms.Button();
             this.txtEditDetails = new DevExpress.XtraEditors.TextEdit();
@@ -46,6 +45,7 @@
             this.txtEditCientTelephone = new DevExpress.XtraEditors.TextEdit();
             this.dateEditFrom = new DevExpress.XtraEditors.DateEdit();
             this.txtEditClientName = new DevExpress.XtraEditors.TextEdit();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lOOKUP_ITEMSBindingSource)).BeginInit();
@@ -68,6 +68,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ITEM_NAME", "Вид", 68, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Near)});
             this.lookUpEdit1.Properties.DataSource = this.lOOKUP_ITEMSBindingSource;
             this.lookUpEdit1.Properties.DisplayMember = "ITEM_NAME";
+            this.lookUpEdit1.Properties.NullText = "Избери вид";
             this.lookUpEdit1.Properties.ValueMember = "ITEM_CODE";
             this.lookUpEdit1.Size = new System.Drawing.Size(110, 20);
             this.lookUpEdit1.TabIndex = 2;
@@ -90,11 +91,11 @@
             // 
             // btnAddCar
             // 
-            this.btnAddCar.Location = new System.Drawing.Point(27, 273);
+            this.btnAddCar.Location = new System.Drawing.Point(27, 304);
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(19, 23);
+            this.btnAddCar.Size = new System.Drawing.Size(97, 23);
             this.btnAddCar.TabIndex = 6;
-            this.btnAddCar.Text = "+";
+            this.btnAddCar.Text = "Добави кола";
             this.btnAddCar.UseVisualStyleBackColor = true;
             this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click_1);
             // 
@@ -109,7 +110,7 @@
             // 
             // RichtxtDetails
             // 
-            this.RichtxtDetails.Location = new System.Drawing.Point(27, 187);
+            this.RichtxtDetails.Location = new System.Drawing.Point(27, 206);
             this.RichtxtDetails.Name = "RichtxtDetails";
             this.RichtxtDetails.Size = new System.Drawing.Size(299, 80);
             this.RichtxtDetails.TabIndex = 5;
@@ -118,7 +119,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnSave.Location = new System.Drawing.Point(251, 273);
+            this.btnSave.Location = new System.Drawing.Point(251, 304);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
@@ -196,13 +197,22 @@
             this.txtEditClientName.Size = new System.Drawing.Size(245, 20);
             this.txtEditClientName.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 182);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(212, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Допълнително подробности за клиента:";
+            // 
             // FormManageClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(345, 561);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.RichtxtDetails);
             this.Controls.Add(this.lookUpEdit1);
@@ -254,5 +264,6 @@
         private DevExpress.XtraEditors.TextEdit txtEditCientTelephone;
         private DevExpress.XtraEditors.DateEdit dateEditFrom;
         private DevExpress.XtraEditors.TextEdit txtEditClientName;
+        private System.Windows.Forms.Label label1;
     }
 }
