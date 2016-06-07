@@ -58,8 +58,7 @@ namespace DataManagment
             SaveClientData();
             if (ReloadFunc != null)
                 ReloadFunc();
-            if (Modal == true)
-                Close();
+
             
         }
 
@@ -87,6 +86,8 @@ namespace DataManagment
                 }
                 CDMClients.CurrContex.SaveChanges();
                 MessageBox.Show("Успешно запазено!");
+                if (Modal == true)
+                    Close();
             }
         }
  
@@ -128,14 +129,14 @@ namespace DataManagment
         {
             Height = DefHeight;
             btnAddCar.Top = RichtxtDetails.Top + RichtxtDetails.Height + 5;
-            btnSave.Top = PnlTop;
+            //btnSave.Top = PnlTop;
             for (int i = 0; i < ListClientCars.Count; i++)
                 ListClientCars[i].Top = PnlTop + i * ListClientCars[i].Height;
             
             if (ListClientCars.Count > 0)
             {
                 btnAddCar.Top = ListClientCars.Last().Top + ListClientCars.Last().Height;
-                Height = ListClientCars.Last().Top + ListClientCars.Last().Height + 60;
+                Height = ListClientCars.Last().Top + ListClientCars.Last().Height + 65;
             }
         }
         private void ClearAndReplace()
@@ -208,6 +209,19 @@ namespace DataManagment
             CurrClient().CLIENT_TYPE = DMStrings.ClientTypePrivate;
             FClientID = CurrClient().CLIENT_ID;    
             clientsBindingSource.ResetBindings(false);
+        }
+
+        private void lookUpEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void EnableFirmControls(bool bEnable)
+        {
+            txtAdress.Enabled = bEnable;
+            txtEIK.Enabled = bEnable;
+            txtMon.Enabled = bEnable;
+
         }
 
 

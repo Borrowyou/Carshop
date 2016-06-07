@@ -12,6 +12,7 @@ using System.Diagnostics;
 using NLog;
 using AutoPartDataModels;
 using DataManagment;
+using System.IO;
 
 namespace ServiceManagment
 {
@@ -32,6 +33,7 @@ namespace ServiceManagment
             InitNewAppoitment();
             SetDataSources();
             DMAppoitm.CurrContex.SERVICE_WORKS.Include(l =>l.LOOKUP_ITEMS) .Load();
+            dateEdit1.EditValue = DateTime.Now;
             
         }
 
@@ -48,6 +50,7 @@ namespace ServiceManagment
                 LoadCommonData();
                 SetDataSources();
                 DMAppoitm.CurrContex.SERVICE_WORKS.Include(l => l.LOOKUP_ITEMS).Load();
+                dateEdit1.EditValue = DateTime.Now;
 
             }
             finally
@@ -117,11 +120,11 @@ namespace ServiceManagment
             clientBindingSource.DataSource = DMAppoitm.GetAllClients().ToList();
             //sERVICE_WORKSBindingSource.DataSource = DMAppoitm.CurrContex.SERVICE_WORKS.Local.ToBindingList();
             EmpListBindSrc.DataSource = DMAppoitm.CurrContex.EMPLOYEES.ToList();
+            MeasuresBindSrc.DataSource = DMAppoitm.GetMEasures().ToList();
         }
 
         private void aPPOITMENTBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            
         }
 
         private void aPPOITMENTBindingSource_CurrentItemChanged(object sender, EventArgs e)
@@ -130,26 +133,37 @@ namespace ServiceManagment
             cLIENT_CARSBindingSource.DataSource = DMAppoitm.GetAllClients_Cars(ClientID).ToList();
 
         }
+
+        public void LoadAppClientCars()
+        {
+            int ClientID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).CLIENT_ID;
+            cLIENT_CARSBindingSource.DataSource = DMAppoitm.GetAllClients_Cars(ClientID).ToList();
+
+        }
         private void Save(Boolean Alert = false)
         {
-           
-            aPPOITMENTBindingSource.EndEdit();
-            sERVICE_WORKSBindingSource.EndEdit();
-            if (InsertState)
+
+            if (IsAppoitmentValid())
             {
-                    
-                DMAppoitm.CurrContex.APPOITMENTS.Add(CurrAppoitment());
-                DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Added;
+                aPPOITMENTBindingSource.EndEdit();
+                sERVICE_WORKSBindingSource.EndEdit();
+                if (InsertState)
+                {
+
+                    DMAppoitm.CurrContex.APPOITMENTS.Add(CurrAppoitment());
+                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Added;
+                }
+                else
+                {
+                    DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
+                    DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Modified;
+                }
+                InsertState = false;
+                var Stats = DMAppoitm.CurrContex.Entry(CurrAppoitment()).State;
+                DMAppoitm.CurrContex.SaveChanges();
+                if (Alert)
+                    MessageBox.Show("Усшешно запазено!", "Запазено");
             }
-            else
-            {
-                DMAppoitm.CurrContex.APPOITMENTS.Attach(((APPOITMENTS)aPPOITMENTBindingSource.Current));
-                DMAppoitm.CurrContex.Entry(CurrAppoitment()).State = EntityState.Modified;
-            }
-            InsertState = false;
-            DMAppoitm.CurrContex.SaveChanges();
-            if (Alert)
-                MessageBox.Show("Усшешно запазено!", "Запазено");
       
         }
 
@@ -175,7 +189,7 @@ namespace ServiceManagment
             
         }
 
-        private APPOITMENTS CurrentAppoitment()
+        public APPOITMENTS CurrentAppoitment()
         {
             return (APPOITMENTS)aPPOITMENTBindingSource.Current;
         }
@@ -189,6 +203,9 @@ namespace ServiceManagment
                 ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).SERVICE_WORK_ID = DMAppoitm.GenID("SERVICE_WORK_ID");
                 ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).APPOITMENT_ID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID;
                 ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).WORK_STATUS = DMStrings.ServiceWorkPend;
+                CurrentServiceWork().QUANTITY = 1;
+                CurrentServiceWork().INCLUDE_INVOICE = "Y";
+                CurrentServiceWork().MEASURE = DMStrings.MeasWorkHours;
                 CurrAppoitment().SERVICE_WORKS.Add(CurrentServiceWork());
             }
             finally
@@ -205,6 +222,7 @@ namespace ServiceManagment
         private void simpleButton1_Click(object sender, EventArgs e)
         {
             Save(true);
+            CalcCurrentSum();
         }
 
         private void btnAddNewWorker_Click(object sender, EventArgs e)
@@ -251,34 +269,40 @@ namespace ServiceManagment
 
         }
 
+        public void SetClientID(int ClientID)
+        {
+            gridLookUpEdit1.EditValue = ClientID;
+        }
+
      
         private void btnRemoveServWork_Click(object sender, EventArgs e)
         {
-            //foreach(EMPLOYEES_SERVICE_WORKS CurEmplWork in EmplSrvBindingSrc.List)
-            //{
-            //    DMAppoitm.CurrContex.Entry(CurEmplWork).State = EntityState.Deleted;
-            //    CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(CurEmplWork);
-            //}
-            //EmplSrvBindingSrc.Clear();
-            
-            //foreach (SERVICE_WORK_PARTS CurrServPart in ServicePartsBindSrc.List)
-            //{
-            //    DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State = EntityState.Deleted;
-            //    CurrentServiceWork().SERVICE_WORK_PARTS.Remove(CurrServPart);
-            //    sERVICE_WORKSBindingSource.Remove(CurrServPart);
-            //}
-            //ServicePartsBindSrc.Clear();
-            //CurrAppoitment().SERVICE_WORKS.re
-            var EmplWorkList = CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.ToList();
-            foreach (EMPLOYEES_SERVICE_WORKS EmplWork in EmplWorkList)
+            if (CurrentServiceWork() != null)
             {
-                MarkAndDElEmplWork(EmplWork);
+                var EmplWorkList = CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.ToList();
+                foreach (EMPLOYEES_SERVICE_WORKS EmplWork in EmplWorkList)
+                {
+                    MarkAndDElEmplWork(EmplWork);
+                }
+                foreach (SERVICE_WORK_PARTS ServWorkPart in CurrentServiceWork().SERVICE_WORK_PARTS.ToList())
+                {
+                    MarkAndDElServWorPartk(ServWorkPart);
+                }
+
+                if (DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State != EntityState.Added && DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State != EntityState.Detached)
+                {
+
+                    CurrAppoitment().SERVICE_WORKS.Remove(CurrentServiceWork());
+                    DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State = EntityState.Deleted;
+                }
+                else
+                {
+
+                    CurrAppoitment().SERVICE_WORKS.Remove(CurrentServiceWork());
+                    DMAppoitm.CurrContex.Entry(CurrentServiceWork()).State = EntityState.Detached;
+                }
+                sERVICE_WORKSBindingSource.RemoveCurrent();
             }
-            foreach(SERVICE_WORK_PARTS ServWorkPart in CurrentServiceWork().SERVICE_WORK_PARTS.ToList())
-            {
-                MarkAndDElServWorPartk(ServWorkPart);
-            }
-            sERVICE_WORKSBindingSource.RemoveCurrent();
         }
 
         private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
@@ -312,6 +336,7 @@ namespace ServiceManagment
             TFormSearchParts FormSrchParts = new TFormSearchParts(CurrClCar().CAR_ID, CurrClCar().MODEL_ID, CurrClCar().SUB_MODEL_ID);
             FormSrchParts.FormBorderStyle = FormBorderStyle.Sizable;
             FormSrchParts.RefreshGrid();
+            FormSrchParts.WindowState = FormWindowState.Maximized;
             FormSrchParts.ShowDialog();
             int PartID = FormSrchParts.PartID;
             if (PartID > 0)
@@ -321,6 +346,11 @@ namespace ServiceManagment
                 CurrWorkPart().PART_ID = PartID;
                 CurrWorkPart().Parts = DMAppoitm.GetPartByID(PartID);
                 CurrWorkPart().PART_PRICE = CurrWorkPart().Parts.part_price;
+                CurrWorkPart().INCLUDE_INVOICE = "Y";
+                CurrWorkPart().QUANTITY = 1;
+                CurrWorkPart().TOTAL_PRICE = CurrWorkPart().QUANTITY * CurrWorkPart().PART_PRICE;
+                CurrWorkPart().DISPL_MANUF_WORK_CARD = "N";
+                CurrWorkPart().MEASURE = DMStrings.MeasNumb;
                 CurrentServiceWork().SERVICE_WORK_PARTS.Add(CurrWorkPart());
                 ServicePartsBindSrc.ResetBindings(false);
             }         
@@ -359,12 +389,15 @@ namespace ServiceManagment
         {
             if (e.Column.FieldName == "SERVICE_ID")
             {
-                CurrentServiceWork().SERVICES = DMAppoitm.CurrContex.SERVICES.
-                                            Find(CurrentServiceWork().SERVICE_ID);
-                     
-                CurrentServiceWork().WORK_PRICE = CurrentServiceWork().SERVICES.PRICE_PER_HOUR;
+                CurrentServiceWork().WORK_PRICE = DMAppoitm.CurrContex.SERVICES.
+                                            Find(CurrentServiceWork().SERVICE_ID).PRICE_PER_HOUR; 
                 sERVICE_WORKSBindingSource.ResetCurrentItem();
             }
+            if (e.Column.FieldName == "WORK_PRICE" || e.Column.FieldName == "QUANTITY")
+            {
+                CurrentServiceWork().TOTAL_PRICE = CurrentServiceWork().QUANTITY * CurrentServiceWork().WORK_PRICE;
+            }
+
 
             if (e.Column.FieldName == "WORK_STATUS")
             {
@@ -389,14 +422,21 @@ namespace ServiceManagment
         }
         private void MarkAndDElEmplWork(EMPLOYEES_SERVICE_WORKS EmplWork)
         {
-            DMAppoitm.CurrContex.Entry(EmplWork).State = EntityState.Deleted;
+            if (DMAppoitm.CurrContex.Entry(EmplWork).State != EntityState.Added && DMAppoitm.CurrContex.Entry(EmplWork).State != EntityState.Detached)
+                DMAppoitm.CurrContex.Entry(EmplWork).State = EntityState.Deleted;
+            else
+                DMAppoitm.CurrContex.Entry(EmplWork).State = EntityState.Detached;
+            
             CurrentServiceWork().EMPLOYEES_SERVICE_WORKS.Remove(EmplWork);
             EmplSrvBindingSrc.Remove(EmplWork);
         }
 
         private void MarkAndDElServWorPartk(SERVICE_WORK_PARTS ServPart)
         {
-            DMAppoitm.CurrContex.Entry(ServPart).State = EntityState.Deleted;
+            if (DMAppoitm.CurrContex.Entry(ServPart).State != EntityState.Added && DMAppoitm.CurrContex.Entry(ServPart).State != EntityState.Detached)
+                DMAppoitm.CurrContex.Entry(ServPart).State = EntityState.Deleted;
+            else
+                DMAppoitm.CurrContex.Entry(ServPart).State = EntityState.Detached;
             CurrentServiceWork().SERVICE_WORK_PARTS.Remove(ServPart);
             ServicePartsBindSrc.Remove(ServPart);
         }
@@ -404,7 +444,11 @@ namespace ServiceManagment
 
         private void btnRemovePart_Click(object sender, EventArgs e)
         {
-            DMAppoitm.CurrContex.Entry(CurrWorkPart()).State = EntityState.Deleted;
+            if (DMAppoitm.CurrContex.Entry(CurrWorkPart()).State != EntityState.Added)
+                DMAppoitm.CurrContex.Entry(CurrWorkPart()).State = EntityState.Deleted;
+            else
+                DMAppoitm.CurrContex.Entry(CurrWorkPart()).State = EntityState.Detached;
+
             CurrentServiceWork().SERVICE_WORK_PARTS.Remove(CurrWorkPart());
             ServicePartsBindSrc.RemoveCurrent();
             
@@ -423,14 +467,14 @@ namespace ServiceManagment
 
         private void simpleButton2_Click_1(object sender, EventArgs e)
         {
-
-
-            folderBrowserDialog1.ShowDialog();
-            string SavePath = folderBrowserDialog1.SelectedPath + "\\" + DateTime.Now.ToShortDateString() + ".pdf";
+            Save(false);
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + @"\WorkCars");
+            string SavePath = AppDomain.CurrentDomain.BaseDirectory + @"\WorkCars\" + "WorkCard " + DateTime.Now.ToString("hh.mm.ss.ffffff") + ".pdf";
             if (SavePath != "")
             {
                 XtraReport1 Rep = new XtraReport1();
                 Rep.Test(CurrAppoitment().APPOITMENT_ID);
+                Rep.SetWorkCardDate(Convert.ToDateTime(dateEdit1.EditValue));
                 Rep.ExportToPdf(SavePath);
                 Process.Start(SavePath);
             }
@@ -446,6 +490,7 @@ namespace ServiceManagment
                 FormMngClients.ShowDialog();
                 ReloadAllClients();
                 aPPOITMENTBindingSource.ResetBindings(false);
+                cLIENT_CARSBindingSource.DataSource = DMAppoitm.GetAllClients_Cars(CurrAppoitment().CLIENT_ID).ToList();
             }
         }
 
@@ -464,6 +509,12 @@ namespace ServiceManagment
                     ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).APPOITMENT_ID = ((APPOITMENTS)aPPOITMENTBindingSource.Current).APPOITMENT_ID;
                     ((SERVICE_WORKS)sERVICE_WORKSBindingSource.Current).WORK_STATUS = DMStrings.ServiceWorkPend;
                     CurrentServiceWork().SERVICE_ID = FormServManage.ServiceID;
+                    CurrentServiceWork().QUANTITY = 1;
+                    CurrentServiceWork().INCLUDE_INVOICE = "Y";
+                    CurrentServiceWork().MEASURE = DMStrings.MeasWorkHours;
+                    CurrentServiceWork().WORK_PRICE = DMAppoitm.CurrContex.SERVICES.
+                                            Find(CurrentServiceWork().SERVICE_ID).PRICE_PER_HOUR;
+                    CurrentServiceWork().TOTAL_PRICE = CurrentServiceWork().QUANTITY * CurrentServiceWork().WORK_PRICE; 
                     CurrAppoitment().SERVICE_WORKS.Add(CurrentServiceWork());
                     sERVICE_WORKSBindingSource.ResetBindings(false);
                     sERVICESBindingSource.DataSource = DMAppoitm.CurrContex.SERVICES.ToList();
@@ -477,9 +528,49 @@ namespace ServiceManagment
 
         private void gridViewServiceParts_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-
+            if (e.Column.FieldName == "PART_PRICE" || e.Column.FieldName == "QUANTITY")
+            {
+                CurrWorkPart().TOTAL_PRICE = CurrWorkPart().QUANTITY * CurrWorkPart().PART_PRICE;
+            }
         }
 
+        private void sERVICE_WORKSBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            pnlServWorkDetails.Enabled = sERVICE_WORKSBindingSource.Count > 0;
+        }
+
+        private void btnInvoice_Click(object sender, EventArgs e)
+        {
+            string SavePath = AppDomain.CurrentDomain.BaseDirectory + @"\Invoices" + "Invoice " + DateTime.Now.ToString("hh.mm.ss.ffffff") + ".pdf";
+            if (SavePath != "")
+            {
+                XtraReport2 Rep = new XtraReport2();
+                Rep.LoadInvoiceData(CurrAppoitment().APPOITMENT_ID);
+                Rep.ExportToPdf(SavePath);
+                Process.Start(SavePath);
+            }
+        }
+
+        private void simpleButton2_Click_2(object sender, EventArgs e)
+        {
+
+            Save(false);
+            FormAppoitmentInvoice FormInv = new FormAppoitmentInvoice();
+            FormInv.SetAppData(CurrAppoitment().APPOITMENT_ID);
+            FormInv.ShowDialog();
+        }
+
+        private bool IsAppoitmentValid()
+        {
+            StringBuilder ErrorList = new StringBuilder();
+            if (CurrentAppoitment().CLIENT_CAR_ID == 0)
+                ErrorList.AppendLine("Моля изберете кола на клиента!");
+            if (CurrentAppoitment().CLIENT_ID == 0)
+                ErrorList.AppendLine("Моля изберете клиент!");
+            if (ErrorList.Length > 0)
+                MessageBox.Show(ErrorList.ToString());
+            return ErrorList.Length == 0;
+        }
         
     }
 }

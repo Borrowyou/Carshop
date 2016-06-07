@@ -28,6 +28,14 @@ namespace AutoPartDataModels
         public string EMAIL { get; set; }
         public string DETAILS { get; set; }
         public string CLIENT_TYPE { get; set; }
+        public string EIK { get; set; }
+        public string MON { get; set; }
+        public string ADDRESS { get; set; }
+        public string TOWN { get; set; }
+        public string IBAN { get; set; }
+        public string BANK { get; set; }
+        public string BIC { get; set; }
+        public string ZDDSNUMB { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }

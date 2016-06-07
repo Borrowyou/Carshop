@@ -21,3 +21,6 @@ C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\Serv
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReportCarServices.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormReports.resources
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.XtraReport1.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.XtraReport2.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.FormAppoitmentInvoice.resources
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\ServiceManagment\obj\Debug\ServiceManagment.XtraReport3.resources

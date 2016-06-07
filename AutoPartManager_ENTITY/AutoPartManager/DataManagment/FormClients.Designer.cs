@@ -152,6 +152,7 @@
             this.gridViewClients.OptionsFind.AlwaysVisible = true;
             this.gridViewClients.OptionsView.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
             this.gridViewClients.OptionsView.ShowGroupPanel = false;
+            this.gridViewClients.DoubleClick += new System.EventHandler(this.gridViewClients_DoubleClick);
             // 
             // colCLIENT_ID
             // 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Entity;
 using AutoPartDataModels;
+using ServiceManagment;
 
 namespace DataManagment
 {
@@ -80,6 +81,19 @@ namespace DataManagment
         private Clients CurrClient()
         {
             return (Clients)clientsBindingSource.Current;
+        }
+
+        private void gridViewClients_DoubleClick(object sender, EventArgs e)
+        {
+            if (CurrClient() != null)
+            {
+                var FormManageAppoitment = new TFormManageAppoitment(true);
+                FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
+                FormManageAppoitment.LoadOrInsAppt(-1);
+                FormManageAppoitment.CurrentAppoitment().CLIENT_ID = CurrClient().CLIENT_ID;
+                FormManageAppoitment.LoadAppClientCars();
+                FormManageAppoitment.ShowDialog();
+            }
         }
 
 

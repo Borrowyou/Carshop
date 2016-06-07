@@ -5,3 +5,4 @@ C:\PartsManager\Bin\AutoPartDataModels.dll
 C:\PartsManager\Bin\AutoPartDataModels.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartDataModels\obj\Debug\AutoPartDataModels.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartDataModels\obj\Debug\AutoPartDataModels.pdb
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\AutoPartDataModels\obj\Debug\AutoPartDataModels.csprojResolveAssemblyReference.cache

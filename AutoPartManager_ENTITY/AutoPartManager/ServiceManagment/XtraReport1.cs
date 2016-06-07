@@ -33,5 +33,11 @@ namespace ServiceManagment
             CalcPriceBindSrc.ResetBindings(false);
             
         }
+
+        public void SetWorkCardDate(DateTime Date)
+        {
+            xrLblDate.Text = Date.ToShortDateString();
+            xrDateBottom.Text = Date.ToShortDateString();
+        }
     }
 }

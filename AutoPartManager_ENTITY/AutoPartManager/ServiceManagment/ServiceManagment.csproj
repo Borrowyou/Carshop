@@ -95,6 +95,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrenyToBGNText.cs" />
     <Compile Include="DataMngStrings.cs" />
     <Compile Include="DBFuncs.cs" />
     <Compile Include="DMAppointments.cs" />
@@ -110,6 +111,12 @@
     </Compile>
     <Compile Include="FormAllServices.Designer.cs">
       <DependentUpon>FormAllServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAppoitmentInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAppoitmentInvoice.Designer.cs">
+      <DependentUpon>FormAppoitmentInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="FormReportCarServices.cs">
       <SubType>Form</SubType>
@@ -135,6 +142,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ReportInvoice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportInvoice.Designer.cs">
+      <DependentUpon>ReportInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="TFormAppointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +166,18 @@
     <Compile Include="XtraReport1.Designer.cs">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
+    <Compile Include="XtraReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport2.Designer.cs">
+      <DependentUpon>XtraReport2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="XtraReport3.Designer.cs">
+      <DependentUpon>XtraReport3.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormAllAppoitments.resx">
@@ -160,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAllServices.resx">
       <DependentUpon>FormAllServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAppoitmentInvoice.resx">
+      <DependentUpon>FormAppoitmentInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormReportCarServices.resx">
       <DependentUpon>FormReportCarServices.cs</DependentUpon>
@@ -181,6 +209,12 @@
     <EmbeddedResource Include="XtraReport1.resx">
       <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport2.resx">
+      <DependentUpon>XtraReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport3.resx">
+      <DependentUpon>XtraReport3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -191,6 +225,8 @@
     <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.EMPLOYEES_SERVICE_WORKS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.FUN_CALC_APP_SUM_BY_APP_ID_Result.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.FUN_INVOICE_DATA_BY_APP_ID_Result.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.FUN_INVOICE_TOTAL_SUM_BY_APP_ID_Result.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.LOOKUP_ITEMS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Parts.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.SERVICES.datasource" />

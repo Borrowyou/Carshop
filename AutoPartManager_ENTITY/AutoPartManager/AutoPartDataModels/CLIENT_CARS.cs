@@ -29,13 +29,17 @@ namespace AutoPartDataModels
         public Nullable<double> ENGINE_SIZE { get; set; }
         public string CAR_REG_NUMB { get; set; }
         public int SUB_MODEL_ID { get; set; }
+        public string RAMPH_NUMB { get; set; }
+        public string ENGINE_NUMB { get; set; }
+        public Nullable<int> HOURSE_POWER { get; set; }
+        public Nullable<double> KILOWATS { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
+        public virtual Cars Cars { get; set; }
         public virtual Clients Clients { get; set; }
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         public virtual Models Models { get; set; }
         public virtual SUB_MODELS SUB_MODELS { get; set; }
-        public virtual Cars Cars { get; set; }
     }
 }

@@ -79,6 +79,7 @@ namespace DataManagment
                     CDMEmployees.CurrContex.Entry(CurrEmployee()).State = EntityState.Modified;
                 }
                 CDMEmployees.CurrContex.SaveChanges();
+                MessageBox.Show("Успешно запазено");
                 InsertState = false;
                 if (ReloadFunc != null)
                     ReloadFunc();

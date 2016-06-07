@@ -86,10 +86,28 @@
     <Compile Include="EMPLOYEES_SERVICE_WORKS.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="FUN_CALC_APP_SUM_BY_APP_ID1_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="FUN_CALC_APP_SUM_BY_APP_ID_Result.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
+    <Compile Include="FUN_CALC_APP_SUM_BY_APP_ID_Result1.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FUN_CALC_APP_SUM_BY_APP_ID_Result2.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FUN_INVOICE_DATA_BY_APP_ID_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FUN_INVOICE_TOTAL_SUM_BY_APP_ID_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
     <Compile Include="FUN_YEARS_BETWEEN_LIST_Result.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GENERATORS.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="LogException.cs" />
@@ -131,6 +149,9 @@
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="VIEW_APPOITMENT_CLIENT_SUMS.cs">
+      <DependentUpon>EDMCarShop.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VIEW_APPOITMENT_INVOICE_DATA.cs">
       <DependentUpon>EDMCarShop.tt</DependentUpon>
     </Compile>
     <Compile Include="VIEW_CLIENT_CARS.cs">

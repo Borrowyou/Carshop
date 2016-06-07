@@ -93,7 +93,7 @@ namespace DataManagment
         public int GetSubModelIDByYear(int ModelID, int Year)
         {
             SUB_MODELS CurrSubModel = CurrContex.SUB_MODELS.FirstOrDefault(sm => sm.MODEL_ID == ModelID &&
-                        (sm.YEAR_MANUF <= Year && sm.YEAR_STOP >= Year));
+                        (sm.YEAR_MANUF <= Year && (sm.YEAR_STOP >= Year || sm.YEAR_STOP == null)));
             if (CurrSubModel == null)
                 return -1;
             else

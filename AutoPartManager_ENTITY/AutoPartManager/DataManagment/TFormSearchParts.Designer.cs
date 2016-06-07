@@ -149,6 +149,8 @@
             // colpart_price
             // 
             this.colpart_price.Caption = "Цена";
+            this.colpart_price.DisplayFormat.FormatString = "c";
+            this.colpart_price.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colpart_price.FieldName = "part_price";
             this.colpart_price.Name = "colpart_price";
             this.colpart_price.Visible = true;

@@ -31,3 +31,5 @@ C:\PartsManager\Bin\DataManagment.dll
 C:\PartsManager\Bin\DataManagment.pdb
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.dll
 C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.pdb
+C:\PartsManager\Bin\NLog.config
+C:\Users\PC\Documents\GitHub\Carshop\AutoPartManager_ENTITY\AutoPartManager\DataManagment\obj\Debug\DataManagment.FormManageMarkAndModels.resources

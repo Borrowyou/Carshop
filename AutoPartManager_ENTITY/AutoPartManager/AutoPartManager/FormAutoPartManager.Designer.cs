@@ -38,6 +38,7 @@
             this.btnReports = new DevExpress.XtraEditors.SimpleButton();
             this.btnAppoitments = new DevExpress.XtraEditors.SimpleButton();
             this.pnlForm = new System.Windows.Forms.Panel();
+            this.маркиИМоделиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.PnlBtms.SuspendLayout();
             this.SuspendLayout();
@@ -48,10 +49,11 @@
             this.clientsToolStripMenuItem,
             this.частиToolStripMenuItem,
             this.услугиToolStripMenuItem,
-            this.служителиToolStripMenuItem});
+            this.служителиToolStripMenuItem,
+            this.маркиИМоделиToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(386, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(445, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -90,7 +92,7 @@
             this.PnlBtms.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlBtms.Location = new System.Drawing.Point(0, 24);
             this.PnlBtms.Name = "PnlBtms";
-            this.PnlBtms.Size = new System.Drawing.Size(386, 44);
+            this.PnlBtms.Size = new System.Drawing.Size(445, 44);
             this.PnlBtms.TabIndex = 2;
             // 
             // btnReports
@@ -121,14 +123,21 @@
             this.pnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlForm.Location = new System.Drawing.Point(0, 68);
             this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(386, 194);
+            this.pnlForm.Size = new System.Drawing.Size(445, 194);
             this.pnlForm.TabIndex = 3;
+            // 
+            // маркиИМоделиToolStripMenuItem
+            // 
+            this.маркиИМоделиToolStripMenuItem.Name = "маркиИМоделиToolStripMenuItem";
+            this.маркиИМоделиToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
+            this.маркиИМоделиToolStripMenuItem.Text = "Марки и модели";
+            this.маркиИМоделиToolStripMenuItem.Click += new System.EventHandler(this.маркиИМоделиToolStripMenuItem_Click);
             // 
             // FormAutoPartManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 262);
+            this.ClientSize = new System.Drawing.Size(445, 262);
             this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.PnlBtms);
             this.Controls.Add(this.menuStrip1);
@@ -157,6 +166,7 @@
         private System.Windows.Forms.ToolStripMenuItem услугиToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem служителиToolStripMenuItem;
         private DevExpress.XtraEditors.SimpleButton btnReports;
+        private System.Windows.Forms.ToolStripMenuItem маркиИМоделиToolStripMenuItem;
 
 
     }

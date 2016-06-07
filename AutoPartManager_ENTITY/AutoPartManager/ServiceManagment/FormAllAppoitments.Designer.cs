@@ -42,6 +42,7 @@
             this.colCLIENT_CARS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSearchLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCOMPLAINS = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.aPPOITMENTSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GridCtrlAppoitments)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -80,7 +81,7 @@
             // toolStripMenuCancel
             // 
             this.toolStripMenuCancel.Name = "toolStripMenuCancel";
-            this.toolStripMenuCancel.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuCancel.Size = new System.Drawing.Size(140, 22);
             this.toolStripMenuCancel.Text = "Канселирай";
             this.toolStripMenuCancel.Click += new System.EventHandler(this.toolStripMenuCancel_Click);
             // 
@@ -93,7 +94,8 @@
             this.colCLIENT_CAR_ID,
             this.colClients,
             this.colSERVICE_WORKS,
-            this.colCLIENT_CARS});
+            this.colCLIENT_CARS,
+            this.colCOMPLAINS});
             this.gridViewAppoitments.GridControl = this.GridCtrlAppoitments;
             this.gridViewAppoitments.Name = "gridViewAppoitments";
             this.gridViewAppoitments.OptionsBehavior.Editable = false;
@@ -160,6 +162,15 @@
             this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
+            // colCOMPLAINS
+            // 
+            this.colCOMPLAINS.Caption = "Подробности";
+            this.colCOMPLAINS.FieldName = "COMPLAINS";
+            this.colCOMPLAINS.Name = "colCOMPLAINS";
+            this.colCOMPLAINS.Visible = true;
+            this.colCOMPLAINS.VisibleIndex = 3;
+            this.colCOMPLAINS.Width = 313;
+            // 
             // FormAllAppoitments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,5 +207,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colCLIENT_CARS;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuCancel;
+        private DevExpress.XtraGrid.Columns.GridColumn colCOMPLAINS;
     }
 }

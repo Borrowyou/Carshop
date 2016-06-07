@@ -21,6 +21,11 @@ namespace DataManagment
         public const string AppStatusActive = "app_st_act";
         public const string AppStatusCancel = "app_st_canc";
         public const string AppStatusFinish = "app_st_fin";
+        public const string MeasuresCode = "measures";
+        public const string MeasNumb = "measure_numb";
+        public const string MeasWorkHours = "measure_work_h";
+        public const string PaymLookup = "paym_type";
+        public const string PaymCash = "paym_t_cash";
 
     }
 }

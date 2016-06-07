@@ -49,7 +49,29 @@ namespace AutoPartDataModels
         public virtual DbSet<V_Car_Model_Part> V_Car_Model_Part { get; set; }
         public virtual DbSet<V_Cars_Models> V_Cars_Models { get; set; }
         public virtual DbSet<VIEW_APPOITMENT_CLIENT_SUMS> VIEW_APPOITMENT_CLIENT_SUMS { get; set; }
+        public virtual DbSet<VIEW_APPOITMENT_INVOICE_DATA> VIEW_APPOITMENT_INVOICE_DATA { get; set; }
         public virtual DbSet<VIEW_CLIENT_CARS> VIEW_CLIENT_CARS { get; set; }
+        public virtual DbSet<GENERATORS> GENERATORS { get; set; }
+    
+        [DbFunction("CarShopEntities", "FUN_INVOICE_DATA_BY_APP_ID")]
+        public virtual IQueryable<FUN_INVOICE_DATA_BY_APP_ID_Result> FUN_INVOICE_DATA_BY_APP_ID(Nullable<int> aPPOITMENT_ID)
+        {
+            var aPPOITMENT_IDParameter = aPPOITMENT_ID.HasValue ?
+                new ObjectParameter("APPOITMENT_ID", aPPOITMENT_ID) :
+                new ObjectParameter("APPOITMENT_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FUN_INVOICE_DATA_BY_APP_ID_Result>("[CarShopEntities].[FUN_INVOICE_DATA_BY_APP_ID](@APPOITMENT_ID)", aPPOITMENT_IDParameter);
+        }
+    
+        [DbFunction("CarShopEntities", "FUN_INVOICE_TOTAL_SUM_BY_APP_ID")]
+        public virtual IQueryable<FUN_INVOICE_TOTAL_SUM_BY_APP_ID_Result> FUN_INVOICE_TOTAL_SUM_BY_APP_ID(Nullable<int> aPPOITMENT_ID)
+        {
+            var aPPOITMENT_IDParameter = aPPOITMENT_ID.HasValue ?
+                new ObjectParameter("APPOITMENT_ID", aPPOITMENT_ID) :
+                new ObjectParameter("APPOITMENT_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<FUN_INVOICE_TOTAL_SUM_BY_APP_ID_Result>("[CarShopEntities].[FUN_INVOICE_TOTAL_SUM_BY_APP_ID](@APPOITMENT_ID)", aPPOITMENT_IDParameter);
+        }
     
         [DbFunction("CarShopEntities", "FUN_YEARS_BETWEEN_LIST")]
         public virtual IQueryable<FUN_YEARS_BETWEEN_LIST_Result> FUN_YEARS_BETWEEN_LIST(Nullable<int> from, Nullable<int> to)

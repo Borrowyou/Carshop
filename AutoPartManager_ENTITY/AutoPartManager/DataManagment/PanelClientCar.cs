@@ -157,6 +157,8 @@ namespace DataManagment
                 ErrorList.AppendLine("Моля изберете модел или премахнете колата");
             if (CurrClientCar().CAR_YEAR == 0)
                 ErrorList.AppendLine("Моля изберете година или премахнете колата");
+            if (CurrClientCar().ENGINE_TYPE == string.Empty || CurrClientCar().ENGINE_TYPE == null)
+                ErrorList.AppendLine("Моля изберете вид на двигателя");
             if (ErrorList.Length > 0)
                 MessageBox.Show(ErrorList.ToString());
             return ErrorList.Length == 0;

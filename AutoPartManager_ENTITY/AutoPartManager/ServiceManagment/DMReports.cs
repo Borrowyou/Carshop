@@ -25,6 +25,11 @@ namespace ServiceManagment
             return CurrContex.SERVICE_WORKS;
         }
 
+        public DbSet<APPOITMENTS> GetAppDBSet()
+        {
+            return CurrContex.APPOITMENTS;
+        }
+
         public void LoadCarServicesByID(int ClientCar)
         {
             var CarServices = CurrContex.SERVICE_WORKS.Where(sw => sw.APPOITMENTS.CLIENT_CAR_ID == ClientCar
@@ -38,6 +43,12 @@ namespace ServiceManagment
             }
         
         }
+
+
+        public void LoadClientCarAppoitments(int ClientCarID)
+        { 
+            
+        }
         public IQueryable<Clients> GetAllClients()
         {
             return CurrContex.Clients;
@@ -46,6 +57,14 @@ namespace ServiceManagment
         public IQueryable<CLIENT_CARS> GetAllCars()
         {
             return CurrContex.CLIENT_CARS.Include(c => c.Models).Include(c => c.LOOKUP_ITEMS);
+        }
+
+        public void LoadCarAppoitmByID(int ClientCarID)
+        {
+            CurrContex.Dispose();
+            CurrContex = new CarShopEntities();
+            CurrContex.APPOITMENTS.Where(sw => sw.CLIENT_CAR_ID == ClientCarID && sw.APP_STATUS != DMStrings.AppStatusCancel)
+                                         .Include(sw => sw.Clients).Load();
         }
 
 

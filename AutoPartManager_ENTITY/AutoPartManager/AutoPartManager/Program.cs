@@ -33,9 +33,7 @@ namespace AutoPartManager
             }
             catch (Exception exc)
             {
-                
                 LogFatalException(exc);
-     
             }
         }
 
@@ -44,7 +42,6 @@ namespace AutoPartManager
             string message = String.Format(
                 "(Application version {0}) {1}", Application.ProductVersion, exc.Message);
             LogExcept.LogException(exc);
-            _logger.Error(message, exc);
             MessageBox.Show(exc.Message);
         }
 

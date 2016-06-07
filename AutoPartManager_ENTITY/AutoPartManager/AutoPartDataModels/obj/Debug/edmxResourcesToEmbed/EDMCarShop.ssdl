@@ -32,6 +32,10 @@
     <Property Name="ENGINE_SIZE" Type="float" />
     <Property Name="CAR_REG_NUMB" Type="varchar" MaxLength="20" />
     <Property Name="SUB_MODEL_ID" Type="int" Nullable="false" />
+    <Property Name="RAMPH_NUMB" Type="varchar" MaxLength="100" />
+    <Property Name="ENGINE_NUMB" Type="varchar" MaxLength="100" />
+    <Property Name="HOURSE_POWER" Type="int" />
+    <Property Name="KILOWATS" Type="float" />
   </EntityType>
   <EntityType Name="Clients">
     <Key>
@@ -44,6 +48,14 @@
     <Property Name="EMAIL" Type="varchar" MaxLength="100" />
     <Property Name="DETAILS" Type="varchar" MaxLength="500" />
     <Property Name="CLIENT_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="EIK" Type="varchar" MaxLength="15" />
+    <Property Name="MON" Type="varchar" MaxLength="200" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="500" />
+    <Property Name="TOWN" Type="varchar" MaxLength="100" />
+    <Property Name="IBAN" Type="varchar" MaxLength="100" />
+    <Property Name="BANK" Type="varchar" MaxLength="1000" />
+    <Property Name="BIC" Type="varchar" MaxLength="20" />
+    <Property Name="ZDDSNUMB" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="EMPLOYEES">
     <Key>
@@ -65,6 +77,13 @@
     <Property Name="EMPLOYEE_WORK_ID" Type="int" Nullable="false" />
     <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
     <Property Name="EMPLOYEE_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GENERATORS">
+    <Key>
+      <PropertyRef Name="GENERATOR_NAME" />
+    </Key>
+    <Property Name="GENERATOR_NAME" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="GENERATOR_VALUE" Type="int" />
   </EntityType>
   <EntityType Name="LOOKUP_ITEMS">
     <Key>
@@ -134,6 +153,11 @@
     <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
     <Property Name="PART_ID" Type="int" Nullable="false" />
     <Property Name="PART_PRICE" Type="float" />
+    <Property Name="QUANTITY" Type="float" Nullable="false" />
+    <Property Name="MEASURE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TOTAL_PRICE" Type="float" />
+    <Property Name="INCLUDE_INVOICE" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="DISPL_MANUF_WORK_CARD" Type="varchar" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="SERVICE_WORKS">
     <Key>
@@ -147,6 +171,10 @@
     <Property Name="TIME_FINISH" Type="datetime" />
     <Property Name="WORK_PRICE" Type="float" />
     <Property Name="DETAILS" Type="varchar(max)" />
+    <Property Name="QUANTITY" Type="float" Nullable="false" />
+    <Property Name="MEASURE" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TOTAL_PRICE" Type="float" />
+    <Property Name="INCLUDE_INVOICE" Type="varchar" MaxLength="1" Nullable="false" />
   </EntityType>
   <EntityType Name="SERVICES">
     <Key>
@@ -221,6 +249,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
       <PropertyRef Name="APPOITMENT_ID" />
       <PropertyRef Name="SERVICE_WORK_ID" />
       <PropertyRef Name="SERVICE_NAME" />
+      <PropertyRef Name="QUANTITY" />
     </Key>
     <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
     <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
@@ -228,6 +257,24 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_CLIENT_SUMS' does not 
     <Property Name="PART_NAME" Type="varchar" MaxLength="255" />
     <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
     <Property Name="WORK_PRICE" Type="float" />
+    <Property Name="QUANTITY" Type="float" Nullable="false" />
+    <Property Name="SINGLE_PRICE" Type="float" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CarShop.dbo.VIEW_APPOITMENT_INVOICE_DATA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="VIEW_APPOITMENT_INVOICE_DATA">
+    <Key>
+      <PropertyRef Name="APPOITMENT_ID" />
+      <PropertyRef Name="QUANTITY" />
+      <PropertyRef Name="SERVICE_WORK_ID" />
+    </Key>
+    <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
+    <Property Name="QUANTITY" Type="float" Nullable="false" />
+    <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
+    <Property Name="SERVICE_NAME" Type="varchar" MaxLength="255" />
+    <Property Name="WORK_PRICE" Type="float" />
+    <Property Name="MEASURE" Type="varchar" MaxLength="30" />
+    <Property Name="TOTAL_PRICE" Type="float" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -450,6 +497,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_SERV_WORK_LOOKUP_MEASURE">
+    <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
+    <End Role="SERVICE_WORKS" Type="Self.SERVICE_WORKS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP_ITEMS">
+        <PropertyRef Name="ITEM_CODE" />
+      </Principal>
+      <Dependent Role="SERVICE_WORKS">
+        <PropertyRef Name="MEASURE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SERV_WORK_PART_PARTS">
     <End Role="Parts" Type="Self.Parts" Multiplicity="1" />
     <End Role="SERVICE_WORK_PARTS" Type="Self.SERVICE_WORK_PARTS" Multiplicity="*" />
@@ -459,6 +518,18 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
       </Principal>
       <Dependent Role="SERVICE_WORK_PARTS">
         <PropertyRef Name="PART_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SERV_WORK_PARTS_LOOKUP_MEASURE">
+    <End Role="LOOKUP_ITEMS" Type="Self.LOOKUP_ITEMS" Multiplicity="1" />
+    <End Role="SERVICE_WORK_PARTS" Type="Self.SERVICE_WORK_PARTS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOOKUP_ITEMS">
+        <PropertyRef Name="ITEM_CODE" />
+      </Principal>
+      <Dependent Role="SERVICE_WORK_PARTS">
+        <PropertyRef Name="MEASURE" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -521,6 +592,35 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
           <Property Name="PART_NAME" Type="varchar" MaxLength="255" />
           <Property Name="PART_MANUF" Type="varchar" MaxLength="255" />
           <Property Name="WORK_PRICE" Type="float" />
+          <Property Name="QUANTITY" Type="float" />
+          <Property Name="SINGLE_PRICE" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="FUN_INVOICE_DATA_BY_APP_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="APPOITMENT_ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Row" Type="bigint" />
+          <Property Name="APPOITMENT_ID" Type="int" Nullable="false" />
+          <Property Name="QUANTITY" Type="float" Nullable="false" />
+          <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
+          <Property Name="SERVICE_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="WORK_PRICE" Type="float" />
+          <Property Name="MEASURE" Type="varchar" MaxLength="30" />
+          <Property Name="TOTAL_PRICE" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="FUN_INVOICE_TOTAL_SUM_BY_APP_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="APPOITMENT_ID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="TOTAL_PRICE" Type="float" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -548,6 +648,7 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
     <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EMPLOYEES" EntityType="Self.EMPLOYEES" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EMPLOYEES_SERVICE_WORKS" EntityType="Self.EMPLOYEES_SERVICE_WORKS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GENERATORS" EntityType="Self.GENERATORS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LOOKUP_ITEMS" EntityType="Self.LOOKUP_ITEMS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Parts" EntityType="Self.Parts" Schema="dbo" store:Type="Tables" />
@@ -588,8 +689,21 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
     [VIEW_APPOITMENT_CLIENT_SUMS].[SERVICE_NAME] AS [SERVICE_NAME], 
     [VIEW_APPOITMENT_CLIENT_SUMS].[PART_NAME] AS [PART_NAME], 
     [VIEW_APPOITMENT_CLIENT_SUMS].[PART_MANUF] AS [PART_MANUF], 
-    [VIEW_APPOITMENT_CLIENT_SUMS].[WORK_PRICE] AS [WORK_PRICE]
+    [VIEW_APPOITMENT_CLIENT_SUMS].[WORK_PRICE] AS [WORK_PRICE], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[QUANTITY] AS [QUANTITY], 
+    [VIEW_APPOITMENT_CLIENT_SUMS].[SINGLE_PRICE] AS [SINGLE_PRICE]
     FROM [dbo].[VIEW_APPOITMENT_CLIENT_SUMS] AS [VIEW_APPOITMENT_CLIENT_SUMS]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="VIEW_APPOITMENT_INVOICE_DATA" EntityType="Self.VIEW_APPOITMENT_INVOICE_DATA" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [VIEW_APPOITMENT_INVOICE_DATA].[APPOITMENT_ID] AS [APPOITMENT_ID], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[QUANTITY] AS [QUANTITY], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[SERVICE_WORK_ID] AS [SERVICE_WORK_ID], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[SERVICE_NAME] AS [SERVICE_NAME], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[WORK_PRICE] AS [WORK_PRICE], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[MEASURE] AS [MEASURE], 
+    [VIEW_APPOITMENT_INVOICE_DATA].[TOTAL_PRICE] AS [TOTAL_PRICE]
+    FROM [dbo].[VIEW_APPOITMENT_INVOICE_DATA] AS [VIEW_APPOITMENT_INVOICE_DATA]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="VIEW_CLIENT_CARS" EntityType="Self.VIEW_CLIENT_CARS" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -671,8 +785,16 @@ warning 6002: The table/view 'CarShop.dbo.VIEW_CLIENT_CARS' does not have a prim
       <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
       <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
     </AssociationSet>
+    <AssociationSet Name="FK_SERV_WORK_LOOKUP_MEASURE" Association="Self.FK_SERV_WORK_LOOKUP_MEASURE">
+      <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
+      <End Role="SERVICE_WORKS" EntitySet="SERVICE_WORKS" />
+    </AssociationSet>
     <AssociationSet Name="FK_SERV_WORK_PART_PARTS" Association="Self.FK_SERV_WORK_PART_PARTS">
       <End Role="Parts" EntitySet="Parts" />
+      <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SERV_WORK_PARTS_LOOKUP_MEASURE" Association="Self.FK_SERV_WORK_PARTS_LOOKUP_MEASURE">
+      <End Role="LOOKUP_ITEMS" EntitySet="LOOKUP_ITEMS" />
       <End Role="SERVICE_WORK_PARTS" EntitySet="SERVICE_WORK_PARTS" />
     </AssociationSet>
     <AssociationSet Name="FK_SERVICE_WORK_APPOITMENT_ID" Association="Self.FK_SERVICE_WORK_APPOITMENT_ID">

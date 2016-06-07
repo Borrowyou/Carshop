@@ -53,16 +53,15 @@ namespace DataManagment
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            try
-            {
-                sERVICEBindingSource.EndEdit();
-                CDMServices.CurrContex.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex);
-                MessageBox.Show(ex.Message);
-            }
+            SaveService(true);
+
+        }
+        private void SaveService(bool DoAlert)
+        {
+            sERVICEBindingSource.EndEdit();
+            CDMServices.CurrContex.SaveChanges();
+            if (DoAlert)
+                MessageBox.Show("Успешно запазено");
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -79,8 +78,9 @@ namespace DataManagment
 
         private void sERVICEGridControl_DoubleClick(object sender, EventArgs e)
         {
-            if (CurrService().SERVICE_ID > 0)
+            if (CurrService().SERVICE_ID > 0 && Modal == true)
             {
+                SaveService(false); 
                 ServiceID = CurrService().SERVICE_ID;
                 Close();
             }

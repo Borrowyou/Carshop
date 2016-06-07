@@ -22,6 +22,8 @@ namespace AutoPartDataModels
             this.Clients = new HashSet<Clients>();
             this.EMPLOYEES = new HashSet<EMPLOYEES>();
             this.SERVICE_WORKS = new HashSet<SERVICE_WORKS>();
+            this.SERVICE_WORK_PARTS = new HashSet<SERVICE_WORK_PARTS>();
+            this.SERVICE_WORKS1 = new HashSet<SERVICE_WORKS>();
         }
     
         public int L_ITEM_ID { get; set; }
@@ -40,5 +42,9 @@ namespace AutoPartDataModels
         public virtual ICollection<EMPLOYEES> EMPLOYEES { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORKS> SERVICE_WORKS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SERVICE_WORKS> SERVICE_WORKS1 { get; set; }
     }
 }

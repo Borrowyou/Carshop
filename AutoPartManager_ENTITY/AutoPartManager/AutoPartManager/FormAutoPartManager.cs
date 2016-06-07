@@ -95,5 +95,12 @@ namespace AutoPartManager
         {
             InitReportsForm();
         }
+
+        private void маркиИМоделиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormManageMarkAndModels FormMngMarkModels = new FormManageMarkAndModels();
+            FormMngMarkModels.Show();
+
+        }
     }
 }

@@ -29,11 +29,16 @@ namespace AutoPartDataModels
         public Nullable<System.DateTime> TIME_FINISH { get; set; }
         public Nullable<double> WORK_PRICE { get; set; }
         public string DETAILS { get; set; }
+        public double QUANTITY { get; set; }
+        public string MEASURE { get; set; }
+        public Nullable<double> TOTAL_PRICE { get; set; }
+        public string INCLUDE_INVOICE { get; set; }
     
         public virtual APPOITMENTS APPOITMENTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
+        public virtual LOOKUP_ITEMS LOOKUP_ITEMS1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
         public virtual SERVICES SERVICES { get; set; }

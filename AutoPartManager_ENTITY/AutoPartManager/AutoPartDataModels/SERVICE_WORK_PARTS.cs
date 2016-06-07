@@ -18,7 +18,13 @@ namespace AutoPartDataModels
         public int SERVICE_WORK_ID { get; set; }
         public int PART_ID { get; set; }
         public Nullable<double> PART_PRICE { get; set; }
+        public string MEASURE { get; set; }
+        public double QUANTITY { get; set; }
+        public Nullable<double> TOTAL_PRICE { get; set; }
+        public string INCLUDE_INVOICE { get; set; }
+        public string DISPL_MANUF_WORK_CARD { get; set; }
     
+        public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         public virtual Parts Parts { get; set; }
         public virtual SERVICE_WORKS SERVICE_WORKS { get; set; }
     }

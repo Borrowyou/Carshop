@@ -89,9 +89,13 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NLog.4.3.1\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.3.4\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="ServiceManagment, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\PartsManager\Bin\ServiceManagment.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -125,6 +129,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DMCars.cs" />
     <Compile Include="DMEmployees.cs" />
     <Compile Include="DMParts.cs" />
     <Compile Include="FormEmployees.cs">
@@ -153,6 +158,12 @@
     </Compile>
     <Compile Include="FormManageEmployee.Designer.cs">
       <DependentUpon>FormManageEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormManageMarkAndModels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormManageMarkAndModels.Designer.cs">
+      <DependentUpon>FormManageMarkAndModels.cs</DependentUpon>
     </Compile>
     <Compile Include="PanelClientCar.cs">
       <SubType>UserControl</SubType>
@@ -227,6 +238,9 @@
     <EmbeddedResource Include="FormManageEmployee.resx">
       <DependentUpon>FormManageEmployee.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormManageMarkAndModels.resx">
+      <DependentUpon>FormManageMarkAndModels.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PanelClientCar.resx">
       <DependentUpon>PanelClientCar.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +275,12 @@
     <None Include="ClientsDataSet.xss">
       <DependentUpon>ClientsDataSet.xsd</DependentUpon>
     </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\AutoPartDataModels.APPOITMENTS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.Cars.datasource" />
@@ -279,6 +299,7 @@
     <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORKS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.SERVICE_WORK_PARTS.datasource" />
     <None Include="Properties\DataSources\AutoPartDataModels.SUB_CATEGORIES.datasource" />
+    <None Include="Properties\DataSources\AutoPartDataModels.SUB_MODELS.datasource" />
     <None Include="Properties\DataSources\CarShopEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

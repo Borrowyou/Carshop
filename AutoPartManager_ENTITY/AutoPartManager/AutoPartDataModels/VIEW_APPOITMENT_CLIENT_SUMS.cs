@@ -20,5 +20,7 @@ namespace AutoPartDataModels
         public string PART_NAME { get; set; }
         public string PART_MANUF { get; set; }
         public Nullable<double> WORK_PRICE { get; set; }
+        public double QUANTITY { get; set; }
+        public Nullable<double> SINGLE_PRICE { get; set; }
     }
 }

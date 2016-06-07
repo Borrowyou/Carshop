@@ -124,7 +124,48 @@ namespace ServiceManagment
         {
             return CurrContex.Parts.FirstOrDefault(p => p.Part_ID == PartID);
         }
+        public Clients GetMainFirm()
+        {
+            return CurrContex.Clients.FirstOrDefault(c => c.CLIENT_NAME.Contains("АБАРТ-2000"));
+        }
 
+        public IQueryable<FUN_INVOICE_DATA_BY_APP_ID_Result> GetInvoiceDataByAppID(int Appid)
+        {
+            return CurrContex.FUN_INVOICE_DATA_BY_APP_ID(Appid);
+        }
 
+        public IQueryable<LOOKUP_ITEMS> GetMEasures()
+        {
+
+            return CurrContex.LOOKUP_ITEMS.Where(l => l.LOOKUP_NAME == DMStrings.MeasuresCode);
+        }
+
+        public IQueryable<FUN_INVOICE_TOTAL_SUM_BY_APP_ID_Result> GetAppTotalSum(int AppID)
+        {
+            return CurrContex.FUN_INVOICE_TOTAL_SUM_BY_APP_ID(AppID);
+        }
+
+        public int GetLastInvoiceID()
+        {
+            return Convert.ToInt32(CurrContex.GENERATORS.FirstOrDefault(g => g.GENERATOR_NAME == "INVOICE").GENERATOR_VALUE);
+        }
+
+        public IQueryable<LOOKUP_ITEMS> GetPaymTypes()
+        {
+            return CurrContex.LOOKUP_ITEMS.Where(l => l.LOOKUP_NAME == DMStrings.PaymLookup);
+        }
+
+        public void UpdateInvoiceGenID(int InvoiceID)
+        {
+            CurrContex.GENERATORS.FirstOrDefault(g => g.GENERATOR_NAME == "INVOICE").GENERATOR_VALUE = InvoiceID;
+            CurrContex.SaveChanges();
+        }
+
+        public Clients ClientByAppID(int AppID)
+        {
+            var App = CurrContex.APPOITMENTS.Where(a => a.APPOITMENT_ID == AppID).FirstOrDefault();
+            Clients AppClient = CurrContex.Clients.Where(c => c.CLIENT_ID == App.CLIENT_ID).FirstOrDefault();
+            return AppClient;
+        }
     }
 }

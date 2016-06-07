@@ -23,7 +23,7 @@ namespace ServiceManagment
 
         private void SetDataSources()
         {
-            ServiceWorksBindingSrc.DataSource = CDMReports.GetServiceDBSet().Local.ToBindingList();
+            ServiceWorksBindingSrc.DataSource = CDMReports.GetAppDBSet().Local.ToBindingList();
             ClientsBindSrc.DataSource = CDMReports.GetAllClients().ToList();
             CarSrchBindingSrc.DataSource = CDMReports.GetAllCars().ToList();
         }
@@ -36,11 +36,18 @@ namespace ServiceManagment
 
         private void btnFindClCar_Click(object sender, EventArgs e)
         {
+            ReloadData();
+        }
+
+        private void ReloadData()
+        {
             if (searchLookUpEdit2.EditValue != null)
             {
-                int CurrClCar = (int)searchLookUpEdit2.EditValue;
-                CDMReports.LoadCarServicesByID(CurrClCar);
+                int CurrClCar = Convert.ToInt32(searchLookUpEdit2.EditValue);
+                CDMReports.LoadCarAppoitmByID(CurrClCar);
+                ServiceWorksBindingSrc.DataSource = CDMReports.GetAppDBSet().Local.ToBindingList();
             }
+        
         }
 
         private void gridViewCarRepairs_DoubleClick(object sender, EventArgs e)
@@ -61,9 +68,14 @@ namespace ServiceManagment
             }
         }
 
-        private SERVICE_WORKS CurrServWork()
+        private APPOITMENTS CurrServWork()
         {
-            return (SERVICE_WORKS)ServiceWorksBindingSrc.Current;
+            return (APPOITMENTS)ServiceWorksBindingSrc.Current;
+        }
+
+        private void searchLookUpEdit2_EditValueChanged(object sender, EventArgs e)
+        {
+            ReloadData();
         }
 
     }
