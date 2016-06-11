@@ -39,8 +39,8 @@ namespace AutoPartDataModels
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
+        public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
-        public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
     }
 }

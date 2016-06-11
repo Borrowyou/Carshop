@@ -30,7 +30,6 @@ namespace AutoPartDataModels
     
         public virtual DbSet<APPOITMENTS> APPOITMENTS { get; set; }
         public virtual DbSet<Cars> Cars { get; set; }
-        public virtual DbSet<CLIENT_CARS> CLIENT_CARS { get; set; }
         public virtual DbSet<Clients> Clients { get; set; }
         public virtual DbSet<EMPLOYEES> EMPLOYEES { get; set; }
         public virtual DbSet<EMPLOYEES_SERVICE_WORKS> EMPLOYEES_SERVICE_WORKS { get; set; }
@@ -52,6 +51,7 @@ namespace AutoPartDataModels
         public virtual DbSet<VIEW_APPOITMENT_INVOICE_DATA> VIEW_APPOITMENT_INVOICE_DATA { get; set; }
         public virtual DbSet<VIEW_CLIENT_CARS> VIEW_CLIENT_CARS { get; set; }
         public virtual DbSet<GENERATORS> GENERATORS { get; set; }
+        public virtual DbSet<CLIENT_CARS> CLIENT_CARS { get; set; }
     
         [DbFunction("CarShopEntities", "FUN_INVOICE_DATA_BY_APP_ID")]
         public virtual IQueryable<FUN_INVOICE_DATA_BY_APP_ID_Result> FUN_INVOICE_DATA_BY_APP_ID(Nullable<int> aPPOITMENT_ID)

@@ -29,9 +29,9 @@ namespace AutoPartDataModels
         public Nullable<double> CAR_MILEAGE { get; set; }
     
         public virtual LOOKUP_ITEMS LOOKUP_ITEMS { get; set; }
-        public virtual CLIENT_CARS CLIENT_CARS { get; set; }
         public virtual Clients Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORKS> SERVICE_WORKS { get; set; }
+        public virtual CLIENT_CARS CLIENT_CARS { get; set; }
     }
 }

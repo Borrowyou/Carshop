@@ -18,12 +18,12 @@ namespace AutoPartDataModels
         public LOOKUP_ITEMS()
         {
             this.APPOITMENTS = new HashSet<APPOITMENTS>();
-            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
             this.Clients = new HashSet<Clients>();
             this.EMPLOYEES = new HashSet<EMPLOYEES>();
             this.SERVICE_WORKS = new HashSet<SERVICE_WORKS>();
             this.SERVICE_WORK_PARTS = new HashSet<SERVICE_WORK_PARTS>();
             this.SERVICE_WORKS1 = new HashSet<SERVICE_WORKS>();
+            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
         }
     
         public int L_ITEM_ID { get; set; }
@@ -35,8 +35,6 @@ namespace AutoPartDataModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<APPOITMENTS> APPOITMENTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Clients> Clients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EMPLOYEES> EMPLOYEES { get; set; }
@@ -46,5 +44,7 @@ namespace AutoPartDataModels
         public virtual ICollection<SERVICE_WORK_PARTS> SERVICE_WORK_PARTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SERVICE_WORKS> SERVICE_WORKS1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
     }
 }

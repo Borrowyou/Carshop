@@ -50,13 +50,12 @@ namespace ServiceManagment
 
         public void LoadAllAppoitments()
         {
-            CurrContex.APPOITMENTS.Local.Clear();
-            var AllAppoitments = CurrContex.APPOITMENTS.Where(a => a.APP_STATUS == DMStrings.AppStatusActive)
+            CurrContex.Dispose();
+            CurrContex = new CarShopEntities();
+            CurrContex.APPOITMENTS.Where(a => a.APP_STATUS == DMStrings.AppStatusActive)
                 .Include(a => a.Clients).Include(a => a.SERVICE_WORKS)
                                 .Include(a => a.CLIENT_CARS.Models)
-                                .Include(a => a.CLIENT_CARS.LOOKUP_ITEMS);
-            foreach (APPOITMENTS CurrApp in AllAppoitments)
-                CurrContex.APPOITMENTS.Local.Add(CurrApp);
+                                .Include(a => a.CLIENT_CARS.LOOKUP_ITEMS).Load();
         }
 
         public IQueryable<APPOITMENTS> LoadAppByID(int AppID)

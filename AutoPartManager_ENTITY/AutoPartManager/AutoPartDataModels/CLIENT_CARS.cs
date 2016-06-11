@@ -26,7 +26,7 @@ namespace AutoPartDataModels
         public int MODEL_ID { get; set; }
         public Nullable<int> CAR_YEAR { get; set; }
         public string ENGINE_TYPE { get; set; }
-        public Nullable<double> ENGINE_SIZE { get; set; }
+        public string ENGINE_SIZE { get; set; }
         public string CAR_REG_NUMB { get; set; }
         public int SUB_MODEL_ID { get; set; }
         public string RAMPH_NUMB { get; set; }

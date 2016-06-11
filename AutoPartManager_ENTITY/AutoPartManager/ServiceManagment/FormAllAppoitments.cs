@@ -27,8 +27,9 @@ namespace ServiceManagment
         }
         private void FormAllAppoitments_Load(object sender, EventArgs e)
         {
-            SetDataSources();
+            
             CDMAppoitments.LoadAllAppoitments();
+            SetDataSources();
              
         }
 
@@ -47,6 +48,9 @@ namespace ServiceManagment
                 FormManageAppoitment.FormBorderStyle = FormBorderStyle.Sizable;
                 FormManageAppoitment.LoadOrInsAppt(AppID);
                 FormManageAppoitment.ShowDialog();
+                
+                CDMAppoitments.LoadAllAppoitments();
+                SetDataSources();
             }
         }
 

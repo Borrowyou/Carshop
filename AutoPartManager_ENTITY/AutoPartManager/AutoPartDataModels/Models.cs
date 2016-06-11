@@ -17,9 +17,9 @@ namespace AutoPartDataModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Models()
         {
-            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
             this.Parts = new HashSet<Parts>();
             this.SUB_MODELS = new HashSet<SUB_MODELS>();
+            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
         }
     
         public int MODEL_ID { get; set; }
@@ -29,10 +29,10 @@ namespace AutoPartDataModels
     
         public virtual Cars Cars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parts> Parts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SUB_MODELS> SUB_MODELS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
     }
 }

@@ -29,7 +29,7 @@
     <Property Name="MODEL_ID" Type="int" Nullable="false" />
     <Property Name="CAR_YEAR" Type="int" />
     <Property Name="ENGINE_TYPE" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="ENGINE_SIZE" Type="float" />
+    <Property Name="ENGINE_SIZE" Type="varchar" MaxLength="20" />
     <Property Name="CAR_REG_NUMB" Type="varchar" MaxLength="20" />
     <Property Name="SUB_MODEL_ID" Type="int" Nullable="false" />
     <Property Name="RAMPH_NUMB" Type="varchar" MaxLength="100" />
@@ -153,11 +153,11 @@
     <Property Name="SERVICE_WORK_ID" Type="int" Nullable="false" />
     <Property Name="PART_ID" Type="int" Nullable="false" />
     <Property Name="PART_PRICE" Type="float" />
-    <Property Name="QUANTITY" Type="float" Nullable="false" />
     <Property Name="MEASURE" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="TOTAL_PRICE" Type="float" />
     <Property Name="INCLUDE_INVOICE" Type="varchar" MaxLength="1" Nullable="false" />
     <Property Name="DISPL_MANUF_WORK_CARD" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="QUANTITY" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="SERVICE_WORKS">
     <Key>

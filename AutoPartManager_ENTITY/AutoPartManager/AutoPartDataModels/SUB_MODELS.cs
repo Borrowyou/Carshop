@@ -17,8 +17,8 @@ namespace AutoPartDataModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SUB_MODELS()
         {
-            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
             this.Parts = new HashSet<Parts>();
+            this.CLIENT_CARS = new HashSet<CLIENT_CARS>();
         }
     
         public int SUB_MODEL_ID { get; set; }
@@ -26,10 +26,10 @@ namespace AutoPartDataModels
         public int YEAR_MANUF { get; set; }
         public Nullable<int> YEAR_STOP { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
         public virtual Models Models { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Parts> Parts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CLIENT_CARS> CLIENT_CARS { get; set; }
     }
 }
