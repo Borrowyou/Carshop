@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label lblComplains;
             System.Windows.Forms.Label cAR_MILEAGELabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TFormManageAppoitment));
-            this.aPPOITMENTBindingSource = new System.Windows.Forms.BindingSource();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource();
+            this.aPPOITMENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnFindClient = new DevExpress.XtraEditors.SimpleButton();
             this.SrchClientCar = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource();
+            this.cLIENT_CARSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCLIENT_CAR_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCLIENT_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -60,11 +61,11 @@
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.pnlServWorkDetails = new DevExpress.XtraEditors.PanelControl();
             this.gridServiceEmpl = new DevExpress.XtraGrid.GridControl();
-            this.EmplSrvBindingSrc = new System.Windows.Forms.BindingSource();
+            this.EmplSrvBindingSrc = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewServiceEmployees = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSearchLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.EmpListBindSrc = new System.Windows.Forms.BindingSource();
+            this.EmpListBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemSearchLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colEMPLOYEE_ID2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNAME1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -76,7 +77,7 @@
             this.btnRemoveEmp = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddNewWorker = new DevExpress.XtraEditors.SimpleButton();
             this.gridServiceParts = new DevExpress.XtraGrid.GridControl();
-            this.ServicePartsBindSrc = new System.Windows.Forms.BindingSource();
+            this.ServicePartsBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.gridViewServiceParts = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colWORK_PART_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICE_WORK_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -89,7 +90,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colMEASURE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit4 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.MeasuresBindSrc = new System.Windows.Forms.BindingSource();
+            this.MeasuresBindSrc = new System.Windows.Forms.BindingSource(this.components);
             this.colQUANTITY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTOTAL_PRICE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSearchLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
@@ -99,7 +100,7 @@
             this.btnRemovePart = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.MemoDescr = new DevExpress.XtraEditors.MemoEdit();
-            this.sERVICE_WORKSBindingSource = new System.Windows.Forms.BindingSource();
+            this.sERVICE_WORKSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSerivceDescr = new System.Windows.Forms.Label();
             this.BtnNewService = new DevExpress.XtraEditors.SimpleButton();
             this.BtnWorkCard = new DevExpress.XtraEditors.SimpleButton();
@@ -111,7 +112,7 @@
             this.btnSavePDF = new DevExpress.XtraEditors.SimpleButton();
             this.btnCalc = new DevExpress.XtraEditors.SimpleButton();
             this.fUN_CALC_APP_SUM_BY_APP_ID_ResultGridControl = new DevExpress.XtraGrid.GridControl();
-            this.fUN_CALC_APP_SUM_BY_APP_ID_ResultBindingSource = new System.Windows.Forms.BindingSource();
+            this.fUN_CALC_APP_SUM_BY_APP_ID_ResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colAPPOITMENT_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICE_WORK_ID2 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -126,11 +127,11 @@
             this.colAPPOITMENT_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colWORK_STATUS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource();
+            this.lOOKUP_ITEMSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colWORK_PRICE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSERVICE_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSearchLookUpEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
-            this.sERVICESBindingSource = new System.Windows.Forms.BindingSource();
+            this.sERVICESBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.repositoryItemSearchLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSERVICE_NAME1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPRICE_PER_HOUR = new DevExpress.XtraGrid.Columns.GridColumn();
